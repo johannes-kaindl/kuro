@@ -2,8 +2,11 @@
 # Generate src/02-fonts-embedded.css with Base64 latin-subset woff2 @font-face rules.
 # Reproducible: re-run to regenerate. Source TTFs are OFL (SIL Open Font License).
 set -euo pipefail
-# Ensure user-installed Python scripts (pyftsubset) are on PATH
-export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+# Make pip --user installed fonttools CLIs reachable across Python minor versions.
+for _pyv in 3.9 3.10 3.11 3.12 3.13; do
+  [[ -d "$HOME/Library/Python/$_pyv/bin" ]] && export PATH="$HOME/Library/Python/$_pyv/bin:$PATH"
+done
+command -v pyftsubset >/dev/null 2>&1 || { echo "ERROR: pyftsubset not found — run: pip3 install --user fonttools brotli" >&2; exit 1; }
 HERE="$(cd "$(dirname "$0")" && pwd)"          # .../Kuro/src/tools
 SRC_DIR="$HERE/.fonts-src"                       # scratch (gitignored)
 OUT="$(cd "$HERE/.." && pwd)/02-fonts-embedded.css"
@@ -56,10 +59,13 @@ while IFS='|' read -r FAM URL WGHT STYLE; do
   # 2) Pin the wght axis to the desired weight to create a static instance
   python3 -m fontTools.varLib.instancer \
     --static \
+    --no-recalc-timestamp \
     -o "$ttf_static" \
     "$ttf_var" "wght=$WGHT" 2>/dev/null
 
-  # 3) Subset to latin unicode range and convert to woff2
+  # 3) Subset to latin unicode range and convert to woff2.
+  # --layout-features='*' retains all OpenType layout features (kerning, ligatures, etc.)
+  # intentionally — these are UI fonts where full feature support is desired.
   pyftsubset "$ttf_static" \
     --unicodes="$UNICODES" \
     --layout-features='*' \
