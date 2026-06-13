@@ -154,7 +154,7 @@ body.theme-dark .workspace::before {
 /* Active line highlight */
 body.kuro-active-line .cm-active.cm-line,
 body.kuro-active-line .cm-activeLine {
-  background: color-mix(in oklab, var(--accent) 5%, transparent) !important;
+  background: color-mix(in oklab, var(--accent) 5%, transparent);
   border-radius: var(--radius-sm);
 }
 
@@ -170,6 +170,7 @@ body.kuro-rainbow-indent .cm-indent-7 { --indentation-guide-color: hsl(150, 60%,
 body.kuro-rainbow-indent .cm-indent-8 { --indentation-guide-color: hsl(225, 65%, 55%); }
 
 /* Zen / Focus mode — hide all chrome */
+/* keep — user toggle must override Obsidian display rules on chrome elements */
 body.kuro-zen-mode .workspace-ribbon,
 body.kuro-zen-mode .workspace-split.mod-left-split,
 body.kuro-zen-mode .workspace-split.mod-right-split,
@@ -202,6 +203,7 @@ body.kuro-tabs-underline .workspace-tab-header.is-active {
 }
 
 /* Glow toggles · default off */
+/* keep — user toggle must override theme and Obsidian box-shadow on glow elements */
 body.kuro-no-glow .workspace-tab-header.is-active,
 body.kuro-no-glow .nav-file-title.is-active,
 body.kuro-no-glow .checkbox-container.is-enabled,
@@ -214,6 +216,7 @@ body.kuro-marker-glow-off mark,
 body.kuro-marker-glow-off .cm-highlight { box-shadow: none; }
 
 /* Mono everywhere */
+/* keep — Obsidian sets font-family at app level (not via CSS variables), higher specificity alone is insufficient */
 body.kuro-mono-all,
 body.kuro-mono-all .markdown-preview-view,
 body.kuro-mono-all .markdown-source-view.mod-cm6 .cm-content,
@@ -232,6 +235,7 @@ body.kuro-margin-tint .markdown-source-view.mod-cm6 .cm-scroller {
 }
 
 /* Callout animations · disable */
+/* keep — user toggle must override transition/animation set by theme or Obsidian */
 body.kuro-no-callout-animations .callout,
 body.kuro-no-callout-animations .callout-fold,
 body.kuro-no-callout-animations .callout-content { transition: none !important; animation: none !important; }
