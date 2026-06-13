@@ -1,0 +1,67 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   KURO  ·  v3.2.0
+   Neo-Gothic · Post-Cyberpunk · CRT-Phosphor
+   ─────────────────────────────────────────────────────────────────────────
+   v3.2.0 — Visibility + accessibility release. Acts on Live-Test feedback
+   2026-05-11 (Jay): aspect wallpapers + signal tints were too subtle to
+   read, light-mode aspects were indistinguishable, and the wallpaper
+   attenuation in low-contrast mode was painting an outer-area veil that
+   read as an inverse glow on the floating page. v3.2 retires the veil,
+   raises wallpaper and signal-tint visibility, adds light-mode aspect
+   differentiators, and ships a new orthogonal axis — Color Vision Mode —
+   that boosts saturation, spaces colliding signals along the red-green
+   axis, and adds non-colour cues (border patterns per aspect, glyphs per
+   signal, heading-weight bump).
+
+   Lineages preserved:
+     · v1.0 canonical design system (10 source vaults, Apr 23-29 2026)
+     · v2.0 "Signal Protocol Edition"  (X1_v6t2b9 active dev, May 2026)
+     · _kuro2 "Kuro Signal Protocol"   (Animation lab, Apr 2026)
+
+   v3.2.0 additions over v3.1.0:
+     · Color Vision Mode — 4th orthogonal axis (`body.kuro-color-vision-boost`)
+     · Per-aspect non-colour cues (solid / dashed / double / dotted borders)
+     · Per-signal glyph markers under boost mode
+     · Light-mode aspect differentiators (border + surface tint)
+   v3.2.0 changes over v3.1.0:
+     · Aspect wallpaper opacity 5–10 % → 15–20 % with `--kuro-wallpaper-alpha`
+     · Signal subtheme bg 4 % → 9 %, L-shape border (top + left), brighter glow
+     · Low-contrast wallpaper attenuation refactored from the v3.1
+       full-coverage inset-veil hack to an alpha-multiplier override
+     · Inverse-glow bug in Editor Mode under margin-tint dark traced to the
+       retired veil; defensive comment in §margin-tint guards against reintro
+   ─────────────────────────────────────────────────────────────────────────
+   Build order (src/build.sh concatenates [0-9][0-9]-*.css lexically):
+     00 · base-x1-foundation       — Signal-Protocol token foundation,
+                                     Four Aspects, dark/light semantics,
+                                     all base content styling
+     01 · tokens-canonical         — KSP colors_and_type.css mirror, SSOT
+     10 · v1-polish-addendum       — §3b colorful-headings, §24 presets,
+                                     §25 low-contrast, §28 callouts ext.,
+                                     §32 graph WebGL, §34 zen, §35 tabs,
+                                     §36 custom checkboxes, §37 polish
+     20 · kuro2-aesthetics         — Void Scale, [!kuro] callout, chamber
+                                     grain, plugin body-class hooks,
+                                     hanko / ribbon-kanji / Kuro marks
+     30 · plugin-migrated          — hanko, margin-tint, logo, ribbon,
+                                     vignette, mono-all, headings,
+                                     light-mode glow + aspect strip, buttons,
+                                     hanko-glow
+     40 · aspect-wallpapers        — Per-aspect textures on margin-tint,
+                                     alpha-multiplier-aware
+     50 · signal-subthemes         — Twelve signal classes for notes
+     60 · low-contrast             — v3.1-layer attenuations + wallpaper
+                                     alpha override
+     61 · color-vision-boost       — Saturation lift, hue spread, border
+                                     patterns per aspect, glyphs per signal
+     70 · showcase-fx              — Press / pulse / hover / kuro-line
+   ─────────────────────────────────────────────────────────────────────────
+   The chamber is dark. The signal earns its brightness because the
+   chamber is dark.  Twelve hues, twelve roles.  Four aspects, four voices.
+   ─────────────────────────────────────────────────────────────────────────
+   Companion plugins (each in its own repo):
+     · obsidian-kuro-settings     — runtime controls, aspect picker,
+                                    sets body classes for the v3.1 layers
+     · obsidian-kuro-screensaver  — fullscreen 3D flyover with HUD
+     · obsidian-kuro-gamification — XP / levels / streaks (optional)
+   ═════════════════════════════════════════════════════════════════════════ */

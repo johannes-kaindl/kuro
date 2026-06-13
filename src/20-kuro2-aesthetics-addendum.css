@@ -1,0 +1,292 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   FRAGMENT · 20-kuro2-aesthetics-addendum.css
+   Source: _kuro2 v2.0.0 "Kuro Signal Protocol" (35_AnimationVault, Apr 2026)
+   ─────────────────────────────────────────────────────────────────────────
+   Provides aesthetics that are unique to the _kuro2 lineage and not
+   present in the X1 v2 base.
+
+   Included sections (numbering follows _kuro2 originals):
+     §02 · Void Scale                      (--void-000 … --void-900)
+     §21 · [!kuro] custom callout          (subset of §21 callouts)
+     §32 · Chamber grain overlay
+     §33 · Plugin body-class hooks         (centralised; deduplicated below)
+     §34 · Hanko · Ribbon kanji · Kuro marks
+
+   NOTE — Aspect subthemes (§09 in _kuro2) are NOT included here because
+   the X1 v2 base already provides the §0a Aspect implementation. If a
+   conflict ever shows up, the X1 form wins via cascade order.
+   ───────────────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   _kuro2 LAYER · §02 · Void Scale (chamber depth)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+/* ═══════════ §02 · VOID SCALE ════════════════════════════════════════════
+   The chamber.  Near-black.  Pure black is reserved for outermost bleed.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+  --void-000: #000000;            /* outermost bleed only                */
+  --void-050: #060709;            /* app background — the chamber        */
+  --void-100: #0b0d11;            /* surface · panels                    */
+  --void-150: #11141a;            /* surface raised · cards              */
+  --void-200: #181c24;            /* surface overlay · modals            */
+  --void-300: #22272f;            /* border subtle                       */
+  --void-400: #2e343d;            /* border default                      */
+  --void-500: #3d4450;            /* border strong                       */
+  --void-600: #5a6170;            /* fg tertiary                         */
+  --void-700: #828a97;            /* fg secondary                        */
+  --void-800: #c8cbd2;            /* fg primary alt                      */
+  --void-900: var(--signal-pearl);/* fg primary                          */
+
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   _kuro2 LAYER · §21 · [!kuro] Custom Callout
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Custom Kuro-line callout — [!kuro] · spectre tint, accent-soft wash */
+.callout[data-callout="kuro"] {
+  --callout-color: var(--signal-spectre);
+  background: color-mix(in oklab, var(--accent) 7%, transparent);
+  border-color: color-mix(in oklab, var(--accent) 35%, transparent);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+}
+.callout[data-callout="kuro"] .callout-title {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.callout[data-callout="kuro"] .callout-content {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--fg-primary);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  margin-top: 4px;
+}
+.callout[data-callout="kuro"] .callout-icon {
+  background: radial-gradient(circle, #1a1e25, #040506);
+  border: 1px solid color-mix(in oklab, var(--accent) 60%, transparent);
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  position: relative;
+}
+.callout[data-callout="kuro"] .callout-icon::after {
+  content: ''; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--signal-crimson);
+  box-shadow: 0 0 6px var(--signal-crimson);
+  position: absolute;
+}
+.callout[data-callout="kuro"] .callout-icon svg { display: none; }
+
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   _kuro2 LAYER · §32 · Chamber Grain Overlay
+   ═══════════════════════════════════════════════════════════════════════ */
+
+
+
+/* ═══════════ §32 · CHAMBER GRAIN OVERLAY ═════════════════════════════════
+   ~3% opacity SVG noise. Sits over the vault ground only.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+body.theme-dark::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+}
+
+/* Optional vignette — `body.kuro-has-vignette` toggled by plugin */
+body.kuro-has-vignette::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 998;
+  background: radial-gradient(ellipse at center,
+              transparent 50%,
+              rgba(0,0,0, calc(var(--kuro-vignette, 0.32) * 1)) 100%);
+}
+
+/* CRT scanlines — opacity controlled by `--kuro-scanline-opacity`.
+   Zero = invisible (no-op). Plugin lets user dial the intensity. */
+body.theme-dark .workspace::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(255,255,255, 0.45) 2px,
+    rgba(255,255,255, 0.45) 3px
+  );
+  opacity: var(--kuro-scanline-opacity, 0);
+  mix-blend-mode: overlay;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   _kuro2 LAYER · §33 · Plugin Body-Class Hooks
+   ═══════════════════════════════════════════════════════════════════════ */
+
+
+/* ═══════════ §33 · PLUGIN BODY-CLASS HOOKS ══════════════════════════════
+   These body classes are toggled by _kuro-theme-settings.
+   Each is a state, not a decoration.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+/* Active line highlight */
+body.kuro-active-line .cm-active.cm-line,
+body.kuro-active-line .cm-activeLine {
+  background: color-mix(in oklab, var(--accent) 5%, transparent) !important;
+  border-radius: var(--radius-sm);
+}
+
+/* Rainbow indent guides — Live Preview */
+body.kuro-rainbow-indent .cm-indent { --indentation-guide-color: hsl(200, 60%, 50%); }
+body.kuro-rainbow-indent .cm-indent-1 { --indentation-guide-color: hsl(200, 65%, 52%); }
+body.kuro-rainbow-indent .cm-indent-2 { --indentation-guide-color: hsl(250, 60%, 58%); }
+body.kuro-rainbow-indent .cm-indent-3 { --indentation-guide-color: hsl(300, 55%, 55%); }
+body.kuro-rainbow-indent .cm-indent-4 { --indentation-guide-color: hsl(350, 65%, 55%); }
+body.kuro-rainbow-indent .cm-indent-5 { --indentation-guide-color: hsl(30,  65%, 52%); }
+body.kuro-rainbow-indent .cm-indent-6 { --indentation-guide-color: hsl(80,  60%, 45%); }
+body.kuro-rainbow-indent .cm-indent-7 { --indentation-guide-color: hsl(150, 60%, 45%); }
+body.kuro-rainbow-indent .cm-indent-8 { --indentation-guide-color: hsl(225, 65%, 55%); }
+
+/* Zen / Focus mode — hide all chrome */
+body.kuro-zen-mode .workspace-ribbon,
+body.kuro-zen-mode .workspace-split.mod-left-split,
+body.kuro-zen-mode .workspace-split.mod-right-split,
+body.kuro-zen-mode .status-bar,
+body.kuro-zen-mode .workspace-tab-header-container { display: none !important; }
+body.kuro-zen-mode .markdown-source-view.mod-cm6 .cm-sizer,
+body.kuro-zen-mode .markdown-preview-sizer { max-width: 720px; }
+body.kuro-zen-mode .markdown-source-view.mod-cm6 .cm-contentContainer,
+body.kuro-zen-mode .markdown-preview-view { padding-top: var(--space-9); }
+
+/* Tab style variants */
+body.kuro-tabs-pill .workspace-tab-header {
+  border-bottom: 0;
+  border-radius: var(--radius-full);
+  margin: 4px 2px 4px 0;
+  padding: 0 8px;
+  height: 28px;
+}
+body.kuro-tabs-pill .workspace-tab-header.is-active {
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+body.kuro-tabs-pill .workspace-tab-header-inner { padding: 0 10px; height: 100%; }
+
+body.kuro-tabs-underline .workspace-tab-header { border-bottom-width: 2px; }
+body.kuro-tabs-underline .workspace-tab-header.is-active {
+  background: transparent;
+  border-bottom-color: var(--accent);
+  box-shadow: 0 6px 14px -10px var(--accent-glow);
+}
+
+/* Glow toggles · default off */
+body.kuro-no-glow .workspace-tab-header.is-active,
+body.kuro-no-glow .nav-file-title.is-active,
+body.kuro-no-glow .checkbox-container.is-enabled,
+body.kuro-no-glow .mod-cta { box-shadow: none !important; }
+
+/* Marker / highlight glow */
+body.kuro-marker-glow-on mark,
+body.kuro-marker-glow-on .cm-highlight { box-shadow: 0 0 8px -2px color-mix(in oklab, var(--signal-toxic) 60%, transparent); }
+body.kuro-marker-glow-off mark,
+body.kuro-marker-glow-off .cm-highlight { box-shadow: none; }
+
+/* Mono everywhere */
+body.kuro-mono-all,
+body.kuro-mono-all .markdown-preview-view,
+body.kuro-mono-all .markdown-source-view.mod-cm6 .cm-content,
+body.kuro-mono-all .markdown-source-view.mod-cm6 .cm-line,
+body.kuro-mono-all .nav-file-title,
+body.kuro-mono-all .nav-folder-title { font-family: var(--font-mono) !important; letter-spacing: 0; }
+
+/* Margin tint — soft accent tint on document margins */
+body.kuro-margin-tint .markdown-preview-view,
+body.kuro-margin-tint .markdown-source-view.mod-cm6 .cm-scroller {
+  background: linear-gradient(to right,
+    color-mix(in oklab, var(--accent) 4%, transparent) 0,
+    transparent 8%,
+    transparent 92%,
+    color-mix(in oklab, var(--accent) 4%, transparent) 100%);
+}
+
+/* Callout animations · disable */
+body.kuro-no-callout-animations .callout,
+body.kuro-no-callout-animations .callout-fold,
+body.kuro-no-callout-animations .callout-content { transition: none !important; animation: none !important; }
+
+/* Colorful headings — H1..H3 get accent / second-aspect tints */
+body.kuro-colorful-headings .markdown-preview-view h1,
+body.kuro-colorful-headings .HyperMD-header-1 { color: var(--accent); }
+body.kuro-colorful-headings .markdown-preview-view h2,
+body.kuro-colorful-headings .HyperMD-header-2 { color: color-mix(in oklab, var(--accent) 70%, var(--fg-primary)); }
+body.kuro-colorful-headings .markdown-preview-view h3,
+body.kuro-colorful-headings .HyperMD-header-3 { color: color-mix(in oklab, var(--accent) 45%, var(--fg-primary)); }
+
+/* Low contrast — Zen / Shadow */
+body.kuro-low-contrast {
+  --fg-primary:    #c5c0b5;
+  --fg-secondary:  #8f8b82;
+  --fg-tertiary:   #5f5c56;
+  --fg-disabled:   #444039;
+  --kuro-glow-accent: color-mix(in oklab, var(--accent) 20%, transparent);
+  --kuro-scanline-opacity: 0;
+}
+body.theme-light.kuro-low-contrast {
+  --fg-primary:    #3d2b1f;
+  --fg-secondary:  #7a6352;
+  --fg-tertiary:   #a89282;
+  --fg-disabled:   #c4b3a5;
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   _kuro2 LAYER · §34 · Hanko · Ribbon Kanji · Kuro Marks
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════ §34 · HANKO · RIBBON KANJI · KURO MARKS ═════════════════════ */
+
+body.kuro-hanko-framed .nav-file-title.is-active {
+  box-shadow: inset 2px 0 0 0 var(--accent),
+              inset -1px 0 0 0 color-mix(in oklab, var(--accent) 30%, transparent);
+}
+body.kuro-hanko-glow .nav-file-title.is-active {
+  box-shadow: inset 2px 0 0 0 var(--accent),
+              0 0 14px -8px var(--accent-glow);
+}
+
+body.kuro-ribbon-kanji .workspace-ribbon::before {
+  content: '黒';
+  display: block;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--accent);
+  margin: var(--space-2) 0 var(--space-4);
+  text-shadow: 0 0 12px var(--accent-glow);
+  opacity: 0.85;
+}
+
+

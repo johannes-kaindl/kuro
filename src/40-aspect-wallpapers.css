@@ -1,0 +1,101 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   FRAGMENT · 40-aspect-wallpapers.css
+   Source: kuro-signal-design/preview/aspects.html (lines ~100–272)
+   ─────────────────────────────────────────────────────────────────────────
+   Per-aspect background textures painted onto the margin-tint outer area
+   (the dark band around the floating note). Active only when both
+   `html[data-aspect="X"]` and `body.kuro-margin-tint` are present, so the
+   default chamber-dark look stays clean.
+
+   Pattern per aspect (lifted from aspects.html .shugo / .gunshi / .kantoku /
+   .sensei demo cards):
+     · shugo    Concentric radar rings   (Phosphor)
+     · gunshi   Dot-grid lattice          (Spectre)
+     · kantoku  Warning-stripe weave      (Crimson)
+     · sensei   Horizontal paper lines    (Ember)
+
+   v3.2 changes (Live-Test 2026-05-11):
+   ─────────────────────────────────────
+   · Texture alpha lifted from 5–10 % to 15–20 % so the wallpapers actually
+     read on the chamber-dark margin. The atmospheric radial wash per aspect
+     bumps from ~10 % to 18–22 %.
+   · Every literal percentage is multiplied by `var(--kuro-wallpaper-alpha, 1)`
+     inside `color-mix()` via `calc()`. Default 1 = full strength. The
+     low-contrast layer overrides the variable to 0.4 — this replaces the old
+     full-coverage inset-shadow veil hack in 60-low-contrast.css.
+   · Gunshi's dot foreground stayed near its previous 22 % since each dot is
+     a single pixel anchor — the atmospheric wash gets the bump instead.
+
+   Original rgba(R,G,B,A) literals from aspects.html are replaced with
+   `color-mix(in oklab, var(--signal-X) N%, transparent)` so the textures
+   inherit the canonical token (R6 in v3.1 RISKS).
+
+   Texture sits on top of the plugin §margin-tint's --background-secondary-alt
+   base (different declaration; this one wins via the
+   html[data-aspect=…] qualifier — specificity 0,3,2 vs 0,2,1).
+   ───────────────────────────────────────────────────────────────────── */
+
+
+/* ── shugo · Guardian — concentric radar rings, phosphor green ── */
+html[data-aspect="shugo"] body.kuro-margin-tint .workspace-leaf-content[data-type="markdown"] {
+  background:
+    repeating-radial-gradient(
+      circle at 15% 85%,
+      transparent 0,
+      transparent 28px,
+      color-mix(in oklab, var(--signal-phosphor) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 28px,
+      color-mix(in oklab, var(--signal-phosphor) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 29px
+    ),
+    radial-gradient(ellipse at 50% 120%,
+      color-mix(in oklab, var(--signal-phosphor) calc(20% * var(--kuro-wallpaper-alpha, 1)), transparent) 0%,
+      transparent 55%),
+    var(--background-secondary-alt, #050506);
+}
+
+
+/* ── gunshi · Strategist — dot-grid lattice, spectre violet ── */
+html[data-aspect="gunshi"] body.kuro-margin-tint .workspace-leaf-content[data-type="markdown"] {
+  background:
+    radial-gradient(circle at 1px 1px,
+      color-mix(in oklab, var(--signal-spectre) calc(22% * var(--kuro-wallpaper-alpha, 1)), transparent) 1px,
+      transparent 1.5px) 0 0 / 18px 18px,
+    radial-gradient(circle at 70% 30%,
+      color-mix(in oklab, var(--signal-spectre) calc(20% * var(--kuro-wallpaper-alpha, 1)), transparent) 0%,
+      transparent 55%),
+    var(--background-secondary-alt, #050506);
+}
+
+
+/* ── kantoku · Taskmaster — warning-stripe weave, crimson ── */
+html[data-aspect="kantoku"] body.kuro-margin-tint .workspace-leaf-content[data-type="markdown"] {
+  background:
+    repeating-linear-gradient(105deg,
+      transparent 0, transparent 18px,
+      color-mix(in oklab, var(--signal-crimson) calc(15% * var(--kuro-wallpaper-alpha, 1)), transparent) 18px,
+      color-mix(in oklab, var(--signal-crimson) calc(15% * var(--kuro-wallpaper-alpha, 1)), transparent) 22px),
+    repeating-linear-gradient(105deg,
+      transparent 0, transparent 11px,
+      color-mix(in oklab, var(--signal-crimson) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 11px,
+      color-mix(in oklab, var(--signal-crimson) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 12px),
+    repeating-linear-gradient(15deg,
+      transparent 0, transparent 11px,
+      color-mix(in oklab, var(--signal-crimson) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 11px,
+      color-mix(in oklab, var(--signal-crimson) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 12px),
+    radial-gradient(ellipse at 0% 50%,
+      color-mix(in oklab, var(--signal-crimson) calc(20% * var(--kuro-wallpaper-alpha, 1)), transparent) 0%,
+      transparent 55%),
+    var(--background-secondary-alt, #050506);
+}
+
+
+/* ── sensei · Mentor — horizontal paper lines, ember amber ── */
+html[data-aspect="sensei"] body.kuro-margin-tint .workspace-leaf-content[data-type="markdown"] {
+  background:
+    radial-gradient(circle at 82% 20%,
+      color-mix(in oklab, var(--signal-ember) calc(22% * var(--kuro-wallpaper-alpha, 1)), transparent) 0%,
+      transparent 45%),
+    repeating-linear-gradient(transparent 0, transparent 21px,
+      color-mix(in oklab, var(--signal-ember) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 21px,
+      color-mix(in oklab, var(--signal-ember) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 22px),
+    var(--background-secondary-alt, #050506);
+}

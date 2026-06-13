@@ -1,0 +1,112 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   FRAGMENT · 70-showcase-fx.css
+   Source: kuro-signal-design/kuro/showcase/{plugin-fx,colorful}.css,
+           kuro-signal-design/ui_kits/vault/index.html
+   ─────────────────────────────────────────────────────────────────────────
+   Cherry-picked KSP-derived polish that wasn't already in the theme.
+   Deliberately small — most of the showcase plugin-fx.css is `.ks-*`
+   classes that only apply inside the showcase mock, and colorful.css
+   is already covered by v1-polish §3b + the migrated §headings layer.
+
+   What this layer adds:
+     1. Press feedback             — KSP standard: translateY(1px) + 0.95 brightness
+     2. Pulse animation utility    — @keyframes kuro-pulse + .kuro-pulse class
+     3. Active-file stripe         — KSP file-list active-state convention
+     4. Kuro-line callout helper   — opt-in class, lifted from vault/index.html
+     5. Smooth-hover wash          — accent-soft bg on hovered nav items
+
+   Token-bridged throughout. No bare hex literals in new code.
+   ───────────────────────────────────────────────────────────────────── */
+
+
+/* ── 1 · Press feedback ────────────────────────────────────
+   KSP non-negotiable: a press is translateY(1px) + brightness(0.95).
+   Not a colour change, not a size change. Applied to common Obsidian
+   click targets where the default has no press cue.
+   ──────────────────────────────────────────────────────────── */
+
+.clickable-icon:active,
+.workspace-tab-header:active,
+.nav-file-title:active,
+.nav-folder-title:active,
+.side-dock-ribbon-action:active {
+  transform: translateY(1px);
+  filter: brightness(0.95);
+  transition: transform var(--dur-fast) var(--ease-signal),
+              filter    var(--dur-fast) var(--ease-signal);
+}
+
+
+/* ── 2 · Pulse animation utility ───────────────────────────
+   The KSP signature pulse — used for live status indicators
+   (sync, online, recording). 2.4s ease-pulse infinite.
+   Mark any element with `.kuro-pulse` to enable.
+   ──────────────────────────────────────────────────────────── */
+
+@keyframes kuro-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.92); }
+}
+
+.kuro-pulse {
+  animation: kuro-pulse 2.4s var(--ease-pulse) infinite;
+}
+
+
+/* ── 3 · Active-file stripe ────────────────────────────────
+   Lifted from ui_kits/vault/index.html .file.active. KSP-canonical
+   active-file convention: accent-soft bg + 2px inset accent stripe
+   on the leading edge.
+   ──────────────────────────────────────────────────────────── */
+
+.nav-file-title.is-active {
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+  box-shadow: inset 2px 0 0 0 var(--accent);
+  color: var(--fg-primary);
+}
+
+
+/* ── 4 · Kuro-line callout helper ──────────────────────────
+   Opt-in class users can add to a blockquote or div to render
+   a "Kuro says" line in KSP style. Lifted from vault/index.html
+   .kuro-line. Not active by default; companion plugin may apply
+   it automatically for [!kuro] callouts in a later phase.
+   ──────────────────────────────────────────────────────────── */
+
+.kuro-line {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  margin: var(--space-5) 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklab, var(--accent) 7%, transparent);
+  border-left: 2px solid var(--accent);
+}
+.kuro-line .speaker {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+
+/* ── 5 · Smooth-hover wash ─────────────────────────────────
+   KSP hover convention: not a colour shift, but a brightness
+   bump or accent-soft background wash. Applied to non-active
+   nav items and tab headers.
+   ──────────────────────────────────────────────────────────── */
+
+.nav-file-title:not(.is-active):hover,
+.nav-folder-title:not(.is-active):hover {
+  background: color-mix(in oklab, var(--accent) 6%, transparent);
+  transition: background var(--dur-base) var(--ease-ghost);
+}
+
+.workspace-tab-header:not(.is-active):hover {
+  filter: brightness(1.1);
+  transition: filter var(--dur-base) var(--ease-ghost);
+}

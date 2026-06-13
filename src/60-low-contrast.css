@@ -1,0 +1,142 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   FRAGMENT · 60-low-contrast.css
+   Source: NEW for v3.1.0 — extends v1-polish §25 across new v3.1 layers
+   ─────────────────────────────────────────────────────────────────────────
+   v1-polish §25 already provides the bulk of `body.kuro-low-contrast` —
+   per-preset surfaces, lifted blacks, dimmed `--kuro-glow-accent`,
+   heading-tone shifts when colorful-headings is off. This fragment
+   extends that work to the v3.1 additions:
+
+     · plugin §margin-tint    — desaturate the neon-edge box-shadow (R3)
+     · §40 aspect wallpapers   — soften wallpaper alpha in margin-tint
+     · §50 signal subthemes    — attenuate signal glow + top-border
+     · §30 hanko-glow          — calmer halo when low-contrast is on
+
+   Defaults here aim for "still recognisable, no longer aggressive".
+   Will be tunable through the plugin in a later phase.
+   ───────────────────────────────────────────────────────────────────── */
+
+
+/* ── Glow attenuation across the board (R3) ── */
+body.kuro-low-contrast.theme-dark {
+  /* Keep --kuro-glow-accent dimmer than full saturation. The v1-polish §25
+     light-mode block already redefines this for light; here we set the
+     dark-mode value explicitly so margin-tint + low-contrast composes
+     calmly rather than at full neon. */
+  --kuro-glow-accent: color-mix(in oklab, var(--accent) 30%, transparent);
+}
+
+
+/* ── Margin-tint neon-edge softening ── */
+body.kuro-low-contrast.kuro-margin-tint.theme-dark {
+  & .markdown-preview-sizer,
+  & .markdown-source-view .cm-editor {
+    /* Re-author the §margin-tint dark-mode glow at half intensity.
+       Replaces the 0.06 outer ring + full --kuro-glow-accent 24px stack
+       with a softer two-stop shadow. */
+    box-shadow:
+      0 0 0 1px rgba(var(--interactive-accent-rgb), 0.03),
+      0 0 16px color-mix(in oklab, var(--accent) 18%, transparent),
+      0 2px 24px rgba(0, 0, 0, 0.45);
+  }
+}
+
+
+/* ── Aspect wallpapers softening ── */
+body.kuro-low-contrast.kuro-margin-tint {
+  /* v3.2: replaces the v3.1 full-coverage inset-shadow veil hack with a clean
+     alpha-multiplier override. 40-aspect-wallpapers.css now multiplies
+     every wallpaper colour-mix percentage by `var(--kuro-wallpaper-alpha, 1)`,
+     so dropping the variable to 0.4 here attenuates all four wallpapers
+     proportionally without painting an outer-layer veil over the floating
+     page (which was misread as an inverse-glow in Editor Mode). */
+  --kuro-wallpaper-alpha: 0.4;
+}
+
+
+/* ── Signal-subtheme attenuation ── */
+body.kuro-low-contrast {
+  /* Top border drops from 2px solid to 1px solid + dimmed colour.
+     The selector targets ALL 12 signal classes by attribute match. */
+  & .markdown-source-view[class*="kuro-signal-"],
+  & .markdown-preview-view[class*="kuro-signal-"] {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: color-mix(in oklab,
+      currentColor 0%,  /* placeholder — overridden below per-signal */
+      transparent);
+  }
+}
+
+/* Per-signal LC override: 50% colour at 1px border, glow at ~50% intensity. */
+body.kuro-low-contrast .markdown-source-view.kuro-signal-crimson,
+body.kuro-low-contrast .markdown-preview-view.kuro-signal-crimson {
+  border-top-color: color-mix(in oklab, var(--signal-crimson) 50%, transparent);
+}
+body.kuro-low-contrast .markdown-source-view.kuro-signal-phosphor,
+body.kuro-low-contrast .markdown-preview-view.kuro-signal-phosphor {
+  border-top-color: color-mix(in oklab, var(--signal-phosphor) 50%, transparent);
+}
+body.kuro-low-contrast .markdown-source-view.kuro-signal-ember,
+body.kuro-low-contrast .markdown-preview-view.kuro-signal-ember {
+  border-top-color: color-mix(in oklab, var(--signal-ember) 50%, transparent);
+}
+body.kuro-low-contrast .markdown-source-view.kuro-signal-spectre,
+body.kuro-low-contrast .markdown-preview-view.kuro-signal-spectre {
+  border-top-color: color-mix(in oklab, var(--signal-spectre) 50%, transparent);
+}
+body.kuro-low-contrast .markdown-source-view.kuro-signal-circuit,
+body.kuro-low-contrast .markdown-preview-view.kuro-signal-circuit {
+  border-top-color: color-mix(in oklab, var(--signal-circuit) 50%, transparent);
+}
+body.kuro-low-contrast .markdown-source-view.kuro-signal-ghost,
+body.kuro-low-contrast .markdown-preview-view.kuro-signal-ghost {
+  border-top-color: color-mix(in oklab, var(--signal-ghost) 50%, transparent);
+}
+body.kuro-low-contrast .markdown-source-view.kuro-signal-biolink,
+body.kuro-low-contrast .markdown-preview-view.kuro-signal-biolink {
+  border-top-color: color-mix(in oklab, var(--signal-biolink) 50%, transparent);
+}
+body.kuro-low-contrast .markdown-source-view.kuro-signal-neural-bleed,
+body.kuro-low-contrast .markdown-preview-view.kuro-signal-neural-bleed {
+  border-top-color: color-mix(in oklab, var(--signal-neural-bleed) 50%, transparent);
+}
+body.kuro-low-contrast .markdown-source-view.kuro-signal-rust,
+body.kuro-low-contrast .markdown-preview-view.kuro-signal-rust {
+  border-top-color: color-mix(in oklab, var(--signal-rust) 50%, transparent);
+}
+body.kuro-low-contrast .markdown-source-view.kuro-signal-toxic,
+body.kuro-low-contrast .markdown-preview-view.kuro-signal-toxic {
+  border-top-color: color-mix(in oklab, var(--signal-toxic) 50%, transparent);
+}
+body.kuro-low-contrast .markdown-source-view.kuro-signal-voidwitch,
+body.kuro-low-contrast .markdown-preview-view.kuro-signal-voidwitch {
+  border-top-color: color-mix(in oklab, var(--signal-voidwitch) 50%, transparent);
+}
+body.kuro-low-contrast .markdown-source-view.kuro-signal-pearl,
+body.kuro-low-contrast .markdown-preview-view.kuro-signal-pearl {
+  border-top-color: color-mix(in oklab, var(--signal-pearl) 50%, transparent);
+}
+
+
+/* ── Hanko-glow attenuation ── */
+body.kuro-low-contrast.kuro-hanko-glow:not(.kuro-no-glow) {
+  /* Cut the multi-stop halo on framed hanko by overriding the box-shadow
+     to a calmer two-stop version. */
+  & .kuro-hanko-instance.kuro-hanko-framed {
+    box-shadow:
+      0 0 calc(4px  * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.22),
+      0 0 calc(12px * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.10),
+      0 2px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Unframed hanko keeps the multi-stop text-shadow, but at lower
+     amplitude (last two stops dropped). */
+  & .kuro-hanko-instance:not(.kuro-hanko-framed) {
+    text-shadow:
+      0 0 calc(3px  * var(--kuro-hanko-glow-mult, 1)) currentColor,
+      0 0 calc(10px * var(--kuro-hanko-glow-mult, 1)) currentColor,
+      0 0 calc(24px * var(--kuro-hanko-glow-mult, 1)) currentColor;
+    opacity: 0.55;
+  }
+}
