@@ -5110,7 +5110,7 @@ body.kuro-ribbon-kanji .workspace-ribbon::before {
     border-radius: 4px;
     padding: var(--kuro-hanko-frame-pad, 16px);
     box-sizing: content-box;
-    text-shadow: none; /* Kein !important nötig: Nesting-Kaskadenreihenfolge gewinnt */
+    text-shadow: none; /* kein keep-Kommentar nötig: Nesting-Kaskadenreihenfolge gewinnt */
     opacity: 0.85;
     font-weight: 500;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
@@ -5303,24 +5303,27 @@ body.kuro-mono-all {
   --font-text-override: var(--kuro-font-mono);
   --font-interface-override: var(--kuro-font-mono);
 
-  /* !important nötig: Obsidian setzt font-family auf App-Ebene
+  /* keep — Obsidian setzt font-family auf App-Ebene
      (nicht über CSS-Variablen), daher reicht höhere Spezifität nicht. */
   font-family: var(--kuro-font-mono) !important;
 
   & .markdown-preview-view,
   & .markdown-source-view {
+    /* keep — app-level font-family override, CSS-Variablen reichen nicht */
     font-family: var(--kuro-font-mono) !important;
   }
 
   & h1, & h2, & h3, & h4, & h5, & h6,
   & .inline-title,
   & .cm-header-1, & .cm-header-2, & .cm-header-3 {
+    /* keep — app-level font-family/font-style override */
     font-family: var(--kuro-font-mono) !important;
     font-style: normal !important;
   }
 
   & .cm-editor,
   & .cm-line {
+    /* keep — app-level font-family override für CodeMirror-Editorfläche */
     font-family: var(--kuro-font-mono) !important;
   }
 }
