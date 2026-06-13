@@ -1480,6 +1480,40 @@ body.theme-light .mermaid {
 }
 
 
+/* ── §39·6b  Spacing-Polish ────────────────────────────────── */
+/* PADDING-PATCH 2026-05-27 — Source-Sync für kuro-konsolidierung pending */
+/* Nur Spacing/Padding, keine Colors. Behebt "Text klebt an Box-Kanten"
+   (Node-Labels) und fehlendes Atemraum-Padding um Edge-/Cluster-Labels.
+   Mermaid sizt den Node-Rect nach un-gepaddetem Label → overflow:visible
+   verhindert Clipping des zusätzlichen Paddings. */
+
+/* Node-Label: foreignObject darf nicht clippen, Padding für Atemraum */
+.mermaid .node foreignObject {
+  overflow: visible;
+}
+
+.mermaid .node .label,
+.mermaid .nodeLabel,
+.mermaid .nodeLabel p,
+.mermaid .node foreignObject div {
+  padding: 6px 10px;
+}
+
+/* Edge-Label: sichtbares Padding + Border-Radius (verhindert "Text klebt am Hintergrund") */
+.mermaid .edgeLabel,
+.mermaid .edgeLabel p,
+.mermaid .edgeLabel foreignObject div {
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* Cluster/Subgraph-Label: leichtes Padding */
+.mermaid .cluster-label .nodeLabel,
+.mermaid .cluster-label foreignObject div {
+  padding: 4px 8px;
+}
+
+
 /* ── §39·7  Sequence Diagram ───────────────────────────────── */
 
 body.theme-dark .mermaid {
