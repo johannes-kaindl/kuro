@@ -3961,7 +3961,7 @@ body.theme-dark .callout:hover {
   background-color: rgba(var(--callout-color), 0.1);
   padding: 5px 13px;
   border-radius: 8px;
-  text-decoration: none !important;
+  text-decoration: none;
   color: var(--text-normal);
   border: 1px solid rgba(var(--callout-color), 0.2);
   font-size: 0.88em;
@@ -3976,10 +3976,10 @@ body.theme-dark .callout:hover {
 
 /* blank: invisible container */
 .callout[data-callout="blank"] {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 .callout[data-callout="blank"] .callout-title { display: none; }
 .callout[data-callout="blank"] .callout-content { padding: 0; }
@@ -3998,14 +3998,14 @@ body.theme-dark .callout:hover {
 /* ── Accessibility ── */
 @media (prefers-reduced-motion: reduce) {
   .callout .callout-icon svg {
-    animation: none !important;
-    filter: none !important;
-    transition: none !important;
+    animation: none !important;  /* keep — accessibility: defeats higher-specificity [data-callout]:hover animation rules */
+    filter: none !important;     /* keep — accessibility: same; filter set by hover rules at higher specificity */
+    transition: none !important; /* keep — accessibility: same pattern */
   }
   .callout,
   .callout[data-callout="nav"] .callout-content > p > a,
   .callout[data-callout="spoiler"] .callout-content {
-    transition: none !important;
+    transition: none;
   }
 }
 
@@ -4020,13 +4020,13 @@ body.theme-dark .callout:hover {
 /* ── Callout animations off — body.kuro-no-callout-animations ── */
 body.kuro-no-callout-animations .callout .callout-icon svg,
 body.kuro-no-callout-animations .callout-icon svg {
-  animation: none !important;
-  filter:    none !important;
+  animation: none !important;  /* keep — defeats higher-specificity [data-callout]:hover animation rules */
+  filter:    none !important;  /* keep — defeats higher-specificity [data-callout]:hover filter rules */
 }
 /* ► Plugin-gesteuert: kuro-no-callout-animations  (main.js → calloutAnimations, §Callouts) */
 body.kuro-no-callout-animations .callout:hover .callout-icon svg {
-  transform: none !important;
-  transition: none !important;
+  transform: none;
+  transition: none;
 }
 
 
@@ -4087,11 +4087,11 @@ body.kuro-zen-mode .workspace-split.mod-left-split,
 body.kuro-zen-mode .workspace-split.mod-right-split,
 body.kuro-zen-mode .workspace-tab-header-container,
 body.kuro-zen-mode .status-bar {
-  display: none !important;
+  display: none !important;  /* keep — defeats Obsidian app-level display rules on workspace elements */
 }
 
 body.kuro-zen-mode .workspace-split.mod-root {
-  margin: 0 !important;
+  margin: 0 !important;  /* keep — defeats Obsidian app-level margin on workspace root */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -4124,7 +4124,7 @@ body.kuro-tabs-pill .workspace-tab-header {
   transition: background 120ms ease, color 120ms ease, opacity 120ms ease;
 }
 body.kuro-tabs-pill .workspace-tab-header.mod-active {
-  background: rgba(var(--interactive-accent-rgb), 0.15) !important;
+  background: rgba(var(--interactive-accent-rgb), 0.15) !important;  /* keep — defeats Obsidian app-level active-tab background */
   box-shadow: none;
 }
 body.kuro-tabs-pill .workspace-tab-header:not(.mod-active):hover {
@@ -4133,15 +4133,15 @@ body.kuro-tabs-pill .workspace-tab-header:not(.mod-active):hover {
 
 /* ── Underline ── */
 body.kuro-tabs-underline .workspace-tab-header {
-  background: transparent !important;
+  background: transparent !important;  /* keep — defeats Obsidian app-level tab background */
   border-radius: 0;
-  box-shadow: none !important;
+  box-shadow: none !important;          /* keep — defeats Obsidian app-level tab box-shadow */
 }
 body.kuro-tabs-underline .workspace-tab-header.mod-active {
-  border-bottom: 2px solid var(--interactive-accent) !important;
+  border-bottom: 2px solid var(--interactive-accent) !important;  /* keep — defeats Obsidian app-level active-tab border */
 }
 body.kuro-tabs-underline .workspace-tab-header:not(.mod-active):hover {
-  border-bottom: 1px solid rgba(var(--interactive-accent-rgb), 0.4) !important;
+  border-bottom: 1px solid rgba(var(--interactive-accent-rgb), 0.4) !important;  /* keep — defeats Obsidian app-level tab hover border */
 }
 
 
@@ -4369,18 +4369,18 @@ input[data-task="k"].task-list-item-checkbox::after {
 
 /* ── Tag pills ── */
 /* Reading View */
-a.tag {
-  background: rgba(var(--interactive-accent-rgb), 0.12) !important;
-  color: var(--interactive-accent) !important;
-  border: 1px solid rgba(var(--interactive-accent-rgb), 0.25) !important;
-  border-radius: 4px !important;
-  padding: 1px 7px !important;
-  font-size: 0.82em !important;
-  text-decoration: none !important;
+body a.tag {
+  background: rgba(var(--interactive-accent-rgb), 0.12);
+  color: var(--interactive-accent);
+  border: 1px solid rgba(var(--interactive-accent-rgb), 0.25);
+  border-radius: 4px;
+  padding: 1px 7px;
+  font-size: 0.82em;
+  text-decoration: none;
   transition: background 120ms ease;
 }
-a.tag:hover {
-  background: rgba(var(--interactive-accent-rgb), 0.22) !important;
+body a.tag:hover {
+  background: rgba(var(--interactive-accent-rgb), 0.22);
 }
 body.theme-dark:not(.kuro-no-glow) a.tag {
   text-shadow: 0 0 10px rgba(var(--interactive-accent-rgb), 0.4);
@@ -4388,11 +4388,11 @@ body.theme-dark:not(.kuro-no-glow) a.tag {
 }
 
 /* Live Preview editor */
-.cm-hashtag-begin,
-.cm-hashtag-middle,
-.cm-hashtag-end {
+body .cm-hashtag-begin,
+body .cm-hashtag-middle,
+body .cm-hashtag-end {
   background: rgba(var(--interactive-accent-rgb), 0.12);
-  color: var(--interactive-accent) !important;
+  color: var(--interactive-accent);
   padding: 1px 0;
   font-size: 0.85em;
 }
@@ -4468,10 +4468,10 @@ body.kuro-rainbow-indent .cm-indent-8 { --indentation-guide-color: hsl(225, 65%,
    Kuro-Ästhetik für Mermaid-Diagramme: Neon-Glow im Dark Mode,
    warmer Shadow im Light Mode. Robuste Selektoren-Strategie:
 
-   SPEZIFITÄT statt !important:
+   SPEZIFITÄT statt forcierter Kaskade:
      body.theme-X .mermaid .node rect  (0,3,1)  schlägt
-     Mermaids internes SVG <style>     (0,2,1)  ohne !important.
-   !important nur wo Mermaid Inline-Styles setzt (Node-Fills bei
+     Mermaids internes SVG <style>     (0,2,1)  ohne Kaskaden-Override.
+   Kaskaden-Override nur wo Mermaid Inline-Styles setzt (Node-Fills bei
    bestimmten Diagrammtypen) — jeweils dokumentiert.
 
    STABILE SELEKTOREN (Mermaid Public API):
@@ -4487,7 +4487,7 @@ body.kuro-rainbow-indent .cm-indent-8 { --indentation-guide-color: hsl(225, 65%,
 /* ── §39·1  Responsive Layout ──────────────────────────────── */
 /*  Mermaid setzt width als SVG-Attribut (style="max-width:Xpx") →
     max-width allein reicht nicht. width:100% überschreibt das Attribut.
-    !important nötig gegen Mermaid's Inline-Style auf dem SVG-Element.  */
+    Inline-Style-Override nötig gegen Mermaid's SVG-Attribut.  */
 
 .mermaid {
   overflow-x: auto;        /* horizontales Scroll statt Clip wenn SVG zu breit */
@@ -4496,7 +4496,7 @@ body.kuro-rainbow-indent .cm-indent-8 { --indentation-guide-color: hsl(225, 65%,
 
 .mermaid svg {
   /* max-width kappt Überhang ohne zu strecken — width:100% würde Nodes riesig machen */
-  max-width: 100% !important;  /* justified: Mermaid setzt max-width als Inline-Style */
+  max-width: 100% !important;  /* keep — Mermaid sets max-width as inline style on SVG element */
   width: auto;
   height: auto;
   display: block;
@@ -4536,7 +4536,7 @@ body.theme-light .mermaid svg {
 
 
 /* ── §39·4  Node-Styling ───────────────────────────────────── */
-/*  !important nötig: Mermaid setzt Node-Fills bei manchen
+/*  Kaskaden-Override nötig: Mermaid setzt Node-Fills bei manchen
     Diagrammtypen als Inline-Styles (style="fill:#ffffde").
     Spezifität allein reicht gegen Inline-Styles nicht aus.     */
 
@@ -4546,8 +4546,8 @@ body.theme-dark .mermaid {
   & .node ellipse,
   & .node polygon,
   & .node path {
-    fill:   var(--kuro-ink-raised) !important;  /* justified: Inline-Style-Override */
-    stroke: var(--kuro-circuit) !important;
+    fill:   var(--kuro-ink-raised) !important;  /* keep — Mermaid sets fill as inline style */
+    stroke: var(--kuro-circuit);
     stroke-width: 1.5px;
   }
 
@@ -4565,8 +4565,8 @@ body.theme-light .mermaid {
   & .node ellipse,
   & .node polygon,
   & .node path {
-    fill:   #f7f2ea !important;   /* rice-paper — justified: Inline-Style-Override */
-    stroke: var(--interactive-accent) !important;
+    fill:   #f7f2ea !important;   /* keep — Mermaid sets fill as inline style (rice-paper override) */
+    stroke: var(--interactive-accent);
     stroke-width: 1.5px;
   }
 
@@ -4580,7 +4580,7 @@ body.theme-light .mermaid {
 
 
 /* ── §39·5  Kanten / Edges ─────────────────────────────────── */
-/*  Spezifität (0,3,1) > Mermaid-intern (0,2,1) → kein !important */
+/*  Spezifität (0,3,1) > Mermaid-intern (0,2,1) → kein Kaskaden-Override nötig */
 
 body.theme-dark .mermaid {
   & .edgePath path,
@@ -4607,14 +4607,14 @@ body.theme-light .mermaid {
 
 /* ── §39·6  Text ───────────────────────────────────────────── */
 /*  Mermaid v10+: Node-Labels als HTML in <foreignObject> → `color` statt `fill`.
-    Mermaid setzt color/fill oft als Inline-Style → !important nötig.
+    Mermaid setzt color/fill oft als Inline-Style → Kaskaden-Override nötig.
     Doppelte Abdeckung: SVG-text (ältere Typen) + HTML-.nodeLabel (neuere). */
 
 body.theme-dark .mermaid {
   /* SVG-Text (flowchart older, gantt, pie etc.) */
   & text,
   & tspan {
-    fill:        var(--kuro-bone) !important;  /* justified: Mermaid Inline-Style */
+    fill:        var(--kuro-bone) !important;  /* keep — Mermaid sets fill as inline style */
     font-family: var(--kuro-font-mono);
     font-size:   13px;
   }
@@ -4625,7 +4625,7 @@ body.theme-dark .mermaid {
   & .edgeLabel span,
   & .label,
   & p {
-    color:       var(--kuro-bone) !important;  /* justified: Mermaid Inline-Style */
+    color:       var(--kuro-bone) !important;  /* keep — Mermaid sets color as inline style */
     font-family: var(--kuro-font-mono);
   }
 }
@@ -4633,7 +4633,7 @@ body.theme-dark .mermaid {
 body.theme-light .mermaid {
   & text,
   & tspan {
-    fill:        var(--text-normal) !important;
+    fill:        var(--text-normal) !important;  /* keep — Mermaid sets fill as inline style */
     font-family: var(--kuro-font-mono);
     font-size:   13px;
   }
@@ -4643,7 +4643,7 @@ body.theme-light .mermaid {
   & .edgeLabel span,
   & .label,
   & p {
-    color:       var(--text-normal) !important;
+    color:       var(--text-normal) !important;  /* keep — Mermaid sets color as inline style */
     font-family: var(--kuro-font-mono);
   }
 }
