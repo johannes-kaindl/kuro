@@ -716,7 +716,7 @@ body.theme-dark:not(.kuro-no-glow) .inline-title {
   letter-spacing: 0.10em;
 }
 
-.cm-s-obsidian .cm-line.HyperMD-header-1 { padding-top: 2em; }
+.cm-s-obsidian .cm-line.HyperMD-header-1 { padding-top: 1.5em; }
 .cm-s-obsidian .cm-line.HyperMD-header-4,
 .cm-s-obsidian .cm-line.HyperMD-header-5,
 .cm-s-obsidian .cm-line.HyperMD-header-6 { padding-top: 0.6em; }
