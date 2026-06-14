@@ -557,7 +557,7 @@ body[data-aspect="sensei"] {
 .theme-light .markdown-rendered td { border-color: rgba(0,0,0,0.06); }
 .theme-light .markdown-rendered tr:hover td { background: rgba(0,0,0,0.02); }
 .theme-light .metadata-container { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.07); }
-.theme-light .metadata-property  { border-bottom-color: rgba(0,0,0,0.05) !important; }
+.theme-light .metadata-property  { border-bottom-color: rgba(0,0,0,0.05); }
 .theme-light .modal {
   border-color: rgba(0,0,0,0.10);
   box-shadow: 0 24px 80px rgba(0,0,0,0.15), 0 0 0 1px rgba(var(--interactive-accent-rgb),0.10);
