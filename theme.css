@@ -888,7 +888,7 @@ body .cm-inline-code {
 }
 
 body .markdown-rendered pre {
-  background: var(--code-background) !important;
+  background: var(--code-background);
   border: 1px solid var(--background-modifier-border);
   border-left: 3px solid rgba(var(--interactive-accent-rgb), 0.55);
   border-radius: 4px;
@@ -898,7 +898,7 @@ body .markdown-rendered pre {
   overflow-x: auto;
 }
 .markdown-rendered pre code {
-  background: transparent !important;
+  background: transparent;
   border: none !important;
   padding: 0 !important;
   color: inherit;
@@ -993,7 +993,7 @@ body .markdown-rendered pre {
 body .tag {
   font-family: var(--kuro-font-mono);
   color: var(--tag-color);
-  background: var(--tag-background) !important;
+  background: var(--tag-background);
   border: 1px solid var(--tag-border-color) !important;
   border-radius: var(--tag-radius);
   font-size: var(--tag-font-size);
@@ -1005,7 +1005,7 @@ body .tag {
 .tag:hover {
   color: rgb(var(--interactive-accent-rgb)) !important; /* keep — accent hover state Obsidian sets at same specificity */
   border-color: var(--tag-border-color-hover) !important;
-  background: var(--tag-background-hover) !important;
+  background: var(--tag-background-hover) !important; /* keep — hover state Obsidian sets at same specificity */
 }
 
 
@@ -1048,8 +1048,8 @@ body .metadata-property-value textarea {
   color: var(--text-muted);
 }
 .metadata-property.is-active {
-  background: rgba(var(--interactive-accent-rgb), 0.03) !important;
-  box-shadow: inset 2px 0 0 rgba(var(--interactive-accent-rgb), 0.45) !important;
+  background: rgba(var(--interactive-accent-rgb), 0.03) !important; /* keep — .is-active state Obsidian sets directly */
+  box-shadow: inset 2px 0 0 rgba(var(--interactive-accent-rgb), 0.45) !important; /* keep — .is-active accent glow Obsidian sets directly */
 }
 body .metadata-add-button { font-family: var(--kuro-font-mono); font-size: 0.8em; color: var(--text-faint); }
 body .metadata-add-button:hover { color: var(--text-muted); }
@@ -1061,11 +1061,11 @@ body .metadata-add-button:hover { color: var(--text-muted); }
 
 .task-list-item-checkbox {
   border: 1.5px solid rgba(var(--interactive-accent-rgb), 0.4) !important;
-  background: transparent !important;
+  background: transparent;
   border-radius: 2px !important;
 }
 .task-list-item-checkbox:checked {
-  background: rgba(var(--interactive-accent-rgb), 0.18) !important;
+  background: rgba(var(--interactive-accent-rgb), 0.18) !important; /* keep — :checked state browser/Obsidian sets at same specificity */
   border-color: rgb(var(--interactive-accent-rgb)) !important;
 }
 .task-list-item.is-checked {
@@ -1081,7 +1081,7 @@ body .metadata-add-button:hover { color: var(--text-muted); }
 
 body .titlebar,
 body .titlebar-text {
-  background: var(--background-primary-alt) !important;
+  background: var(--background-primary-alt);
   border-bottom: 1px solid var(--divider-color);
   font-family: var(--kuro-font-mono);
   color: var(--text-faint);
@@ -1090,30 +1090,30 @@ body .titlebar-text {
 }
 
 .workspace-tab-header-container {
-  background: var(--background-primary-alt) !important;
+  background: var(--background-primary-alt);
   border-bottom: 1px solid var(--divider-color);
 }
 body .workspace-tab-header {
   font-family: var(--kuro-font-mono);
   font-size: 0.8em;
   color: var(--text-faint);
-  background: var(--background-primary-alt) !important;
+  background: var(--background-primary-alt);
   border: none !important;
   letter-spacing: 0.03em;
   transition: color var(--dur-fast) var(--ease-signal);
 }
 .workspace-tab-header:hover {
   color: var(--text-muted) !important; /* keep — Obsidian sets tab hover color at same specificity */
-  background: var(--background-modifier-hover) !important;
+  background: var(--background-modifier-hover) !important; /* keep — hover state Obsidian sets at same specificity */
 }
 .workspace-tab-header.is-active {
   color: var(--text-normal) !important; /* keep — .is-active state Obsidian sets directly */
-  background: var(--background-primary) !important;
+  background: var(--background-primary) !important; /* keep — .is-active state Obsidian sets directly */
   border-top: 2px solid rgb(var(--interactive-accent-rgb)) !important;
 }
 
 .view-header {
-  background: var(--background-primary) !important;
+  background: var(--background-primary);
   border-bottom: 1px solid var(--divider-color);
 }
 body .view-header-title {
@@ -1124,7 +1124,7 @@ body .view-header-title {
 }
 
 body .status-bar {
-  background: var(--background-primary-alt) !important;
+  background: var(--background-primary-alt);
   border-top: 1px solid var(--divider-color);
   font-family: var(--kuro-font-mono);
   font-size: 0.75em;
@@ -1140,7 +1140,7 @@ body .status-bar-item:hover { color: var(--text-muted); }
    ════════════════════════════════════════════════════════════════════════ */
 
 .workspace-ribbon {
-  background: var(--background-primary-alt) !important;
+  background: var(--background-primary-alt);
   border-right: 1px solid var(--divider-color);
 }
 .workspace-ribbon .clickable-icon {
@@ -1151,18 +1151,18 @@ body .status-bar-item:hover { color: var(--text-muted); }
 }
 .workspace-ribbon .clickable-icon:hover {
   color: rgb(var(--interactive-accent-rgb)) !important; /* keep — accent hover state Obsidian sets on .clickable-icon:hover */
-  background: rgba(var(--interactive-accent-rgb), 0.07) !important;
+  background: rgba(var(--interactive-accent-rgb), 0.07) !important; /* keep — hover state Obsidian sets at same specificity */
 }
 .workspace-ribbon .clickable-icon.is-active {
   color: rgb(var(--interactive-accent-rgb)) !important; /* keep — .is-active state Obsidian sets directly */
-  background: rgba(var(--interactive-accent-rgb), 0.10) !important;
+  background: rgba(var(--interactive-accent-rgb), 0.10) !important; /* keep — .is-active state Obsidian sets directly */
 }
 
 .workspace-split.mod-left-split,
 .workspace-split.mod-right-split {
-  background: var(--background-primary-alt) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  background: var(--background-primary-alt);
+  backdrop-filter: none !important; /* keep — defeats macOS vibrancy Obsidian enables at same specificity */
+  -webkit-backdrop-filter: none !important; /* keep — defeats macOS vibrancy Obsidian enables at same specificity */
 }
 
 
@@ -1184,12 +1184,12 @@ body .nav-file-title {
 .nav-folder-title:hover,
 .nav-file-title:hover {
   color: var(--nav-item-color-hover);
-  background: var(--nav-item-background-hover) !important;
+  background: var(--nav-item-background-hover) !important; /* keep — hover state Obsidian sets at same specificity */
 }
 .nav-file-title.is-active,
 .nav-file-title.is-active:hover {
   color: var(--nav-item-color-active) !important; /* keep — .is-active state Obsidian sets directly */
-  background: var(--nav-item-background-active) !important;
+  background: var(--nav-item-background-active) !important; /* keep — .is-active state Obsidian sets directly */
   box-shadow: inset 2px 0 0 rgb(var(--interactive-accent-rgb));
 }
 
@@ -1203,7 +1203,7 @@ body .nav-file-title {
 
 /* Search */
 body .search-input-container input {
-  background: var(--background-modifier-form-field) !important;
+  background: var(--background-modifier-form-field);
   color: var(--text-normal);
   font-family: var(--kuro-font-mono);
   border: 1px solid var(--background-modifier-border) !important;
@@ -1212,13 +1212,13 @@ body .search-input-container input {
 .search-input-container input:focus,
 .search-input-container input:focus-visible {
   border-color: rgba(var(--interactive-accent-rgb), 0.5) !important;
-  box-shadow: 0 0 0 2px rgba(var(--interactive-accent-rgb), 0.10) !important;
+  box-shadow: 0 0 0 2px rgba(var(--interactive-accent-rgb), 0.10) !important; /* keep — focus state browser/Obsidian sets at same specificity */
   outline: none;
 }
 body .search-result-file-title { color: var(--text-normal); }
 body .search-result-file-match { color: var(--text-muted); }
 .search-result-file-match-highlight {
-  background: rgba(var(--interactive-accent-rgb), 0.18) !important;
+  background: rgba(var(--interactive-accent-rgb), 0.18) !important; /* keep — Obsidian sets search highlight background at same specificity */
   color: rgb(var(--interactive-accent-rgb)) !important; /* keep — accent-driven highlight color Obsidian sets at same specificity */
 }
 
@@ -1228,7 +1228,7 @@ body .search-result-file-match { color: var(--text-muted); }
    ════════════════════════════════════════════════════════════════════════ */
 
 .modal {
-  background: var(--modal-background) !important;
+  background: var(--modal-background);
   border: 1px solid var(--background-modifier-border);
   border-radius: 6px;
   box-shadow: 0 24px 80px rgba(0,0,0,0.6),
@@ -1244,7 +1244,7 @@ body .modal-title {
 }
 
 .prompt {
-  background: var(--prompt-background) !important;
+  background: var(--prompt-background);
   border: 1px solid var(--background-modifier-border);
   box-shadow: 0 32px 96px rgba(0,0,0,0.7),
               0 0 0 1px rgba(var(--interactive-accent-rgb), 0.10);
@@ -1253,7 +1253,7 @@ body .modal-title {
 .prompt-input-container { border-bottom: 1px solid var(--divider-color); }
 body .prompt-input {
   font-family: var(--kuro-font-mono);
-  background: transparent !important;
+  background: transparent;
   color: var(--text-normal);
   font-size: 0.95em;
 }
@@ -1267,7 +1267,7 @@ body .suggestion-item {
   transition: background var(--dur-fast) var(--ease-signal);
 }
 .suggestion-item.is-selected {
-  background: rgba(var(--interactive-accent-rgb), 0.08) !important;
+  background: rgba(var(--interactive-accent-rgb), 0.08) !important; /* keep — .is-selected state Obsidian sets directly */
   color: var(--text-normal) !important; /* keep — .is-selected state Obsidian sets directly */
   box-shadow: inset 2px 0 0 rgb(var(--interactive-accent-rgb));
 }
@@ -1379,7 +1379,7 @@ body .suggestion-flair  { color: rgb(var(--interactive-accent-rgb)); }
 }
 .workspace-leaf-content[data-type="bases"] th {
   color: var(--text-normal);
-  background: var(--background-modifier-hover) !important;
+  background: var(--background-modifier-hover);
   border-color: var(--background-modifier-border) !important;
   letter-spacing: 0.04em;
   font-size: 0.83em;
@@ -1401,7 +1401,7 @@ body .suggestion-flair  { color: rgb(var(--interactive-accent-rgb)); }
 }
 .workspace-leaf-content[data-type="bases"] .bases-toolbar,
 .workspace-leaf-content[data-type="bases"] .bases-view-header {
-  background: var(--background-primary-alt) !important;
+  background: var(--background-primary-alt);
   border-bottom: 1px solid var(--divider-color);
 }
 
@@ -1456,15 +1456,15 @@ body .workspace-tab-header-inner-icon svg { color: var(--text-faint); }
 
 .workspace-split.mod-left-split .workspace-tabs,
 .workspace-split.mod-right-split .workspace-tabs {
-  background: var(--background-primary-alt) !important;
+  background: var(--background-primary-alt);
 }
 .side-dock-actions,
 .side-dock-settings,
 .workspace-ribbon.mod-left,
 .workspace-ribbon.mod-right {
-  background: var(--background-primary-alt) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  background: var(--background-primary-alt);
+  backdrop-filter: none !important; /* keep — defeats macOS vibrancy Obsidian enables at same specificity */
+  -webkit-backdrop-filter: none !important; /* keep — defeats macOS vibrancy Obsidian enables at same specificity */
 }
 
 
@@ -1973,9 +1973,9 @@ body.theme-dark .callout:hover { box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35); }
 .callout[data-callout="nav"] .callout-content > p > a:active { transform: translateY(0); }
 
 .callout[data-callout="blank"] {
-  background: transparent !important;
+  background: transparent !important; /* keep — must defeat Obsidian default callout background at same specificity */
   border: none !important;
-  box-shadow: none !important;
+  box-shadow: none !important; /* keep — must defeat Obsidian default callout box-shadow at same specificity */
   padding: 0 !important;
 }
 .callout[data-callout="blank"] .callout-title { display: none; }
@@ -1993,7 +1993,7 @@ body.theme-dark .callout:hover { box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35); }
 @media (prefers-reduced-motion: reduce) {
   .callout .callout-icon svg {
     animation: none !important;
-    filter: none !important;
+    filter: none !important; /* keep — must defeat animation-set filter at same specificity inside @media */
     transition: none !important;
   }
   .callout,
@@ -2012,7 +2012,7 @@ body.theme-dark .callout:hover { box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35); }
 body.kuro-no-callout-animations .callout .callout-icon svg,
 body.kuro-no-callout-animations .callout-icon svg {
   animation: none !important;
-  filter:    none !important;
+  filter:    none !important; /* keep — theme toggle defeats animation-driven filter at same specificity */
 }
 body.kuro-no-callout-animations .callout:hover .callout-icon svg {
   transform: none !important;
@@ -2278,7 +2278,7 @@ body.is-mobile .kuro-hanko-instance { display: none !important; }
 
 body.is-mobile.kuro-margin-tint .markdown-preview-sizer,
 body.is-mobile.kuro-margin-tint .markdown-source-view .cm-editor {
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
   padding: 16px !important;
   margin-top: 12px;
   margin-bottom: 12px;
@@ -2300,7 +2300,7 @@ body.is-phone .mobile-navbar {
   max-width: none !important;
   width: 100% !important;
   border-radius: 0 !important;
-  background-color: var(--background-primary) !important;
+  background-color: var(--background-primary) !important; /* keep — Obsidian sets mobile navbar background at same or higher specificity */
   border-top: 1px solid var(--background-modifier-border);
 }
 body.is-phone { --font-text-size: 14px; }
@@ -2362,8 +2362,8 @@ body.is-tablet { --file-line-width: min(760px, 90vw); }
 .workspace-leaf-content[data-type="pdf"] .pdf-viewer-container,
 .workspace-leaf-content[data-type="pdf"] .pdf-viewer {
   background: var(--background-primary);
-  opacity: 1 !important;
-  visibility: visible !important;
+  opacity: 1 !important; /* keep — defeats Obsidian PDF loading fade/transition */
+  visibility: visible !important; /* keep — defeats Obsidian PDF loading fade/transition */
 }
 .workspace-leaf-content[data-type="pdf"] canvas,
 .workspace-leaf-content[data-type="pdf"] .page,
@@ -2371,8 +2371,8 @@ body.is-tablet { --file-line-width: min(760px, 90vw); }
 .workspace-leaf-content[data-type="pdf"] .annotationLayer,
 .workspace-leaf-content[data-type="pdf"] .pdf-toolbar,
 .workspace-leaf-content[data-type="pdf"] .pdf-sidebar {
-  opacity: 1 !important;
-  visibility: visible !important;
+  opacity: 1 !important; /* keep — defeats Obsidian PDF loading fade/transition */
+  visibility: visible !important; /* keep — defeats Obsidian PDF loading fade/transition */
 }
 .internal-embed.pdf-embed,
 .pdf-embed,
@@ -2384,8 +2384,8 @@ body.is-tablet { --file-line-width: min(760px, 90vw); }
 .internal-embed.pdf-embed canvas,
 .pdf-embed canvas,
 .markdown-embed.pdf-embed canvas {
-  opacity: 1 !important;
-  visibility: visible !important;
+  opacity: 1 !important; /* keep — defeats Obsidian PDF loading fade/transition */
+  visibility: visible !important; /* keep — defeats Obsidian PDF loading fade/transition */
 }
 
 
@@ -2407,9 +2407,9 @@ body.is-tablet { --file-line-width: min(760px, 90vw); }
   .markdown-preview-view,
   .markdown-preview-sizer,
   .workspace-leaf-content[data-type="markdown"] {
-    background: #fff !important;
+    background: #fff !important; /* keep — @media print must override inline styles and theme backgrounds */
     color: #000 !important; /* keep — @media print must override inline styles */
-    box-shadow: none !important;
+    box-shadow: none !important; /* keep — @media print must override theme box-shadows */
     border: none !important;
   }
 
@@ -2417,13 +2417,13 @@ body.is-tablet { --file-line-width: min(760px, 90vw); }
     padding: 0 !important;
     margin: 0 !important;
     max-width: 100% !important;
-    box-shadow: none !important;
+    box-shadow: none !important; /* keep — @media print must override theme box-shadows */
   }
 
   .markdown-rendered a { color: #000 !important; border-bottom: 1px solid #999 !important; } /* keep — @media print must override inline styles */
   .markdown-rendered code,
   .markdown-rendered pre {
-    background: #f4f4f4 !important;
+    background: #f4f4f4 !important; /* keep — @media print must override theme code backgrounds */
     color: #000 !important; /* keep — @media print must override inline styles */
     border: 1px solid #ccc !important;
   }
@@ -2454,7 +2454,7 @@ body.is-tablet { --file-line-width: min(760px, 90vw); }
   fill: none !important;
 }
 .mermaid .edgeLabel {
-  background: var(--background-primary) !important;
+  background: var(--background-primary) !important; /* keep — mermaid renders inline background on edge labels */
   color: var(--text-muted);
 }
 @media (max-width: 480px) {
@@ -2491,7 +2491,7 @@ pre.kuro-loot {
   word-break:     normal !important;
 
   color:      var(--kuro-terminal) !important; /* keep — defeats Obsidian generic pre color at same specificity */
-  background: var(--void-050) !important;
+  background: var(--void-050) !important; /* keep — defeats Obsidian generic pre background at same specificity */
 
   border:        1px solid rgba(57, 255, 122, 0.30) !important;
   border-left:   3px solid var(--kuro-terminal) !important;
@@ -2569,7 +2569,7 @@ pre.kuro-loot:hover {
   --callout-icon:  lucide-terminal;
 
   font-family:  var(--kuro-font-mono);
-  background:   rgba(0, 10, 2, 0.90) !important;
+  background:   rgba(0, 10, 2, 0.90) !important; /* keep — must defeat Obsidian default callout background at same specificity */
   border:       1px solid rgba(57, 255, 122, 0.22) !important;
   border-left:  3px solid var(--kuro-terminal) !important;
   border-radius: 6px !important;
@@ -2701,7 +2701,7 @@ pre.kuro-loot:hover {
 
 .theme-light pre.kuro-status,
 .theme-light pre.kuro-loot {
-  background: #0f110f !important;
+  background: #0f110f !important; /* keep — defeats Obsidian theme-light pre background at same specificity */
   color: #00e83a !important; /* keep — defeats Obsidian theme-light pre color at same specificity */
   border-color: rgba(0, 232, 58, 0.40) !important;
   text-shadow:
@@ -2709,7 +2709,7 @@ pre.kuro-loot:hover {
     0 0 8px rgba(0, 232, 58, 0.2);
 }
 .theme-light .callout[data-callout="kuro"] {
-  background: rgba(5, 15, 7, 0.95) !important;
+  background: rgba(5, 15, 7, 0.95) !important; /* keep — must defeat Obsidian theme-light callout background at same specificity */
 }
 
 @media (max-width: 480px) {
