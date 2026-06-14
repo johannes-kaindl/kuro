@@ -828,25 +828,25 @@ body .markdown-rendered pre {
   background: transparent !important;
   border: none !important;
   padding: 0 !important;
-  color: inherit !important;
+  color: inherit;
 }
 
-.cm-s-obsidian .cm-keyword  { color: var(--code-keyword)  !important; }
-.cm-s-obsidian .cm-def      { color: var(--code-function) !important; }
-.cm-s-obsidian .cm-variable { color: var(--code-property) !important; }
-.cm-s-obsidian .cm-string   { color: var(--code-string)   !important; }
-.cm-s-obsidian .cm-number   { color: var(--code-value)    !important; }
-.cm-s-obsidian .cm-comment  { color: var(--code-comment)  !important; font-style: italic; }
-.cm-s-obsidian .cm-operator { color: var(--code-operator) !important; }
-.cm-s-obsidian .cm-tag      { color: var(--code-tag)      !important; }
-.cm-s-obsidian .cm-atom     { color: var(--code-string)   !important; }
-.cm-s-obsidian .cm-builtin  { color: var(--code-keyword)  !important; }
-.cm-s-obsidian .cm-type     { color: var(--code-tag)      !important; }
+.cm-s-obsidian .cm-keyword  { color: var(--code-keyword)  !important; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-def      { color: var(--code-function) !important; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-variable { color: var(--code-property) !important; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-string   { color: var(--code-string)   !important; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-number   { color: var(--code-value)    !important; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-comment  { color: var(--code-comment)  !important; font-style: italic; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-operator { color: var(--code-operator) !important; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-tag      { color: var(--code-tag)      !important; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-atom     { color: var(--code-string)   !important; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-builtin  { color: var(--code-keyword)  !important; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-type     { color: var(--code-tag)      !important; } /* keep — CodeMirror sets token colors at same specificity */
 
 .cm-s-obsidian .cm-hmd-frontmatter.cm-string,
-.cm-s-obsidian .cm-yaml .cm-string { color: var(--code-string) !important; }
+.cm-s-obsidian .cm-yaml .cm-string { color: var(--code-string) !important; } /* keep — CodeMirror sets token colors at same specificity */
 .cm-s-obsidian .cm-hmd-frontmatter.cm-atom,
-.cm-s-obsidian .cm-yaml .cm-atom   { color: var(--text-muted) !important; }
+.cm-s-obsidian .cm-yaml .cm-atom   { color: var(--text-muted) !important; } /* keep — CodeMirror sets token colors at same specificity */
 
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -897,7 +897,7 @@ body .markdown-rendered pre {
 }
 .markdown-rendered th {
   background: rgba(232, 228, 216, 0.03);
-  color: var(--text-normal) !important;
+  color: var(--text-normal);
   border: 1px solid var(--background-modifier-border);
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -907,7 +907,7 @@ body .markdown-rendered pre {
 }
 .markdown-rendered td {
   border: 1px solid var(--divider-color);
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
   padding: 6px 13px;
 }
 .markdown-rendered tr:hover td { background: rgba(232, 228, 216, 0.02); }
@@ -919,7 +919,7 @@ body .markdown-rendered pre {
 
 body .tag {
   font-family: var(--kuro-font-mono);
-  color: var(--tag-color) !important;
+  color: var(--tag-color);
   background: var(--tag-background) !important;
   border: 1px solid var(--tag-border-color) !important;
   border-radius: var(--tag-radius);
@@ -930,7 +930,7 @@ body .tag {
               background var(--dur-fast) var(--ease-signal);
 }
 .tag:hover {
-  color: rgb(var(--interactive-accent-rgb)) !important;
+  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — accent hover state Obsidian sets at same specificity */
   border-color: var(--tag-border-color-hover) !important;
   background: var(--tag-background-hover) !important;
 }
@@ -951,7 +951,7 @@ body .metadata-properties-heading {
   font-size: 0.78em !important;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: var(--text-faint) !important;
+  color: var(--text-faint);
 }
 .metadata-property {
   border-bottom: 1px solid var(--divider-color) !important;
@@ -965,21 +965,21 @@ body .metadata-property-key span,
 body .metadata-property-key input {
   font-family: var(--kuro-font-mono);
   font-size: 0.85em;
-  color: var(--text-faint) !important;
+  color: var(--text-faint);
 }
 body .metadata-property-value,
 body .metadata-property-value input,
 body .metadata-property-value textarea {
   font-family: var(--kuro-font-mono);
   font-size: 0.88em;
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
 }
 .metadata-property.is-active {
   background: rgba(var(--interactive-accent-rgb), 0.03) !important;
   box-shadow: inset 2px 0 0 rgba(var(--interactive-accent-rgb), 0.45) !important;
 }
-body .metadata-add-button { font-family: var(--kuro-font-mono); font-size: 0.8em; color: var(--text-faint) !important; }
-.metadata-add-button:hover { color: var(--text-muted) !important; }
+body .metadata-add-button { font-family: var(--kuro-font-mono); font-size: 0.8em; color: var(--text-faint); }
+body .metadata-add-button:hover { color: var(--text-muted); }
 
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -996,7 +996,7 @@ body .metadata-add-button { font-family: var(--kuro-font-mono); font-size: 0.8em
   border-color: rgb(var(--interactive-accent-rgb)) !important;
 }
 .task-list-item.is-checked {
-  color: var(--text-faint) !important;
+  color: var(--text-faint);
   text-decoration: line-through;
   text-decoration-color: var(--text-faint);
 }
@@ -1011,7 +1011,7 @@ body .titlebar-text {
   background: var(--background-primary-alt) !important;
   border-bottom: 1px solid var(--divider-color);
   font-family: var(--kuro-font-mono);
-  color: var(--text-faint) !important;
+  color: var(--text-faint);
   font-size: 0.8em;
   letter-spacing: 0.05em;
 }
@@ -1023,18 +1023,18 @@ body .titlebar-text {
 body .workspace-tab-header {
   font-family: var(--kuro-font-mono);
   font-size: 0.8em;
-  color: var(--text-faint) !important;
+  color: var(--text-faint);
   background: var(--background-primary-alt) !important;
   border: none !important;
   letter-spacing: 0.03em;
   transition: color var(--dur-fast) var(--ease-signal);
 }
 .workspace-tab-header:hover {
-  color: var(--text-muted) !important;
+  color: var(--text-muted) !important; /* keep — Obsidian sets tab hover color at same specificity */
   background: var(--background-modifier-hover) !important;
 }
 .workspace-tab-header.is-active {
-  color: var(--text-normal) !important;
+  color: var(--text-normal) !important; /* keep — .is-active state Obsidian sets directly */
   background: var(--background-primary) !important;
   border-top: 2px solid rgb(var(--interactive-accent-rgb)) !important;
 }
@@ -1045,7 +1045,7 @@ body .workspace-tab-header {
 }
 body .view-header-title {
   font-family: var(--kuro-font-mono);
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
   font-size: 0.85em;
   letter-spacing: 0.03em;
 }
@@ -1055,11 +1055,11 @@ body .status-bar {
   border-top: 1px solid var(--divider-color);
   font-family: var(--kuro-font-mono);
   font-size: 0.75em;
-  color: var(--text-faint) !important;
+  color: var(--text-faint);
   letter-spacing: 0.04em;
 }
-.status-bar-item { color: var(--text-faint) !important; }
-.status-bar-item:hover { color: var(--text-muted) !important; }
+body .status-bar-item { color: var(--text-faint); }
+body .status-bar-item:hover { color: var(--text-muted); }
 
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -1071,17 +1071,17 @@ body .status-bar {
   border-right: 1px solid var(--divider-color);
 }
 .workspace-ribbon .clickable-icon {
-  color: var(--text-faint) !important;
+  color: var(--text-faint);
   border-radius: 3px;
   transition: color var(--dur-fast) var(--ease-signal),
               background var(--dur-fast) var(--ease-signal);
 }
 .workspace-ribbon .clickable-icon:hover {
-  color: rgb(var(--interactive-accent-rgb)) !important;
+  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — accent hover state Obsidian sets on .clickable-icon:hover */
   background: rgba(var(--interactive-accent-rgb), 0.07) !important;
 }
 .workspace-ribbon .clickable-icon.is-active {
-  color: rgb(var(--interactive-accent-rgb)) !important;
+  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — .is-active state Obsidian sets directly */
   background: rgba(var(--interactive-accent-rgb), 0.10) !important;
 }
 
@@ -1100,7 +1100,7 @@ body .status-bar {
 body .nav-folder-title,
 body .nav-file-title {
   font-family: var(--kuro-font-mono);
-  color: var(--nav-item-color) !important;
+  color: var(--nav-item-color);
   font-size: 0.88em;
   letter-spacing: 0.01em;
   border-radius: 3px;
@@ -1110,28 +1110,28 @@ body .nav-file-title {
 }
 .nav-folder-title:hover,
 .nav-file-title:hover {
-  color: var(--nav-item-color-hover) !important;
+  color: var(--nav-item-color-hover);
   background: var(--nav-item-background-hover) !important;
 }
 .nav-file-title.is-active,
 .nav-file-title.is-active:hover {
-  color: var(--nav-item-color-active) !important;
+  color: var(--nav-item-color-active) !important; /* keep — .is-active state Obsidian sets directly */
   background: var(--nav-item-background-active) !important;
   box-shadow: inset 2px 0 0 rgb(var(--interactive-accent-rgb));
 }
 
 .nav-folder-collapse-indicator svg {
-  color: var(--nav-collapse-icon-color) !important;
+  color: var(--nav-collapse-icon-color);
   transition: color var(--dur-fast) var(--ease-signal);
 }
 .nav-folder:not(.is-collapsed) .nav-folder-title .nav-folder-collapse-indicator svg {
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
 }
 
 /* Search */
 body .search-input-container input {
   background: var(--background-modifier-form-field) !important;
-  color: var(--text-normal) !important;
+  color: var(--text-normal);
   font-family: var(--kuro-font-mono);
   border: 1px solid var(--background-modifier-border) !important;
   border-radius: 3px;
@@ -1142,11 +1142,11 @@ body .search-input-container input {
   box-shadow: 0 0 0 2px rgba(var(--interactive-accent-rgb), 0.10) !important;
   outline: none;
 }
-.search-result-file-title { color: var(--text-normal) !important; }
-.search-result-file-match { color: var(--text-muted) !important; }
+body .search-result-file-title { color: var(--text-normal); }
+body .search-result-file-match { color: var(--text-muted); }
 .search-result-file-match-highlight {
   background: rgba(var(--interactive-accent-rgb), 0.18) !important;
-  color: rgb(var(--interactive-accent-rgb)) !important;
+  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — accent-driven highlight color Obsidian sets at same specificity */
 }
 
 
@@ -1163,7 +1163,7 @@ body .search-input-container input {
 }
 body .modal-title {
   font-family: var(--kuro-font-mono);
-  color: var(--text-normal) !important;
+  color: var(--text-normal);
   font-size: 0.9em;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -1181,26 +1181,26 @@ body .modal-title {
 body .prompt-input {
   font-family: var(--kuro-font-mono);
   background: transparent !important;
-  color: var(--text-normal) !important;
+  color: var(--text-normal);
   font-size: 0.95em;
 }
-.prompt-input::placeholder { color: var(--text-faint) !important; }
+body .prompt-input::placeholder { color: var(--text-faint); }
 
 body .suggestion-item {
   font-family: var(--kuro-font-mono);
   font-size: 0.88em;
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
   border-radius: 3px;
   transition: background var(--dur-fast) var(--ease-signal);
 }
 .suggestion-item.is-selected {
   background: rgba(var(--interactive-accent-rgb), 0.08) !important;
-  color: var(--text-normal) !important;
+  color: var(--text-normal) !important; /* keep — .is-selected state Obsidian sets directly */
   box-shadow: inset 2px 0 0 rgb(var(--interactive-accent-rgb));
 }
-.suggestion-hotkey { color: var(--text-faint) !important; font-size: 0.82em; }
-.suggestion-note   { color: var(--text-faint) !important; }
-.suggestion-flair  { color: rgb(var(--interactive-accent-rgb)) !important; }
+body .suggestion-hotkey { color: var(--text-faint); font-size: 0.82em; }
+body .suggestion-note   { color: var(--text-faint); }
+body .suggestion-flair  { color: rgb(var(--interactive-accent-rgb)); }
 
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -1305,7 +1305,7 @@ body .suggestion-item {
   font-family: var(--kuro-font-mono);
 }
 .workspace-leaf-content[data-type="bases"] th {
-  color: var(--text-normal) !important;
+  color: var(--text-normal);
   background: var(--background-modifier-hover) !important;
   border-color: var(--background-modifier-border) !important;
   letter-spacing: 0.04em;
@@ -1313,13 +1313,13 @@ body .suggestion-item {
   text-transform: uppercase;
 }
 .workspace-leaf-content[data-type="bases"] td {
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
   border-color: var(--divider-color) !important;
   font-size: 0.9em;
 }
 .workspace-leaf-content[data-type="bases"] a,
 .workspace-leaf-content[data-type="bases"] .internal-link {
-  color: var(--signal-circuit) !important;
+  color: var(--signal-circuit);
   text-decoration: none;
   border-bottom: 1px solid rgba(var(--signal-circuit-rgb), 0.25) !important;
 }
@@ -1342,16 +1342,16 @@ body .suggestion-item {
 .workspace-split.mod-right-split .tree-item-inner {
   font-family: var(--kuro-font-mono);
   font-size: 0.88em;
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
 }
 [data-type="outline"] .tree-item-self:hover .tree-item-inner,
 [data-type="backlink"] .tree-item-self:hover .tree-item-inner,
 .workspace-split.mod-right-split .tree-item-self:hover .tree-item-inner {
-  color: var(--text-normal) !important;
+  color: var(--text-normal);
 }
 [data-type="outline"] .is-active .tree-item-inner,
 .workspace-split.mod-right-split .is-active .tree-item-inner {
-  color: rgb(var(--interactive-accent-rgb)) !important;
+  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — .is-active state Obsidian sets directly */
 }
 [data-type="outline"] [data-level="1"] .tree-item-inner { font-size: 0.92em; }
 [data-type="outline"] [data-level="2"] .tree-item-inner { font-size: 0.88em; opacity: 0.85; }
@@ -1362,18 +1362,18 @@ body .suggestion-item {
    §21 · ICONS — Global SVG Tint
    ════════════════════════════════════════════════════════════════════════ */
 
-.clickable-icon {
-  color: var(--text-faint) !important;
+body .clickable-icon {
+  color: var(--text-faint);
   transition: color var(--dur-fast) var(--ease-signal);
 }
 .clickable-icon:hover,
 .clickable-icon.is-active {
-  color: rgb(var(--interactive-accent-rgb)) !important;
+  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — accent hover/.is-active state Obsidian sets directly */
 }
 
-.workspace-tab-header-inner-icon svg { color: var(--text-faint) !important; }
+body .workspace-tab-header-inner-icon svg { color: var(--text-faint); }
 .workspace-tab-header.is-active .workspace-tab-header-inner-icon svg {
-  color: rgb(var(--interactive-accent-rgb)) !important;
+  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — .is-active state Obsidian sets directly */
 }
 
 
@@ -2335,7 +2335,7 @@ body.is-tablet { --file-line-width: min(760px, 90vw); }
   .markdown-preview-sizer,
   .workspace-leaf-content[data-type="markdown"] {
     background: #fff !important;
-    color: #000 !important;
+    color: #000 !important; /* keep — @media print must override inline styles */
     box-shadow: none !important;
     border: none !important;
   }
@@ -2347,11 +2347,11 @@ body.is-tablet { --file-line-width: min(760px, 90vw); }
     box-shadow: none !important;
   }
 
-  .markdown-rendered a { color: #000 !important; border-bottom: 1px solid #999 !important; }
+  .markdown-rendered a { color: #000 !important; border-bottom: 1px solid #999 !important; } /* keep — @media print must override inline styles */
   .markdown-rendered code,
   .markdown-rendered pre {
     background: #f4f4f4 !important;
-    color: #000 !important;
+    color: #000 !important; /* keep — @media print must override inline styles */
     border: 1px solid #ccc !important;
   }
 }
@@ -2382,7 +2382,7 @@ body.is-tablet { --file-line-width: min(760px, 90vw); }
 }
 .mermaid .edgeLabel {
   background: var(--background-primary) !important;
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
 }
 @media (max-width: 480px) {
   .mermaid svg { font-size: 12px; }
@@ -2417,7 +2417,7 @@ pre.kuro-loot {
   white-space:    pre !important;
   word-break:     normal !important;
 
-  color:      var(--kuro-terminal) !important;
+  color:      var(--kuro-terminal) !important; /* keep — defeats Obsidian generic pre color at same specificity */
   background: var(--void-050) !important;
 
   border:        1px solid rgba(57, 255, 122, 0.30) !important;
@@ -2511,19 +2511,19 @@ pre.kuro-loot:hover {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--kuro-terminal) !important;
+  color: var(--kuro-terminal) !important; /* keep — defeats Obsidian callout-title color at same specificity */
   text-shadow: 0 0 6px rgba(57, 255, 122, 0.5);
 }
 .callout[data-callout="kuro"] .callout-content {
   font-family: var(--kuro-font-mono);
   font-size: 0.84em;
   line-height: 1.65;
-  color: var(--kuro-terminal-dim) !important;
+  color: var(--kuro-terminal-dim) !important; /* keep — defeats Obsidian callout-content color at same specificity */
   text-shadow: 0 0 3px rgba(57, 255, 122, 0.25);
 }
 .callout[data-callout="kuro"]:hover .callout-icon svg {
   animation: neonPulse 1.2s ease-in-out infinite;
-  color: var(--kuro-terminal) !important;
+  color: var(--kuro-terminal) !important; /* keep — hover state color Obsidian sets on .callout-icon svg */
 }
 
 /* [!levelup] cursor blink */
@@ -2549,7 +2549,7 @@ pre.kuro-loot:hover {
 .callout[data-callout="levelup"]:hover .callout-icon svg {
   animation: levelUpPop 0.7s ease-in-out infinite;
   filter: drop-shadow(0 0 5px rgba(var(--signal-phosphor-rgb), 0.85));
-  color: var(--signal-phosphor) !important;
+  color: var(--signal-phosphor) !important; /* keep — hover state color Obsidian sets on .callout-icon svg */
 }
 
 /* [!spoiler] green reveal */
@@ -2571,7 +2571,7 @@ pre.kuro-loot:hover {
 }
 .callout[data-callout="spoiler"]:hover .callout-icon svg {
   animation: eyeReveal 0.5s ease-out forwards;
-  color: var(--kuro-terminal-dim) !important;
+  color: var(--kuro-terminal-dim) !important; /* keep — hover state color Obsidian sets on .callout-icon svg */
 }
 
 /* [!streak] flame glow */
@@ -2583,7 +2583,7 @@ pre.kuro-loot:hover {
 .callout[data-callout="streak"]:hover .callout-icon svg {
   animation: streakFlame 0.5s ease-in-out infinite;
   filter: drop-shadow(0 0 8px rgba(var(--signal-rust-rgb), 1));
-  color: var(--signal-rust) !important;
+  color: var(--signal-rust) !important; /* keep — hover state color Obsidian sets on .callout-icon svg */
 }
 
 @keyframes phosphorFlicker {
@@ -2629,7 +2629,7 @@ pre.kuro-loot:hover {
 .theme-light pre.kuro-status,
 .theme-light pre.kuro-loot {
   background: #0f110f !important;
-  color: #00e83a !important;
+  color: #00e83a !important; /* keep — defeats Obsidian theme-light pre color at same specificity */
   border-color: rgba(0, 232, 58, 0.40) !important;
   text-shadow:
     0 0 4px rgba(0, 232, 58, 0.5),
