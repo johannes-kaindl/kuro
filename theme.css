@@ -3998,9 +3998,9 @@ body.theme-dark .callout:hover {
 /* ── Accessibility ── */
 @media (prefers-reduced-motion: reduce) {
   .callout .callout-icon svg {
-    animation: none !important;  /* keep — accessibility: defeats higher-specificity [data-callout]:hover animation rules */
-    filter: none !important;     /* keep — accessibility: same; filter set by hover rules at higher specificity */
-    transition: none !important; /* keep — accessibility: same pattern */
+    animation: none !important;  /* keep — theme self-override: hover animation at .callout[data-callout="x"]:hover .callout-icon svg (0,4,1) line 664 beats this (0,2,1) */
+    filter: none !important;     /* keep — theme self-override: hover filter at .callout[data-callout="x"]:hover .callout-icon svg (0,4,1) line 692 beats this (0,2,1) */
+    transition: none !important; /* keep — theme self-override: same hover icon rules (0,4,1) beat this (0,2,1) */
   }
   .callout,
   .callout[data-callout="nav"] .callout-content > p > a,
@@ -4020,8 +4020,8 @@ body.theme-dark .callout:hover {
 /* ── Callout animations off — body.kuro-no-callout-animations ── */
 body.kuro-no-callout-animations .callout .callout-icon svg,
 body.kuro-no-callout-animations .callout-icon svg {
-  animation: none !important;  /* keep — defeats higher-specificity [data-callout]:hover animation rules */
-  filter:    none !important;  /* keep — defeats higher-specificity [data-callout]:hover filter rules */
+  animation: none !important;  /* keep — theme self-override: hover animation at .callout[data-callout="x"]:hover .callout-icon svg (0,4,1) line 664 beats this (0,3,2) */
+  filter:    none !important;  /* keep — theme self-override: hover filter at .callout[data-callout="x"]:hover .callout-icon svg (0,4,1) line 692 beats this (0,3,2) */
 }
 /* ► Plugin-gesteuert: kuro-no-callout-animations  (main.js → calloutAnimations, §Callouts) */
 body.kuro-no-callout-animations .callout:hover .callout-icon svg {
@@ -4087,11 +4087,11 @@ body.kuro-zen-mode .workspace-split.mod-left-split,
 body.kuro-zen-mode .workspace-split.mod-right-split,
 body.kuro-zen-mode .workspace-tab-header-container,
 body.kuro-zen-mode .status-bar {
-  display: none !important;  /* keep — defeats Obsidian app-level display rules on workspace elements */
+  display: none;
 }
 
 body.kuro-zen-mode .workspace-split.mod-root {
-  margin: 0 !important;  /* keep — defeats Obsidian app-level margin on workspace root */
+  margin: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -4124,7 +4124,7 @@ body.kuro-tabs-pill .workspace-tab-header {
   transition: background 120ms ease, color 120ms ease, opacity 120ms ease;
 }
 body.kuro-tabs-pill .workspace-tab-header.mod-active {
-  background: rgba(var(--interactive-accent-rgb), 0.15) !important;  /* keep — defeats Obsidian app-level active-tab background */
+  background: rgba(var(--interactive-accent-rgb), 0.15);
   box-shadow: none;
 }
 body.kuro-tabs-pill .workspace-tab-header:not(.mod-active):hover {
@@ -4133,15 +4133,15 @@ body.kuro-tabs-pill .workspace-tab-header:not(.mod-active):hover {
 
 /* ── Underline ── */
 body.kuro-tabs-underline .workspace-tab-header {
-  background: transparent !important;  /* keep — defeats Obsidian app-level tab background */
+  background: transparent;
   border-radius: 0;
-  box-shadow: none !important;          /* keep — defeats Obsidian app-level tab box-shadow */
+  box-shadow: none;
 }
 body.kuro-tabs-underline .workspace-tab-header.mod-active {
-  border-bottom: 2px solid var(--interactive-accent) !important;  /* keep — defeats Obsidian app-level active-tab border */
+  border-bottom: 2px solid var(--interactive-accent);
 }
 body.kuro-tabs-underline .workspace-tab-header:not(.mod-active):hover {
-  border-bottom: 1px solid rgba(var(--interactive-accent-rgb), 0.4) !important;  /* keep — defeats Obsidian app-level tab hover border */
+  border-bottom: 1px solid rgba(var(--interactive-accent-rgb), 0.4);
 }
 
 
@@ -4899,12 +4899,11 @@ body.kuro-rainbow-indent .cm-indent-7 { --indentation-guide-color: hsl(150, 60%,
 body.kuro-rainbow-indent .cm-indent-8 { --indentation-guide-color: hsl(225, 65%, 55%); }
 
 /* Zen / Focus mode — hide all chrome */
-/* keep — user toggle must override Obsidian display rules on chrome elements */
 body.kuro-zen-mode .workspace-ribbon,
 body.kuro-zen-mode .workspace-split.mod-left-split,
 body.kuro-zen-mode .workspace-split.mod-right-split,
 body.kuro-zen-mode .status-bar,
-body.kuro-zen-mode .workspace-tab-header-container { display: none !important; }
+body.kuro-zen-mode .workspace-tab-header-container { display: none; }
 body.kuro-zen-mode .markdown-source-view.mod-cm6 .cm-sizer,
 body.kuro-zen-mode .markdown-preview-sizer { max-width: 720px; }
 body.kuro-zen-mode .markdown-source-view.mod-cm6 .cm-contentContainer,
@@ -4932,11 +4931,10 @@ body.kuro-tabs-underline .workspace-tab-header.is-active {
 }
 
 /* Glow toggles · default off */
-/* keep — user toggle must override theme and Obsidian box-shadow on glow elements */
 body.kuro-no-glow .workspace-tab-header.is-active,
 body.kuro-no-glow .nav-file-title.is-active,
 body.kuro-no-glow .checkbox-container.is-enabled,
-body.kuro-no-glow .mod-cta { box-shadow: none !important; }
+body.kuro-no-glow .mod-cta { box-shadow: none; }
 
 /* Marker / highlight glow */
 body.kuro-marker-glow-on mark,
@@ -4964,10 +4962,9 @@ body.kuro-margin-tint .markdown-source-view.mod-cm6 .cm-scroller {
 }
 
 /* Callout animations · disable */
-/* keep — user toggle must override transition/animation set by theme or Obsidian */
 body.kuro-no-callout-animations .callout,
 body.kuro-no-callout-animations .callout-fold,
-body.kuro-no-callout-animations .callout-content { transition: none !important; animation: none !important; }
+body.kuro-no-callout-animations .callout-content { transition: none; animation: none; }
 
 /* Colorful headings — H1..H3 get accent / second-aspect tints */
 body.kuro-colorful-headings .markdown-preview-view h1,
