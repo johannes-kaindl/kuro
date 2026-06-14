@@ -619,9 +619,9 @@ body,
    The "◉" eyebrow accent on H2 marks the start of every major movement.
    ════════════════════════════════════════════════════════════════════════ */
 
-.markdown-rendered h1,
-.cm-header-1 {
-  font-family: var(--kuro-font-serif) !important;
+body .markdown-rendered h1,
+body .cm-header-1 {
+  font-family: var(--kuro-font-serif);
   font-style: italic;
   font-weight: 400;
   font-size: 2.1em;
@@ -634,8 +634,8 @@ body,
 }
 .markdown-rendered h1 { border-bottom: 1px solid var(--divider-color); }
 
-.inline-title {
-  font-family: var(--kuro-font-serif) !important;
+body .inline-title {
+  font-family: var(--kuro-font-serif);
   font-style: italic;
   font-weight: 400;
   color: var(--inline-title-color);
@@ -650,9 +650,9 @@ body.theme-dark:not(.kuro-no-glow) .inline-title {
 }
 
 /* H2 — mono, with eyebrow ◉ accent */
-.markdown-rendered h2,
-.cm-header-2 {
-  font-family: var(--kuro-font-mono) !important;
+body .markdown-rendered h2,
+body .cm-header-2 {
+  font-family: var(--kuro-font-mono);
   font-size: 1.35em;
   font-weight: 600;
   color: var(--h2-color);
@@ -678,8 +678,8 @@ body.theme-dark:not(.kuro-no-glow) .inline-title {
 .cm-header-2 .cm-formatting-header { color: var(--text-faint); font-size: 0.75em; }
 
 /* H3 */
-.markdown-rendered h3, .cm-header-3 {
-  font-family: var(--kuro-font-mono) !important;
+body .markdown-rendered h3, body .cm-header-3 {
+  font-family: var(--kuro-font-mono);
   font-size: 1.15em;
   font-weight: 500;
   color: var(--h3-color);
@@ -689,8 +689,8 @@ body.theme-dark:not(.kuro-no-glow) .inline-title {
 .cm-header-3 { padding-top: 1em; }
 
 /* H4 — uppercase label */
-.markdown-rendered h4, .cm-header-4 {
-  font-family: var(--kuro-font-mono) !important;
+body .markdown-rendered h4, body .cm-header-4 {
+  font-family: var(--kuro-font-mono);
   font-size: 0.95em;
   font-weight: 600;
   color: var(--h4-color);
@@ -698,8 +698,8 @@ body.theme-dark:not(.kuro-no-glow) .inline-title {
   letter-spacing: 0.08em;
 }
 /* H5 — italic aside */
-.markdown-rendered h5, .cm-header-5 {
-  font-family: var(--kuro-font-mono) !important;
+body .markdown-rendered h5, body .cm-header-5 {
+  font-family: var(--kuro-font-mono);
   font-size: 0.9em;
   font-weight: 400;
   font-style: italic;
@@ -707,8 +707,8 @@ body.theme-dark:not(.kuro-no-glow) .inline-title {
   letter-spacing: 0.02em;
 }
 /* H6 — small caps metadata */
-.markdown-rendered h6, .cm-header-6 {
-  font-family: var(--kuro-font-mono) !important;
+body .markdown-rendered h6, body .cm-header-6 {
+  font-family: var(--kuro-font-mono);
   font-size: 0.82em;
   font-weight: 400;
   color: var(--h6-color);
@@ -803,9 +803,9 @@ body.kuro-colorful-headings.theme-light {
    tag/operator/type=circuit, comment=void-600, important=crimson.
    ════════════════════════════════════════════════════════════════════════ */
 
-.markdown-rendered code,
-.cm-inline-code {
-  font-family: var(--kuro-font-mono) !important;
+body .markdown-rendered code,
+body .cm-inline-code {
+  font-family: var(--kuro-font-mono);
   background: var(--code-background);
   color: var(--code-normal);
   border: 1px solid rgba(var(--interactive-accent-rgb), 0.15);
@@ -814,13 +814,13 @@ body.kuro-colorful-headings.theme-light {
   font-size: 0.88em;
 }
 
-.markdown-rendered pre {
+body .markdown-rendered pre {
   background: var(--code-background) !important;
   border: 1px solid var(--background-modifier-border);
   border-left: 3px solid rgba(var(--interactive-accent-rgb), 0.55);
   border-radius: 4px;
   padding: 14px 18px;
-  font-family: var(--kuro-font-mono) !important;
+  font-family: var(--kuro-font-mono);
   color: var(--text-normal);
   overflow-x: auto;
 }
@@ -917,8 +917,8 @@ body.kuro-colorful-headings.theme-light {
    §9 · TAGS
    ════════════════════════════════════════════════════════════════════════ */
 
-.tag {
-  font-family: var(--kuro-font-mono) !important;
+body .tag {
+  font-family: var(--kuro-font-mono);
   color: var(--tag-color) !important;
   background: var(--tag-background) !important;
   border: 1px solid var(--tag-border-color) !important;
@@ -946,11 +946,11 @@ body.kuro-colorful-headings.theme-light {
   border-radius: 4px;
   margin-bottom: 1.5em;
 }
-.metadata-properties-heading {
-  font-family: var(--kuro-font-mono) !important;
+body .metadata-properties-heading {
+  font-family: var(--kuro-font-mono);
   font-size: 0.78em !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.07em !important;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
   color: var(--text-faint) !important;
 }
 .metadata-property {
@@ -960,17 +960,17 @@ body.kuro-colorful-headings.theme-light {
 }
 .metadata-property:last-child { border-bottom: none !important; }
 
-.metadata-property-key,
-.metadata-property-key span,
-.metadata-property-key input {
-  font-family: var(--kuro-font-mono) !important;
+body .metadata-property-key,
+body .metadata-property-key span,
+body .metadata-property-key input {
+  font-family: var(--kuro-font-mono);
   font-size: 0.85em;
   color: var(--text-faint) !important;
 }
-.metadata-property-value,
-.metadata-property-value input,
-.metadata-property-value textarea {
-  font-family: var(--kuro-font-mono) !important;
+body .metadata-property-value,
+body .metadata-property-value input,
+body .metadata-property-value textarea {
+  font-family: var(--kuro-font-mono);
   font-size: 0.88em;
   color: var(--text-muted) !important;
 }
@@ -978,7 +978,7 @@ body.kuro-colorful-headings.theme-light {
   background: rgba(var(--interactive-accent-rgb), 0.03) !important;
   box-shadow: inset 2px 0 0 rgba(var(--interactive-accent-rgb), 0.45) !important;
 }
-.metadata-add-button { font-family: var(--kuro-font-mono) !important; font-size: 0.8em; color: var(--text-faint) !important; }
+body .metadata-add-button { font-family: var(--kuro-font-mono); font-size: 0.8em; color: var(--text-faint) !important; }
 .metadata-add-button:hover { color: var(--text-muted) !important; }
 
 
@@ -1006,11 +1006,11 @@ body.kuro-colorful-headings.theme-light {
    §12 · UI CHROME — Titlebar, Tabs, Statusbar
    ════════════════════════════════════════════════════════════════════════ */
 
-.titlebar,
-.titlebar-text {
+body .titlebar,
+body .titlebar-text {
   background: var(--background-primary-alt) !important;
   border-bottom: 1px solid var(--divider-color);
-  font-family: var(--kuro-font-mono) !important;
+  font-family: var(--kuro-font-mono);
   color: var(--text-faint) !important;
   font-size: 0.8em;
   letter-spacing: 0.05em;
@@ -1020,8 +1020,8 @@ body.kuro-colorful-headings.theme-light {
   background: var(--background-primary-alt) !important;
   border-bottom: 1px solid var(--divider-color);
 }
-.workspace-tab-header {
-  font-family: var(--kuro-font-mono) !important;
+body .workspace-tab-header {
+  font-family: var(--kuro-font-mono);
   font-size: 0.8em;
   color: var(--text-faint) !important;
   background: var(--background-primary-alt) !important;
@@ -1043,17 +1043,17 @@ body.kuro-colorful-headings.theme-light {
   background: var(--background-primary) !important;
   border-bottom: 1px solid var(--divider-color);
 }
-.view-header-title {
-  font-family: var(--kuro-font-mono) !important;
+body .view-header-title {
+  font-family: var(--kuro-font-mono);
   color: var(--text-muted) !important;
   font-size: 0.85em;
   letter-spacing: 0.03em;
 }
 
-.status-bar {
+body .status-bar {
   background: var(--background-primary-alt) !important;
   border-top: 1px solid var(--divider-color);
-  font-family: var(--kuro-font-mono) !important;
+  font-family: var(--kuro-font-mono);
   font-size: 0.75em;
   color: var(--text-faint) !important;
   letter-spacing: 0.04em;
@@ -1097,9 +1097,9 @@ body.kuro-colorful-headings.theme-light {
    §14 · FILE EXPLORER
    ════════════════════════════════════════════════════════════════════════ */
 
-.nav-folder-title,
-.nav-file-title {
-  font-family: var(--kuro-font-mono) !important;
+body .nav-folder-title,
+body .nav-file-title {
+  font-family: var(--kuro-font-mono);
   color: var(--nav-item-color) !important;
   font-size: 0.88em;
   letter-spacing: 0.01em;
@@ -1129,10 +1129,10 @@ body.kuro-colorful-headings.theme-light {
 }
 
 /* Search */
-.search-input-container input {
+body .search-input-container input {
   background: var(--background-modifier-form-field) !important;
   color: var(--text-normal) !important;
-  font-family: var(--kuro-font-mono) !important;
+  font-family: var(--kuro-font-mono);
   border: 1px solid var(--background-modifier-border) !important;
   border-radius: 3px;
 }
@@ -1161,8 +1161,8 @@ body.kuro-colorful-headings.theme-light {
   box-shadow: 0 24px 80px rgba(0,0,0,0.6),
               0 0 0 1px rgba(var(--interactive-accent-rgb), 0.08);
 }
-.modal-title {
-  font-family: var(--kuro-font-mono) !important;
+body .modal-title {
+  font-family: var(--kuro-font-mono);
   color: var(--text-normal) !important;
   font-size: 0.9em;
   letter-spacing: 0.05em;
@@ -1178,16 +1178,16 @@ body.kuro-colorful-headings.theme-light {
   border-radius: 6px;
 }
 .prompt-input-container { border-bottom: 1px solid var(--divider-color); }
-.prompt-input {
-  font-family: var(--kuro-font-mono) !important;
+body .prompt-input {
+  font-family: var(--kuro-font-mono);
   background: transparent !important;
   color: var(--text-normal) !important;
   font-size: 0.95em;
 }
 .prompt-input::placeholder { color: var(--text-faint) !important; }
 
-.suggestion-item {
-  font-family: var(--kuro-font-mono) !important;
+body .suggestion-item {
+  font-family: var(--kuro-font-mono);
   font-size: 0.88em;
   color: var(--text-muted) !important;
   border-radius: 3px;
@@ -1302,7 +1302,7 @@ body.kuro-colorful-headings.theme-light {
    ════════════════════════════════════════════════════════════════════════ */
 
 .workspace-leaf-content[data-type="bases"] {
-  font-family: var(--kuro-font-mono) !important;
+  font-family: var(--kuro-font-mono);
 }
 .workspace-leaf-content[data-type="bases"] th {
   color: var(--text-normal) !important;
@@ -1320,7 +1320,7 @@ body.kuro-colorful-headings.theme-light {
 .workspace-leaf-content[data-type="bases"] a,
 .workspace-leaf-content[data-type="bases"] .internal-link {
   color: var(--signal-circuit) !important;
-  text-decoration: none !important;
+  text-decoration: none;
   border-bottom: 1px solid rgba(var(--signal-circuit-rgb), 0.25) !important;
 }
 .workspace-leaf-content[data-type="bases"] a:hover {
@@ -1340,7 +1340,7 @@ body.kuro-colorful-headings.theme-light {
 [data-type="outline"] .tree-item-inner,
 [data-type="backlink"] .tree-item-inner,
 .workspace-split.mod-right-split .tree-item-inner {
-  font-family: var(--kuro-font-mono) !important;
+  font-family: var(--kuro-font-mono);
   font-size: 0.88em;
   color: var(--text-muted) !important;
 }
@@ -1886,7 +1886,7 @@ body.theme-dark .callout:hover { box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35); }
   background-color: rgba(var(--callout-color), 0.10);
   padding: 5px 13px;
   border-radius: 8px;
-  text-decoration: none !important;
+  text-decoration: none;
   color: var(--text-normal);
   border: 1px solid rgba(var(--callout-color), 0.20);
   font-size: 0.88em;
@@ -2410,9 +2410,9 @@ body.is-tablet { --file-line-width: min(760px, 90vw); }
 
 pre.kuro-status,
 pre.kuro-loot {
-  font-family:    var(--kuro-font-mono) !important;
+  font-family:    var(--kuro-font-mono);
   font-size:      0.82em !important;
-  line-height:    1.58 !important;
+  line-height:    1.58;
   letter-spacing: 0.01em;
   white-space:    pre !important;
   word-break:     normal !important;
@@ -2506,7 +2506,7 @@ pre.kuro-loot:hover {
   animation: phosphorFlicker 10s ease-in-out infinite;
 }
 .callout[data-callout="kuro"] .callout-title {
-  font-family: var(--kuro-font-mono) !important;
+  font-family: var(--kuro-font-mono);
   font-size: 0.78em;
   font-weight: 600;
   text-transform: uppercase;
@@ -2644,7 +2644,7 @@ pre.kuro-loot:hover {
   pre.kuro-loot {
     font-size: 0.72em !important;
     padding: 10px 12px !important;
-    line-height: 1.5 !important;
+    line-height: 1.5;
   }
   pre.kuro-status::before,
   pre.kuro-loot::before { display: none; }
@@ -2659,7 +2659,7 @@ body.is-phone pre.kuro-status,
 body.is-phone pre.kuro-loot {
   font-size: 0.72em !important;
   padding: 10px 12px !important;
-  line-height: 1.5 !important;
+  line-height: 1.5;
 }
 body.is-phone pre.kuro-status::before,
 body.is-phone pre.kuro-loot::before { display: none; }
