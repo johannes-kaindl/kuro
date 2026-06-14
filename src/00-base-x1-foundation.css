@@ -826,27 +826,27 @@ body .markdown-rendered pre {
 }
 .markdown-rendered pre code {
   background: transparent;
-  border: none !important; /* keep — must reset Obsidian/browser default border on code inside pre */
-  padding: 0 !important; /* keep — must zero browser default padding on code inside pre */
+  border: none;
+  padding: 0;
   color: inherit;
 }
 
-.cm-s-obsidian .cm-keyword  { color: var(--code-keyword)  !important; } /* keep — CodeMirror sets token colors at same specificity */
-.cm-s-obsidian .cm-def      { color: var(--code-function) !important; } /* keep — CodeMirror sets token colors at same specificity */
-.cm-s-obsidian .cm-variable { color: var(--code-property) !important; } /* keep — CodeMirror sets token colors at same specificity */
-.cm-s-obsidian .cm-string   { color: var(--code-string)   !important; } /* keep — CodeMirror sets token colors at same specificity */
-.cm-s-obsidian .cm-number   { color: var(--code-value)    !important; } /* keep — CodeMirror sets token colors at same specificity */
-.cm-s-obsidian .cm-comment  { color: var(--code-comment)  !important; font-style: italic; } /* keep — CodeMirror sets token colors at same specificity */
-.cm-s-obsidian .cm-operator { color: var(--code-operator) !important; } /* keep — CodeMirror sets token colors at same specificity */
-.cm-s-obsidian .cm-tag      { color: var(--code-tag)      !important; } /* keep — CodeMirror sets token colors at same specificity */
-.cm-s-obsidian .cm-atom     { color: var(--code-string)   !important; } /* keep — CodeMirror sets token colors at same specificity */
-.cm-s-obsidian .cm-builtin  { color: var(--code-keyword)  !important; } /* keep — CodeMirror sets token colors at same specificity */
-.cm-s-obsidian .cm-type     { color: var(--code-tag)      !important; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-keyword  { color: var(--code-keyword);  }
+.cm-s-obsidian .cm-def      { color: var(--code-function); }
+.cm-s-obsidian .cm-variable { color: var(--code-property); }
+.cm-s-obsidian .cm-string   { color: var(--code-string);   }
+.cm-s-obsidian .cm-number   { color: var(--code-value);    }
+.cm-s-obsidian .cm-comment  { color: var(--code-comment);  font-style: italic; }
+.cm-s-obsidian .cm-operator { color: var(--code-operator); }
+.cm-s-obsidian .cm-tag      { color: var(--code-tag);      }
+.cm-s-obsidian .cm-atom     { color: var(--code-string);   }
+.cm-s-obsidian .cm-builtin  { color: var(--code-keyword);  }
+.cm-s-obsidian .cm-type     { color: var(--code-tag);      }
 
 .cm-s-obsidian .cm-hmd-frontmatter.cm-string,
-.cm-s-obsidian .cm-yaml .cm-string { color: var(--code-string) !important; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-yaml .cm-string { color: var(--code-string); }
 .cm-s-obsidian .cm-hmd-frontmatter.cm-atom,
-.cm-s-obsidian .cm-yaml .cm-atom   { color: var(--text-muted) !important; } /* keep — CodeMirror sets token colors at same specificity */
+.cm-s-obsidian .cm-yaml .cm-atom   { color: var(--text-muted); }
 
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -930,9 +930,9 @@ body .tag {
               background var(--dur-fast) var(--ease-signal);
 }
 .tag:hover {
-  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — accent hover state Obsidian sets at same specificity */
-  border-color: var(--tag-border-color-hover) !important; /* keep — hover state Obsidian sets at same specificity */
-  background: var(--tag-background-hover) !important; /* keep — hover state Obsidian sets at same specificity */
+  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — Obsidian higher-spec: a.tag:hover (0,2,1) */
+  border-color: var(--tag-border-color-hover) !important; /* keep — Obsidian higher-spec: a.tag:hover (0,2,1) */
+  background: var(--tag-background-hover) !important; /* keep — Obsidian higher-spec: a.tag:hover (0,2,1) */
 }
 
 
@@ -948,17 +948,17 @@ body .tag {
 }
 body .metadata-properties-heading {
   font-family: var(--kuro-font-mono);
-  font-size: 0.78em !important;
+  font-size: 0.78em;
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--text-faint);
 }
 .metadata-property {
-  border-bottom: 1px solid var(--divider-color) !important; /* keep — Obsidian sets metadata-property border at same specificity */
-  padding: 4px 12px !important; /* keep — Obsidian sets metadata-property padding at same specificity */
+  border-bottom: 1px solid var(--divider-color);
+  padding: 4px 12px;
   min-height: 30px;
 }
-.metadata-property:last-child { border-bottom: none !important; } /* keep — must defeat the border-bottom set on .metadata-property above */
+.metadata-property:last-child { border-bottom: none; }
 
 body .metadata-property-key,
 body .metadata-property-key span,
@@ -975,8 +975,8 @@ body .metadata-property-value textarea {
   color: var(--text-muted);
 }
 .metadata-property.is-active {
-  background: rgba(var(--interactive-accent-rgb), 0.03) !important; /* keep — .is-active state Obsidian sets directly */
-  box-shadow: inset 2px 0 0 rgba(var(--interactive-accent-rgb), 0.45) !important; /* keep — .is-active accent glow Obsidian sets directly */
+  background: rgba(var(--interactive-accent-rgb), 0.03);
+  box-shadow: inset 2px 0 0 rgba(var(--interactive-accent-rgb), 0.45);
 }
 body .metadata-add-button { font-family: var(--kuro-font-mono); font-size: 0.8em; color: var(--text-faint); }
 body .metadata-add-button:hover { color: var(--text-muted); }
@@ -987,13 +987,13 @@ body .metadata-add-button:hover { color: var(--text-muted); }
    ════════════════════════════════════════════════════════════════════════ */
 
 .task-list-item-checkbox {
-  border: 1.5px solid rgba(var(--interactive-accent-rgb), 0.4) !important; /* keep — must override browser/Obsidian checkbox border reset */
+  border: 1.5px solid rgba(var(--interactive-accent-rgb), 0.4) !important; /* keep — Obsidian higher-spec: input[type=checkbox] (0,1,1) */
   background: transparent;
-  border-radius: 2px !important; /* keep — must override browser/Obsidian checkbox border-radius reset */
+  border-radius: 2px !important; /* keep — Obsidian higher-spec: input[type=checkbox] (0,1,1) */
 }
 .task-list-item-checkbox:checked {
-  background: rgba(var(--interactive-accent-rgb), 0.18) !important; /* keep — :checked state browser/Obsidian sets at same specificity */
-  border-color: rgb(var(--interactive-accent-rgb)) !important; /* keep — :checked state Obsidian sets border-color at same specificity */
+  background: rgba(var(--interactive-accent-rgb), 0.18) !important; /* keep — Obsidian higher-spec: input[type=checkbox]:checked (0,2,1) */
+  border-color: rgb(var(--interactive-accent-rgb)) !important; /* keep — Obsidian higher-spec: input[type=checkbox]:checked (0,2,1) */
 }
 .task-list-item.is-checked {
   color: var(--text-faint);
@@ -1030,13 +1030,13 @@ body .workspace-tab-header {
   transition: color var(--dur-fast) var(--ease-signal);
 }
 .workspace-tab-header:hover {
-  color: var(--text-muted) !important; /* keep — Obsidian sets tab hover color at same specificity */
-  background: var(--background-modifier-hover) !important; /* keep — hover state Obsidian sets at same specificity */
+  color: var(--text-muted);
+  background: var(--background-modifier-hover);
 }
 .workspace-tab-header.is-active {
-  color: var(--text-normal) !important; /* keep — .is-active state Obsidian sets directly */
-  background: var(--background-primary) !important; /* keep — .is-active state Obsidian sets directly */
-  border-top: 2px solid rgb(var(--interactive-accent-rgb)) !important; /* keep — .is-active state Obsidian sets border-top directly */
+  color: var(--text-normal) !important; /* keep — Obsidian higher-spec: .workspace-tab-header-container .workspace-tab-header.is-active (0,3,0) */
+  background: var(--background-primary) !important; /* keep — Obsidian higher-spec: .workspace-tab-header-container .workspace-tab-header.is-active (0,3,0) */
+  border-top: 2px solid rgb(var(--interactive-accent-rgb));
 }
 
 .view-header {
@@ -1077,19 +1077,19 @@ body .status-bar-item:hover { color: var(--text-muted); }
               background var(--dur-fast) var(--ease-signal);
 }
 .workspace-ribbon .clickable-icon:hover {
-  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — accent hover state Obsidian sets on .clickable-icon:hover */
-  background: rgba(var(--interactive-accent-rgb), 0.07) !important; /* keep — hover state Obsidian sets at same specificity */
+  color: rgb(var(--interactive-accent-rgb));
+  background: rgba(var(--interactive-accent-rgb), 0.07);
 }
 .workspace-ribbon .clickable-icon.is-active {
-  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — .is-active state Obsidian sets directly */
-  background: rgba(var(--interactive-accent-rgb), 0.10) !important; /* keep — .is-active state Obsidian sets directly */
+  color: rgb(var(--interactive-accent-rgb));
+  background: rgba(var(--interactive-accent-rgb), 0.10);
 }
 
 .workspace-split.mod-left-split,
 .workspace-split.mod-right-split {
   background: var(--background-primary-alt);
-  backdrop-filter: none !important; /* keep — defeats macOS vibrancy Obsidian enables at same specificity */
-  -webkit-backdrop-filter: none !important; /* keep — defeats macOS vibrancy Obsidian enables at same specificity */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 
@@ -1111,12 +1111,12 @@ body .nav-file-title {
 .nav-folder-title:hover,
 .nav-file-title:hover {
   color: var(--nav-item-color-hover);
-  background: var(--nav-item-background-hover) !important; /* keep — hover state Obsidian sets at same specificity */
+  background: var(--nav-item-background-hover);
 }
 .nav-file-title.is-active,
 .nav-file-title.is-active:hover {
-  color: var(--nav-item-color-active) !important; /* keep — .is-active state Obsidian sets directly */
-  background: var(--nav-item-background-active) !important; /* keep — .is-active state Obsidian sets directly */
+  color: var(--nav-item-color-active);
+  background: var(--nav-item-background-active);
   box-shadow: inset 2px 0 0 rgb(var(--interactive-accent-rgb));
 }
 
@@ -1133,20 +1133,20 @@ body .search-input-container input {
   background: var(--background-modifier-form-field);
   color: var(--text-normal);
   font-family: var(--kuro-font-mono);
-  border: 1px solid var(--background-modifier-border) !important; /* keep — Obsidian sets input borders inline/at same specificity */
+  border: 1px solid var(--background-modifier-border);
   border-radius: 3px;
 }
 .search-input-container input:focus,
 .search-input-container input:focus-visible {
-  border-color: rgba(var(--interactive-accent-rgb), 0.5) !important; /* keep — :focus state browser/Obsidian sets border-color at same specificity */
-  box-shadow: 0 0 0 2px rgba(var(--interactive-accent-rgb), 0.10) !important; /* keep — focus state browser/Obsidian sets at same specificity */
+  border-color: rgba(var(--interactive-accent-rgb), 0.5);
+  box-shadow: 0 0 0 2px rgba(var(--interactive-accent-rgb), 0.10);
   outline: none;
 }
 body .search-result-file-title { color: var(--text-normal); }
 body .search-result-file-match { color: var(--text-muted); }
 .search-result-file-match-highlight {
-  background: rgba(var(--interactive-accent-rgb), 0.18) !important; /* keep — Obsidian sets search highlight background at same specificity */
-  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — accent-driven highlight color Obsidian sets at same specificity */
+  background: rgba(var(--interactive-accent-rgb), 0.18);
+  color: rgb(var(--interactive-accent-rgb));
 }
 
 
@@ -1194,8 +1194,8 @@ body .suggestion-item {
   transition: background var(--dur-fast) var(--ease-signal);
 }
 .suggestion-item.is-selected {
-  background: rgba(var(--interactive-accent-rgb), 0.08) !important; /* keep — .is-selected state Obsidian sets directly */
-  color: var(--text-normal) !important; /* keep — .is-selected state Obsidian sets directly */
+  background: rgba(var(--interactive-accent-rgb), 0.08);
+  color: var(--text-normal);
   box-shadow: inset 2px 0 0 rgb(var(--interactive-accent-rgb));
 }
 body .suggestion-hotkey { color: var(--text-faint); font-size: 0.82em; }
@@ -1307,14 +1307,14 @@ body .suggestion-flair  { color: rgb(var(--interactive-accent-rgb)); }
 .workspace-leaf-content[data-type="bases"] th {
   color: var(--text-normal);
   background: var(--background-modifier-hover);
-  border-color: var(--background-modifier-border) !important; /* keep — Obsidian Bases plugin sets th border at same or higher specificity */
+  border-color: var(--background-modifier-border);
   letter-spacing: 0.04em;
   font-size: 0.83em;
   text-transform: uppercase;
 }
 .workspace-leaf-content[data-type="bases"] td {
   color: var(--text-muted);
-  border-color: var(--divider-color) !important; /* keep — Obsidian Bases plugin sets td border at same or higher specificity */
+  border-color: var(--divider-color);
   font-size: 0.9em;
 }
 .workspace-leaf-content[data-type="bases"] a,
@@ -1324,7 +1324,7 @@ body .suggestion-flair  { color: rgb(var(--interactive-accent-rgb)); }
   border-bottom: 1px solid rgba(var(--signal-circuit-rgb), 0.25);
 }
 .workspace-leaf-content[data-type="bases"] a:hover {
-  border-bottom-color: rgba(var(--signal-circuit-rgb), 0.55) !important; /* keep — hover state must override the non-!important border-bottom above */
+  border-bottom-color: rgba(var(--signal-circuit-rgb), 0.55);
 }
 .workspace-leaf-content[data-type="bases"] .bases-toolbar,
 .workspace-leaf-content[data-type="bases"] .bases-view-header {
@@ -1351,7 +1351,7 @@ body .suggestion-flair  { color: rgb(var(--interactive-accent-rgb)); }
 }
 [data-type="outline"] .is-active .tree-item-inner,
 .workspace-split.mod-right-split .is-active .tree-item-inner {
-  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — .is-active state Obsidian sets directly */
+  color: rgb(var(--interactive-accent-rgb));
 }
 [data-type="outline"] [data-level="1"] .tree-item-inner { font-size: 0.92em; }
 [data-type="outline"] [data-level="2"] .tree-item-inner { font-size: 0.88em; opacity: 0.85; }
@@ -1368,12 +1368,12 @@ body .clickable-icon {
 }
 .clickable-icon:hover,
 .clickable-icon.is-active {
-  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — accent hover/.is-active state Obsidian sets directly */
+  color: rgb(var(--interactive-accent-rgb));
 }
 
 body .workspace-tab-header-inner-icon svg { color: var(--text-faint); }
 .workspace-tab-header.is-active .workspace-tab-header-inner-icon svg {
-  color: rgb(var(--interactive-accent-rgb)) !important; /* keep — .is-active state Obsidian sets directly */
+  color: rgb(var(--interactive-accent-rgb));
 }
 
 
@@ -1390,8 +1390,8 @@ body .workspace-tab-header-inner-icon svg { color: var(--text-faint); }
 .workspace-ribbon.mod-left,
 .workspace-ribbon.mod-right {
   background: var(--background-primary-alt);
-  backdrop-filter: none !important; /* keep — defeats macOS vibrancy Obsidian enables at same specificity */
-  -webkit-backdrop-filter: none !important; /* keep — defeats macOS vibrancy Obsidian enables at same specificity */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 
@@ -1432,8 +1432,8 @@ body.theme-dark::before {
 
 @media (prefers-reduced-motion: reduce) {
   .callout .callout-icon svg {
-    animation: none !important;
-    transition: none !important;
+    animation: none !important; /* keep — must defeat theme's own higher-spec :hover callout-icon animations (0,4,1) */
+    transition: none !important; /* keep — must defeat theme's own higher-spec :hover callout-icon animations (0,4,1) */
   }
 }
 
@@ -1628,8 +1628,8 @@ textarea:focus {
 }
 
 .slides {
-  overflow-x: hidden !important;
-  overflow-y: var(--slides-overflow-y, hidden) !important;
+  overflow-x: hidden !important; /* keep — reveal.js higher-spec: .reveal .slides (0,2,0) + inline layout styles */
+  overflow-y: var(--slides-overflow-y, hidden) !important; /* keep — reveal.js higher-spec: .reveal .slides (0,2,0) + inline layout styles */
 }
 .reveal .slides section {
   overflow-x: hidden;
@@ -1641,7 +1641,7 @@ body.kuro-slides-frame .reveal .slides section:not(.stack) {
   border: 1px solid rgba(var(--interactive-accent-rgb), 0.25);
   border-radius: 4px;
   box-sizing: border-box;
-  padding: 40px 56px !important; /* keep — reveal.js sets padding inline on slides sections */
+  padding: 40px 56px !important; /* keep — inline (reveal.js sets padding on slides section) */
 }
 body.theme-dark.kuro-slides-frame .reveal .slides section:not(.stack) {
   box-shadow:
