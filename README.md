@@ -6,7 +6,7 @@ Twelve Signals palette, a Void Scale, and four switchable Aspects.
 > The chamber is dark. The signal earns its brightness because the chamber is dark.
 > Twelve hues, twelve roles. Four aspects, four voices.
 
-<!-- TODO(screenshot): add docs/screenshot.png (512×288) before submission — needs a live render. -->
+![Kuro](screenshot.png)
 
 ## Features
 
@@ -14,7 +14,7 @@ Twelve Signals palette, a Void Scale, and four switchable Aspects.
   `ghost`, `biolink`, `neural-bleed`, `rust`, `spectre`, `toxic`, `voidwitch`, `pearl` —
   twelve hues mapped to twelve note roles, with RGB pairs for compositing.
 - **Void Scale** (`--void-000` … `--void-900`) for chamber depth.
-- **Four Aspects** — switch via `<html data-aspect="…">` or the companion plugin:
+- **Four Aspects** — pick one globally in Style Settings, or set `<html data-aspect="…">` (per-note switching is available via the optional companion plugin):
   - **shugo** (守護) — the guardian
   - **gunshi** (軍師) — the strategist
   - **kantoku** (監督) — the director
@@ -34,16 +34,22 @@ Settings → Appearance → Themes → Manage → browse for **Kuro**, install, 
 Copy `theme.css` and `manifest.json` into `<your-vault>/.obsidian/themes/Kuro/`,
 then enable under **Settings → Appearance → Themes**.
 
-## Companion plugin
+## Configuration
 
-**Kuro Theme Settings** (separate repo) exposes the aspect picker and live token
-controls under Settings → Kuro, and toggles the body classes the theme reacts to.
-The theme is fully usable standalone; the plugin only adds runtime switching.
+Kuro works out of the box with sensible defaults. For live configuration, install the
+official **Style Settings** community plugin and open **Settings → Style Settings → Kuro**.
+You get the aspect picker, signal presets, effects (scanlines, vignette, glow), typography,
+reading, slides, editor/tabs, and the hanko watermark — all applied instantly. Style
+Settings is optional; the theme is fully usable without it.
+
+A separate companion plugin (in its own repo) adds *dynamic* behaviour Style Settings
+cannot: per-note `aspect:` frontmatter switching and a status-bar aspect chip. It is
+entirely optional.
 
 ## Build
 
 `theme.css` is a generated monolith — do not edit it directly. The sources live in
-`src/` as numbered fragments that `build.sh` concatenates lexically (`00`–`70`):
+`src/` as numbered fragments that `build.sh` concatenates lexically (`00`–`75`):
 
 ```sh
 ./src/build.sh   # regenerates theme.css from src/*.css
