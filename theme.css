@@ -2937,22 +2937,22 @@ body.is-tablet pre.kuro-loot {
    Apply via `data-aspect="shugo|gunshi|kantoku|sensei"` on any ancestor
    ====================================================================== */
 
-[data-aspect="shugo"]    { /* Guardian */
+[data-aspect="shugo"],   body.kuro-aspect-shugo   { /* Guardian */
   --accent:      var(--signal-phosphor);
   --accent-soft: color-mix(in oklab, var(--signal-phosphor) 15%, transparent);
   --accent-glow: color-mix(in oklab, var(--signal-phosphor) 50%, transparent);
 }
-[data-aspect="gunshi"]   { /* Strategist */
+[data-aspect="gunshi"],  body.kuro-aspect-gunshi  { /* Strategist */
   --accent:      var(--signal-spectre);
   --accent-soft: color-mix(in oklab, var(--signal-spectre) 18%, transparent);
   --accent-glow: color-mix(in oklab, var(--signal-spectre) 55%, transparent);
 }
-[data-aspect="kantoku"]  { /* Taskmaster */
+[data-aspect="kantoku"], body.kuro-aspect-kantoku { /* Taskmaster */
   --accent:      var(--signal-crimson);
   --accent-soft: color-mix(in oklab, var(--signal-crimson) 15%, transparent);
   --accent-glow: color-mix(in oklab, var(--signal-crimson) 50%, transparent);
 }
-[data-aspect="sensei"]   { /* Mentor */
+[data-aspect="sensei"],  body.kuro-aspect-sensei  { /* Mentor */
   --accent:      var(--signal-ember);
   --accent-soft: color-mix(in oklab, var(--signal-ember) 15%, transparent);
   --accent-glow: color-mix(in oklab, var(--signal-ember) 50%, transparent);
