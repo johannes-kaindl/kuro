@@ -1,6 +1,15 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   KURO  ·  v3.2.0
+   KURO  ·  v3.3.0
    Neo-Gothic · Post-Cyberpunk · CRT-Phosphor
+   ─────────────────────────────────────────────────────────────────────────
+   v3.3.0 — Release-readiness. No visual redesign: the theme becomes
+   self-contained and guideline-compliant for the Obsidian community
+   catalogue. Fonts (JetBrains Mono, Space Grotesk, Inter, EB Garamond) are
+   embedded as Latin-subset woff2 @font-face data-URLs (SIL OFL 1.1) and the
+   remote Google Fonts include is gone — no network access. Forced-override
+   flags reduced 316 → 69 justified keeps, verified against Obsidian app.css.
+   The §39·6b
+   Mermaid-padding patch was back-ported from the Pallas install into source.
    ─────────────────────────────────────────────────────────────────────────
    v3.2.0 — Visibility + accessibility release. Acts on Live-Test feedback
    2026-05-11 (Jay): aspect wallpapers + signal tints were too subtle to
