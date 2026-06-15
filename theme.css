@@ -3187,6 +3187,110 @@ body.is-tablet pre.kuro-loot {
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   FRAGMENT · 05-style-settings.css
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────────
+   FRAGMENT · 05-style-settings.css
+   Style Settings annotation block. Drives the SAME body classes / CSS vars
+   the companion plugin sets, so the two share one contract (last writer wins).
+   No effect when the Style Settings plugin is absent — theme uses CSS defaults.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* @settings
+
+name: Kuro
+id: kuro-theme
+settings:
+    -
+        id: kuro-aspect-mood
+        title: Aspect & Mood
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: kuro-aspect
+        title: Active aspect
+        description: 'The familiar wears four faces. Each shifts the accent character. Default: Shugo · Guardian.'
+        type: class-select
+        allowEmpty: false
+        default: kuro-aspect-shugo
+        options:
+            -
+                label: Shugo · Guardian
+                value: kuro-aspect-shugo
+            -
+                label: Gunshi · Strategist
+                value: kuro-aspect-gunshi
+            -
+                label: Kantoku · Taskmaster
+                value: kuro-aspect-kantoku
+            -
+                label: Sensei · Mentor
+                value: kuro-aspect-sensei
+    -
+        id: kuro-preset
+        title: Signal preset
+        description: A complete Kuro mood — accent, effects and headline colours. Empty = aspect-driven base.
+        type: class-select
+        allowEmpty: true
+        default: none
+        options:
+            -
+                label: Toxic Haze
+                value: kuro-preset-toxic-haze
+            -
+                label: Phosphor
+                value: kuro-preset-phosphor
+            -
+                label: Voidwitch
+                value: kuro-preset-voidwitch
+            -
+                label: Crimson
+                value: kuro-preset-crimson
+            -
+                label: Ember
+                value: kuro-preset-ember
+            -
+                label: Circuit
+                value: kuro-preset-circuit
+            -
+                label: Biolink
+                value: kuro-preset-biolink
+            -
+                label: Neural Bleed
+                value: kuro-preset-neural-bleed
+            -
+                label: Ghost Protocol
+                value: kuro-preset-ghost-protocol
+            -
+                label: Rust Signal
+                value: kuro-preset-rust-signal
+            -
+                label: Spectre
+                value: kuro-preset-spectre
+            -
+                label: Pearl
+                value: kuro-preset-pearl
+            -
+                label: Kuro
+                value: kuro-preset-kuro
+    -
+        id: kuro-low-contrast
+        title: Low contrast
+        description: Lifts blacks and dims glow for a calmer chamber.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-color-vision-boost
+        title: Colour-vision mode
+        description: Saturation lift, red-green hue spread, and non-colour cues (per-aspect borders, per-signal glyphs).
+        type: class-toggle
+        default: false
+
+*/
+
+/* ═══════════════════════════════════════════════════════════════════════════
    FRAGMENT · 10-v1-polish-addendum.css
    ═══════════════════════════════════════════════════════════════════════ */
 
