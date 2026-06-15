@@ -200,5 +200,29 @@ settings:
         type: variable-number
         default: 30
         format: px
+    -
+        id: kuro-slides
+        title: Slides
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: kuro-slides-frame
+        title: Slide frame
+        description: Border + shadow/glow around each slide.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-slides-numbers
+        title: Slide numbers
+        description: Current / total in the corner.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-slides-progress
+        title: Progress bar
+        description: Accent-coloured progress bar at the bottom.
+        type: class-toggle
+        default: false
 
 */
