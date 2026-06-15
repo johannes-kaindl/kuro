@@ -1975,7 +1975,7 @@ body.kuro-no-callout-animations .callout:hover .callout-icon svg {
   padding: 8px 12px;
   border-bottom: 1px solid var(--background-modifier-border);
   color: var(--text-normal);
-  vertical-align: top;
+  align-items: center;   /* cells are display:flex (app.css); vertical-align is a no-op → center content */
   font-size: 0.9em;
 }
 .bases-table .bases-tr:last-child .bases-td { border-bottom: none; }
