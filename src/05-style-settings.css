@@ -95,5 +95,38 @@ settings:
         description: Saturation lift, red-green hue spread, and non-colour cues (per-aspect borders, per-signal glyphs).
         type: class-toggle
         default: false
+    -
+        id: kuro-effects
+        title: Effects
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: --kuro-scanline-opacity
+        title: Scanlines
+        description: CRT scanline intensity. 0 = off.
+        type: variable-number-slider
+        default: 0.035
+        min: 0
+        max: 0.1
+        step: 0.005
+    -
+        id: --kuro-vignette
+        title: Vignette
+        description: Darkened screen edges. 0 = off.
+        type: variable-number-slider
+        default: 0.2
+        min: 0
+        max: 0.8
+        step: 0.05
+    -
+        id: --kuro-hanko-glow-mult
+        title: Hanko glow
+        description: Halo strength on the hanko watermark.
+        type: variable-number-slider
+        default: 1
+        min: 0
+        max: 2
+        step: 0.1
 
 */
