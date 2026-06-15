@@ -1,6 +1,14 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   KURO  ·  v3.3.0
+   KURO  ·  v3.4.0
    Neo-Gothic · Post-Cyberpunk · CRT-Phosphor
+   ─────────────────────────────────────────────────────────────────────────
+   v3.4.0 — Standalone & Style-Settings native. The theme is now fully
+   configurable through the official Style Settings plugin (new fragment
+   05-style-settings.css drives the same kuro-* classes / --kuro-* vars the
+   companion sets) and no longer depends on any plugin. The signature hanko
+   watermark survives plugin-free as a static CSS pseudo-element
+   (35-hanko-static.css), suppressed when a plugin injects a real one.
+   Animations now respect prefers-reduced-motion (75-reduced-motion.css).
    ─────────────────────────────────────────────────────────────────────────
    v3.3.0 — Release-readiness. No visual redesign: the theme becomes
    self-contained and guideline-compliant for the Obsidian community
@@ -45,6 +53,9 @@
                                      Four Aspects, dark/light semantics,
                                      all base content styling
      01 · tokens-canonical         — KSP colors_and_type.css mirror, SSOT
+     05 · style-settings           — Style Settings @settings block (no-op
+                                     without the plugin); drives kuro-* /
+                                     --kuro-* contract shared with companion
      10 · v1-polish-addendum       — §3b colorful-headings, §24 presets,
                                      §25 low-contrast, §28 callouts ext.,
                                      §32 graph WebGL, §34 zen, §35 tabs,
@@ -56,6 +67,8 @@
                                      vignette, mono-all, headings,
                                      light-mode glow + aspect strip, buttons,
                                      hanko-glow
+     35 · hanko-static             — Plugin-free hanko via ::after pseudo;
+                                     suppressed under body.kuro-has-hanko
      40 · aspect-wallpapers        — Per-aspect textures on margin-tint,
                                      alpha-multiplier-aware
      50 · signal-subthemes         — Twelve signal classes for notes
@@ -64,11 +77,17 @@
      61 · color-vision-boost       — Saturation lift, hue spread, border
                                      patterns per aspect, glyphs per signal
      70 · showcase-fx              — Press / pulse / hover / kuro-line
+     75 · reduced-motion           — Null decorative callout/pulse loops
+                                     under prefers-reduced-motion
    ─────────────────────────────────────────────────────────────────────────
    The chamber is dark. The signal earns its brightness because the
    chamber is dark.  Twelve hues, twelve roles.  Four aspects, four voices.
    ─────────────────────────────────────────────────────────────────────────
-   Companion plugins (each in its own repo):
+   Configuration: the official Style Settings plugin (optional) reads the
+   05-style-settings block. The theme is fully usable without any plugin.
+
+   Optional companion plugins (each in its own repo) add runtime behaviour
+   Style Settings cannot — per-note aspect switching, status-bar chip:
      · obsidian-kuro-settings     — runtime controls, aspect picker,
                                     sets body classes for the v3.1 layers
      · obsidian-kuro-screensaver  — fullscreen 3D flyover with HUD

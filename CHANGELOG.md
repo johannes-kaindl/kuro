@@ -4,6 +4,32 @@ All notable changes to the Kuro theme are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.0] — Standalone & Style-Settings native
+
+The theme is now fully configurable through the official **Style Settings** plugin and
+no longer depends on any companion plugin. No visual redesign — same Kuro, now standalone.
+
+### Added
+- **Style Settings support.** A new `src/05-style-settings.css` fragment carries a
+  `@settings` annotation block exposing Aspect & Mood, Effects, Typography, Reading,
+  Slides, Editor & Tabs, and Identity (hanko). It drives the same `kuro-*` body classes
+  and `--kuro-*` variables the companion plugin uses, so the two share one contract.
+  The block is inert when the plugin is absent — the theme uses its CSS defaults.
+- **Global aspect via body class.** Aspects now respond to `body.kuro-aspect-*` (set by
+  Style Settings) in addition to the existing `[data-aspect]` attribute (used by the
+  companion for per-note switching).
+- **Plugin-free hanko.** The signature kanji watermark survives without any plugin as a
+  static CSS pseudo-element (`src/35-hanko-static.css`), with glyph, size, offsets, glow
+  and on/off exposed to Style Settings. It is suppressed when a companion plugin injects
+  a real hanko (`body.kuro-has-hanko`), so the two never double up.
+- **Reduced-motion coverage.** Decorative callout-box loops and the `.kuro-pulse` utility
+  now stop under `prefers-reduced-motion: reduce` (`src/75-reduced-motion.css`),
+  complementing the existing callout-icon handling.
+
+### Changed
+- README reframed: configuration is via Style Settings; no plugin is required.
+- No hard plugin dependency remains anywhere in the theme.
+
 ## [3.3.0] — Release-readiness
 
 Submission-readiness pass for the Obsidian community catalogue. No visual redesign —
