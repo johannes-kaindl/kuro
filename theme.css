@@ -2270,6 +2270,16 @@ body.is-mobile .side-dock-ribbon-action {
   min-height: 44px;
   min-width:  44px;
 }
+/* …but NOT the mobile-navbar icons: their touch target is the full
+   .mobile-navbar-action cell, and forcing 44px on the inner icon overflows the
+   navbar content box on notched phones (safe-area padding shrinks it below 44px),
+   pushing the icon down while the absolutely-centred .mobile-navbar-tabs-number
+   stays put — so the tab count reads as shifted up. Let navbar icons track the
+   cell height (which is what the count number is centred against). */
+body.is-mobile .mobile-navbar-action .clickable-icon {
+  min-height: 0;
+  min-width:  0;
+}
 body.is-mobile .mobile-navbar { padding-bottom: var(--safe-area-inset-bottom, 0); }
 body.is-mobile .callout[data-callout="nav"] .callout-content > p > a { min-height: 44px; }
 
