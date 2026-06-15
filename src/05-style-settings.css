@@ -224,5 +224,42 @@ settings:
         description: Accent-coloured progress bar at the bottom.
         type: class-toggle
         default: false
+    -
+        id: kuro-editor-tabs
+        title: Editor & Tabs
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: kuro-zen-mode
+        title: Zen mode
+        description: Distraction-free — all UI chrome hidden.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-active-line
+        title: Active line highlight
+        description: Subtle accent tint on the current line.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-rainbow-indent
+        title: Rainbow indent guides
+        description: Colours each indentation level. Requires Editor → Show indentation guides.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-tabs
+        title: Tab style
+        type: class-select
+        allowEmpty: true
+        default: none
+        options:
+            -
+                label: Pill
+                value: kuro-tabs-pill
+            -
+                label: Underline
+                value: kuro-tabs-underline
 
 */
