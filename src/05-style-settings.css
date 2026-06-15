@@ -128,5 +128,52 @@ settings:
         min: 0
         max: 2
         step: 0.1
+    -
+        id: kuro-typography
+        title: Typography
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: --kuro-font-serif
+        title: Serif / display font
+        description: Used for headings and the hanko. Type a font name installed on your system.
+        type: variable-text
+        default: var(--font-display)
+        quotes: false
+    -
+        id: --kuro-font-mono
+        title: Monospace font
+        type: variable-text
+        default: var(--font-mono)
+        quotes: false
+    -
+        id: kuro-mono-all
+        title: Terminal mode
+        description: Monospace for UI and body — full terminal look.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-margin-tint
+        title: Margin tint
+        description: Darkens the area around the text column so the page floats.
+        type: class-toggle
+        default: false
+    -
+        id: --file-line-width
+        title: Reading line width
+        description: Max width of the text column, in px. 700 is comfortable. Needs Editor → Readable line length on.
+        type: variable-number
+        default: 700
+        format: px
+    -
+        id: --kuro-wallpaper-alpha
+        title: Pattern intensity
+        description: Aspect-driven texture under the editor surface (visible with Margin tint). 1 = default, higher = bolder.
+        type: variable-number-slider
+        default: 1
+        min: 0
+        max: 1.5
+        step: 0.05
 
 */
