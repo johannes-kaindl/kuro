@@ -3453,6 +3453,52 @@ settings:
             -
                 label: Underline
                 value: kuro-tabs-underline
+    -
+        id: kuro-identity
+        title: Identity
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: kuro-hanko-off
+        title: Hide hanko watermark
+        description: Turns off the kanji stamp in the bottom-right of each pane.
+        type: class-toggle
+        default: false
+    -
+        id: --kuro-hanko-glyph
+        title: Hanko glyph
+        description: The kanji (or any single character) stamped in the corner.
+        type: variable-text
+        default: '守'
+        quotes: true
+    -
+        id: --kuro-hanko-size
+        title: Hanko size
+        description: Stamp size in px.
+        type: variable-number
+        default: 120
+        format: px
+    -
+        id: --kuro-hanko-opacity
+        title: Hanko opacity
+        type: variable-number-slider
+        default: 0.18
+        min: 0.02
+        max: 0.6
+        step: 0.02
+    -
+        id: --kuro-hanko-right
+        title: Hanko right offset
+        type: variable-number
+        default: 32
+        format: px
+    -
+        id: --kuro-hanko-bottom
+        title: Hanko bottom offset
+        type: variable-number
+        default: 32
+        format: px
 
 */
 
@@ -5791,6 +5837,43 @@ body.kuro-hanko-glow:not(.kuro-no-glow) {
 /* Light mode base: kein Neon-Frame-Glow (wird von kuro-hanko-glow überschrieben wenn aktiv) */
 body.theme-light .kuro-hanko-instance.kuro-hanko-framed {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FRAGMENT · 35-hanko-static.css
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────────
+   FRAGMENT · 35-hanko-static.css
+   Plugin-free hanko watermark via a pseudo-element. Suppressed when the
+   companion plugin injects a real .kuro-hanko-instance (body.kuro-has-hanko).
+   Glyph / size / offsets / glow / on-off are Style-Settings-controlled.
+   Relies on .workspace-leaf-content[data-type="markdown"] being
+   position: relative (set in 30-plugin-migrated.css § hanko).
+   ───────────────────────────────────────────────────────────────────────── */
+
+body:not(.kuro-has-hanko) .workspace-leaf-content[data-type="markdown"]::after {
+  content: var(--kuro-hanko-glyph, "守");
+  position: absolute;
+  right: var(--kuro-hanko-right, 32px);
+  bottom: var(--kuro-hanko-bottom, 32px);
+  font-family: var(--kuro-font-serif);
+  font-size: var(--kuro-hanko-size, 120px);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--accent);
+  opacity: var(--kuro-hanko-opacity, 0.18);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  text-shadow:
+    0 0 calc(6px  * var(--kuro-hanko-glow-mult, 1)) currentColor,
+    0 0 calc(28px * var(--kuro-hanko-glow-mult, 1)) currentColor;
+}
+
+/* Off-switch: Style Settings sets body.kuro-hanko-off */
+body.kuro-hanko-off .workspace-leaf-content[data-type="markdown"]::after {
+  content: none;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
