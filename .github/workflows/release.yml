@@ -1,0 +1,43 @@
+name: Release Obsidian theme
+
+on:
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify tag matches manifest version
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          MANIFEST_VERSION=$(node -p "require('./manifest.json').version")
+          if [ "$TAG" != "$MANIFEST_VERSION" ]; then
+            echo "::error::Release tag '$TAG' does not match manifest.json version '$MANIFEST_VERSION'."
+            exit 1
+          fi
+
+      - name: Rebuild theme.css from sources and verify it matches the committed file
+        run: |
+          bash src/build.sh
+          if ! git diff --quiet -- theme.css; then
+            echo "::error::theme.css is out of date — run src/build.sh and commit before tagging."
+            exit 1
+          fi
+
+      - name: Create draft release with assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          gh release create "$TAG" \
+            --title="$TAG" \
+            --draft \
+            manifest.json \
+            theme.css
