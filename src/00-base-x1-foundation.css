@@ -945,6 +945,7 @@ body .tag {
   border: 1px solid var(--background-modifier-border);
   border-radius: 4px;
   margin-bottom: 1.5em;
+  padding: 2px 14px; /* horizontal inset applies to heading AND rows → both share one left edge regardless of inner DOM */
 }
 body .metadata-properties-heading {
   font-family: var(--kuro-font-mono);
@@ -952,12 +953,15 @@ body .metadata-properties-heading {
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--text-faint);
+  padding-left: 0; /* alignment now from .metadata-container padding; neutralise app default */
+  margin-left: 0;
 }
 .metadata-property {
   border-bottom: 1px solid var(--divider-color);
-  padding: 4px 12px;
+  padding: 4px 0; /* horizontal inset moved up to .metadata-container so heading + rows align */
   min-height: 30px;
 }
+body .metadata-property-icon { margin-right: 6px; } /* breathing room between type icon and property key */
 .metadata-property:last-child { border-bottom: none; }
 
 body .metadata-property-key,

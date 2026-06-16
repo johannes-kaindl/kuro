@@ -268,9 +268,9 @@ settings:
         level: 1
         collapsed: true
     -
-        id: kuro-hanko-off
-        title: Hide hanko watermark
-        description: Turns off the kanji stamp in the bottom-right of each pane.
+        id: kuro-hanko-show
+        title: Show hanko watermark
+        description: A faint kanji stamp in the bottom-right corner of each pane. Off by default.
         type: class-toggle
         default: false
     -

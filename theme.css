@@ -1046,6 +1046,7 @@ body .tag {
   border: 1px solid var(--background-modifier-border);
   border-radius: 4px;
   margin-bottom: 1.5em;
+  padding: 2px 14px; /* horizontal inset applies to heading AND rows → both share one left edge regardless of inner DOM */
 }
 body .metadata-properties-heading {
   font-family: var(--kuro-font-mono);
@@ -1053,12 +1054,15 @@ body .metadata-properties-heading {
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--text-faint);
+  padding-left: 0; /* alignment now from .metadata-container padding; neutralise app default */
+  margin-left: 0;
 }
 .metadata-property {
   border-bottom: 1px solid var(--divider-color);
-  padding: 4px 12px;
+  padding: 4px 0; /* horizontal inset moved up to .metadata-container so heading + rows align */
   min-height: 30px;
 }
+body .metadata-property-icon { margin-right: 6px; } /* breathing room between type icon and property key */
 .metadata-property:last-child { border-bottom: none; }
 
 body .metadata-property-key,
@@ -3479,9 +3483,9 @@ settings:
         level: 1
         collapsed: true
     -
-        id: kuro-hanko-off
-        title: Hide hanko watermark
-        description: Turns off the kanji stamp in the bottom-right of each pane.
+        id: kuro-hanko-show
+        title: Show hanko watermark
+        description: A faint kanji stamp in the bottom-right corner of each pane. Off by default.
         type: class-toggle
         default: false
     -
@@ -5864,14 +5868,16 @@ body.theme-light .kuro-hanko-instance.kuro-hanko-framed {
 
 /* ─────────────────────────────────────────────────────────────────────────
    FRAGMENT · 35-hanko-static.css
-   Plugin-free hanko watermark via a pseudo-element. Suppressed when the
-   companion plugin injects a real .kuro-hanko-instance (body.kuro-has-hanko).
-   Glyph / size / offsets / glow / on-off are Style-Settings-controlled.
+   Plugin-free hanko watermark via a pseudo-element. OPT-IN: off by default,
+   shown only when body.kuro-hanko-show is set (Style Settings → "Show hanko
+   watermark"). Still suppressed when the companion plugin injects a real
+   .kuro-hanko-instance (body.kuro-has-hanko), so coexistence stays single-stamp.
+   Glyph / size / offsets / glow are Style-Settings-controlled.
    Relies on .workspace-leaf-content[data-type="markdown"] being
    position: relative (set in 30-plugin-migrated.css § hanko).
    ───────────────────────────────────────────────────────────────────────── */
 
-body:not(.kuro-has-hanko) .workspace-leaf-content[data-type="markdown"]::after {
+body.kuro-hanko-show:not(.kuro-has-hanko) .workspace-leaf-content[data-type="markdown"]::after {
   content: var(--kuro-hanko-glyph, "守");
   position: absolute;
   right: var(--kuro-hanko-right, 32px);
@@ -5888,11 +5894,6 @@ body:not(.kuro-has-hanko) .workspace-leaf-content[data-type="markdown"]::after {
   text-shadow:
     0 0 calc(6px  * var(--kuro-hanko-glow-mult, 1)) currentColor,
     0 0 calc(28px * var(--kuro-hanko-glow-mult, 1)) currentColor;
-}
-
-/* Off-switch: Style Settings sets body.kuro-hanko-off */
-body.kuro-hanko-off .workspace-leaf-content[data-type="markdown"]::after {
-  content: none;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════

@@ -1,13 +1,15 @@
 /* ─────────────────────────────────────────────────────────────────────────
    FRAGMENT · 35-hanko-static.css
-   Plugin-free hanko watermark via a pseudo-element. Suppressed when the
-   companion plugin injects a real .kuro-hanko-instance (body.kuro-has-hanko).
-   Glyph / size / offsets / glow / on-off are Style-Settings-controlled.
+   Plugin-free hanko watermark via a pseudo-element. OPT-IN: off by default,
+   shown only when body.kuro-hanko-show is set (Style Settings → "Show hanko
+   watermark"). Still suppressed when the companion plugin injects a real
+   .kuro-hanko-instance (body.kuro-has-hanko), so coexistence stays single-stamp.
+   Glyph / size / offsets / glow are Style-Settings-controlled.
    Relies on .workspace-leaf-content[data-type="markdown"] being
    position: relative (set in 30-plugin-migrated.css § hanko).
    ───────────────────────────────────────────────────────────────────────── */
 
-body:not(.kuro-has-hanko) .workspace-leaf-content[data-type="markdown"]::after {
+body.kuro-hanko-show:not(.kuro-has-hanko) .workspace-leaf-content[data-type="markdown"]::after {
   content: var(--kuro-hanko-glyph, "守");
   position: absolute;
   right: var(--kuro-hanko-right, 32px);
@@ -24,9 +26,4 @@ body:not(.kuro-has-hanko) .workspace-leaf-content[data-type="markdown"]::after {
   text-shadow:
     0 0 calc(6px  * var(--kuro-hanko-glow-mult, 1)) currentColor,
     0 0 calc(28px * var(--kuro-hanko-glow-mult, 1)) currentColor;
-}
-
-/* Off-switch: Style Settings sets body.kuro-hanko-off */
-body.kuro-hanko-off .workspace-leaf-content[data-type="markdown"]::after {
-  content: none;
 }
