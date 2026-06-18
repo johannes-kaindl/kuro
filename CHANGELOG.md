@@ -6,29 +6,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.4.0] — Standalone & Style-Settings native
 
-The theme is now fully configurable through the official **Style Settings** plugin and
-no longer depends on any companion plugin. No visual redesign — same Kuro, now standalone.
+A focused pass to make the theme genuinely usable without any companion plugin. The
+accent now follows Obsidian's own system colour, and plugin-coupled extras that could
+not work reliably without the companion's JavaScript were retired for a cleaner,
+simpler standalone theme.
 
 ### Added
 - **Style Settings support.** A new `src/05-style-settings.css` fragment carries a
-  `@settings` annotation block exposing Aspect & Mood, Effects, Typography, Reading,
-  Slides, Editor & Tabs, and Identity (hanko). It drives the same `kuro-*` body classes
-  and `--kuro-*` variables the companion plugin uses, so the two share one contract.
-  The block is inert when the plugin is absent — the theme uses its CSS defaults.
-- **Global aspect via body class.** Aspects now respond to `body.kuro-aspect-*` (set by
-  Style Settings) in addition to the existing `[data-aspect]` attribute (used by the
-  companion for per-note switching).
-- **Plugin-free hanko.** The signature kanji watermark survives without any plugin as a
-  static CSS pseudo-element (`src/35-hanko-static.css`), with glyph, size, offsets, glow
-  and on/off exposed to Style Settings. It is suppressed when a companion plugin injects
-  a real hanko (`body.kuro-has-hanko`), so the two never double up.
+  `@settings` block exposing **Colour & Mood** (signal presets, low contrast),
+  **Typography**, **Reading** (margin tint, reading width, pattern intensity, colourful
+  headlines), **Slides**, and **Editor & Tabs**. It is inert when the plugin is absent —
+  the theme uses its CSS defaults.
 - **Reduced-motion coverage.** Decorative callout-box loops and the `.kuro-pulse` utility
-  now stop under `prefers-reduced-motion: reduce` (`src/75-reduced-motion.css`),
-  complementing the existing callout-icon handling.
+  now stop under `prefers-reduced-motion: reduce` (`src/75-reduced-motion.css`).
 
 ### Changed
-- README reframed: configuration is via Style Settings; no plugin is required.
-- No hard plugin dependency remains anywhere in the theme.
+- **Accent follows the system colour.** In both light and dark, the accent is Obsidian's
+  own accent colour (`Settings → Appearance → Accent color`). The forced phosphor (dark)
+  and copper (light) overrides are gone; `--accent` and the accent glow derive from it.
+- Frontmatter heading aligns with its rows; H1 top spacing reduced; the tab-style
+  dropdown's default entry is now labelled; Style-Settings descriptions clarified.
+
+### Removed
+- **Aspects** (the four faces). Standalone they only re-set the accent, which the system
+  accent now covers.
+- **CRT vignette & scanlines.** Obsidian's app container overlaps CSS overlay
+  pseudo-elements, so a theme cannot render full-app overlays reliably without the
+  companion's JS-injected element.
+- **Colour Vision Mode.** Its core — per-note signal glyphs — needs the companion's
+  per-note classes.
+- **Hanko watermark** and all of its Style-Settings controls.
+- **Aspect wallpapers** (fragile margin-tint + readable-line-width chain).
 
 ## [3.3.0] — Release-readiness
 

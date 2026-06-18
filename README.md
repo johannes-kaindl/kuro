@@ -1,10 +1,10 @@
 # Kuro
 
 **Neo-Gothic · Post-Cyberpunk · CRT-Phosphor** — an Obsidian theme built around a
-Twelve Signals palette, a Void Scale, and four switchable Aspects.
+Twelve Signals palette and a Void Scale.
 
 > The chamber is dark. The signal earns its brightness because the chamber is dark.
-> Twelve hues, twelve roles. Four aspects, four voices.
+> Twelve hues, twelve roles.
 
 ![Kuro](screenshot.png)
 
@@ -12,15 +12,11 @@ Twelve Signals palette, a Void Scale, and four switchable Aspects.
 
 - **Twelve Signals palette** (`--signal-*`): `crimson`, `phosphor`, `circuit`, `ember`,
   `ghost`, `biolink`, `neural-bleed`, `rust`, `spectre`, `toxic`, `voidwitch`, `pearl` —
-  twelve hues mapped to twelve note roles, with RGB pairs for compositing.
+  twelve hues mapped to twelve note roles.
 - **Void Scale** (`--void-000` … `--void-900`) for chamber depth.
-- **Four Aspects** — pick one globally in Style Settings, or set `<html data-aspect="…">` (per-note switching is available via the optional companion plugin):
-  - **shugo** (守護) — the guardian
-  - **gunshi** (軍師) — the strategist
-  - **kantoku** (監督) — the director
-  - **sensei** (先生) — the teacher
-- **Color Vision Mode** — an orthogonal accessibility axis: saturation lift, red-green
-  hue spread, and non-colour cues (per-aspect border patterns, per-signal glyphs).
+- **Accent follows your system colour.** Kuro uses the accent colour you pick in
+  **Settings → Appearance → Accent color**, in both light and dark — no forced override.
+- **Signal presets** — full background colour moods, selectable in Style Settings.
 - **Self-contained** — fonts are embedded; the theme makes no network requests.
 
 ## Install
@@ -36,15 +32,17 @@ then enable under **Settings → Appearance → Themes**.
 
 ## Configuration
 
-Kuro works out of the box with sensible defaults. For live configuration, install the
-official **Style Settings** community plugin and open **Settings → Style Settings → Kuro**.
-You get the aspect picker, signal presets, effects (scanlines, vignette, glow), typography,
-reading, slides, editor/tabs, and the hanko watermark — all applied instantly. Style
-Settings is optional; the theme is fully usable without it.
+Kuro works out of the box. For live configuration, install the official **Style Settings**
+community plugin and open **Settings → Style Settings → Kuro**:
 
-A separate companion plugin (in its own repo) adds *dynamic* behaviour Style Settings
-cannot: per-note `aspect:` frontmatter switching and a status-bar aspect chip. It is
-entirely optional.
+- **Colour & Mood** — signal presets (background moods) and a low-contrast mode.
+- **Typography** — serif/display and monospace fonts, terminal mode.
+- **Reading** — reading line width, margin tint, pattern intensity, colourful headlines,
+  Bases card density.
+- **Slides** — frame, slide numbers, progress bar (for the core Slides plugin).
+- **Editor & Tabs** — zen mode, active-line highlight, rainbow indent guides, tab style.
+
+Style Settings is optional; the theme is fully usable without it.
 
 ## Build
 
@@ -58,7 +56,6 @@ entirely optional.
 ## Compatibility
 
 - `minAppVersion: 1.5.0` — Obsidian 1.5 or newer.
-- Optional companion plugins enhance the experience; the theme stands alone.
 
 ## Fonts
 
