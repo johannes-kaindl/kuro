@@ -35,7 +35,7 @@ body.kuro-low-contrast.kuro-margin-tint.theme-dark {
        Replaces the 0.06 outer ring + full --kuro-glow-accent 24px stack
        with a softer two-stop shadow. */
     box-shadow:
-      0 0 0 1px rgba(var(--interactive-accent-rgb), 0.03),
+      0 0 0 1px color-mix(in srgb, var(--interactive-accent) 3%, transparent),
       0 0 16px color-mix(in oklab, var(--accent) 18%, transparent),
       0 2px 24px rgba(0, 0, 0, 0.45);
   }
@@ -115,8 +115,8 @@ body.kuro-low-contrast.kuro-hanko-glow:not(.kuro-no-glow) {
      to a calmer two-stop version. */
   & .kuro-hanko-instance.kuro-hanko-framed {
     box-shadow:
-      0 0 calc(4px  * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.22),
-      0 0 calc(12px * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.10),
+      0 0 calc(4px  * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--interactive-accent) 22%, transparent),
+      0 0 calc(12px * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--interactive-accent) 10%, transparent),
       0 2px 10px rgba(0, 0, 0, 0.4);
   }
 

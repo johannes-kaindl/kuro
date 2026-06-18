@@ -166,7 +166,7 @@ body.kuro-margin-tint {
     & .markdown-preview-sizer,
     & .markdown-source-view .cm-editor {
       box-shadow:
-        0 0 0 1px rgba(var(--interactive-accent-rgb), 0.06),
+        0 0 0 1px color-mix(in srgb, var(--interactive-accent) 6%, transparent),
         0 0 24px var(--kuro-glow-accent),
         0 2px 24px rgba(0, 0, 0, 0.5);
     }
@@ -315,15 +315,15 @@ body.kuro-colorful-headings {
 body.theme-light {
   & #kuro-vault-kanji-logo,
   & #kuro-vault-kanji-logo.kuro-marker-glow-on {
-    text-shadow: 0 0 calc(8px * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.35);
+    text-shadow: 0 0 calc(8px * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--interactive-accent) 35%, transparent);
   }
 
   & .side-dock-ribbon-action.kuro-ribbon-kanji {
-    text-shadow: 0 0 calc(6px * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.3);
+    text-shadow: 0 0 calc(6px * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--interactive-accent) 30%, transparent);
   }
 
   & .kuro-hanko-instance.kuro-marker-glow-on {
-    text-shadow: 0 0 calc(12px * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.4);
+    text-shadow: 0 0 calc(12px * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--interactive-accent) 40%, transparent);
     opacity: 0.6;
   }
 
@@ -378,9 +378,9 @@ body.kuro-hanko-glow:not(.kuro-no-glow) {
   /* Framed Hanko — Neon box-shadow */
   & .kuro-hanko-instance.kuro-hanko-framed {
     box-shadow:
-      0 0 calc(6px  * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.45),
-      0 0 calc(18px * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.2),
-      0 0 calc(40px * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.08),
+      0 0 calc(6px  * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--interactive-accent) 45%, transparent),
+      0 0 calc(18px * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--interactive-accent) 20%, transparent),
+      0 0 calc(40px * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--interactive-accent) 8%, transparent),
       0 2px 12px rgba(0, 0, 0, 0.5);
   }
 
@@ -391,15 +391,15 @@ body.kuro-hanko-glow:not(.kuro-no-glow) {
       0 0 calc(12px * var(--kuro-hanko-glow-mult, 1)) currentColor,
       0 0 calc(28px * var(--kuro-hanko-glow-mult, 1)) currentColor,
       0 0 calc(56px * var(--kuro-hanko-glow-mult, 1)) currentColor,
-      0 0 calc(80px * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.4);
+      0 0 calc(80px * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--interactive-accent) 40%, transparent);
     opacity: 0.75;
   }
 
   /* Light mode: warmer Schatten statt Neon */
   &.theme-light .kuro-hanko-instance.kuro-hanko-framed {
     box-shadow:
-      0 0 calc(8px  * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.2),
-      0 0 calc(20px * var(--kuro-hanko-glow-mult, 1)) rgba(var(--interactive-accent-rgb), 0.1),
+      0 0 calc(8px  * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--interactive-accent) 20%, transparent),
+      0 0 calc(20px * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--interactive-accent) 10%, transparent),
       0 2px 12px rgba(0, 0, 0, 0.35);
   }
 }

@@ -66,20 +66,21 @@ body.kuro-colorful-headings.theme-light {
    ═══════════════════════════════════════════════════════════════ */
 
 /* ► Plugin-gesteuert: kuro-preset-*  (main.js → activePreset, §Preset) */
-/* ── neural-bleed (rose) ── */
+/* ── neural-bleed (rose) — surfaces tinted from --signal-neural-bleed ── */
 .kuro-preset-neural-bleed {
+  --interactive-accent: var(--signal-neural-bleed);
   &.theme-dark {
-    --kuro-ink:        #0c0a0a;
-    --kuro-ink-deep:   #080606;
-    --kuro-ink-raised: #161010;
-    --kuro-ink-panel:  #100c0b;
+    --kuro-ink:        color-mix(in oklab, var(--signal-neural-bleed) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-neural-bleed) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-neural-bleed) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-neural-bleed) 11%, #0b0b0d);
   }
   &.theme-light {
-    --background-primary:          #faf5f5;
-    --background-primary-alt:      #f2eaea;
-    --background-secondary:        #e8dede;
-    --background-secondary-alt:    #e0d4d4;
-    --background-tertiary:         #d8cccc;
+    --background-primary:          color-mix(in oklab, var(--signal-neural-bleed) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-neural-bleed) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-neural-bleed) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-neural-bleed) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-neural-bleed) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -87,20 +88,21 @@ body.kuro-colorful-headings.theme-light {
   }
 }
 
-/* ── rust-signal (amber) ── */
+/* ── rust-signal (amber) — surfaces tinted from --signal-rust ── */
 .kuro-preset-rust-signal {
+  --interactive-accent: var(--signal-rust);
   &.theme-dark {
-    --kuro-ink:        #120e08;
-    --kuro-ink-deep:   #0e0a05;
-    --kuro-ink-raised: #1c1508;
-    --kuro-ink-panel:  #160f06;
+    --kuro-ink:        color-mix(in oklab, var(--signal-rust) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-rust) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-rust) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-rust) 11%, #0b0b0d);
   }
   &.theme-light {
-    --background-primary:          #fdf8f0;
-    --background-primary-alt:      #f5ede0;
-    --background-secondary:        #ede3d0;
-    --background-secondary-alt:    #e5d8c4;
-    --background-tertiary:         #ddd0b8;
+    --background-primary:          color-mix(in oklab, var(--signal-rust) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-rust) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-rust) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-rust) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-rust) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -108,20 +110,21 @@ body.kuro-colorful-headings.theme-light {
   }
 }
 
-/* ── toxic-haze (yellow) ── */
+/* ── toxic-haze (acid yellow) — surfaces tinted from --signal-toxic ── */
 .kuro-preset-toxic-haze {
+  --interactive-accent: var(--signal-toxic);
   &.theme-dark {
-    --kuro-ink:        #0f0f08;
-    --kuro-ink-deep:   #0c0c05;
-    --kuro-ink-raised: #181806;
-    --kuro-ink-panel:  #131308;
+    --kuro-ink:        color-mix(in oklab, var(--signal-toxic) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-toxic) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-toxic) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-toxic) 11%, #0b0b0d);
   }
   &.theme-light {
-    --background-primary:          #fafaf0;
-    --background-primary-alt:      #f2f2e0;
-    --background-secondary:        #e8e8cc;
-    --background-secondary-alt:    #e0e0bc;
-    --background-tertiary:         #d8d8ac;
+    --background-primary:          color-mix(in oklab, var(--signal-toxic) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-toxic) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-toxic) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-toxic) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-toxic) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -129,20 +132,21 @@ body.kuro-colorful-headings.theme-light {
   }
 }
 
-/* ── biolink (sage) ── */
+/* ── biolink (sage) — surfaces tinted from --signal-biolink ── */
 .kuro-preset-biolink {
+  --interactive-accent: var(--signal-biolink);
   &.theme-dark {
-    --kuro-ink:        #090c09;
-    --kuro-ink-deep:   #060806;
-    --kuro-ink-raised: #0d120d;
-    --kuro-ink-panel:  #0a0f0a;
+    --kuro-ink:        color-mix(in oklab, var(--signal-biolink) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-biolink) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-biolink) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-biolink) 11%, #0b0b0d);
   }
   &.theme-light {
-    --background-primary:          #f5faf5;
-    --background-primary-alt:      #eaf2ea;
-    --background-secondary:        #deeade;
-    --background-secondary-alt:    #d2e2d2;
-    --background-tertiary:         #c6dac6;
+    --background-primary:          color-mix(in oklab, var(--signal-biolink) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-biolink) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-biolink) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-biolink) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-biolink) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -150,20 +154,21 @@ body.kuro-colorful-headings.theme-light {
   }
 }
 
-/* ── ghost-protocol (blue) ── */
+/* ── ghost-protocol (steel blue) — surfaces tinted from --signal-ghost ── */
 .kuro-preset-ghost-protocol {
+  --interactive-accent: var(--signal-ghost);
   &.theme-dark {
-    --kuro-ink:        #090c0f;
-    --kuro-ink-deep:   #06090d;
-    --kuro-ink-raised: #0d1318;
-    --kuro-ink-panel:  #0a0f14;
+    --kuro-ink:        color-mix(in oklab, var(--signal-ghost) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-ghost) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-ghost) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-ghost) 11%, #0b0b0d);
   }
   &.theme-light {
-    --background-primary:          #f0f5fa;
-    --background-primary-alt:      #e4edf5;
-    --background-secondary:        #d8e5ee;
-    --background-secondary-alt:    #ccdbe8;
-    --background-tertiary:         #c0d0e0;
+    --background-primary:          color-mix(in oklab, var(--signal-ghost) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-ghost) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-ghost) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-ghost) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-ghost) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -171,20 +176,21 @@ body.kuro-colorful-headings.theme-light {
   }
 }
 
-/* ── voidwitch (lavender) ── */
+/* ── voidwitch (violet) — surfaces tinted from --signal-voidwitch ── */
 .kuro-preset-voidwitch {
+  --interactive-accent: var(--signal-voidwitch);
   &.theme-dark {
-    --kuro-ink:        #0a0910;
-    --kuro-ink-deep:   #07060d;
-    --kuro-ink-raised: #13101a;
-    --kuro-ink-panel:  #0f0c16;
+    --kuro-ink:        color-mix(in oklab, var(--signal-voidwitch) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-voidwitch) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-voidwitch) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-voidwitch) 11%, #0b0b0d);
   }
   &.theme-light {
-    --background-primary:          #f5f0fa;
-    --background-primary-alt:      #ece3f5;
-    --background-secondary:        #e0d5ee;
-    --background-secondary-alt:    #d4c8e5;
-    --background-tertiary:         #c8badc;
+    --background-primary:          color-mix(in oklab, var(--signal-voidwitch) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-voidwitch) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-voidwitch) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-voidwitch) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-voidwitch) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -192,16 +198,21 @@ body.kuro-colorful-headings.theme-light {
   }
 }
 
-/* ── kuro (warm grey) — base / default preset ── */
+/* ── kuro (signature green) — surfaces tinted from --signal-phosphor ── */
 .kuro-preset-kuro {
+  --interactive-accent: var(--signal-phosphor);
   &.theme-dark {
-    --kuro-ink:        #0c0b0a;
-    --kuro-ink-deep:   #080807;
-    --kuro-ink-raised: #161513;
-    --kuro-ink-panel:  #100f0e;
+    --kuro-ink:        color-mix(in oklab, var(--signal-phosphor) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-phosphor) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-phosphor) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-phosphor) 11%, #0b0b0d);
   }
   &.theme-light {
-    /* surfaces match base light palette — no override needed */
+    --background-primary:          color-mix(in oklab, var(--signal-phosphor) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-phosphor) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-phosphor) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-phosphor) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-phosphor) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -209,20 +220,21 @@ body.kuro-colorful-headings.theme-light {
   }
 }
 
-/* ── circuit (cyan) — default, minimal tint ── */
+/* ── circuit (cyan) — surfaces tinted from --signal-circuit ── */
 .kuro-preset-circuit {
+  --interactive-accent: var(--signal-circuit);
   &.theme-dark {
-    --kuro-ink:        #0a0a0c;
-    --kuro-ink-deep:   #050506;
-    --kuro-ink-raised: #14141a;
-    --kuro-ink-panel:  #0d0d12;
+    --kuro-ink:        color-mix(in oklab, var(--signal-circuit) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-circuit) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-circuit) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-circuit) 11%, #0b0b0d);
   }
   &.theme-light {
-    --background-primary:          #f0fafa;
-    --background-primary-alt:      #e3f5f5;
-    --background-secondary:        #d5eeed;
-    --background-secondary-alt:    #c8e6e5;
-    --background-tertiary:         #badedc;
+    --background-primary:          color-mix(in oklab, var(--signal-circuit) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-circuit) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-circuit) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-circuit) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-circuit) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -230,20 +242,21 @@ body.kuro-colorful-headings.theme-light {
   }
 }
 
-/* ── crimson (red) ── */
+/* ── crimson (red) — surfaces tinted from --signal-crimson ── */
 .kuro-preset-crimson {
+  --interactive-accent: var(--signal-crimson);
   &.theme-dark {
-    --kuro-ink:        #0f0808;
-    --kuro-ink-deep:   #0c0505;
-    --kuro-ink-raised: #160f0f;
-    --kuro-ink-panel:  #120b0b;
+    --kuro-ink:        color-mix(in oklab, var(--signal-crimson) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-crimson) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-crimson) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-crimson) 11%, #0b0b0d);
   }
   &.theme-light {
-    --background-primary:          #faf5f5;
-    --background-primary-alt:      #f2eaea;
-    --background-secondary:        #e8dcdc;
-    --background-secondary-alt:    #e0d0d0;
-    --background-tertiary:         #d8c4c4;
+    --background-primary:          color-mix(in oklab, var(--signal-crimson) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-crimson) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-crimson) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-crimson) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-crimson) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -251,20 +264,21 @@ body.kuro-colorful-headings.theme-light {
   }
 }
 
-/* ── phosphor (green) ── */
+/* ── phosphor (green) — surfaces tinted from --signal-phosphor ── */
 .kuro-preset-phosphor {
+  --interactive-accent: var(--signal-phosphor);
   &.theme-dark {
-    --kuro-ink:        #080d09;
-    --kuro-ink-deep:   #050906;
-    --kuro-ink-raised: #0d160e;
-    --kuro-ink-panel:  #0a120b;
+    --kuro-ink:        color-mix(in oklab, var(--signal-phosphor) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-phosphor) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-phosphor) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-phosphor) 11%, #0b0b0d);
   }
   &.theme-light {
-    --background-primary:          #f2faf5;
-    --background-primary-alt:      #e4f5ec;
-    --background-secondary:        #d5edde;
-    --background-secondary-alt:    #c6e5d0;
-    --background-tertiary:         #b8dcc2;
+    --background-primary:          color-mix(in oklab, var(--signal-phosphor) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-phosphor) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-phosphor) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-phosphor) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-phosphor) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -272,20 +286,21 @@ body.kuro-colorful-headings.theme-light {
   }
 }
 
-/* ── ember (orange) ── */
+/* ── ember (orange) — surfaces tinted from --signal-ember ── */
 .kuro-preset-ember {
+  --interactive-accent: var(--signal-ember);
   &.theme-dark {
-    --kuro-ink:        #130f08;
-    --kuro-ink-deep:   #0e0a05;
-    --kuro-ink-raised: #1c1408;
-    --kuro-ink-panel:  #160f06;
+    --kuro-ink:        color-mix(in oklab, var(--signal-ember) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-ember) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-ember) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-ember) 11%, #0b0b0d);
   }
   &.theme-light {
-    --background-primary:          #fdf8f0;
-    --background-primary-alt:      #f5ede0;
-    --background-secondary:        #ede3d0;
-    --background-secondary-alt:    #e5d8c4;
-    --background-tertiary:         #ddd0b8;
+    --background-primary:          color-mix(in oklab, var(--signal-ember) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-ember) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-ember) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-ember) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-ember) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -293,20 +308,21 @@ body.kuro-colorful-headings.theme-light {
   }
 }
 
-/* ── spectre (violet) ── */
+/* ── spectre (indigo) — surfaces tinted from --signal-spectre ── */
 .kuro-preset-spectre {
+  --interactive-accent: var(--signal-spectre);
   &.theme-dark {
-    --kuro-ink:        #0a0810;
-    --kuro-ink-deep:   #07050d;
-    --kuro-ink-raised: #14101a;
-    --kuro-ink-panel:  #0f0c16;
+    --kuro-ink:        color-mix(in oklab, var(--signal-spectre) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-spectre) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-spectre) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-spectre) 11%, #0b0b0d);
   }
   &.theme-light {
-    --background-primary:          #f5f0fa;
-    --background-primary-alt:      #ece3f5;
-    --background-secondary:        #e0d5ee;
-    --background-secondary-alt:    #d4c8e5;
-    --background-tertiary:         #c8badc;
+    --background-primary:          color-mix(in oklab, var(--signal-spectre) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-spectre) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-spectre) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-spectre) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-spectre) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -314,20 +330,21 @@ body.kuro-colorful-headings.theme-light {
   }
 }
 
-/* ── pearl (bone/neutral) ── */
+/* ── pearl (neutral) — surfaces tinted from --signal-pearl ── */
 .kuro-preset-pearl {
+  --interactive-accent: var(--signal-pearl);
   &.theme-dark {
-    --kuro-ink:        #0a0a0b;
-    --kuro-ink-deep:   #060607;
-    --kuro-ink-raised: #141416;
-    --kuro-ink-panel:  #0d0d0f;
+    --kuro-ink:        color-mix(in oklab, var(--signal-pearl) 10%, #0a0a0b);
+    --kuro-ink-deep:   color-mix(in oklab, var(--signal-pearl) 7%,  #070708);
+    --kuro-ink-raised: color-mix(in oklab, var(--signal-pearl) 14%, #0e0e10);
+    --kuro-ink-panel:  color-mix(in oklab, var(--signal-pearl) 11%, #0b0b0d);
   }
   &.theme-light {
-    --background-primary:          #faf9f7;
-    --background-primary-alt:      #f2f0ec;
-    --background-secondary:        #e8e5de;
-    --background-secondary-alt:    #e0dcd4;
-    --background-tertiary:         #d8d4ca;
+    --background-primary:          color-mix(in oklab, var(--signal-pearl) 9%,  #fafaf8);
+    --background-primary-alt:      color-mix(in oklab, var(--signal-pearl) 15%, #f3f3f0);
+    --background-secondary:        color-mix(in oklab, var(--signal-pearl) 22%, #ebebe7);
+    --background-secondary-alt:    color-mix(in oklab, var(--signal-pearl) 28%, #e3e3df);
+    --background-tertiary:         color-mix(in oklab, var(--signal-pearl) 34%, #dbdbd6);
     --kuro-ink:        var(--background-primary);
     --kuro-ink-deep:   var(--background-primary-alt);
     --kuro-ink-raised: var(--background-secondary);
@@ -456,7 +473,7 @@ body.kuro-low-contrast {
     --text-muted:   var(--kuro-bone-muted);
     --text-faint:   var(--kuro-bone-dim);
 
-    --kuro-glow-accent:      rgba(var(--interactive-accent-rgb), 0.14);
+    --kuro-glow-accent:      color-mix(in srgb, var(--interactive-accent) 14%, transparent);
   }
 
   /* Per-preset Shadow surfaces — preserve each preset's ink tint, lifted +0e per channel */
@@ -954,11 +971,11 @@ body.kuro-tabs-pill .workspace-tab-header {
   transition: background 120ms ease, color 120ms ease, opacity 120ms ease;
 }
 body.kuro-tabs-pill .workspace-tab-header.mod-active {
-  background: rgba(var(--interactive-accent-rgb), 0.15);
+  background: color-mix(in srgb, var(--interactive-accent) 15%, transparent);
   box-shadow: none;
 }
 body.kuro-tabs-pill .workspace-tab-header:not(.mod-active):hover {
-  background: rgba(var(--interactive-accent-rgb), 0.07);
+  background: color-mix(in srgb, var(--interactive-accent) 7%, transparent);
 }
 
 /* ── Underline ── */
@@ -971,7 +988,7 @@ body.kuro-tabs-underline .workspace-tab-header.mod-active {
   border-bottom: 2px solid var(--interactive-accent);
 }
 body.kuro-tabs-underline .workspace-tab-header:not(.mod-active):hover {
-  border-bottom: 1px solid rgba(var(--interactive-accent-rgb), 0.4);
+  border-bottom: 1px solid color-mix(in srgb, var(--interactive-accent) 40%, transparent);
 }
 
 
@@ -1200,9 +1217,9 @@ input[data-task="k"].task-list-item-checkbox::after {
 /* ── Tag pills ── */
 /* Reading View */
 body a.tag {
-  background: rgba(var(--interactive-accent-rgb), 0.12);
+  background: color-mix(in srgb, var(--interactive-accent) 12%, transparent);
   color: var(--interactive-accent);
-  border: 1px solid rgba(var(--interactive-accent-rgb), 0.25);
+  border: 1px solid color-mix(in srgb, var(--interactive-accent) 25%, transparent);
   border-radius: 4px;
   padding: 1px 7px;
   font-size: 0.82em;
@@ -1210,18 +1227,18 @@ body a.tag {
   transition: background 120ms ease;
 }
 body a.tag:hover {
-  background: rgba(var(--interactive-accent-rgb), 0.22);
+  background: color-mix(in srgb, var(--interactive-accent) 22%, transparent);
 }
 body.theme-dark:not(.kuro-no-glow) a.tag {
-  text-shadow: 0 0 10px rgba(var(--interactive-accent-rgb), 0.4);
-  box-shadow: 0 0 8px rgba(var(--interactive-accent-rgb), 0.15);
+  text-shadow: 0 0 10px color-mix(in srgb, var(--interactive-accent) 40%, transparent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--interactive-accent) 15%, transparent);
 }
 
 /* Live Preview editor */
 body .cm-hashtag-begin,
 body .cm-hashtag-middle,
 body .cm-hashtag-end {
-  background: rgba(var(--interactive-accent-rgb), 0.12);
+  background: color-mix(in srgb, var(--interactive-accent) 12%, transparent);
   color: var(--interactive-accent);
   padding: 1px 0;
   font-size: 0.85em;
@@ -1237,18 +1254,18 @@ body .cm-hashtag-end {
 body.theme-dark:not(.kuro-no-glow) .cm-hashtag-begin,
 body.theme-dark:not(.kuro-no-glow) .cm-hashtag-middle,
 body.theme-dark:not(.kuro-no-glow) .cm-hashtag-end {
-  text-shadow: 0 0 10px rgba(var(--interactive-accent-rgb), 0.4);
+  text-shadow: 0 0 10px color-mix(in srgb, var(--interactive-accent) 40%, transparent);
 }
 
 
 /* ── Active line highlight ── */
 /* ► Plugin-gesteuert: kuro-active-line  (main.js → activeLineOn, §Focus) */
 body.kuro-active-line .cm-activeLine {
-  background: rgba(var(--interactive-accent-rgb), 0.12);
+  background: color-mix(in srgb, var(--interactive-accent) 12%, transparent);
   border-radius: 3px;
 }
 body.kuro-active-line .cm-activeLineGutter {
-  background: rgba(var(--interactive-accent-rgb), 0.18);
+  background: color-mix(in srgb, var(--interactive-accent) 18%, transparent);
 }
 
 
@@ -1343,7 +1360,7 @@ body.theme-dark .mermaid svg {
   /* Neon-Halo in Accent-Farbe — skaliert mit --kuro-glow-accent */
   filter:
     drop-shadow(0 0  8px var(--kuro-glow-accent))
-    drop-shadow(0 0 20px rgba(var(--interactive-accent-rgb), 0.12));
+    drop-shadow(0 0 20px color-mix(in srgb, var(--interactive-accent) 12%, transparent));
 }
 
 body.theme-light .mermaid svg {
@@ -1383,7 +1400,7 @@ body.theme-dark .mermaid {
 
   & .cluster rect {
     fill:   var(--kuro-ink-deep);
-    stroke: rgba(var(--interactive-accent-rgb), 0.25);
+    stroke: color-mix(in srgb, var(--interactive-accent) 25%, transparent);
     stroke-width: 1px;
     stroke-dasharray: 4 3;
   }
@@ -1402,7 +1419,7 @@ body.theme-light .mermaid {
 
   & .cluster rect {
     fill:   rgba(0, 0, 0, 0.025);
-    stroke: rgba(var(--interactive-accent-rgb), 0.2);
+    stroke: color-mix(in srgb, var(--interactive-accent) 20%, transparent);
     stroke-width: 1px;
     stroke-dasharray: 4 3;
   }
@@ -1523,7 +1540,7 @@ body.theme-dark .mermaid {
   & .activation0,
   & .activation1,
   & .activation2 {
-    fill:   rgba(var(--interactive-accent-rgb), 0.12);
+    fill:   color-mix(in srgb, var(--interactive-accent) 12%, transparent);
     stroke: var(--kuro-circuit);
   }
   & .messageLine0,
@@ -1531,7 +1548,7 @@ body.theme-dark .mermaid {
   & .messageText  { fill: var(--kuro-bone-muted); }
   & .labelText,
   & .loopText     { fill: var(--kuro-bone); }
-  & .loopLine     { stroke: rgba(var(--interactive-accent-rgb), 0.3); }
+  & .loopLine     { stroke: color-mix(in srgb, var(--interactive-accent) 30%, transparent); }
 }
 
 body.theme-light .mermaid {
