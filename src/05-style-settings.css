@@ -19,14 +19,11 @@ settings:
     -
         id: kuro-preset
         title: Signal preset
-        description: A full colour identity — tints surfaces and accent in the signal's colour. "—" = follow your system accent.
+        description: A colour mood — tints the surfaces in the signal's colour. The accent always follows your system accent.
         type: class-select
         allowEmpty: false
-        default: kuro-preset-none
+        default: kuro-preset-pearl
         options:
-            -
-                label: "—"
-                value: kuro-preset-none
             -
                 label: Toxic Haze
                 value: kuro-preset-toxic-haze

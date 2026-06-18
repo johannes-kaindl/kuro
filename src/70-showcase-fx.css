@@ -62,7 +62,9 @@
 .nav-file-title.is-active {
   background: color-mix(in oklab, var(--accent) 12%, transparent);
   box-shadow: inset 2px 0 0 0 var(--accent);
-  color: var(--fg-primary);
+  /* nav-item-color-active is theme-scoped (light: dark ink, dark: pearl);
+     --fg-primary was near-white in normal light mode → invisible (fixed 2026-06-18). */
+  color: var(--nav-item-color-active);
 }
 
 
