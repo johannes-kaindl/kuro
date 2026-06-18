@@ -238,27 +238,8 @@ body.kuro-margin-tint {
 }
 
 
-/* ─── ported from _kuro-theme-settings/styles.css § vignette (lines 214–234) ─── */
-
-/* ── § vignette — Vollbild-Abdunkelung ──────────────────────
-   ► Plugin: vignetteStrength > 0 (Slider in Effects)
-   ► Body-Klasse: kuro-has-vignette
-   ► CSS-Var: --kuro-vignette (0..0.8)
-   ─────────────────────────────────────────────────────────── */
-
-/* JS-erzeugtes Element (via _syncVignette) — sitzt direkt in .app-container,
-   umgeht das Stacking-Context-Problem von body::after in Obsidian. */
-#kuro-vignette-overlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 40%,
-    rgba(0, 0, 0, var(--kuro-vignette, 0)) 100%
-  );
-}
+/* Vignette removed 2026-06-16 — the plugin's JS-injected #kuro-vignette-overlay
+   is no longer part of the standalone theme (see 00-base §vignette/scanline note). */
 
 
 /* ─── ported from _kuro-theme-settings/styles.css § mono-all (lines 235–267) ─── */
@@ -352,52 +333,7 @@ body.theme-light {
 }
 
 
-/* ── § light-mode aspect differentiator ─────────────────────
-   NEW for v3.2 (Live-Test 2026-05-11): without the dark-mode neon edge,
-   light-mode aspects were essentially indistinguishable. The primary
-   differentiator in light mode is now a 3 px accent strip at the top of
-   the floating page plus a faint surface tint, so each of the four
-   aspects reads at a glance even with low-contrast disabled.
-   The strip selects on `.markdown-preview-sizer` and the editor; the
-   surface tint applies to the outer view background so the wallpaper
-   pattern (40-aspect-wallpapers) layers above.
-   ───────────────────────────────────────────────────────────── */
-
-body.theme-light html[data-aspect="shugo"] .markdown-preview-sizer,
-body.theme-light html[data-aspect="shugo"] .markdown-source-view .cm-editor {
-  border-top: 3px solid var(--accent);
-}
-body.theme-light html[data-aspect="shugo"] .markdown-source-view,
-body.theme-light html[data-aspect="shugo"] .markdown-reading-view {
-  background: color-mix(in oklab, var(--accent) 5%, var(--background-primary));
-}
-
-body.theme-light html[data-aspect="gunshi"] .markdown-preview-sizer,
-body.theme-light html[data-aspect="gunshi"] .markdown-source-view .cm-editor {
-  border-top: 3px solid var(--accent);
-}
-body.theme-light html[data-aspect="gunshi"] .markdown-source-view,
-body.theme-light html[data-aspect="gunshi"] .markdown-reading-view {
-  background: color-mix(in oklab, var(--accent) 5%, var(--background-primary));
-}
-
-body.theme-light html[data-aspect="kantoku"] .markdown-preview-sizer,
-body.theme-light html[data-aspect="kantoku"] .markdown-source-view .cm-editor {
-  border-top: 3px solid var(--accent);
-}
-body.theme-light html[data-aspect="kantoku"] .markdown-source-view,
-body.theme-light html[data-aspect="kantoku"] .markdown-reading-view {
-  background: color-mix(in oklab, var(--accent) 5%, var(--background-primary));
-}
-
-body.theme-light html[data-aspect="sensei"] .markdown-preview-sizer,
-body.theme-light html[data-aspect="sensei"] .markdown-source-view .cm-editor {
-  border-top: 3px solid var(--accent);
-}
-body.theme-light html[data-aspect="sensei"] .markdown-source-view,
-body.theme-light html[data-aspect="sensei"] .markdown-reading-view {
-  background: color-mix(in oklab, var(--accent) 5%, var(--background-primary));
-}
+/* Light-mode aspect differentiator removed 2026-06-18 (aspects dropped). */
 
 
 /* ─── ported from _kuro-theme-settings/styles.css § buttons (lines 334–361) ─── */

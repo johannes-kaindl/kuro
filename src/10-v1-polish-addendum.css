@@ -457,7 +457,6 @@ body.kuro-low-contrast {
     --text-faint:   var(--kuro-bone-dim);
 
     --kuro-glow-accent:      rgba(var(--interactive-accent-rgb), 0.14);
-    --kuro-scanline-opacity: 0;
   }
 
   /* Per-preset Shadow surfaces — preserve each preset's ink tint, lifted +0e per channel */

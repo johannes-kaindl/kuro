@@ -98,7 +98,7 @@
    ~3% opacity SVG noise. Sits over the vault ground only.
    ═════════════════════════════════════════════════════════════════════════ */
 
-body.theme-dark::before {
+body.theme-dark .workspace::after { /* film-grain noise — moved off body::before so the vignette can own that pseudo-element (was overriding it in dark mode) */
   content: '';
   position: fixed;
   inset: 0;
@@ -109,36 +109,7 @@ body.theme-dark::before {
   mix-blend-mode: overlay;
 }
 
-/* Optional vignette — `body.kuro-has-vignette` toggled by plugin */
-body.kuro-has-vignette::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 998;
-  background: radial-gradient(ellipse at center,
-              transparent 50%,
-              rgba(0,0,0, calc(var(--kuro-vignette, 0.32) * 1)) 100%);
-}
-
-/* CRT scanlines — opacity controlled by `--kuro-scanline-opacity`.
-   Zero = invisible (no-op). Plugin lets user dial the intensity. */
-body.theme-dark .workspace::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 2px,
-    rgba(255,255,255, 0.45) 2px,
-    rgba(255,255,255, 0.45) 3px
-  );
-  opacity: var(--kuro-scanline-opacity, 0);
-  mix-blend-mode: overlay;
-}
+/* CRT scanlines removed 2026-06-16 — see 00-base §vignette/scanline note. */
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -252,7 +223,6 @@ body.kuro-low-contrast {
   --fg-tertiary:   #5f5c56;
   --fg-disabled:   #444039;
   --kuro-glow-accent: color-mix(in oklab, var(--accent) 20%, transparent);
-  --kuro-scanline-opacity: 0;
 }
 body.theme-light.kuro-low-contrast {
   --fg-primary:    #3d2b1f;

@@ -42,16 +42,6 @@ body.kuro-low-contrast.kuro-margin-tint.theme-dark {
 }
 
 
-/* ── Aspect wallpapers softening ── */
-body.kuro-low-contrast.kuro-margin-tint {
-  /* v3.2: replaces the v3.1 full-coverage inset-shadow veil hack with a clean
-     alpha-multiplier override. 40-aspect-wallpapers.css now multiplies
-     every wallpaper colour-mix percentage by `var(--kuro-wallpaper-alpha, 1)`,
-     so dropping the variable to 0.4 here attenuates all four wallpapers
-     proportionally without painting an outer-layer veil over the floating
-     page (which was misread as an inverse-glow in Editor Mode). */
-  --kuro-wallpaper-alpha: 0.4;
-}
 
 
 /* ── Signal-subtheme attenuation ── */

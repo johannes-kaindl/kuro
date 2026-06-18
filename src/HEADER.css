@@ -2,13 +2,15 @@
    KURO  ·  v3.4.0
    Neo-Gothic · Post-Cyberpunk · CRT-Phosphor
    ─────────────────────────────────────────────────────────────────────────
-   v3.4.0 — Standalone & Style-Settings native. The theme is now fully
-   configurable through the official Style Settings plugin (new fragment
-   05-style-settings.css drives the same kuro-* classes / --kuro-* vars the
-   companion sets) and no longer depends on any plugin. The signature hanko
-   watermark survives plugin-free as a static CSS pseudo-element
-   (35-hanko-static.css), suppressed when a plugin injects a real one.
-   Animations now respect prefers-reduced-motion (75-reduced-motion.css).
+   v3.4.0 — Standalone & Style-Settings native. The theme is fully configurable
+   through the official Style Settings plugin (fragment 05-style-settings.css)
+   and depends on no plugin. The accent colour follows Obsidian's own (system)
+   accent in both light and dark. Plugin-coupled extras that could not work
+   reliably without the companion's JavaScript were retired for a cleaner
+   standalone theme: the four "aspects" (the accent now follows the system
+   colour directly), the hanko watermark, the CRT vignette and scanline
+   overlays, and Colour Vision Mode. Animations respect prefers-reduced-motion
+   (75-reduced-motion.css).
    ─────────────────────────────────────────────────────────────────────────
    v3.3.0 — Release-readiness. No visual redesign: the theme becomes
    self-contained and guideline-compliant for the Obsidian community
@@ -16,80 +18,35 @@
    embedded as Latin-subset woff2 @font-face data-URLs (SIL OFL 1.1) and the
    remote Google Fonts include is gone — no network access. Forced-override
    flags reduced 316 → 69 justified keeps, verified against Obsidian app.css.
-   The §39·6b
-   Mermaid-padding patch was back-ported from the Pallas install into source.
+   The §39·6b Mermaid-padding patch was back-ported from the Pallas install.
    ─────────────────────────────────────────────────────────────────────────
-   v3.2.0 — Visibility + accessibility release. Acts on Live-Test feedback
-   2026-05-11 (Jay): aspect wallpapers + signal tints were too subtle to
-   read, light-mode aspects were indistinguishable, and the wallpaper
-   attenuation in low-contrast mode was painting an outer-area veil that
-   read as an inverse glow on the floating page. v3.2 retires the veil,
-   raises wallpaper and signal-tint visibility, adds light-mode aspect
-   differentiators, and ships a new orthogonal axis — Color Vision Mode —
-   that boosts saturation, spaces colliding signals along the red-green
-   axis, and adds non-colour cues (border patterns per aspect, glyphs per
-   signal, heading-weight bump).
-
-   Lineages preserved:
-     · v1.0 canonical design system (10 source vaults, Apr 23-29 2026)
-     · v2.0 "Signal Protocol Edition"  (X1_v6t2b9 active dev, May 2026)
-     · _kuro2 "Kuro Signal Protocol"   (Animation lab, Apr 2026)
-
-   v3.2.0 additions over v3.1.0:
-     · Color Vision Mode — 4th orthogonal axis (`body.kuro-color-vision-boost`)
-     · Per-aspect non-colour cues (solid / dashed / double / dotted borders)
-     · Per-signal glyph markers under boost mode
-     · Light-mode aspect differentiators (border + surface tint)
-   v3.2.0 changes over v3.1.0:
-     · Aspect wallpaper opacity 5–10 % → 15–20 % with `--kuro-wallpaper-alpha`
-     · Signal subtheme bg 4 % → 9 %, L-shape border (top + left), brighter glow
-     · Low-contrast wallpaper attenuation refactored from the v3.1
-       full-coverage inset-veil hack to an alpha-multiplier override
-     · Inverse-glow bug in Editor Mode under margin-tint dark traced to the
-       retired veil; defensive comment in §margin-tint guards against reintro
+   v3.2.0 — Visibility + accessibility release (historic; many of its aspect /
+   wallpaper / Colour-Vision additions were retired in v3.4.0). Acted on
+   Live-Test feedback 2026-05-11.
    ─────────────────────────────────────────────────────────────────────────
    Build order (src/build.sh concatenates [0-9][0-9]-*.css lexically):
      00 · base-x1-foundation       — Signal-Protocol token foundation,
-                                     Four Aspects, dark/light semantics,
-                                     all base content styling
+                                     dark/light semantics, all base styling
      01 · tokens-canonical         — KSP colors_and_type.css mirror, SSOT
+     02 · fonts-embedded           — Latin-subset woff2 @font-face data-URLs
      05 · style-settings           — Style Settings @settings block (no-op
-                                     without the plugin); drives kuro-* /
-                                     --kuro-* contract shared with companion
-     10 · v1-polish-addendum       — §3b colorful-headings, §24 presets,
-                                     §25 low-contrast, §28 callouts ext.,
-                                     §32 graph WebGL, §34 zen, §35 tabs,
-                                     §36 custom checkboxes, §37 polish
-     20 · kuro2-aesthetics         — Void Scale, [!kuro] callout, chamber
-                                     grain, plugin body-class hooks,
-                                     hanko / ribbon-kanji / Kuro marks
-     30 · plugin-migrated          — hanko, margin-tint, logo, ribbon,
-                                     vignette, mono-all, headings,
-                                     light-mode glow + aspect strip, buttons,
-                                     hanko-glow
-     35 · hanko-static             — Plugin-free hanko via ::after pseudo;
-                                     suppressed under body.kuro-has-hanko
-     40 · aspect-wallpapers        — Per-aspect textures on margin-tint,
-                                     alpha-multiplier-aware
+                                     without the plugin)
+     10 · v1-polish-addendum       — colorful-headings, signal presets,
+                                     low-contrast, callouts, graph, zen, tabs,
+                                     custom checkboxes, polish
+     20 · kuro2-aesthetics         — Void Scale, [!kuro] callout, film grain,
+                                     margin-tint, ribbon-kanji / Kuro marks
+     30 · plugin-migrated          — margin-tint, logo, ribbon, mono-all,
+                                     headings, buttons (plugin-era base styles)
      50 · signal-subthemes         — Twelve signal classes for notes
-     60 · low-contrast             — v3.1-layer attenuations + wallpaper
-                                     alpha override
-     61 · color-vision-boost       — Saturation lift, hue spread, border
-                                     patterns per aspect, glyphs per signal
+     60 · low-contrast             — low-contrast layer attenuations
      70 · showcase-fx              — Press / pulse / hover / kuro-line
      75 · reduced-motion           — Null decorative callout/pulse loops
                                      under prefers-reduced-motion
    ─────────────────────────────────────────────────────────────────────────
    The chamber is dark. The signal earns its brightness because the
-   chamber is dark.  Twelve hues, twelve roles.  Four aspects, four voices.
+   chamber is dark.  Twelve hues, twelve roles.
    ─────────────────────────────────────────────────────────────────────────
    Configuration: the official Style Settings plugin (optional) reads the
    05-style-settings block. The theme is fully usable without any plugin.
-
-   Optional companion plugins (each in its own repo) add runtime behaviour
-   Style Settings cannot — per-note aspect switching, status-bar chip:
-     · obsidian-kuro-settings     — runtime controls, aspect picker,
-                                    sets body classes for the v3.1 layers
-     · obsidian-kuro-screensaver  — fullscreen 3D flyover with HUD
-     · obsidian-kuro-gamification — XP / levels / streaks (optional)
    ═════════════════════════════════════════════════════════════════════════ */

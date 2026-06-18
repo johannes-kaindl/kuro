@@ -79,10 +79,10 @@
   --role-review:   var(--signal-toxic);
   --role-drift:    var(--signal-rust);
 
-  /* ----- ACCENT SUBTHEME: Defaults to Guardian ----- */
-  --accent:         var(--signal-phosphor);
-  --accent-soft:    color-mix(in oklab, var(--signal-phosphor) 15%, transparent);
-  --accent-glow:    color-mix(in oklab, var(--signal-phosphor) 50%, transparent);
+  /* ----- ACCENT: follows Obsidian's system accent (aspects dropped 2026-06-18) ----- */
+  --accent:         var(--interactive-accent);
+  --accent-soft:    color-mix(in oklab, var(--interactive-accent) 15%, transparent);
+  --accent-glow:    color-mix(in oklab, var(--interactive-accent) 50%, transparent);
 
   /* ----- TYPE FAMILIES ----- */
   --font-display: 'EB Garamond', 'Garamond', 'Iowan Old Style', 'Times New Roman', serif;
@@ -149,31 +149,8 @@
   --dur-slow:   360ms;
 }
 
-/* ======================================================================
-   ACCENT SUBTHEMES — Kuro's four aspects
-   Apply via `data-aspect="shugo|gunshi|kantoku|sensei"` on any ancestor
-   ====================================================================== */
-
-[data-aspect="shugo"],   body.kuro-aspect-shugo   { /* Guardian */
-  --accent:      var(--signal-phosphor);
-  --accent-soft: color-mix(in oklab, var(--signal-phosphor) 15%, transparent);
-  --accent-glow: color-mix(in oklab, var(--signal-phosphor) 50%, transparent);
-}
-[data-aspect="gunshi"],  body.kuro-aspect-gunshi  { /* Strategist */
-  --accent:      var(--signal-spectre);
-  --accent-soft: color-mix(in oklab, var(--signal-spectre) 18%, transparent);
-  --accent-glow: color-mix(in oklab, var(--signal-spectre) 55%, transparent);
-}
-[data-aspect="kantoku"], body.kuro-aspect-kantoku { /* Taskmaster */
-  --accent:      var(--signal-crimson);
-  --accent-soft: color-mix(in oklab, var(--signal-crimson) 15%, transparent);
-  --accent-glow: color-mix(in oklab, var(--signal-crimson) 50%, transparent);
-}
-[data-aspect="sensei"],  body.kuro-aspect-sensei  { /* Mentor */
-  --accent:      var(--signal-ember);
-  --accent-soft: color-mix(in oklab, var(--signal-ember) 15%, transparent);
-  --accent-glow: color-mix(in oklab, var(--signal-ember) 50%, transparent);
-}
+/* Accent subthemes (aspects) removed 2026-06-18 — accent now follows Obsidian's
+   system accent; see §accent defaults above. */
 
 /* ======================================================================
    SEMANTIC TYPE TOKENS

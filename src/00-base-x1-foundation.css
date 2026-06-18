@@ -118,10 +118,7 @@
   --dur-base: 200ms;
   --dur-slow: 360ms;
 
-  /* ── Plugin-controlled effect intensities (defaults) ────────────────── */
-  --kuro-scanline-opacity: 0.035;
-  --kuro-vignette:         0.20;
-  --kuro-glow-accent:      rgba(74, 200, 216, 0.28);
+  --kuro-glow-accent:      rgba(var(--interactive-accent-rgb), 0.28); /* glow follows system accent */
 
   /* ── LEGACY BRIDGE — old --kuro-* aliases keep resolving ────────────── */
   --kuro-ink:        var(--void-050);
@@ -145,56 +142,13 @@
 
 
 /* ════════════════════════════════════════════════════════════════════════
-   §0a · ASPECTS — Kuro's Four Faces
+   §0a · ACCENT — follows Obsidian's system accent colour
    ────────────────────────────────────────────────────────────────────────
-   Apply via [data-aspect="shugo|gunshi|kantoku|sensei"] on <html> or any
-   ancestor. Each aspect rebinds --interactive-accent + RGB triplet, which
-   cascades through every accent-aware rule below.
-
-     shugo     · Guardian   · phosphor (default)
-     gunshi    · Strategist · spectre
-     kantoku   · Taskmaster · crimson
-     sensei    · Mentor     · ember
+   The four "aspects" were dropped 2026-06-18 — standalone they only re-set the
+   accent, which now follows the user's Obsidian accent. Kuro's --accent + glow
+   are derived from --interactive-accent (01-tokens §accent + --kuro-glow-accent)
+   so every accent-aware rule stays in sync.
    ════════════════════════════════════════════════════════════════════════ */
-
-/* Aspect→Accent binding. Selector promoted from `[data-aspect="X"]`
-   (specificity 0,1,0) to `body[data-aspect="X"]` (0,1,1) so it reliably
-   beats Obsidian's own `body` / `.theme-dark` `--interactive-accent`
-   definition (Aspect-Accent-Sync fix, 2026-05-12).
-
-   Also rebinds `--interactive-accent` itself, not just its RGB triplet —
-   heading/tag/link rules reference `var(--interactive-accent)` directly
-   and were stuck on Obsidian's global accent color before this. */
-body[data-aspect="shugo"],
-body:not([data-aspect]) {
-  --accent:                 var(--signal-phosphor);
-  --interactive-accent:     rgb(var(--signal-phosphor-rgb));
-  --interactive-accent-rgb: var(--signal-phosphor-rgb);
-  --kuro-glow-accent:       rgba(57, 255, 122, 0.28);
-}
-body[data-aspect="gunshi"] {
-  --accent:                 var(--signal-spectre);
-  --interactive-accent:     rgb(var(--signal-spectre-rgb));
-  --interactive-accent-rgb: var(--signal-spectre-rgb);
-  --kuro-glow-accent:       rgba(168, 120, 255, 0.30);
-}
-body[data-aspect="kantoku"] {
-  --accent:                 var(--signal-crimson);
-  --interactive-accent:     rgb(var(--signal-crimson-rgb));
-  --interactive-accent-rgb: var(--signal-crimson-rgb);
-  --kuro-glow-accent:       rgba(212, 32, 58, 0.32);
-}
-body[data-aspect="sensei"] {
-  --accent:                 var(--signal-ember);
-  --interactive-accent:     rgb(var(--signal-ember-rgb));
-  --interactive-accent-rgb: var(--signal-ember-rgb);
-  --kuro-glow-accent:       rgba(255, 180, 66, 0.30);
-}
-
-/* No standalone :root / body fallback here — `body[data-aspect="shugo"],
-   body:not([data-aspect])` above already covers the no-aspect case with
-   phosphor. A trailing body block would tie on specificity and win on
-   source order, breaking aspect switching. */
 
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -417,15 +371,8 @@ body[data-aspect="sensei"] {
   --text-highlight-bg-active: rgba(184, 115, 51, 0.25);
   --text-selection:           rgba(184, 115, 51, 0.20);
 
-  /* ── Accent — copper instead of phosphor in light mode ─────────────── */
-  --color-accent:             #b87333;
-  --color-accent-1:            #b87333;
-  --color-accent-2:            rgba(184, 115, 51, 0.5);
-  --interactive-accent:        #b87333;
-  --interactive-accent-hover:  rgba(184, 115, 51, 0.82);
-  --text-accent:               #b87333;
-  --text-accent-hover:         #2b2824;
-  --interactive-accent-rgb:    184, 115, 51;
+  /* Light-mode accent: inherit Obsidian's system accent (copper override
+     dropped 2026-06-18). */
 
   /* ── Links ─────────────────────────────────────────────────────────── */
   --link-color:                #3a7a8c;
@@ -545,7 +492,6 @@ body[data-aspect="sensei"] {
   --kuro-circuit:    #b87333;
   --kuro-circuit-dim:#8a5520;
   --kuro-glow-accent: rgba(184, 115, 51, 0.20);
-  --kuro-scanline-opacity: 0;
   --kuro-ink:        var(--background-primary);
   --kuro-ink-deep:   var(--background-primary-alt);
   --kuro-ink-raised: var(--background-secondary);
@@ -629,7 +575,7 @@ body .cm-header-1 {
   color: var(--h1-color);
   letter-spacing: -0.02em;
   padding-bottom: 0.3em;
-  margin-top: 0.7em;
+  margin-top: 0.4em; /* was 0.7em — reduced top gap above H1 (user: "wieder extrem groß") */
   margin-bottom: 0.6em;
 }
 .markdown-rendered h1 { border-bottom: 1px solid var(--divider-color); }
@@ -716,7 +662,7 @@ body .markdown-rendered h6, body .cm-header-6 {
   letter-spacing: 0.10em;
 }
 
-.cm-s-obsidian .cm-line.HyperMD-header-1 { padding-top: 1.5em; }
+.cm-s-obsidian .cm-line.HyperMD-header-1 { padding-top: 0.6em; } /* was 1.5em — editor H1 top gap */
 .cm-s-obsidian .cm-line.HyperMD-header-4,
 .cm-s-obsidian .cm-line.HyperMD-header-5,
 .cm-s-obsidian .cm-line.HyperMD-header-6 { padding-top: 0.6em; }
@@ -1406,33 +1352,9 @@ body .workspace-tab-header-inner-icon svg { color: var(--text-faint); }
    plugin-controlled. Reduced/disabled in light mode and on mobile.
    ════════════════════════════════════════════════════════════════════════ */
 
-body.theme-dark::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9990;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent 0px,
-    transparent 2px,
-    rgba(0, 0, 0, var(--kuro-scanline-opacity)) 2px,
-    rgba(0, 0, 0, var(--kuro-scanline-opacity)) 4px
-  );
-}
-
-body.theme-dark::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9989;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 60%,
-    rgba(0, 0, 0, var(--kuro-vignette)) 100%
-  );
-}
+/* Vignette + scanlines removed 2026-06-16: Obsidian's app-container overlaps
+   CSS overlay pseudo-elements, so a theme (CSS only) cannot render a reliable
+   full-app vignette/scanline — that needs the plugin's JS-injected overlay. */
 
 @media (prefers-reduced-motion: reduce) {
   .callout .callout-icon svg {
@@ -2211,13 +2133,6 @@ body.is-mobile .callout[data-callout="nav"] .callout-content > p > a { min-heigh
 
 body.is-mobile::before { display: none; }
 
-body.is-mobile.kuro-has-vignette::after {
-  background: radial-gradient(
-    ellipse at center,
-    transparent 50%,
-    rgba(0, 0, 0, calc(var(--kuro-vignette, 0) * 0.5)) 100%
-  );
-}
 body.is-mobile { --kuro-hanko-glow-mult: 0.4; --font-text-size: 16px; }
 body.is-mobile .kuro-hanko-instance { display: none; }
 

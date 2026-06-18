@@ -12,34 +12,14 @@ id: kuro-theme
 settings:
     -
         id: kuro-aspect-mood
-        title: Aspect & Mood
+        title: Colour & Mood
         type: heading
         level: 1
         collapsed: false
     -
-        id: kuro-aspect
-        title: Active aspect
-        description: 'The familiar wears four faces. Each shifts the accent character. Default: Shugo · Guardian.'
-        type: class-select
-        allowEmpty: false
-        default: kuro-aspect-shugo
-        options:
-            -
-                label: Shugo · Guardian
-                value: kuro-aspect-shugo
-            -
-                label: Gunshi · Strategist
-                value: kuro-aspect-gunshi
-            -
-                label: Kantoku · Taskmaster
-                value: kuro-aspect-kantoku
-            -
-                label: Sensei · Mentor
-                value: kuro-aspect-sensei
-    -
         id: kuro-preset
         title: Signal preset
-        description: A complete Kuro mood — accent, effects and headline colours. Empty = aspect-driven base.
+        description: A background colour mood (paper tint + headline shades). Leave empty for Kuro's default.
         type: class-select
         allowEmpty: true
         default: none
@@ -86,48 +66,9 @@ settings:
     -
         id: kuro-low-contrast
         title: Low contrast
-        description: Lifts blacks and dims glow for a calmer chamber.
+        description: Softer text colours and reduced glow — calmer and easier on the eyes.
         type: class-toggle
         default: false
-    -
-        id: kuro-color-vision-boost
-        title: Colour-vision mode
-        description: Saturation lift, red-green hue spread, and non-colour cues (per-aspect borders, per-signal glyphs).
-        type: class-toggle
-        default: false
-    -
-        id: kuro-effects
-        title: Effects
-        type: heading
-        level: 1
-        collapsed: true
-    -
-        id: --kuro-scanline-opacity
-        title: Scanlines
-        description: CRT scanline intensity. 0 = off.
-        type: variable-number-slider
-        default: 0.035
-        min: 0
-        max: 0.1
-        step: 0.005
-    -
-        id: --kuro-vignette
-        title: Vignette
-        description: Darkened screen edges. 0 = off.
-        type: variable-number-slider
-        default: 0.2
-        min: 0
-        max: 0.8
-        step: 0.05
-    -
-        id: --kuro-hanko-glow-mult
-        title: Hanko glow
-        description: Halo strength on the hanko watermark.
-        type: variable-number-slider
-        default: 1
-        min: 0
-        max: 2
-        step: 0.1
     -
         id: kuro-typography
         title: Typography
@@ -137,7 +78,7 @@ settings:
     -
         id: --kuro-font-serif
         title: Serif / display font
-        description: Used for headings and the hanko. Type a font name installed on your system.
+        description: Used for headings. Type a font name installed on your system.
         type: variable-text
         default: var(--font-display)
         quotes: false
@@ -154,33 +95,24 @@ settings:
         type: class-toggle
         default: false
     -
-        id: kuro-margin-tint
-        title: Margin tint
-        description: Darkens the area around the text column so the page floats.
-        type: class-toggle
-        default: false
-    -
-        id: --file-line-width
-        title: Reading line width
-        description: Max width of the text column, in px. 700 is comfortable. Needs Editor → Readable line length on.
-        type: variable-number
-        default: 700
-        format: px
-    -
-        id: --kuro-wallpaper-alpha
-        title: Pattern intensity
-        description: Aspect-driven texture under the editor surface (visible with Margin tint). 1 = default, higher = bolder.
-        type: variable-number-slider
-        default: 1
-        min: 0
-        max: 1.5
-        step: 0.05
-    -
         id: kuro-reading
         title: Reading
         type: heading
         level: 1
         collapsed: true
+    -
+        id: --file-line-width
+        title: Reading line width
+        description: Max width of the text column, in px (needs Editor → Readable line length on).
+        type: variable-number
+        default: 700
+        format: px
+    -
+        id: kuro-margin-tint
+        title: Margin tint
+        description: Tints the margins around the text column so the page seems to float.
+        type: class-toggle
+        default: false
     -
         id: kuro-colorful-headings
         title: Colourful headlines
@@ -252,60 +184,17 @@ settings:
         id: kuro-tabs
         title: Tab style
         type: class-select
-        allowEmpty: true
-        default: none
+        allowEmpty: false
+        default: kuro-tabs-default
         options:
+            -
+                label: Standard
+                value: kuro-tabs-default
             -
                 label: Pill
                 value: kuro-tabs-pill
             -
                 label: Underline
                 value: kuro-tabs-underline
-    -
-        id: kuro-identity
-        title: Identity
-        type: heading
-        level: 1
-        collapsed: true
-    -
-        id: kuro-hanko-show
-        title: Show hanko watermark
-        description: A faint kanji stamp in the bottom-right corner of each pane. Off by default.
-        type: class-toggle
-        default: false
-    -
-        id: --kuro-hanko-glyph
-        title: Hanko glyph
-        description: The kanji (or any single character) stamped in the corner.
-        type: variable-text
-        default: '守'
-        quotes: true
-    -
-        id: --kuro-hanko-size
-        title: Hanko size
-        description: Stamp size in px.
-        type: variable-number
-        default: 120
-        format: px
-    -
-        id: --kuro-hanko-opacity
-        title: Hanko opacity
-        type: variable-number-slider
-        default: 0.18
-        min: 0.02
-        max: 0.6
-        step: 0.02
-    -
-        id: --kuro-hanko-right
-        title: Hanko right offset
-        type: variable-number
-        default: 32
-        format: px
-    -
-        id: --kuro-hanko-bottom
-        title: Hanko bottom offset
-        type: variable-number
-        default: 32
-        format: px
 
 */

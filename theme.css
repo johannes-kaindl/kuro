@@ -2,13 +2,15 @@
    KURO  ·  v3.4.0
    Neo-Gothic · Post-Cyberpunk · CRT-Phosphor
    ─────────────────────────────────────────────────────────────────────────
-   v3.4.0 — Standalone & Style-Settings native. The theme is now fully
-   configurable through the official Style Settings plugin (new fragment
-   05-style-settings.css drives the same kuro-* classes / --kuro-* vars the
-   companion sets) and no longer depends on any plugin. The signature hanko
-   watermark survives plugin-free as a static CSS pseudo-element
-   (35-hanko-static.css), suppressed when a plugin injects a real one.
-   Animations now respect prefers-reduced-motion (75-reduced-motion.css).
+   v3.4.0 — Standalone & Style-Settings native. The theme is fully configurable
+   through the official Style Settings plugin (fragment 05-style-settings.css)
+   and depends on no plugin. The accent colour follows Obsidian's own (system)
+   accent in both light and dark. Plugin-coupled extras that could not work
+   reliably without the companion's JavaScript were retired for a cleaner
+   standalone theme: the four "aspects" (the accent now follows the system
+   colour directly), the hanko watermark, the CRT vignette and scanline
+   overlays, and Colour Vision Mode. Animations respect prefers-reduced-motion
+   (75-reduced-motion.css).
    ─────────────────────────────────────────────────────────────────────────
    v3.3.0 — Release-readiness. No visual redesign: the theme becomes
    self-contained and guideline-compliant for the Obsidian community
@@ -16,82 +18,37 @@
    embedded as Latin-subset woff2 @font-face data-URLs (SIL OFL 1.1) and the
    remote Google Fonts include is gone — no network access. Forced-override
    flags reduced 316 → 69 justified keeps, verified against Obsidian app.css.
-   The §39·6b
-   Mermaid-padding patch was back-ported from the Pallas install into source.
+   The §39·6b Mermaid-padding patch was back-ported from the Pallas install.
    ─────────────────────────────────────────────────────────────────────────
-   v3.2.0 — Visibility + accessibility release. Acts on Live-Test feedback
-   2026-05-11 (Jay): aspect wallpapers + signal tints were too subtle to
-   read, light-mode aspects were indistinguishable, and the wallpaper
-   attenuation in low-contrast mode was painting an outer-area veil that
-   read as an inverse glow on the floating page. v3.2 retires the veil,
-   raises wallpaper and signal-tint visibility, adds light-mode aspect
-   differentiators, and ships a new orthogonal axis — Color Vision Mode —
-   that boosts saturation, spaces colliding signals along the red-green
-   axis, and adds non-colour cues (border patterns per aspect, glyphs per
-   signal, heading-weight bump).
-
-   Lineages preserved:
-     · v1.0 canonical design system (10 source vaults, Apr 23-29 2026)
-     · v2.0 "Signal Protocol Edition"  (X1_v6t2b9 active dev, May 2026)
-     · _kuro2 "Kuro Signal Protocol"   (Animation lab, Apr 2026)
-
-   v3.2.0 additions over v3.1.0:
-     · Color Vision Mode — 4th orthogonal axis (`body.kuro-color-vision-boost`)
-     · Per-aspect non-colour cues (solid / dashed / double / dotted borders)
-     · Per-signal glyph markers under boost mode
-     · Light-mode aspect differentiators (border + surface tint)
-   v3.2.0 changes over v3.1.0:
-     · Aspect wallpaper opacity 5–10 % → 15–20 % with `--kuro-wallpaper-alpha`
-     · Signal subtheme bg 4 % → 9 %, L-shape border (top + left), brighter glow
-     · Low-contrast wallpaper attenuation refactored from the v3.1
-       full-coverage inset-veil hack to an alpha-multiplier override
-     · Inverse-glow bug in Editor Mode under margin-tint dark traced to the
-       retired veil; defensive comment in §margin-tint guards against reintro
+   v3.2.0 — Visibility + accessibility release (historic; many of its aspect /
+   wallpaper / Colour-Vision additions were retired in v3.4.0). Acted on
+   Live-Test feedback 2026-05-11.
    ─────────────────────────────────────────────────────────────────────────
    Build order (src/build.sh concatenates [0-9][0-9]-*.css lexically):
      00 · base-x1-foundation       — Signal-Protocol token foundation,
-                                     Four Aspects, dark/light semantics,
-                                     all base content styling
+                                     dark/light semantics, all base styling
      01 · tokens-canonical         — KSP colors_and_type.css mirror, SSOT
+     02 · fonts-embedded           — Latin-subset woff2 @font-face data-URLs
      05 · style-settings           — Style Settings @settings block (no-op
-                                     without the plugin); drives kuro-* /
-                                     --kuro-* contract shared with companion
-     10 · v1-polish-addendum       — §3b colorful-headings, §24 presets,
-                                     §25 low-contrast, §28 callouts ext.,
-                                     §32 graph WebGL, §34 zen, §35 tabs,
-                                     §36 custom checkboxes, §37 polish
-     20 · kuro2-aesthetics         — Void Scale, [!kuro] callout, chamber
-                                     grain, plugin body-class hooks,
-                                     hanko / ribbon-kanji / Kuro marks
-     30 · plugin-migrated          — hanko, margin-tint, logo, ribbon,
-                                     vignette, mono-all, headings,
-                                     light-mode glow + aspect strip, buttons,
-                                     hanko-glow
-     35 · hanko-static             — Plugin-free hanko via ::after pseudo;
-                                     suppressed under body.kuro-has-hanko
-     40 · aspect-wallpapers        — Per-aspect textures on margin-tint,
-                                     alpha-multiplier-aware
+                                     without the plugin)
+     10 · v1-polish-addendum       — colorful-headings, signal presets,
+                                     low-contrast, callouts, graph, zen, tabs,
+                                     custom checkboxes, polish
+     20 · kuro2-aesthetics         — Void Scale, [!kuro] callout, film grain,
+                                     margin-tint, ribbon-kanji / Kuro marks
+     30 · plugin-migrated          — margin-tint, logo, ribbon, mono-all,
+                                     headings, buttons (plugin-era base styles)
      50 · signal-subthemes         — Twelve signal classes for notes
-     60 · low-contrast             — v3.1-layer attenuations + wallpaper
-                                     alpha override
-     61 · color-vision-boost       — Saturation lift, hue spread, border
-                                     patterns per aspect, glyphs per signal
+     60 · low-contrast             — low-contrast layer attenuations
      70 · showcase-fx              — Press / pulse / hover / kuro-line
      75 · reduced-motion           — Null decorative callout/pulse loops
                                      under prefers-reduced-motion
    ─────────────────────────────────────────────────────────────────────────
    The chamber is dark. The signal earns its brightness because the
-   chamber is dark.  Twelve hues, twelve roles.  Four aspects, four voices.
+   chamber is dark.  Twelve hues, twelve roles.
    ─────────────────────────────────────────────────────────────────────────
    Configuration: the official Style Settings plugin (optional) reads the
    05-style-settings block. The theme is fully usable without any plugin.
-
-   Optional companion plugins (each in its own repo) add runtime behaviour
-   Style Settings cannot — per-note aspect switching, status-bar chip:
-     · obsidian-kuro-settings     — runtime controls, aspect picker,
-                                    sets body classes for the v3.1 layers
-     · obsidian-kuro-screensaver  — fullscreen 3D flyover with HUD
-     · obsidian-kuro-gamification — XP / levels / streaks (optional)
    ═════════════════════════════════════════════════════════════════════════ */
 
 
@@ -219,10 +176,7 @@
   --dur-base: 200ms;
   --dur-slow: 360ms;
 
-  /* ── Plugin-controlled effect intensities (defaults) ────────────────── */
-  --kuro-scanline-opacity: 0.035;
-  --kuro-vignette:         0.20;
-  --kuro-glow-accent:      rgba(74, 200, 216, 0.28);
+  --kuro-glow-accent:      rgba(var(--interactive-accent-rgb), 0.28); /* glow follows system accent */
 
   /* ── LEGACY BRIDGE — old --kuro-* aliases keep resolving ────────────── */
   --kuro-ink:        var(--void-050);
@@ -246,56 +200,13 @@
 
 
 /* ════════════════════════════════════════════════════════════════════════
-   §0a · ASPECTS — Kuro's Four Faces
+   §0a · ACCENT — follows Obsidian's system accent colour
    ────────────────────────────────────────────────────────────────────────
-   Apply via [data-aspect="shugo|gunshi|kantoku|sensei"] on <html> or any
-   ancestor. Each aspect rebinds --interactive-accent + RGB triplet, which
-   cascades through every accent-aware rule below.
-
-     shugo     · Guardian   · phosphor (default)
-     gunshi    · Strategist · spectre
-     kantoku   · Taskmaster · crimson
-     sensei    · Mentor     · ember
+   The four "aspects" were dropped 2026-06-18 — standalone they only re-set the
+   accent, which now follows the user's Obsidian accent. Kuro's --accent + glow
+   are derived from --interactive-accent (01-tokens §accent + --kuro-glow-accent)
+   so every accent-aware rule stays in sync.
    ════════════════════════════════════════════════════════════════════════ */
-
-/* Aspect→Accent binding. Selector promoted from `[data-aspect="X"]`
-   (specificity 0,1,0) to `body[data-aspect="X"]` (0,1,1) so it reliably
-   beats Obsidian's own `body` / `.theme-dark` `--interactive-accent`
-   definition (Aspect-Accent-Sync fix, 2026-05-12).
-
-   Also rebinds `--interactive-accent` itself, not just its RGB triplet —
-   heading/tag/link rules reference `var(--interactive-accent)` directly
-   and were stuck on Obsidian's global accent color before this. */
-body[data-aspect="shugo"],
-body:not([data-aspect]) {
-  --accent:                 var(--signal-phosphor);
-  --interactive-accent:     rgb(var(--signal-phosphor-rgb));
-  --interactive-accent-rgb: var(--signal-phosphor-rgb);
-  --kuro-glow-accent:       rgba(57, 255, 122, 0.28);
-}
-body[data-aspect="gunshi"] {
-  --accent:                 var(--signal-spectre);
-  --interactive-accent:     rgb(var(--signal-spectre-rgb));
-  --interactive-accent-rgb: var(--signal-spectre-rgb);
-  --kuro-glow-accent:       rgba(168, 120, 255, 0.30);
-}
-body[data-aspect="kantoku"] {
-  --accent:                 var(--signal-crimson);
-  --interactive-accent:     rgb(var(--signal-crimson-rgb));
-  --interactive-accent-rgb: var(--signal-crimson-rgb);
-  --kuro-glow-accent:       rgba(212, 32, 58, 0.32);
-}
-body[data-aspect="sensei"] {
-  --accent:                 var(--signal-ember);
-  --interactive-accent:     rgb(var(--signal-ember-rgb));
-  --interactive-accent-rgb: var(--signal-ember-rgb);
-  --kuro-glow-accent:       rgba(255, 180, 66, 0.30);
-}
-
-/* No standalone :root / body fallback here — `body[data-aspect="shugo"],
-   body:not([data-aspect])` above already covers the no-aspect case with
-   phosphor. A trailing body block would tie on specificity and win on
-   source order, breaking aspect switching. */
 
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -518,15 +429,8 @@ body[data-aspect="sensei"] {
   --text-highlight-bg-active: rgba(184, 115, 51, 0.25);
   --text-selection:           rgba(184, 115, 51, 0.20);
 
-  /* ── Accent — copper instead of phosphor in light mode ─────────────── */
-  --color-accent:             #b87333;
-  --color-accent-1:            #b87333;
-  --color-accent-2:            rgba(184, 115, 51, 0.5);
-  --interactive-accent:        #b87333;
-  --interactive-accent-hover:  rgba(184, 115, 51, 0.82);
-  --text-accent:               #b87333;
-  --text-accent-hover:         #2b2824;
-  --interactive-accent-rgb:    184, 115, 51;
+  /* Light-mode accent: inherit Obsidian's system accent (copper override
+     dropped 2026-06-18). */
 
   /* ── Links ─────────────────────────────────────────────────────────── */
   --link-color:                #3a7a8c;
@@ -646,7 +550,6 @@ body[data-aspect="sensei"] {
   --kuro-circuit:    #b87333;
   --kuro-circuit-dim:#8a5520;
   --kuro-glow-accent: rgba(184, 115, 51, 0.20);
-  --kuro-scanline-opacity: 0;
   --kuro-ink:        var(--background-primary);
   --kuro-ink-deep:   var(--background-primary-alt);
   --kuro-ink-raised: var(--background-secondary);
@@ -730,7 +633,7 @@ body .cm-header-1 {
   color: var(--h1-color);
   letter-spacing: -0.02em;
   padding-bottom: 0.3em;
-  margin-top: 0.7em;
+  margin-top: 0.4em; /* was 0.7em — reduced top gap above H1 (user: "wieder extrem groß") */
   margin-bottom: 0.6em;
 }
 .markdown-rendered h1 { border-bottom: 1px solid var(--divider-color); }
@@ -817,7 +720,7 @@ body .markdown-rendered h6, body .cm-header-6 {
   letter-spacing: 0.10em;
 }
 
-.cm-s-obsidian .cm-line.HyperMD-header-1 { padding-top: 1.5em; }
+.cm-s-obsidian .cm-line.HyperMD-header-1 { padding-top: 0.6em; } /* was 1.5em — editor H1 top gap */
 .cm-s-obsidian .cm-line.HyperMD-header-4,
 .cm-s-obsidian .cm-line.HyperMD-header-5,
 .cm-s-obsidian .cm-line.HyperMD-header-6 { padding-top: 0.6em; }
@@ -1507,33 +1410,9 @@ body .workspace-tab-header-inner-icon svg { color: var(--text-faint); }
    plugin-controlled. Reduced/disabled in light mode and on mobile.
    ════════════════════════════════════════════════════════════════════════ */
 
-body.theme-dark::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9990;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent 0px,
-    transparent 2px,
-    rgba(0, 0, 0, var(--kuro-scanline-opacity)) 2px,
-    rgba(0, 0, 0, var(--kuro-scanline-opacity)) 4px
-  );
-}
-
-body.theme-dark::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9989;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 60%,
-    rgba(0, 0, 0, var(--kuro-vignette)) 100%
-  );
-}
+/* Vignette + scanlines removed 2026-06-16: Obsidian's app-container overlaps
+   CSS overlay pseudo-elements, so a theme (CSS only) cannot render a reliable
+   full-app vignette/scanline — that needs the plugin's JS-injected overlay. */
 
 @media (prefers-reduced-motion: reduce) {
   .callout .callout-icon svg {
@@ -2312,13 +2191,6 @@ body.is-mobile .callout[data-callout="nav"] .callout-content > p > a { min-heigh
 
 body.is-mobile::before { display: none; }
 
-body.is-mobile.kuro-has-vignette::after {
-  background: radial-gradient(
-    ellipse at center,
-    transparent 50%,
-    rgba(0, 0, 0, calc(var(--kuro-vignette, 0) * 0.5)) 100%
-  );
-}
 body.is-mobile { --kuro-hanko-glow-mult: 0.4; --font-text-size: 16px; }
 body.is-mobile .kuro-hanko-instance { display: none; }
 
@@ -2885,10 +2757,10 @@ body.is-tablet pre.kuro-loot {
   --role-review:   var(--signal-toxic);
   --role-drift:    var(--signal-rust);
 
-  /* ----- ACCENT SUBTHEME: Defaults to Guardian ----- */
-  --accent:         var(--signal-phosphor);
-  --accent-soft:    color-mix(in oklab, var(--signal-phosphor) 15%, transparent);
-  --accent-glow:    color-mix(in oklab, var(--signal-phosphor) 50%, transparent);
+  /* ----- ACCENT: follows Obsidian's system accent (aspects dropped 2026-06-18) ----- */
+  --accent:         var(--interactive-accent);
+  --accent-soft:    color-mix(in oklab, var(--interactive-accent) 15%, transparent);
+  --accent-glow:    color-mix(in oklab, var(--interactive-accent) 50%, transparent);
 
   /* ----- TYPE FAMILIES ----- */
   --font-display: 'EB Garamond', 'Garamond', 'Iowan Old Style', 'Times New Roman', serif;
@@ -2955,31 +2827,8 @@ body.is-tablet pre.kuro-loot {
   --dur-slow:   360ms;
 }
 
-/* ======================================================================
-   ACCENT SUBTHEMES — Kuro's four aspects
-   Apply via `data-aspect="shugo|gunshi|kantoku|sensei"` on any ancestor
-   ====================================================================== */
-
-[data-aspect="shugo"],   body.kuro-aspect-shugo   { /* Guardian */
-  --accent:      var(--signal-phosphor);
-  --accent-soft: color-mix(in oklab, var(--signal-phosphor) 15%, transparent);
-  --accent-glow: color-mix(in oklab, var(--signal-phosphor) 50%, transparent);
-}
-[data-aspect="gunshi"],  body.kuro-aspect-gunshi  { /* Strategist */
-  --accent:      var(--signal-spectre);
-  --accent-soft: color-mix(in oklab, var(--signal-spectre) 18%, transparent);
-  --accent-glow: color-mix(in oklab, var(--signal-spectre) 55%, transparent);
-}
-[data-aspect="kantoku"], body.kuro-aspect-kantoku { /* Taskmaster */
-  --accent:      var(--signal-crimson);
-  --accent-soft: color-mix(in oklab, var(--signal-crimson) 15%, transparent);
-  --accent-glow: color-mix(in oklab, var(--signal-crimson) 50%, transparent);
-}
-[data-aspect="sensei"],  body.kuro-aspect-sensei  { /* Mentor */
-  --accent:      var(--signal-ember);
-  --accent-soft: color-mix(in oklab, var(--signal-ember) 15%, transparent);
-  --accent-glow: color-mix(in oklab, var(--signal-ember) 50%, transparent);
-}
+/* Accent subthemes (aspects) removed 2026-06-18 — accent now follows Obsidian's
+   system accent; see §accent defaults above. */
 
 /* ======================================================================
    SEMANTIC TYPE TOKENS
@@ -3227,34 +3076,14 @@ id: kuro-theme
 settings:
     -
         id: kuro-aspect-mood
-        title: Aspect & Mood
+        title: Colour & Mood
         type: heading
         level: 1
         collapsed: false
     -
-        id: kuro-aspect
-        title: Active aspect
-        description: 'The familiar wears four faces. Each shifts the accent character. Default: Shugo · Guardian.'
-        type: class-select
-        allowEmpty: false
-        default: kuro-aspect-shugo
-        options:
-            -
-                label: Shugo · Guardian
-                value: kuro-aspect-shugo
-            -
-                label: Gunshi · Strategist
-                value: kuro-aspect-gunshi
-            -
-                label: Kantoku · Taskmaster
-                value: kuro-aspect-kantoku
-            -
-                label: Sensei · Mentor
-                value: kuro-aspect-sensei
-    -
         id: kuro-preset
         title: Signal preset
-        description: A complete Kuro mood — accent, effects and headline colours. Empty = aspect-driven base.
+        description: A background colour mood (paper tint + headline shades). Leave empty for Kuro's default.
         type: class-select
         allowEmpty: true
         default: none
@@ -3301,48 +3130,9 @@ settings:
     -
         id: kuro-low-contrast
         title: Low contrast
-        description: Lifts blacks and dims glow for a calmer chamber.
+        description: Softer text colours and reduced glow — calmer and easier on the eyes.
         type: class-toggle
         default: false
-    -
-        id: kuro-color-vision-boost
-        title: Colour-vision mode
-        description: Saturation lift, red-green hue spread, and non-colour cues (per-aspect borders, per-signal glyphs).
-        type: class-toggle
-        default: false
-    -
-        id: kuro-effects
-        title: Effects
-        type: heading
-        level: 1
-        collapsed: true
-    -
-        id: --kuro-scanline-opacity
-        title: Scanlines
-        description: CRT scanline intensity. 0 = off.
-        type: variable-number-slider
-        default: 0.035
-        min: 0
-        max: 0.1
-        step: 0.005
-    -
-        id: --kuro-vignette
-        title: Vignette
-        description: Darkened screen edges. 0 = off.
-        type: variable-number-slider
-        default: 0.2
-        min: 0
-        max: 0.8
-        step: 0.05
-    -
-        id: --kuro-hanko-glow-mult
-        title: Hanko glow
-        description: Halo strength on the hanko watermark.
-        type: variable-number-slider
-        default: 1
-        min: 0
-        max: 2
-        step: 0.1
     -
         id: kuro-typography
         title: Typography
@@ -3352,7 +3142,7 @@ settings:
     -
         id: --kuro-font-serif
         title: Serif / display font
-        description: Used for headings and the hanko. Type a font name installed on your system.
+        description: Used for headings. Type a font name installed on your system.
         type: variable-text
         default: var(--font-display)
         quotes: false
@@ -3369,33 +3159,24 @@ settings:
         type: class-toggle
         default: false
     -
-        id: kuro-margin-tint
-        title: Margin tint
-        description: Darkens the area around the text column so the page floats.
-        type: class-toggle
-        default: false
-    -
-        id: --file-line-width
-        title: Reading line width
-        description: Max width of the text column, in px. 700 is comfortable. Needs Editor → Readable line length on.
-        type: variable-number
-        default: 700
-        format: px
-    -
-        id: --kuro-wallpaper-alpha
-        title: Pattern intensity
-        description: Aspect-driven texture under the editor surface (visible with Margin tint). 1 = default, higher = bolder.
-        type: variable-number-slider
-        default: 1
-        min: 0
-        max: 1.5
-        step: 0.05
-    -
         id: kuro-reading
         title: Reading
         type: heading
         level: 1
         collapsed: true
+    -
+        id: --file-line-width
+        title: Reading line width
+        description: Max width of the text column, in px (needs Editor → Readable line length on).
+        type: variable-number
+        default: 700
+        format: px
+    -
+        id: kuro-margin-tint
+        title: Margin tint
+        description: Tints the margins around the text column so the page seems to float.
+        type: class-toggle
+        default: false
     -
         id: kuro-colorful-headings
         title: Colourful headlines
@@ -3467,61 +3248,18 @@ settings:
         id: kuro-tabs
         title: Tab style
         type: class-select
-        allowEmpty: true
-        default: none
+        allowEmpty: false
+        default: kuro-tabs-default
         options:
+            -
+                label: Standard
+                value: kuro-tabs-default
             -
                 label: Pill
                 value: kuro-tabs-pill
             -
                 label: Underline
                 value: kuro-tabs-underline
-    -
-        id: kuro-identity
-        title: Identity
-        type: heading
-        level: 1
-        collapsed: true
-    -
-        id: kuro-hanko-show
-        title: Show hanko watermark
-        description: A faint kanji stamp in the bottom-right corner of each pane. Off by default.
-        type: class-toggle
-        default: false
-    -
-        id: --kuro-hanko-glyph
-        title: Hanko glyph
-        description: The kanji (or any single character) stamped in the corner.
-        type: variable-text
-        default: '守'
-        quotes: true
-    -
-        id: --kuro-hanko-size
-        title: Hanko size
-        description: Stamp size in px.
-        type: variable-number
-        default: 120
-        format: px
-    -
-        id: --kuro-hanko-opacity
-        title: Hanko opacity
-        type: variable-number-slider
-        default: 0.18
-        min: 0.02
-        max: 0.6
-        step: 0.02
-    -
-        id: --kuro-hanko-right
-        title: Hanko right offset
-        type: variable-number
-        default: 32
-        format: px
-    -
-        id: --kuro-hanko-bottom
-        title: Hanko bottom offset
-        type: variable-number
-        default: 32
-        format: px
 
 */
 
@@ -3988,7 +3726,6 @@ body.kuro-low-contrast {
     --text-faint:   var(--kuro-bone-dim);
 
     --kuro-glow-accent:      rgba(var(--interactive-accent-rgb), 0.14);
-    --kuro-scanline-opacity: 0;
   }
 
   /* Per-preset Shadow surfaces — preserve each preset's ink tint, lifted +0e per channel */
@@ -5189,7 +4926,7 @@ body.theme-light .mermaid {
    ~3% opacity SVG noise. Sits over the vault ground only.
    ═════════════════════════════════════════════════════════════════════════ */
 
-body.theme-dark::before {
+body.theme-dark .workspace::after { /* film-grain noise — moved off body::before so the vignette can own that pseudo-element (was overriding it in dark mode) */
   content: '';
   position: fixed;
   inset: 0;
@@ -5200,36 +4937,7 @@ body.theme-dark::before {
   mix-blend-mode: overlay;
 }
 
-/* Optional vignette — `body.kuro-has-vignette` toggled by plugin */
-body.kuro-has-vignette::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 998;
-  background: radial-gradient(ellipse at center,
-              transparent 50%,
-              rgba(0,0,0, calc(var(--kuro-vignette, 0.32) * 1)) 100%);
-}
-
-/* CRT scanlines — opacity controlled by `--kuro-scanline-opacity`.
-   Zero = invisible (no-op). Plugin lets user dial the intensity. */
-body.theme-dark .workspace::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 2px,
-    rgba(255,255,255, 0.45) 2px,
-    rgba(255,255,255, 0.45) 3px
-  );
-  opacity: var(--kuro-scanline-opacity, 0);
-  mix-blend-mode: overlay;
-}
+/* CRT scanlines removed 2026-06-16 — see 00-base §vignette/scanline note. */
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -5343,7 +5051,6 @@ body.kuro-low-contrast {
   --fg-tertiary:   #5f5c56;
   --fg-disabled:   #444039;
   --kuro-glow-accent: color-mix(in oklab, var(--accent) 20%, transparent);
-  --kuro-scanline-opacity: 0;
 }
 body.theme-light.kuro-low-contrast {
   --fg-primary:    #3d2b1f;
@@ -5627,27 +5334,8 @@ body.kuro-margin-tint {
 }
 
 
-/* ─── ported from _kuro-theme-settings/styles.css § vignette (lines 214–234) ─── */
-
-/* ── § vignette — Vollbild-Abdunkelung ──────────────────────
-   ► Plugin: vignetteStrength > 0 (Slider in Effects)
-   ► Body-Klasse: kuro-has-vignette
-   ► CSS-Var: --kuro-vignette (0..0.8)
-   ─────────────────────────────────────────────────────────── */
-
-/* JS-erzeugtes Element (via _syncVignette) — sitzt direkt in .app-container,
-   umgeht das Stacking-Context-Problem von body::after in Obsidian. */
-#kuro-vignette-overlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 40%,
-    rgba(0, 0, 0, var(--kuro-vignette, 0)) 100%
-  );
-}
+/* Vignette removed 2026-06-16 — the plugin's JS-injected #kuro-vignette-overlay
+   is no longer part of the standalone theme (see 00-base §vignette/scanline note). */
 
 
 /* ─── ported from _kuro-theme-settings/styles.css § mono-all (lines 235–267) ─── */
@@ -5741,52 +5429,7 @@ body.theme-light {
 }
 
 
-/* ── § light-mode aspect differentiator ─────────────────────
-   NEW for v3.2 (Live-Test 2026-05-11): without the dark-mode neon edge,
-   light-mode aspects were essentially indistinguishable. The primary
-   differentiator in light mode is now a 3 px accent strip at the top of
-   the floating page plus a faint surface tint, so each of the four
-   aspects reads at a glance even with low-contrast disabled.
-   The strip selects on `.markdown-preview-sizer` and the editor; the
-   surface tint applies to the outer view background so the wallpaper
-   pattern (40-aspect-wallpapers) layers above.
-   ───────────────────────────────────────────────────────────── */
-
-body.theme-light html[data-aspect="shugo"] .markdown-preview-sizer,
-body.theme-light html[data-aspect="shugo"] .markdown-source-view .cm-editor {
-  border-top: 3px solid var(--accent);
-}
-body.theme-light html[data-aspect="shugo"] .markdown-source-view,
-body.theme-light html[data-aspect="shugo"] .markdown-reading-view {
-  background: color-mix(in oklab, var(--accent) 5%, var(--background-primary));
-}
-
-body.theme-light html[data-aspect="gunshi"] .markdown-preview-sizer,
-body.theme-light html[data-aspect="gunshi"] .markdown-source-view .cm-editor {
-  border-top: 3px solid var(--accent);
-}
-body.theme-light html[data-aspect="gunshi"] .markdown-source-view,
-body.theme-light html[data-aspect="gunshi"] .markdown-reading-view {
-  background: color-mix(in oklab, var(--accent) 5%, var(--background-primary));
-}
-
-body.theme-light html[data-aspect="kantoku"] .markdown-preview-sizer,
-body.theme-light html[data-aspect="kantoku"] .markdown-source-view .cm-editor {
-  border-top: 3px solid var(--accent);
-}
-body.theme-light html[data-aspect="kantoku"] .markdown-source-view,
-body.theme-light html[data-aspect="kantoku"] .markdown-reading-view {
-  background: color-mix(in oklab, var(--accent) 5%, var(--background-primary));
-}
-
-body.theme-light html[data-aspect="sensei"] .markdown-preview-sizer,
-body.theme-light html[data-aspect="sensei"] .markdown-source-view .cm-editor {
-  border-top: 3px solid var(--accent);
-}
-body.theme-light html[data-aspect="sensei"] .markdown-source-view,
-body.theme-light html[data-aspect="sensei"] .markdown-reading-view {
-  background: color-mix(in oklab, var(--accent) 5%, var(--background-primary));
-}
+/* Light-mode aspect differentiator removed 2026-06-18 (aspects dropped). */
 
 
 /* ─── ported from _kuro-theme-settings/styles.css § buttons (lines 334–361) ─── */
@@ -5860,146 +5503,6 @@ body.kuro-hanko-glow:not(.kuro-no-glow) {
 /* Light mode base: kein Neon-Frame-Glow (wird von kuro-hanko-glow überschrieben wenn aktiv) */
 body.theme-light .kuro-hanko-instance.kuro-hanko-framed {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   FRAGMENT · 35-hanko-static.css
-   ═══════════════════════════════════════════════════════════════════════ */
-
-/* ─────────────────────────────────────────────────────────────────────────
-   FRAGMENT · 35-hanko-static.css
-   Plugin-free hanko watermark via a pseudo-element. OPT-IN: off by default,
-   shown only when body.kuro-hanko-show is set (Style Settings → "Show hanko
-   watermark"). Still suppressed when the companion plugin injects a real
-   .kuro-hanko-instance (body.kuro-has-hanko), so coexistence stays single-stamp.
-   Glyph / size / offsets / glow are Style-Settings-controlled.
-   Relies on .workspace-leaf-content[data-type="markdown"] being
-   position: relative (set in 30-plugin-migrated.css § hanko).
-   ───────────────────────────────────────────────────────────────────────── */
-
-body.kuro-hanko-show:not(.kuro-has-hanko) .workspace-leaf-content[data-type="markdown"]::after {
-  content: var(--kuro-hanko-glyph, "守");
-  position: absolute;
-  right: var(--kuro-hanko-right, 32px);
-  bottom: var(--kuro-hanko-bottom, 32px);
-  font-family: var(--kuro-font-serif);
-  font-size: var(--kuro-hanko-size, 120px);
-  font-weight: 400;
-  line-height: 1;
-  color: var(--accent);
-  opacity: var(--kuro-hanko-opacity, 0.18);
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-  text-shadow:
-    0 0 calc(6px  * var(--kuro-hanko-glow-mult, 1)) currentColor,
-    0 0 calc(28px * var(--kuro-hanko-glow-mult, 1)) currentColor;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   FRAGMENT · 40-aspect-wallpapers.css
-   ═══════════════════════════════════════════════════════════════════════ */
-
-/* ─────────────────────────────────────────────────────────────────────────
-   FRAGMENT · 40-aspect-wallpapers.css
-   Source: kuro-signal-design/preview/aspects.html (lines ~100–272)
-   ─────────────────────────────────────────────────────────────────────────
-   Per-aspect background textures painted onto the margin-tint outer area
-   (the dark band around the floating note). Active only when both
-   `html[data-aspect="X"]` and `body.kuro-margin-tint` are present, so the
-   default chamber-dark look stays clean.
-
-   Pattern per aspect (lifted from aspects.html .shugo / .gunshi / .kantoku /
-   .sensei demo cards):
-     · shugo    Concentric radar rings   (Phosphor)
-     · gunshi   Dot-grid lattice          (Spectre)
-     · kantoku  Warning-stripe weave      (Crimson)
-     · sensei   Horizontal paper lines    (Ember)
-
-   v3.2 changes (Live-Test 2026-05-11):
-   ─────────────────────────────────────
-   · Texture alpha lifted from 5–10 % to 15–20 % so the wallpapers actually
-     read on the chamber-dark margin. The atmospheric radial wash per aspect
-     bumps from ~10 % to 18–22 %.
-   · Every literal percentage is multiplied by `var(--kuro-wallpaper-alpha, 1)`
-     inside `color-mix()` via `calc()`. Default 1 = full strength. The
-     low-contrast layer overrides the variable to 0.4 — this replaces the old
-     full-coverage inset-shadow veil hack in 60-low-contrast.css.
-   · Gunshi's dot foreground stayed near its previous 22 % since each dot is
-     a single pixel anchor — the atmospheric wash gets the bump instead.
-
-   Original rgba(R,G,B,A) literals from aspects.html are replaced with
-   `color-mix(in oklab, var(--signal-X) N%, transparent)` so the textures
-   inherit the canonical token (R6 in v3.1 RISKS).
-
-   Texture sits on top of the plugin §margin-tint's --background-secondary-alt
-   base (different declaration; this one wins via the
-   html[data-aspect=…] qualifier — specificity 0,3,2 vs 0,2,1).
-   ───────────────────────────────────────────────────────────────────── */
-
-
-/* ── shugo · Guardian — concentric radar rings, phosphor green ── */
-html[data-aspect="shugo"] body.kuro-margin-tint .workspace-leaf-content[data-type="markdown"] {
-  background:
-    repeating-radial-gradient(
-      circle at 15% 85%,
-      transparent 0,
-      transparent 28px,
-      color-mix(in oklab, var(--signal-phosphor) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 28px,
-      color-mix(in oklab, var(--signal-phosphor) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 29px
-    ),
-    radial-gradient(ellipse at 50% 120%,
-      color-mix(in oklab, var(--signal-phosphor) calc(20% * var(--kuro-wallpaper-alpha, 1)), transparent) 0%,
-      transparent 55%),
-    var(--background-secondary-alt, #050506);
-}
-
-
-/* ── gunshi · Strategist — dot-grid lattice, spectre violet ── */
-html[data-aspect="gunshi"] body.kuro-margin-tint .workspace-leaf-content[data-type="markdown"] {
-  background:
-    radial-gradient(circle at 1px 1px,
-      color-mix(in oklab, var(--signal-spectre) calc(22% * var(--kuro-wallpaper-alpha, 1)), transparent) 1px,
-      transparent 1.5px) 0 0 / 18px 18px,
-    radial-gradient(circle at 70% 30%,
-      color-mix(in oklab, var(--signal-spectre) calc(20% * var(--kuro-wallpaper-alpha, 1)), transparent) 0%,
-      transparent 55%),
-    var(--background-secondary-alt, #050506);
-}
-
-
-/* ── kantoku · Taskmaster — warning-stripe weave, crimson ── */
-html[data-aspect="kantoku"] body.kuro-margin-tint .workspace-leaf-content[data-type="markdown"] {
-  background:
-    repeating-linear-gradient(105deg,
-      transparent 0, transparent 18px,
-      color-mix(in oklab, var(--signal-crimson) calc(15% * var(--kuro-wallpaper-alpha, 1)), transparent) 18px,
-      color-mix(in oklab, var(--signal-crimson) calc(15% * var(--kuro-wallpaper-alpha, 1)), transparent) 22px),
-    repeating-linear-gradient(105deg,
-      transparent 0, transparent 11px,
-      color-mix(in oklab, var(--signal-crimson) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 11px,
-      color-mix(in oklab, var(--signal-crimson) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 12px),
-    repeating-linear-gradient(15deg,
-      transparent 0, transparent 11px,
-      color-mix(in oklab, var(--signal-crimson) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 11px,
-      color-mix(in oklab, var(--signal-crimson) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 12px),
-    radial-gradient(ellipse at 0% 50%,
-      color-mix(in oklab, var(--signal-crimson) calc(20% * var(--kuro-wallpaper-alpha, 1)), transparent) 0%,
-      transparent 55%),
-    var(--background-secondary-alt, #050506);
-}
-
-
-/* ── sensei · Mentor — horizontal paper lines, ember amber ── */
-html[data-aspect="sensei"] body.kuro-margin-tint .workspace-leaf-content[data-type="markdown"] {
-  background:
-    radial-gradient(circle at 82% 20%,
-      color-mix(in oklab, var(--signal-ember) calc(22% * var(--kuro-wallpaper-alpha, 1)), transparent) 0%,
-      transparent 45%),
-    repeating-linear-gradient(transparent 0, transparent 21px,
-      color-mix(in oklab, var(--signal-ember) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 21px,
-      color-mix(in oklab, var(--signal-ember) calc(18% * var(--kuro-wallpaper-alpha, 1)), transparent) 22px),
-    var(--background-secondary-alt, #050506);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -6278,16 +5781,6 @@ body.kuro-low-contrast.kuro-margin-tint.theme-dark {
 }
 
 
-/* ── Aspect wallpapers softening ── */
-body.kuro-low-contrast.kuro-margin-tint {
-  /* v3.2: replaces the v3.1 full-coverage inset-shadow veil hack with a clean
-     alpha-multiplier override. 40-aspect-wallpapers.css now multiplies
-     every wallpaper colour-mix percentage by `var(--kuro-wallpaper-alpha, 1)`,
-     so dropping the variable to 0.4 here attenuates all four wallpapers
-     proportionally without painting an outer-layer veil over the floating
-     page (which was misread as an inverse-glow in Editor Mode). */
-  --kuro-wallpaper-alpha: 0.4;
-}
 
 
 /* ── Signal-subtheme attenuation ── */
@@ -6375,175 +5868,6 @@ body.kuro-low-contrast.kuro-hanko-glow:not(.kuro-no-glow) {
       0 0 calc(24px * var(--kuro-hanko-glow-mult, 1)) currentColor;
     opacity: 0.55;
   }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   FRAGMENT · 61-color-vision-boost.css
-   ═══════════════════════════════════════════════════════════════════════ */
-
-/* ─────────────────────────────────────────────────────────────────────────
-   FRAGMENT · 61-color-vision-boost.css
-   Source: NEW for v3.2.0 — Live-Test 2026-05-11 (Jay, red-green deficiency)
-   ─────────────────────────────────────────────────────────────────────────
-   Color Vision Mode — a fourth orthogonal axis next to Aspect, Signal and
-   Contrast. Activated by `body.kuro-color-vision-boost` (the companion
-   plugin owns the toggle; this layer only defines the look).
-
-   Strategy — three cues, layered:
-     1. Saturation boost on aspect accents + a slightly deeper vignette
-        minimum so accents read against the chamber.
-     2. Hue micro-shifts on signals that collide along the red-green axis:
-        · biolink     → 12 % nudge toward circuit  (greenish → teal-ish)
-        · toxic       → 12 % nudge toward phosphor (yellow-green → cleaner green-yellow)
-        · neural-bleed → 10 % nudge toward voidwitch (pink → magenta-pink)
-        · rust         →  8 % nudge toward ember     (warm tan → ember-orange)
-        Small, oklch-mediated nudges. Users with full colour vision should
-        read this as "the signals look more saturated", not "the signals
-        changed colour".
-     3. Non-colour cue per signal — a 12 px unicode glyph anchored top-right
-        on the view-mode container. Twelve distinct glyphs:
-            crimson      ◉    phosphor     ◎
-            ember        ✦    spectre      ◇
-            circuit      ▲    ghost        ▼
-            biolink      ◐    neural-bleed ◑
-            rust         ⬡    toxic        ⬢
-            voidwitch    ✶    pearl        ◈
-        Position absolute over the page; pointer-events off so it never
-        interferes with clicks.
-
-   Heading hierarchy gets a non-colour cue as well: rendered headings under
-   boost mode shift from font-weight 500 to 600. The increase is small but
-   visible and stacks with whatever the colourful-headings layer is doing.
-
-   Default state: OFF. The plugin sets `body.kuro-color-vision-boost` when
-   the user enables it in Settings → Accessibility.
-   ───────────────────────────────────────────────────────────────────── */
-
-
-/* ── §1 · Saturation boost + vignette floor on aspect accents ── */
-
-body.kuro-color-vision-boost[data-aspect="shugo"],
-body.kuro-color-vision-boost html[data-aspect="shugo"],
-html[data-aspect="shugo"] body.kuro-color-vision-boost {
-  --kuro-glow-accent: rgba(57, 255, 122, 0.45);
-}
-body.kuro-color-vision-boost[data-aspect="gunshi"],
-body.kuro-color-vision-boost html[data-aspect="gunshi"],
-html[data-aspect="gunshi"] body.kuro-color-vision-boost {
-  --kuro-glow-accent: rgba(168, 120, 255, 0.48);
-}
-body.kuro-color-vision-boost[data-aspect="kantoku"],
-body.kuro-color-vision-boost html[data-aspect="kantoku"],
-html[data-aspect="kantoku"] body.kuro-color-vision-boost {
-  --kuro-glow-accent: rgba(212, 32, 58, 0.50);
-}
-body.kuro-color-vision-boost[data-aspect="sensei"],
-body.kuro-color-vision-boost html[data-aspect="sensei"],
-html[data-aspect="sensei"] body.kuro-color-vision-boost {
-  --kuro-glow-accent: rgba(255, 180, 66, 0.48);
-}
-
-body.kuro-color-vision-boost {
-  /* keep the chamber dark so saturated accents read hotter against it */
-  --kuro-vignette: max(var(--kuro-vignette, 0), 0.15);
-}
-
-
-/* ── §2 · Hue micro-shifts on collision-prone signals ── */
-
-body.kuro-color-vision-boost {
-  /* biolink (organic green) toward circuit (teal cyan) — reduces collision
-     with toxic / phosphor in red-green deficiency */
-  --signal-biolink: color-mix(in oklch, #8bbf87 88%, #4ac8d8 12%);
-  /* toxic (yellow-green) toward phosphor — pulls it away from biolink */
-  --signal-toxic: color-mix(in oklch, #d9c566 88%, #39ff7a 12%);
-  /* neural-bleed (warm pink) toward voidwitch — distances it from ember */
-  --signal-neural-bleed: color-mix(in oklch, #e8a5a5 90%, #b49bd1 10%);
-  /* rust (warm tan) toward ember — sharpens the warm cluster boundary */
-  --signal-rust: color-mix(in oklch, #e8b979 92%, #ffb442 8%);
-}
-
-
-/* ── §3 · Non-colour cue per Signal — glyph anchor top-right ── */
-
-body.kuro-color-vision-boost .markdown-source-view[class*="kuro-signal-"],
-body.kuro-color-vision-boost .markdown-preview-view[class*="kuro-signal-"] {
-  position: relative;
-}
-
-body.kuro-color-vision-boost .markdown-source-view[class*="kuro-signal-"]::before,
-body.kuro-color-vision-boost .markdown-preview-view[class*="kuro-signal-"]::before {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  font-size: 12px;
-  line-height: 1;
-  opacity: 0.85;
-  pointer-events: none;
-  user-select: none;
-  font-family: var(--kuro-font-mono, ui-monospace, monospace);
-  z-index: 2;
-}
-
-body.kuro-color-vision-boost .markdown-source-view.kuro-signal-crimson::before,
-body.kuro-color-vision-boost .markdown-preview-view.kuro-signal-crimson::before {
-  content: "◉"; color: var(--signal-crimson);
-}
-body.kuro-color-vision-boost .markdown-source-view.kuro-signal-phosphor::before,
-body.kuro-color-vision-boost .markdown-preview-view.kuro-signal-phosphor::before {
-  content: "◎"; color: var(--signal-phosphor);
-}
-body.kuro-color-vision-boost .markdown-source-view.kuro-signal-ember::before,
-body.kuro-color-vision-boost .markdown-preview-view.kuro-signal-ember::before {
-  content: "✦"; color: var(--signal-ember);
-}
-body.kuro-color-vision-boost .markdown-source-view.kuro-signal-spectre::before,
-body.kuro-color-vision-boost .markdown-preview-view.kuro-signal-spectre::before {
-  content: "◇"; color: var(--signal-spectre);
-}
-body.kuro-color-vision-boost .markdown-source-view.kuro-signal-circuit::before,
-body.kuro-color-vision-boost .markdown-preview-view.kuro-signal-circuit::before {
-  content: "▲"; color: var(--signal-circuit);
-}
-body.kuro-color-vision-boost .markdown-source-view.kuro-signal-ghost::before,
-body.kuro-color-vision-boost .markdown-preview-view.kuro-signal-ghost::before {
-  content: "▼"; color: var(--signal-ghost);
-}
-body.kuro-color-vision-boost .markdown-source-view.kuro-signal-biolink::before,
-body.kuro-color-vision-boost .markdown-preview-view.kuro-signal-biolink::before {
-  content: "◐"; color: var(--signal-biolink);
-}
-body.kuro-color-vision-boost .markdown-source-view.kuro-signal-neural-bleed::before,
-body.kuro-color-vision-boost .markdown-preview-view.kuro-signal-neural-bleed::before {
-  content: "◑"; color: var(--signal-neural-bleed);
-}
-body.kuro-color-vision-boost .markdown-source-view.kuro-signal-rust::before,
-body.kuro-color-vision-boost .markdown-preview-view.kuro-signal-rust::before {
-  content: "⬡"; color: var(--signal-rust);
-}
-body.kuro-color-vision-boost .markdown-source-view.kuro-signal-toxic::before,
-body.kuro-color-vision-boost .markdown-preview-view.kuro-signal-toxic::before {
-  content: "⬢"; color: var(--signal-toxic);
-}
-body.kuro-color-vision-boost .markdown-source-view.kuro-signal-voidwitch::before,
-body.kuro-color-vision-boost .markdown-preview-view.kuro-signal-voidwitch::before {
-  content: "✶"; color: var(--signal-voidwitch);
-}
-body.kuro-color-vision-boost .markdown-source-view.kuro-signal-pearl::before,
-body.kuro-color-vision-boost .markdown-preview-view.kuro-signal-pearl::before {
-  content: "◈"; color: var(--signal-pearl);
-}
-
-
-/* ── §4 · Heading-hierarchy weight bump (non-colour hierarchy cue) ── */
-
-body.kuro-color-vision-boost .markdown-rendered h1,
-body.kuro-color-vision-boost .markdown-rendered h2,
-body.kuro-color-vision-boost .markdown-rendered h3,
-body.kuro-color-vision-boost .markdown-rendered h4,
-body.kuro-color-vision-boost .markdown-rendered h5,
-body.kuro-color-vision-boost .markdown-rendered h6 {
-  font-weight: 600;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
