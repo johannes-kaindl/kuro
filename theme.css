@@ -357,8 +357,16 @@
   /* ── Checkbox ──────────────────────────────────────────────────────── */
   --checkbox-color:        var(--interactive-accent);
   --checkbox-color-hover:  var(--signal-pearl);
-  --checkbox-border-color: color-mix(in srgb, var(--interactive-accent) 45%, transparent);
+  --checkbox-border-color: color-mix(in srgb, var(--interactive-accent) 60%, transparent);
+  --checkbox-marker:       #0c0e12;
   --checkbox-radius:       2px;
+
+  /* ── Component semantic tokens — theme-scoped (correct in dark AND light) ── */
+  --code-frame:  color-mix(in srgb, var(--signal-pearl) 12%, transparent);
+  --code-stripe: color-mix(in srgb, var(--interactive-accent) 75%, transparent);
+  --kuro-lift:   0 2px 10px rgba(0,0,0,0.30),
+                 0 0 0 1px color-mix(in srgb, var(--interactive-accent) 28%, transparent),
+                 0 0 18px -8px color-mix(in srgb, var(--interactive-accent) 45%, transparent);
 
   /* ── Scrollbar ─────────────────────────────────────────────────────── */
   --scrollbar-bg:              transparent;
@@ -517,8 +525,14 @@
   /* ── Checkbox / Scrollbar ──────────────────────────────────────────── */
   --checkbox-color:        var(--interactive-accent);
   --checkbox-color-hover:  #2b2824;
-  --checkbox-border-color: color-mix(in srgb, var(--interactive-accent) 40%, transparent);
+  --checkbox-border-color: color-mix(in srgb, var(--interactive-accent) 45%, transparent);
+  --checkbox-marker:       #1a1714;
   --checkbox-radius:       2px;
+
+  /* ── Component semantic tokens — theme-scoped (correct in dark AND light) ── */
+  --code-frame:  rgba(0,0,0,0.08);
+  --code-stripe: color-mix(in srgb, var(--interactive-accent) 45%, transparent);
+  --kuro-lift:   0 2px 10px rgba(0,0,0,0.10);
 
   --scrollbar-bg:              transparent;
   --scrollbar-thumb-bg:        rgba(0,0,0,0.12);
@@ -572,7 +586,6 @@
   border-color: rgba(0,0,0,0.10);
   box-shadow: 0 32px 96px rgba(0,0,0,0.18), 0 0 0 1px color-mix(in srgb, var(--interactive-accent) 12%, transparent);
 }
-.theme-light .markdown-rendered pre { border-color: rgba(0,0,0,0.08); border-left-color: color-mix(in srgb, var(--interactive-accent) 40%, transparent); }
 body.theme-light::after,
 body.theme-light::before { display: none; }
 
@@ -822,8 +835,8 @@ body .cm-inline-code {
 
 body .markdown-rendered pre {
   background: var(--code-background);
-  border: 1px solid var(--background-modifier-border);
-  border-left: 3px solid color-mix(in srgb, var(--interactive-accent) 55%, transparent);
+  border: 1px solid var(--code-frame);
+  border-left: 3px solid var(--code-stripe);
   border-radius: 4px;
   padding: 14px 18px;
   font-family: var(--kuro-font-mono);
@@ -1686,7 +1699,7 @@ body.kuro-slides-progress .reveal .progress span {
   border-left: 4px solid rgb(var(--callout-color));
   border-radius: var(--callout-radius);
   background-color: rgba(var(--callout-color), var(--callout-bg-opacity));
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--kuro-lift);
   overflow: hidden;
   transition: background-color var(--dur-base) var(--ease-signal),
               box-shadow var(--dur-base) var(--ease-signal);
@@ -1976,7 +1989,7 @@ body.theme-dark .bases-table .bases-tr:hover .bases-td:first-child {
   background: var(--bases-card-bg);
   border: 1px solid var(--bases-card-border);
   border-radius: var(--bases-card-radius);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+  box-shadow: var(--kuro-lift);
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
   overflow: visible;
 }
@@ -1988,7 +2001,7 @@ body.theme-dark .bases-cards-item:hover {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4),
               0 0 0 1px color-mix(in srgb, var(--interactive-accent) 12%, transparent);
 }
-body.theme-light .bases-cards-item { background: var(--background-primary); box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07); }
+body.theme-light .bases-cards-item { background: var(--background-primary); }
 body.theme-light .bases-cards-item:hover { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.11); }
 
 .bases-cards-item .bases-cards-cover,
@@ -3987,13 +4000,23 @@ input.task-list-item-checkbox {
   width: 1.1em;
   height: 1.1em;
   border-radius: 3px;
-  border: 1.5px solid var(--text-faint);
-  background: transparent;
+  /* theme-scoped checkbox tokens (visible in dark AND light) + faint accent wash */
+  border: 1.5px solid var(--checkbox-border-color);
+  background: color-mix(in srgb, var(--interactive-accent) 8%, transparent);
   cursor: pointer;
   position: relative;
   flex-shrink: 0;
   vertical-align: middle;
   transition: background 120ms ease, border-color 120ms ease;
+}
+
+/* Settings toggles: the "on" track follows the system accent, theme-scoped so it
+   stays visible on dark surfaces (Style Settings' default mixes the accent into a
+   dark border token → near-invisible in dark). */
+.checkbox-container.is-enabled { background-color: var(--interactive-accent); }
+body.theme-dark .checkbox-container.is-enabled {
+  background-color: var(--interactive-accent);
+  border-color: var(--interactive-accent);
 }
 
 /* ── [x] Done — green ── */
@@ -4007,11 +4030,11 @@ input[data-task="X"].task-list-item-checkbox {
 input[data-task="x"].task-list-item-checkbox::after,
 input[data-task="X"].task-list-item-checkbox::after {
   content: '✓';
-  color: #fff;
+  color: var(--checkbox-marker);
   font-size: 0.75em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 li.task-list-item[data-task="x"],
@@ -4031,7 +4054,7 @@ input[data-task="-"].task-list-item-checkbox::after {
   font-size: 0.9em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
 }
 li.task-list-item[data-task="-"] {
   text-decoration: line-through;
@@ -4049,7 +4072,7 @@ input[data-task=">"].task-list-item-checkbox::after {
   font-size: 1em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
@@ -4063,7 +4086,7 @@ input[data-task="<"].task-list-item-checkbox::after {
   font-size: 1em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
@@ -4077,7 +4100,7 @@ input[data-task="?"].task-list-item-checkbox::after {
   font-size: 0.75em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
@@ -4092,7 +4115,7 @@ input[data-task="!"].task-list-item-checkbox::after {
   font-size: 0.8em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
@@ -4106,7 +4129,7 @@ input[data-task="i"].task-list-item-checkbox::after {
   font-size: 0.75em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-style: italic;
   font-weight: 700;
 }
@@ -4121,7 +4144,7 @@ input[data-task="b"].task-list-item-checkbox::after {
   font-size: 0.8em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
 }
 
 /* ── [p] Pro — green ── */
@@ -4134,7 +4157,7 @@ input[data-task="p"].task-list-item-checkbox::after {
   font-size: 0.9em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
@@ -4148,7 +4171,7 @@ input[data-task="c"].task-list-item-checkbox::after {
   font-size: 0.9em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
@@ -4162,7 +4185,7 @@ input[data-task="f"].task-list-item-checkbox::after {
   font-size: 0.7em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
 }
 
 /* ── [k] Key — amber ── */
@@ -4174,7 +4197,7 @@ input[data-task="k"].task-list-item-checkbox::after {
   font-size: 0.65em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
 }
 
 

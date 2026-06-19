@@ -1000,13 +1000,23 @@ input.task-list-item-checkbox {
   width: 1.1em;
   height: 1.1em;
   border-radius: 3px;
-  border: 1.5px solid var(--text-faint);
-  background: transparent;
+  /* theme-scoped checkbox tokens (visible in dark AND light) + faint accent wash */
+  border: 1.5px solid var(--checkbox-border-color);
+  background: color-mix(in srgb, var(--interactive-accent) 8%, transparent);
   cursor: pointer;
   position: relative;
   flex-shrink: 0;
   vertical-align: middle;
   transition: background 120ms ease, border-color 120ms ease;
+}
+
+/* Settings toggles: the "on" track follows the system accent, theme-scoped so it
+   stays visible on dark surfaces (Style Settings' default mixes the accent into a
+   dark border token → near-invisible in dark). */
+.checkbox-container.is-enabled { background-color: var(--interactive-accent); }
+body.theme-dark .checkbox-container.is-enabled {
+  background-color: var(--interactive-accent);
+  border-color: var(--interactive-accent);
 }
 
 /* ── [x] Done — green ── */
@@ -1020,11 +1030,11 @@ input[data-task="X"].task-list-item-checkbox {
 input[data-task="x"].task-list-item-checkbox::after,
 input[data-task="X"].task-list-item-checkbox::after {
   content: '✓';
-  color: #fff;
+  color: var(--checkbox-marker);
   font-size: 0.75em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 li.task-list-item[data-task="x"],
@@ -1044,7 +1054,7 @@ input[data-task="-"].task-list-item-checkbox::after {
   font-size: 0.9em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
 }
 li.task-list-item[data-task="-"] {
   text-decoration: line-through;
@@ -1062,7 +1072,7 @@ input[data-task=">"].task-list-item-checkbox::after {
   font-size: 1em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
@@ -1076,7 +1086,7 @@ input[data-task="<"].task-list-item-checkbox::after {
   font-size: 1em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
@@ -1090,7 +1100,7 @@ input[data-task="?"].task-list-item-checkbox::after {
   font-size: 0.75em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
@@ -1105,7 +1115,7 @@ input[data-task="!"].task-list-item-checkbox::after {
   font-size: 0.8em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
@@ -1119,7 +1129,7 @@ input[data-task="i"].task-list-item-checkbox::after {
   font-size: 0.75em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-style: italic;
   font-weight: 700;
 }
@@ -1134,7 +1144,7 @@ input[data-task="b"].task-list-item-checkbox::after {
   font-size: 0.8em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
 }
 
 /* ── [p] Pro — green ── */
@@ -1147,7 +1157,7 @@ input[data-task="p"].task-list-item-checkbox::after {
   font-size: 0.9em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
@@ -1161,7 +1171,7 @@ input[data-task="c"].task-list-item-checkbox::after {
   font-size: 0.9em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
@@ -1175,7 +1185,7 @@ input[data-task="f"].task-list-item-checkbox::after {
   font-size: 0.7em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
 }
 
 /* ── [k] Key — amber ── */
@@ -1187,7 +1197,7 @@ input[data-task="k"].task-list-item-checkbox::after {
   font-size: 0.65em;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
 }
 
 
