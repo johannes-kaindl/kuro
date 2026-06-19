@@ -6,8 +6,7 @@
    The theme already nulls callout-ICON :hover animations under reduced
    motion (00-base §callouts, 10-v1-polish). This fragment closes the
    remaining gap: decorative LOOPS on callout BOXES / pseudo-elements
-   (phosphorFlicker on [data-callout="kuro"], cursorBlink on a levelup
-   ::after, neonPulse/eyeReveal) and the .kuro-pulse utility (70-showcase).
+   and the .kuro-pulse utility (70-showcase).
    Scoped to callouts + the pulse utility on purpose — Obsidian's own
    functional UI animations are left untouched.
    ───────────────────────────────────────────────────────────────────────── */

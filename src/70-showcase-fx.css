@@ -12,8 +12,7 @@
      1. Press feedback             — KSP standard: translateY(1px) + 0.95 brightness
      2. Pulse animation utility    — @keyframes kuro-pulse + .kuro-pulse class
      3. Active-file stripe         — KSP file-list active-state convention
-     4. Kuro-line callout helper   — opt-in class, lifted from vault/index.html
-     5. Smooth-hover wash          — accent-soft bg on hovered nav items
+     4. Smooth-hover wash          — accent-soft bg on hovered nav items
 
    Token-bridged throughout. No bare hex literals in new code.
    ───────────────────────────────────────────────────────────────────── */
@@ -68,35 +67,8 @@
 }
 
 
-/* ── 4 · Kuro-line callout helper ──────────────────────────
-   Opt-in class users can add to a blockquote or div to render
-   a "Kuro says" line in KSP style. Lifted from vault/index.html
-   .kuro-line. Not active by default; companion plugin may apply
-   it automatically for [!kuro] callouts in a later phase.
-   ──────────────────────────────────────────────────────────── */
 
-.kuro-line {
-  display: flex;
-  gap: var(--space-3);
-  align-items: flex-start;
-  margin: var(--space-5) 0;
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-lg);
-  background: color-mix(in oklab, var(--accent) 7%, transparent);
-  border-left: 2px solid var(--accent);
-}
-.kuro-line .speaker {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: var(--tracking-caps);
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 600;
-  margin-bottom: var(--space-1);
-}
-
-
-/* ── 5 · Smooth-hover wash ─────────────────────────────────
+/* ── 4 · Smooth-hover wash ─────────────────────────────────
    KSP hover convention: not a colour shift, but a brightness
    bump or accent-soft background wash. Applied to non-active
    nav items and tab headers.

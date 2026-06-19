@@ -7,7 +7,6 @@
 
    Included sections (numbering follows _kuro2 originals):
      §02 · Void Scale                      (--void-000 … --void-900)
-     §21 · [!kuro] custom callout          (subset of §21 callouts)
      §32 · Chamber grain overlay
      §33 · Plugin body-class hooks         (centralised; deduplicated below)
      §34 · Hanko · Ribbon kanji · Kuro marks
@@ -40,52 +39,6 @@
   --void-900: var(--signal-pearl);/* fg primary                          */
 
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   _kuro2 LAYER · §21 · [!kuro] Custom Callout
-   ═══════════════════════════════════════════════════════════════════════ */
-
-/* Custom Kuro-line callout — [!kuro] · spectre tint, accent-soft wash */
-.callout[data-callout="kuro"] {
-  --callout-color: var(--signal-spectre);
-  background: color-mix(in oklab, var(--accent) 7%, transparent);
-  border-color: color-mix(in oklab, var(--accent) 35%, transparent);
-  border-left: 2px solid var(--accent);
-  border-radius: var(--radius-lg);
-  padding: 14px 16px;
-}
-.callout[data-callout="kuro"] .callout-title {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: var(--tracking-caps);
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 600;
-}
-.callout[data-callout="kuro"] .callout-content {
-  font-family: var(--font-display);
-  font-size: var(--text-base);
-  font-weight: 500;
-  color: var(--fg-primary);
-  line-height: 1.45;
-  letter-spacing: -0.01em;
-  margin-top: 4px;
-}
-.callout[data-callout="kuro"] .callout-icon {
-  background: radial-gradient(circle, #1a1e25, #040506);
-  border: 1px solid color-mix(in oklab, var(--accent) 60%, transparent);
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  position: relative;
-}
-.callout[data-callout="kuro"] .callout-icon::after {
-  content: ''; width: 4px; height: 4px; border-radius: 50%;
-  background: var(--signal-crimson);
-  box-shadow: 0 0 6px var(--signal-crimson);
-  position: absolute;
-}
-.callout[data-callout="kuro"] .callout-icon svg { display: none; }
-
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
