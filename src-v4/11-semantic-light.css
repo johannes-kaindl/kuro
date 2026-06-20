@@ -26,7 +26,7 @@
   /* Foreground */
   --fg-primary:   var(--paper-900);
   --fg-secondary: var(--paper-700);
-  --fg-tertiary:  var(--paper-500);
+  --fg-tertiary:  var(--paper-600);
   --fg-on-accent: var(--paper-000);
 
   /* Borders + dividers */
@@ -47,10 +47,10 @@
   --code-stripe: color-mix(in srgb, var(--interactive-accent) 45%, transparent);
 
   /* Syntax (only the ones that are not just fg-*) */
-  --syntax-normal:  #3a7a8c;
-  --syntax-string:  #b87333;
-  --syntax-value:   #4a8c54;
-  --syntax-keyword: #6b4f9e;
+  --syntax-normal:  #2f6675;  /* AA on --code-bg (5.35:1) */
+  --syntax-string:  #a05a1e;  /* AA (4.41:1) */
+  --syntax-value:   #3c7344;  /* AA (4.71:1) */
+  --syntax-keyword: #6b4f9e;  /* already AA (5.42:1) */
 
   /* Status text */
   --status-error:       #b54545;
@@ -64,7 +64,9 @@
 
   /* Lift + shadows (light = soft drop, no glow behind notes) */
   --lift: 0 2px 10px rgba(0, 0, 0, 0.10);
-  --pane-lift: none;
+  --pane-lift: 0 1px 0 0 rgba(0, 0, 0, 0.02),
+               0 14px 34px -20px rgba(0, 0, 0, 0.16),
+               0 4px 12px -8px rgba(0, 0, 0, 0.10);
   --shadow-modal: 0 24px 80px rgba(0, 0, 0, 0.15),
                   0 0 0 1px color-mix(in srgb, var(--interactive-accent) 10%, transparent);
 

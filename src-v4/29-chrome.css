@@ -212,3 +212,68 @@ body .metadata-add-button {
   color: var(--fg-tertiary);
 }
 body .metadata-add-button:hover { color: var(--fg-secondary); }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   §2b · CLICKABLE-ICONS — one base, app-wide
+   (the §2 ribbon rule keeps its stronger accent-on-hover as a scoped override)
+   ════════════════════════════════════════════════════════════════════════ */
+
+.clickable-icon {
+  color: var(--fg-tertiary);
+  border-radius: var(--radius-sm);
+  transition: color var(--dur-fast) var(--ease-signal),
+              background var(--dur-fast) var(--ease-signal);
+}
+.clickable-icon:hover  { color: var(--fg-primary); background: var(--overlay-hover); }
+.clickable-icon:active { background: var(--overlay-active); }
+.clickable-icon.is-active { color: var(--accent); background: var(--accent-soft); }
+.clickable-icon.is-disabled,
+.clickable-icon:disabled  { opacity: 0.4; cursor: not-allowed; }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   §7 · SUGGESTION / QUICK-SWITCHER / COMMAND PALETTE
+   The most-used surfaces in the app — Kuro's active-selection idiom.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.prompt {
+  font-family: var(--font-mono);
+  background: var(--surface-modal);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-modal);
+}
+.suggestion-item {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--fg-secondary);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.01em;
+}
+.suggestion-item.is-selected {
+  color: var(--fg-primary);
+  background: var(--accent-soft);
+  box-shadow: inset 2px 0 0 0 var(--accent);
+}
+.suggestion-highlight { color: var(--accent); font-weight: 600; }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   §8 · CONTEXT MENUS
+   ════════════════════════════════════════════════════════════════════════ */
+
+.menu {
+  background: var(--surface-modal);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-modal);
+  border-radius: var(--radius-md);
+}
+.menu-item {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--fg-secondary);
+  border-radius: var(--radius-sm);
+}
+.menu-item:not(.is-disabled):not(.is-label):hover,
+.menu-item.selected { color: var(--fg-primary); background: var(--accent-soft); }
+.menu-separator { border-top: 1px solid var(--divider); }

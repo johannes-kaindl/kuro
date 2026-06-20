@@ -112,7 +112,7 @@
   --font-text-theme:      var(--kuro-font-mono);
   --font-monospace-theme: var(--kuro-font-mono);
   --font-text-size:       14px;
-  --line-height-normal:   1.75;
+  --line-height-normal:   1.6;
 
   /* ===== BRIDGE · Tags (accent-tinted pill) ======================== */
   --tag-color:              var(--fg-secondary);
@@ -137,7 +137,7 @@
 
   /* ===== BRIDGE · Callout metrics =================================== */
   --callout-border-width: 0px; --callout-border-opacity: 0;
-  --callout-padding: 14px 18px; --callout-radius: 8px; --callout-blend-mode: normal;
+  --callout-padding: var(--space-3) var(--space-4); --callout-radius: var(--radius-md); --callout-blend-mode: normal;
 
   /* ===== BRIDGE · Checkbox ========================================== */
   --checkbox-color:        var(--interactive-accent);

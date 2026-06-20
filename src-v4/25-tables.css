@@ -35,7 +35,7 @@
   letter-spacing: var(--tracking-wide);  /* 0.04em */
   text-transform: uppercase;
   font-size: var(--text-xs);              /* was 0.85em — caps label */
-  padding: 7px 13px;
+  padding: var(--space-2) var(--space-3);  /* 8px 12px — on the space scale */
 }
 
 /* ── Body cells ──────────────────────────────────────────────────────────
@@ -46,7 +46,7 @@
 .markdown-source-view.mod-cm6 table td {
   border: 1px solid var(--border-subtle);
   color: var(--fg-primary);
-  padding: 6px 13px;
+  padding: var(--space-2) var(--space-3);  /* 8px 12px — same rhythm as th */
 }
 
 /* ── Row hover ───────────────────────────────────────────────────────────

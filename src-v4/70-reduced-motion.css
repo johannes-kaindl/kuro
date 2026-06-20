@@ -18,6 +18,15 @@
    ───────────────────────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
+  /* Canonical near-zero reset — the theme now ships many transitions (links, tags,
+     nav, tabs, callouts, focus ring). 0.01ms (not 0) preserves transitionend events. */
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  /* Explicit guarantee for the decorative :hover icon loops (higher-spec). */
   .callout,
   .callout *,
   .callout *::before,

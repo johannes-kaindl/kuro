@@ -49,7 +49,7 @@
   --void-300: #22272f;  /* border subtle */
   --void-400: #2e343d;  /* border default */
   --void-500: #3d4450;  /* border strong */
-  --void-600: #5a6170;  /* fg tertiary */
+  --void-600: #6b7280;  /* fg tertiary — lifted for AA (4.17:1 on surface), same cool slate */
   --void-700: #828a97;  /* fg secondary */
   --void-800: #c8cbd2;  /* fg primary alt */
   --void-900: var(--signal-pearl); /* fg primary */
