@@ -1,0 +1,200 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   FRAGMENT · 05-style-settings.css
+   Style Settings annotation block. Drives the SAME body classes / CSS vars
+   the companion plugin sets, so the two share one contract (last writer wins).
+   No effect when the Style Settings plugin is absent — theme uses CSS defaults.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* @settings
+
+name: Kuro
+id: kuro-theme
+settings:
+    -
+        id: kuro-aspect-mood
+        title: Colour & Mood
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: kuro-preset
+        title: Signal preset
+        description: A colour mood — tints the surfaces in the signal's colour. The accent always follows your system accent.
+        type: class-select
+        allowEmpty: false
+        default: kuro-preset-pearl
+        options:
+            -
+                label: Toxic Haze
+                value: kuro-preset-toxic-haze
+            -
+                label: Phosphor
+                value: kuro-preset-phosphor
+            -
+                label: Voidwitch
+                value: kuro-preset-voidwitch
+            -
+                label: Crimson
+                value: kuro-preset-crimson
+            -
+                label: Ember
+                value: kuro-preset-ember
+            -
+                label: Circuit
+                value: kuro-preset-circuit
+            -
+                label: Biolink
+                value: kuro-preset-biolink
+            -
+                label: Neural Bleed
+                value: kuro-preset-neural-bleed
+            -
+                label: Ghost Protocol
+                value: kuro-preset-ghost-protocol
+            -
+                label: Rust Signal
+                value: kuro-preset-rust-signal
+            -
+                label: Spectre
+                value: kuro-preset-spectre
+            -
+                label: Pearl
+                value: kuro-preset-pearl
+            -
+                label: Kuro
+                value: kuro-preset-kuro
+    -
+        id: kuro-low-contrast
+        title: Low contrast
+        description: Softer text colours and reduced glow — calmer and easier on the eyes.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-typography
+        title: Typography
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: --kuro-font-serif
+        title: Serif / display font
+        description: Used for headings. Type a font name installed on your system.
+        type: variable-text
+        default: var(--font-display)
+        quotes: false
+    -
+        id: --kuro-font-mono
+        title: Monospace font
+        type: variable-text
+        default: var(--font-mono)
+        quotes: false
+    -
+        id: kuro-mono-all
+        title: Terminal mode
+        description: Monospace for UI and body — full terminal look.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-reading
+        title: Reading
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: --file-line-width
+        title: Reading line width
+        description: Max width of the text column, in px (needs Editor → Readable line length on).
+        type: variable-number
+        default: 700
+        format: px
+    -
+        id: kuro-margin-tint
+        title: Margin tint
+        description: Tints the margins around the text column so the page seems to float.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-colorful-headings
+        title: Colourful headlines
+        description: Tints H1–H6 each in a distinct colour.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-no-callout-animations
+        title: Disable callout animations
+        description: Turns off icon hover animations (reduced motion / performance).
+        type: class-toggle
+        default: false
+    -
+        id: --bases-cards-line-height
+        title: Bases card density
+        description: Row height inside Bases Cards view, in px.
+        type: variable-number
+        default: 30
+        format: px
+    -
+        id: kuro-slides
+        title: Slides
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: kuro-slides-frame
+        title: Slide frame
+        description: Border + shadow/glow around each slide.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-slides-numbers
+        title: Slide numbers
+        description: Current / total in the corner.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-slides-progress
+        title: Progress bar
+        description: Accent-coloured progress bar at the bottom.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-editor-tabs
+        title: Editor & Tabs
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: kuro-zen-mode
+        title: Zen mode
+        description: Distraction-free — all UI chrome hidden.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-active-line
+        title: Active line highlight
+        description: Subtle accent tint on the current line.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-rainbow-indent
+        title: Rainbow indent guides
+        description: Colours each indentation level. Requires Editor → Show indentation guides.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-tabs
+        title: Tab style
+        type: class-select
+        allowEmpty: false
+        default: kuro-tabs-default
+        options:
+            -
+                label: Standard
+                value: kuro-tabs-default
+            -
+                label: Pill
+                value: kuro-tabs-pill
+            -
+                label: Underline
+                value: kuro-tabs-underline
+
+*/
