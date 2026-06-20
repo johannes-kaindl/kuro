@@ -15,9 +15,9 @@
              --font-mono --kuro-font-mono --space-* --radius-* --dur-* --ease-*
    DEPENDS   10/11/12/13 (tokens), 05-style-settings (toggle id contract)
    SURFACES  Toggles: editor (.cm-*), reading (.markdown-*), workspace chrome
-             (ribbon / sidebars / status-bar / tab-headers), reveal slides.
+             (ribbon / sidebars / status-bar / tab-headers).
              Decorative: .theme-dark .workspace::after (grain),
-             .theme-dark H1 / inline-title (glow), .reveal (frame).
+             .theme-dark H1 / inline-title (glow).
    NOTE      kuro-no-callout-animations is NOT here — it lives in 24-callouts.css.
    --- */
 
@@ -156,77 +156,29 @@ body.kuro-tabs-underline .workspace-tab-header.is-active {
 
 
 /* ════════════════════════════════════════════════════════════════════════
-   7 · Slides — kuro-slides-frame / kuro-slides-numbers / kuro-slides-progress
+   8 · kuro-colorful-headings — DISTINCT signal hue per level
    ──────────────────────────────────────────────────────────────────────
-   Reveal.js sets layout (padding / display) inline on slide sections at
-   runtime, so the frame padding needs !important to land.
-   ════════════════════════════════════════════════════════════════════════ */
-
-/* 7a · Frame — accent border + mode-aware lift */
-body.kuro-slides-frame .reveal .slides section:not(.stack) {
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-  border-radius: var(--radius-sm);
-  box-sizing: border-box;
-  padding: 40px 56px !important; /* keep — reveal.js sets padding inline on slide sections */
-}
-body.theme-dark.kuro-slides-frame .reveal .slides section:not(.stack) {
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent),
-    0 0 28px var(--accent-glow),
-    var(--lift);
-}
-body.theme-light.kuro-slides-frame .reveal .slides section:not(.stack) {
-  border-color: color-mix(in srgb, var(--accent) 15%, transparent);
-  box-shadow: var(--lift);
-}
-
-/* 7b · Numbers — hidden unless opted in */
-body:not(.kuro-slides-numbers) .reveal .slide-number { display: none; }
-body.kuro-slides-numbers .reveal .slide-number {
-  display: block;
-  background: transparent;
-  color: var(--text-faint);
-  font-family: var(--kuro-font-mono);
-  font-size: var(--text-sm);
-}
-
-/* 7c · Progress bar — hidden unless opted in */
-body:not(.kuro-slides-progress) .reveal .progress { display: none; }
-body.kuro-slides-progress .reveal .progress {
-  display: block;
-  height: 3px;
-  background: color-mix(in srgb, var(--accent) 15%, transparent);
-}
-body.kuro-slides-progress .reveal .progress span {
-  background: var(--accent);
-  transition: width var(--dur-slow) var(--ease-signal);
-}
-
-
-/* ════════════════════════════════════════════════════════════════════════
-   8 · kuro-colorful-headings — accent-derived tonal H1..H6 hierarchy
-   ──────────────────────────────────────────────────────────────────────
-   The per-Hn colour model (ported from 00-base §695-708, both branches):
-   define --hN-color from --accent + foreground via color-mix, then apply
-   to the heading selectors. Dark mixes toward --fg-secondary, light toward
-   --fg-primary — preserving the original tonal walk.
+   Genuinely colourful: each level keys off a different one of the twelve
+   signals (NOT the system accent — that made it monochrome when the accent
+   is light/desaturated). Dark uses the signals straight (vivid on the
+   chamber); light nudges each toward the ink so it stays legible on paper.
    ════════════════════════════════════════════════════════════════════════ */
 
 body.kuro-colorful-headings.theme-dark {
-  --h1-color: var(--accent);
-  --h2-color: color-mix(in oklch, var(--accent) 82%, var(--fg-secondary) 18%);
-  --h3-color: color-mix(in oklch, var(--accent) 65%, var(--fg-secondary) 35%);
-  --h4-color: color-mix(in oklch, var(--accent) 48%, var(--fg-secondary) 52%);
-  --h5-color: color-mix(in oklch, var(--accent) 30%, var(--fg-secondary) 70%);
-  --h6-color: var(--fg-secondary);
+  --h1-color: var(--role-focus);       /* spectre — violet */
+  --h2-color: var(--role-link);        /* circuit — teal */
+  --h3-color: var(--role-success);     /* phosphor — green */
+  --h4-color: var(--role-warning);     /* ember — amber */
+  --h5-color: var(--role-creative);    /* voidwitch — lavender */
+  --h6-color: var(--role-reflection);  /* neural-bleed — rose */
 }
 body.kuro-colorful-headings.theme-light {
-  --h1-color: var(--accent);
-  --h2-color: color-mix(in oklch, var(--accent) 80%, var(--fg-primary) 20%);
-  --h3-color: color-mix(in oklch, var(--accent) 60%, var(--fg-primary) 40%);
-  --h4-color: color-mix(in oklch, var(--accent) 40%, var(--fg-primary) 60%);
-  --h5-color: color-mix(in oklch, var(--accent) 22%, var(--fg-primary) 78%);
-  --h6-color: var(--fg-secondary);
+  --h1-color: color-mix(in oklch, var(--role-focus) 72%, var(--fg-primary));
+  --h2-color: color-mix(in oklch, var(--role-link) 72%, var(--fg-primary));
+  --h3-color: color-mix(in oklch, var(--role-success) 72%, var(--fg-primary));
+  --h4-color: color-mix(in oklch, var(--role-warning) 72%, var(--fg-primary));
+  --h5-color: color-mix(in oklch, var(--role-creative) 72%, var(--fg-primary));
+  --h6-color: color-mix(in oklch, var(--role-reflection) 72%, var(--fg-primary));
 }
 
 body.kuro-colorful-headings .markdown-rendered h1,
@@ -267,19 +219,6 @@ body.theme-dark:not(.kuro-no-glow) .markdown-rendered h1,
 body.theme-dark:not(.kuro-no-glow) .cm-header-1,
 body.theme-dark:not(.kuro-no-glow) .inline-title {
   text-shadow: 0 0 24px var(--accent-glow);
-}
-
-/* 9c · Reveal / slides base frame — the presentation surface ground.
-   The per-element typography lives elsewhere; this is the container chrome
-   (background + base text colour) the slide frame (§7a) sits on. */
-.reveal {
-  font-family: var(--kuro-font-mono);
-  color:       var(--fg-primary);
-  background:  var(--surface-base);
-}
-.reveal .slides section {
-  overflow-x: hidden;
-  overflow-y: var(--slides-overflow-y, hidden);
 }
 
 /* 10 · Style Settings: Focus ring style (kuro-focus)
