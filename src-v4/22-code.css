@@ -1,0 +1,112 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   22-code.css                                                     [armature]
+   PURPOSE   Inline code + fenced code blocks across EVERY surface — Reading,
+             Live-Preview and the editor — with the accent left-stripe frame.
+             Fixes screenshots #15/#16: no Live-Preview code rules existed,
+             so fenced blocks in LP/editor had no Kuro frame/background.
+   LAYER     armature (tokens only — no raw colour literals or palette vars).
+   SETS      visual rules for code surfaces (no token declarations).
+   USES      --code-bg --code-frame --code-stripe · --code-normal (bridged)
+             --kuro-font-mono · --fg-primary · --accent · --radius-* --space-*
+             --text-* — syntax colours arrive via the bridged --code-* vars.
+   DEPENDS   10-semantic-dark, 11-semantic-light, 12-bridge, 13-roles
+   SURFACES  Reading (.markdown-rendered pre, .markdown-rendered code) ·
+             Live-Preview/editor (.HyperMD-codeblock, .HyperMD-codeblock-bg,
+             .cm-inline-code, .cm-codeblock)
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ===== INLINE CODE — Reading + Live-Preview ============================= */
+/* Pill of --code-normal text on --code-bg, faint accent hairline.          */
+body .markdown-rendered code,
+body .cm-inline-code {
+  font-family: var(--kuro-font-mono);
+  background: var(--code-bg);
+  color: var(--code-normal);
+  border: 1px solid color-mix(in srgb, var(--accent) 15%, transparent);
+  border-radius: var(--radius-sm, 3px);
+  padding: 0.1em 0.4em;
+  font-size: 0.88em;
+}
+
+/* ===== FENCED CODE BLOCK — Reading view ================================= */
+/* Framed panel: --code-bg fill, --code-frame border, --code-stripe left.   */
+body .markdown-rendered pre {
+  background: var(--code-bg);
+  border: 1px solid var(--code-frame);
+  border-left: 3px solid var(--code-stripe);
+  border-radius: var(--radius-md, 4px);
+  padding: var(--space-3, 14px) var(--space-4, 18px);
+  font-family: var(--kuro-font-mono);
+  color: var(--fg-primary);
+  overflow-x: auto;
+}
+
+/* The inner <code> is a transparent passthrough — frame lives on <pre>. */
+body .markdown-rendered pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* ===== FENCED CODE BLOCK — Live-Preview / editor (THE #15/#16 FIX) ======
+   In LP/source each fenced line is a .HyperMD-codeblock line; .cm-codeblock
+   carries the background layer. CodeMirror paints per-line, so the frame is
+   built from top/side borders on the first/last lines and the stripe on the
+   left of every line — reproducing the Reading-view panel.                  */
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock,
+.markdown-source-view.mod-cm6 .cm-content .cm-codeblock {
+  font-family: var(--kuro-font-mono);
+  background: var(--code-bg);
+  color: var(--fg-primary);
+  border-left: 3px solid var(--code-stripe);
+  padding-left: var(--space-4, 18px);
+  padding-right: var(--space-4, 18px);
+}
+
+/* Background layer Obsidian draws behind the codeblock region. */
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock-bg {
+  background: var(--code-bg);
+}
+
+/* First fence line: top edge + radius of the panel. */
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock-begin {
+  border-top: 1px solid var(--code-frame);
+  border-top-left-radius: var(--radius-md, 4px);
+  border-top-right-radius: var(--radius-md, 4px);
+  padding-top: 2px;
+}
+
+/* Closing fence line: bottom edge + radius of the panel. */
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock-end {
+  border-bottom: 1px solid var(--code-frame);
+  border-bottom-left-radius: var(--radius-md, 4px);
+  border-bottom-right-radius: var(--radius-md, 4px);
+  padding-bottom: 2px;
+}
+
+/* Right-side hairline so the LP panel reads as framed, not open-ended. */
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock {
+  border-right: 1px solid var(--code-frame);
+}
+
+/* ===== SYNTAX HIGHLIGHTING — editor (CodeMirror) =======================
+   Colours arrive from the bridged --code-* vars (12-bridge), which read the
+   12-signal syntax tokens — identical palette in Reading and LP.           */
+.cm-s-obsidian .cm-keyword  { color: var(--code-keyword);  }
+.cm-s-obsidian .cm-def      { color: var(--code-function); }
+.cm-s-obsidian .cm-variable { color: var(--code-property); }
+.cm-s-obsidian .cm-string   { color: var(--code-string);   }
+.cm-s-obsidian .cm-number   { color: var(--code-value);    }
+.cm-s-obsidian .cm-comment  { color: var(--code-comment);  font-style: italic; }
+.cm-s-obsidian .cm-operator { color: var(--code-operator); }
+.cm-s-obsidian .cm-tag      { color: var(--code-tag);      }
+.cm-s-obsidian .cm-atom     { color: var(--code-string);   }
+.cm-s-obsidian .cm-builtin  { color: var(--code-keyword);  }
+.cm-s-obsidian .cm-type     { color: var(--code-tag);      }
+
+/* Frontmatter (YAML) — keys muted, string values keep the string signal. */
+.cm-s-obsidian .cm-hmd-frontmatter.cm-string,
+.cm-s-obsidian .cm-yaml .cm-string { color: var(--code-string); }
+.cm-s-obsidian .cm-hmd-frontmatter.cm-atom,
+.cm-s-obsidian .cm-yaml .cm-atom   { color: var(--fg-secondary); }

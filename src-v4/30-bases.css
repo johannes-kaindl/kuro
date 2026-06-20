@@ -1,0 +1,198 @@
+/* ---  30-bases.css  [armature]
+   PURPOSE   Obsidian Bases plugin — cards view + table view, re-homed from the
+             x1 foundation and driven entirely by v4 tokens. Honours the public
+             Style-Settings var --bases-cards-line-height. Both-mode by token.
+   LAYER     armature
+   SETS      --bases-card-bg --bases-card-border --bases-card-radius
+             --bases-cards-line-height (public, Style Settings)
+   USES      --surface-raised --surface-panel --border-subtle --divider
+             --fg-primary/-secondary/-tertiary --accent --accent-soft
+             --border-circuit --lift --glow-accent --kuro-font-mono/-serif
+             --role-link/-info/-warning/-success/-drift (+ -rgb)
+             --space-* --radius-* --dur-* --ease-*
+   DEPENDS   10/11/12/13
+   SURFACES  Bases UI — leaf [data-type="bases"] (table cells, links, toolbar),
+             .bases-table (table view), .bases-cards-* (cards view),
+             status pills (cards + table td), is-mobile + narrow viewport  --- */
+
+/* ── Card surface tokens (both-mode via semantic surfaces) ─────────────── */
+:root {
+  --bases-card-bg:     var(--surface-raised);
+  --bases-card-border: var(--border-subtle);
+  --bases-card-radius: var(--radius-lg);
+}
+
+/* ── Leaf-level chrome — table cells, links, toolbar ──────────────────── */
+.workspace-leaf-content[data-type="bases"] {
+  font-family: var(--kuro-font-mono);
+}
+.workspace-leaf-content[data-type="bases"] th {
+  color: var(--fg-primary);
+  background: var(--overlay-hover);
+  border-color: var(--border-subtle);
+  letter-spacing: 0.04em;
+  font-size: 0.83em;
+  text-transform: uppercase;
+}
+.workspace-leaf-content[data-type="bases"] td {
+  color: var(--fg-secondary);
+  border-color: var(--divider);
+  font-size: 0.9em;
+}
+.workspace-leaf-content[data-type="bases"] a,
+.workspace-leaf-content[data-type="bases"] .internal-link {
+  color: var(--role-link);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--role-link-rgb), 0.25);
+}
+.workspace-leaf-content[data-type="bases"] a:hover {
+  border-bottom-color: rgba(var(--role-link-rgb), 0.55);
+}
+.workspace-leaf-content[data-type="bases"] .bases-toolbar,
+.workspace-leaf-content[data-type="bases"] .bases-view-header {
+  background: var(--surface-panel);
+  border-bottom: 1px solid var(--divider);
+}
+
+/* ── Table view ───────────────────────────────────────────────────────── */
+.bases-table { width: 100%; border-collapse: collapse; font-size: 1em; }
+.bases-table .bases-th {
+  background: var(--surface-panel);
+  color: var(--fg-secondary);
+  font-family: var(--kuro-font-mono);
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 2px solid var(--accent-soft);
+  text-align: left;
+  white-space: nowrap;
+}
+.bases-table .bases-td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--fg-primary);
+  vertical-align: top;
+  font-size: 0.95em;
+}
+.bases-table .bases-tr:last-child .bases-td { border-bottom: none; }
+.bases-table .bases-tr:hover .bases-td { background: var(--overlay-hover); }
+.theme-dark .bases-table .bases-tr:hover .bases-td:first-child {
+  border-left: 2px solid var(--border-circuit);
+  padding-left: 10px;
+}
+
+/* ── Cards view ───────────────────────────────────────────────────────── */
+.bases-cards-group { gap: var(--space-4); --bases-cards-line-height: 30px; }
+.bases-cards-item {
+  background: var(--bases-card-bg);
+  border: 1px solid var(--bases-card-border);
+  border-radius: var(--bases-card-radius);
+  box-shadow: var(--lift);
+  transition: transform var(--dur-fast) var(--ease-signal),
+              box-shadow var(--dur-fast) var(--ease-signal),
+              border-color var(--dur-fast) var(--ease-signal);
+  overflow: visible;
+}
+.bases-cards-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-circuit);
+  box-shadow: var(--lift), var(--glow-accent);
+}
+
+.bases-cards-item .bases-cards-cover,
+.bases-cards-item img {
+  width: 100%; height: 160px;
+  object-fit: cover; object-position: center top;
+  display: block;
+  border-radius: var(--bases-card-radius) var(--bases-card-radius) 0 0;
+}
+
+.bases-cards-property.mod-title .bases-rendered-value,
+.bases-cards-property.mod-title .bases-cards-line {
+  font-family: var(--kuro-font-serif);
+  font-style: italic;
+  font-size: 1.05em;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1.3;
+  white-space: normal;
+  height: auto;
+  overflow: visible;
+}
+
+.bases-cards-label {
+  color: var(--fg-tertiary);
+  font-family: var(--kuro-font-mono);
+  font-size: 0.72em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  align-self: flex-start;
+  line-height: 1.35;
+}
+
+.bases-rendered-value { color: var(--fg-primary); font-size: 0.88em; line-height: 1.35; }
+.bases-cards-property { overflow: visible; }
+.bases-cards-line,
+.bases-cards-line.bases-rendered-value {
+  white-space: normal;
+  height: fit-content;
+  overflow: visible;
+  text-wrap: balance;
+}
+.bases-cards-property[data-property^="formula.spacer"] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ── Status pill — wired to the signal roles (cards + table td) ────────── */
+.bases-cards-property[data-property="note.Status"] .bases-rendered-value,
+.bases-td[data-property="note.Status"] .bases-rendered-value {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75em;
+  font-family: var(--kuro-font-mono);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  background: var(--accent-soft);
+  border: 1px solid var(--border-circuit);
+  color: var(--accent);
+}
+.bases-cards-property[data-property="note.Status"][data-value="Not Started"] .bases-rendered-value,
+.bases-td[data-property="note.Status"][data-value="Not Started"] .bases-rendered-value {
+  background: rgba(var(--role-info-rgb), 0.12);
+  color: var(--role-info);
+  border-color: rgba(var(--role-info-rgb), 0.22);
+}
+.bases-cards-property[data-property="note.Status"][data-value="In Progress"] .bases-rendered-value,
+.bases-td[data-property="note.Status"][data-value="In Progress"] .bases-rendered-value {
+  background: rgba(var(--role-warning-rgb), 0.14);
+  color: var(--role-warning);
+  border-color: rgba(var(--role-warning-rgb), 0.28);
+}
+.bases-cards-property[data-property="note.Status"][data-value="Done"] .bases-rendered-value,
+.bases-cards-property[data-property="note.Status"][data-value="Completed"] .bases-rendered-value,
+.bases-td[data-property="note.Status"][data-value="Done"] .bases-rendered-value,
+.bases-td[data-property="note.Status"][data-value="Completed"] .bases-rendered-value {
+  background: rgba(var(--role-success-rgb), 0.13);
+  color: var(--role-success);
+  border-color: rgba(var(--role-success-rgb), 0.28);
+}
+.bases-cards-property[data-property="note.Status"][data-value="Dropped"] .bases-rendered-value,
+.bases-cards-property[data-property="note.Status"][data-value="Archived"] .bases-rendered-value,
+.bases-td[data-property="note.Status"][data-value="Dropped"] .bases-rendered-value,
+.bases-td[data-property="note.Status"][data-value="Archived"] .bases-rendered-value {
+  background: rgba(var(--role-drift-rgb), 0.10);
+  color: var(--role-drift);
+  border-color: rgba(var(--role-drift-rgb), 0.22);
+  opacity: 0.75;
+}
+
+/* ── Narrow viewport + mobile ─────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .bases-cards-group { gap: var(--space-3); }
+  .bases-cards-label { font-size: 0.68em; }
+}
+body.is-mobile .bases-cards-item:hover { transform: none; }

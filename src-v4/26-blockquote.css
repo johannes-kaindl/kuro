@@ -1,0 +1,50 @@
+/* ---  26-blockquote.css  [armature]
+   PURPOSE   Blockquotes — "The Raven's Aside". ONE definition covering Reading
+             view + Live-Preview, so the serif/italic aside and its accent bar
+             no longer live only in Reading view.
+   LAYER     armature / component
+   SETS      (component rules only)
+   USES      --accent --fg-secondary --surface-base --kuro-font-serif
+             --radius-sm --space-2 --space-3
+   DEPENDS   10/11 (semantic), 12 (bridge: accent + fonts), 13 (roles)
+   SURFACES  Reading (.markdown-rendered blockquote)
+             Live-Preview (.HyperMD-quote, .cm-quote)
+   --- */
+
+/* ── Reading view ─────────────────────────────────────────────────────────
+   Ported from src/00-base §6. text-muted -> --fg-secondary; the accent bar
+   and faint accent wash are kept exactly via color-mix on the bridged --accent. */
+.markdown-rendered blockquote {
+  font-family: var(--kuro-font-serif);
+  font-style: italic;
+  font-size: 1.05em;
+  line-height: 1.6;
+  color: var(--fg-secondary);
+  border-left: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 3%, var(--surface-base));
+  padding: var(--space-2) var(--space-3);
+  margin: var(--space-2) 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.markdown-rendered blockquote p { color: inherit; }
+
+/* ── Live-Preview / editor ────────────────────────────────────────────────
+   CM6 renders each quoted line as .HyperMD-quote (line) with an inline
+   .cm-quote span; there is no wrapping <blockquote> element, so the aside is
+   reconstructed per-line: serif italic text + the accent bar drawn as a
+   left border on the line. */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-quote {
+  font-family: var(--kuro-font-serif);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--fg-secondary);
+  border-left: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 3%, var(--surface-base));
+  padding-left: var(--space-3);
+}
+
+/* The quote marker + quoted text span — keep the muted serif voice. */
+.markdown-source-view.mod-cm6 .cm-quote {
+  color: var(--fg-secondary);
+  font-style: italic;
+}

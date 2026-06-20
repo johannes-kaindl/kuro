@@ -1,0 +1,80 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   28-tags.css                                                     [armature]
+   PURPOSE   Tags as ONE accent-tinted pill, defined once for Reading AND
+             Live-Preview. Consumes the bridged --tag-* pill (set in 12-bridge);
+             resolves the old dead duplicate — the inline-literal addendum rule
+             is dropped, this token-fed pill is kept. Dark-only signal glow,
+             user-defeatable via .kuro-no-glow.
+   LAYER     armature (reads bridged + semantic tokens; no literals)
+   SETS      n/a (component)
+   USES      --tag-color --tag-background --tag-border-color
+             --tag-background-hover --tag-border-color-hover
+             --tag-radius --tag-padding-x --tag-padding-y --tag-font-size
+             --accent --accent-glow · --kuro-font-mono --dur-fast --ease-signal
+   DEPENDS   10/11 (semantic), 12-bridge (--tag-* / --accent*), 13-roles (n/a)
+   SURFACES  Reading (.markdown-rendered a.tag) ·
+             Live-Preview (.cm-hashtag-begin/-middle/-end)
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ── Tag pill · Reading View + Live-Preview, one model ─────────────────── */
+a.tag,
+.cm-hashtag-begin,
+.cm-hashtag-middle,
+.cm-hashtag-end {
+  font-family: var(--kuro-font-mono);
+  color: var(--tag-color);
+  background: var(--tag-background);
+  border: 1px solid var(--tag-border-color);
+  font-size: var(--tag-font-size);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-signal),
+              border-color var(--dur-fast) var(--ease-signal),
+              background var(--dur-fast) var(--ease-signal);
+}
+
+/* Reading-view pill is a single span → full radius + symmetric padding. */
+a.tag {
+  border-radius: var(--tag-radius);
+  padding: var(--tag-padding-y) var(--tag-padding-x);
+}
+
+/* Live-Preview splits the hashtag across three CM spans; only the outer two
+   carry the rounded ends + horizontal padding so the run reads as one pill. */
+.cm-hashtag-begin,
+.cm-hashtag-middle,
+.cm-hashtag-end {
+  padding: var(--tag-padding-y) 0;
+}
+.cm-hashtag-begin {
+  border-radius: var(--tag-radius) 0 0 var(--tag-radius);
+  border-right: none;
+  padding-left: var(--tag-padding-x);
+}
+.cm-hashtag-middle {
+  border-left: none;
+  border-right: none;
+}
+.cm-hashtag-end {
+  border-radius: 0 var(--tag-radius) var(--tag-radius) 0;
+  border-left: none;
+  padding-right: var(--tag-padding-x);
+}
+
+/* Hover (Reading only — CM spans are not hover targets). !important fights
+   Obsidian's own higher-specificity a.tag:hover (0,2,1). */
+a.tag:hover {
+  color: var(--accent) !important;                       /* keep — vs Obsidian a.tag:hover (0,2,1) */
+  background: var(--tag-background-hover) !important;     /* keep — vs Obsidian a.tag:hover (0,2,1) */
+  border-color: var(--tag-border-color-hover) !important;/* keep — vs Obsidian a.tag:hover (0,2,1) */
+}
+
+/* ── Dark-only signal glow (user opt-out: .kuro-no-glow) ───────────────── */
+body.theme-dark:not(.kuro-no-glow) a.tag {
+  text-shadow: 0 0 10px var(--accent-glow);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 15%, transparent);
+}
+body.theme-dark:not(.kuro-no-glow) .cm-hashtag-begin,
+body.theme-dark:not(.kuro-no-glow) .cm-hashtag-middle,
+body.theme-dark:not(.kuro-no-glow) .cm-hashtag-end {
+  text-shadow: 0 0 10px var(--accent-glow);
+}
