@@ -4,13 +4,16 @@
              the --void chamber ramp + signals. Mirror of 11-semantic-light.
    LAYER     armature (the only armature files allowed to read primitives).
    SETS      --surface-* --fg-* --border-* --divider* --overlay-* --code-*
-             --syntax-* --text-error/-warning/-success --check-* --lift
-             --pane-lift --shadow-modal --scroll-* --graph-*
+             --syntax-* --status-* --check-* --lift --pane-lift --shadow-modal
+             --scroll-* --node-*
    USES      --void-* --signal-* --interactive-accent (primitives + system)
    DEPENDS   00-primitives
    SURFACES  n/a (token declarations only)
-   NOTE      Every key here MUST have a same-named sibling in
-             11-semantic-light.css (enforced by check.sh both-mode mirror).
+   NOTE      Names deliberately avoid Obsidian-native var names (e.g.
+             --status-error, not --text-error) so the bridge can forward
+             native <- semantic without a circular reference. Every key here
+             MUST have a same-named sibling in 11-semantic-light.css
+             (enforced by check.sh both-mode mirror).
    ───────────────────────────────────────────────────────────────────────── */
 
 .theme-dark {
@@ -23,6 +26,7 @@
   --surface-field:    var(--void-150);
   --surface-field-hi: var(--void-200);
   --surface-inset:    rgba(4, 5, 7, 0.5);
+  --surface-modal:    var(--void-100);
 
   /* Foreground */
   --fg-primary:   var(--signal-pearl);
@@ -47,17 +51,17 @@
   --code-frame:  color-mix(in srgb, var(--signal-pearl) 12%, transparent);
   --code-stripe: color-mix(in srgb, var(--interactive-accent) 75%, transparent);
 
-  /* Syntax (the ones that are not just fg-*) */
+  /* Syntax (only the ones that are not just fg-*) */
   --syntax-normal:  var(--signal-circuit);
   --syntax-string:  var(--signal-ember);
   --syntax-value:   var(--signal-phosphor);
   --syntax-keyword: var(--signal-spectre);
 
   /* Status text */
-  --text-error:       var(--signal-crimson);
-  --text-error-hover: #ff4560;
-  --text-warning:     var(--signal-ember);
-  --text-success:     var(--signal-phosphor);
+  --status-error:       var(--signal-crimson);
+  --status-error-hover: #ff4560;
+  --status-warning:     var(--signal-ember);
+  --status-success:     var(--signal-phosphor);
 
   /* Checkbox */
   --check-marker: #0c0e12;
@@ -75,7 +79,9 @@
   --scroll-thumb:        rgba(232, 228, 216, 0.07);
   --scroll-thumb-active: rgba(232, 228, 216, 0.14);
 
-  /* Graph (the mode-varying nodes; text/focused reuse --fg-*) */
-  --graph-node:       var(--void-700);
-  --graph-unresolved: rgba(232, 228, 216, 0.10);
+  /* Graph nodes (mode-varying; text/focused reuse --fg-* in the bridge) */
+  --node-fill:       var(--void-700);
+  --node-unresolved: rgba(232, 228, 216, 0.10);
+  --node-tag:        var(--signal-ember);
+  --node-attachment: var(--signal-rust);
 }

@@ -21,6 +21,7 @@
   --surface-field:    var(--paper-050);
   --surface-field-hi: var(--paper-100);
   --surface-inset:    #f0eae0;
+  --surface-modal:    var(--paper-000);
 
   /* Foreground */
   --fg-primary:   var(--paper-900);
@@ -45,17 +46,17 @@
   --code-frame:  rgba(0, 0, 0, 0.08);
   --code-stripe: color-mix(in srgb, var(--interactive-accent) 45%, transparent);
 
-  /* Syntax (the ones that are not just fg-*) */
+  /* Syntax (only the ones that are not just fg-*) */
   --syntax-normal:  #3a7a8c;
   --syntax-string:  #b87333;
   --syntax-value:   #4a8c54;
   --syntax-keyword: #6b4f9e;
 
   /* Status text */
-  --text-error:       #b54545;
-  --text-error-hover: #8a2a2a;
-  --text-warning:     #b87333;
-  --text-success:     #4a8c54;
+  --status-error:       #b54545;
+  --status-error-hover: #8a2a2a;
+  --status-warning:     #b87333;
+  --status-success:     #4a8c54;
 
   /* Checkbox */
   --check-marker: #1a1714;
@@ -71,7 +72,9 @@
   --scroll-thumb:        rgba(0, 0, 0, 0.12);
   --scroll-thumb-active: rgba(0, 0, 0, 0.22);
 
-  /* Graph (text/focused reuse --fg-*) */
-  --graph-node:       var(--paper-500);
-  --graph-unresolved: rgba(0, 0, 0, 0.15);
+  /* Graph nodes (mode-varying; text/focused reuse --fg-* in the bridge) */
+  --node-fill:       var(--paper-500);
+  --node-unresolved: rgba(0, 0, 0, 0.15);
+  --node-tag:        var(--interactive-accent);
+  --node-attachment: var(--interactive-accent);
 }
