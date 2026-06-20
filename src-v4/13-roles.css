@@ -1,0 +1,31 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   13-roles.css                                                    [armature]
+   PURPOSE   The signal palette exposed BY MEANING. Components tint with these
+             roles (colour + rgb-triplet) and never touch a raw --signal-*.
+             A fork redefines the twelve signals in 00-primitives; every role
+             here follows automatically — the callout/graph/syntax colours
+             re-skin with zero edits to any component file.
+   LAYER     armature, semantic role layer (reads primitives, like 10/11 —
+             therefore exempt from the armature literal-lint).
+   SETS      --role-* (colour) + --role-*-rgb (triplet for rgba() recipes)
+   USES      --signal-* (+ -rgb)
+   DEPENDS   00-primitives
+   SURFACES  n/a (token declarations only)
+   NOTE      Mode-INDEPENDENT (signals are one hex in both modes). For
+             mode-aware status TEXT use --status-* from 10/11 instead.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --role-error:      var(--signal-crimson);      --role-error-rgb:      var(--signal-crimson-rgb);
+  --role-success:    var(--signal-phosphor);     --role-success-rgb:    var(--signal-phosphor-rgb);
+  --role-warning:    var(--signal-ember);        --role-warning-rgb:    var(--signal-ember-rgb);
+  --role-focus:      var(--signal-spectre);      --role-focus-rgb:      var(--signal-spectre-rgb);
+  --role-link:       var(--signal-circuit);      --role-link-rgb:       var(--signal-circuit-rgb);
+  --role-info:       var(--signal-ghost);        --role-info-rgb:       var(--signal-ghost-rgb);
+  --role-organic:    var(--signal-biolink);      --role-organic-rgb:    var(--signal-biolink-rgb);
+  --role-reflection: var(--signal-neural-bleed); --role-reflection-rgb: var(--signal-neural-bleed-rgb);
+  --role-drift:      var(--signal-rust);         --role-drift-rgb:      var(--signal-rust-rgb);
+  --role-review:     var(--signal-toxic);        --role-review-rgb:     var(--signal-toxic-rgb);
+  --role-creative:   var(--signal-voidwitch);    --role-creative-rgb:   var(--signal-voidwitch-rgb);
+  --role-neutral:    var(--signal-pearl);        --role-neutral-rgb:    var(--signal-pearl-rgb);
+}

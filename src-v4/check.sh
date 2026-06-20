@@ -24,7 +24,7 @@ fi
 # armature-lint: no colour/primitive literals in actual CSS of [armature] files
 # (values files exempt: 00 primitives, 02 fonts, 50 presets, 55 subthemes; 10/11 semantic may read primitives)
 for f in [0-9][0-9]-*.css; do
-  case "$f" in 00-*|02-*|50-*|55-*|10-semantic-*|11-semantic-*) continue;; esac
+  case "$f" in 00-*|02-*|50-*|55-*|10-semantic-*|11-semantic-*|13-roles.css) continue;; esac
   if strip "$f" | grep -nEq -- '#[0-9a-fA-F]{3,8}\b|--signal-|--void-|--paper-'; then
     echo "FAIL: literal/primitive in armature file $f:"
     strip "$f" | grep -nE -- '#[0-9a-fA-F]{3,8}\b|--signal-|--void-|--paper-'; exit 1

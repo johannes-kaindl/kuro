@@ -27,12 +27,7 @@
   --glow-focus:   0 0 0 2px color-mix(in srgb, var(--interactive-accent) 60%, transparent);
   --border-circuit: color-mix(in srgb, var(--accent) 40%, transparent);
 
-  /* Signal roles (mode-independent semantic aliases) */
-  --role-error:   var(--status-error);
-  --role-success: var(--status-success);
-  --role-warning: var(--status-warning);
-  --role-link:    var(--accent);
-  --role-focus:   var(--accent);
+  /* Signal roles live in 13-roles.css (the semantic role layer). */
 
   /* Public font contract — defaults so the theme works WITHOUT the plugin;
      Style Settings / companion may override --kuro-font-serif/-mono. */
