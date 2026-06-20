@@ -102,6 +102,15 @@ settings:
         default: 14
         format: px
     -
+        id: --kuro-code-size
+        title: Code font size
+        description: Size of inline code and fenced code blocks, relative to body text. 0.88 = default (slightly smaller, matches the pill); 1 = same size as body.
+        type: variable-number-slider
+        default: 0.88
+        min: 0.75
+        max: 1.1
+        step: 0.01
+    -
         id: kuro-reading
         title: Reading
         type: heading
@@ -146,6 +155,12 @@ settings:
         level: 1
         collapsed: true
     -
+        id: kuro-no-glow
+        title: Disable heading glow
+        description: Turns off the ambient accent glow behind H1 / inline titles in dark mode.
+        type: class-toggle
+        default: false
+    -
         id: --kuro-lift-strength
         title: Note lift strength
         description: Intensity of the glow (dark) / drop shadow (light) that lifts the note off the background. 0 = flat, 1.4 = default, 3 = dramatic.
@@ -154,6 +169,46 @@ settings:
         min: 0
         max: 3
         step: 0.1
+    -
+        id: --kuro-card-lift-strength
+        title: Card & callout lift strength
+        description: Intensity of the shadow / accent ring that lifts callouts and Bases cards off the page. 0 = flat, 1 = default, 3 = dramatic.
+        type: variable-number-slider
+        default: 1
+        min: 0
+        max: 3
+        step: 0.1
+    -
+        id: kuro-borders
+        title: Border crispness
+        description: How visible UI borders and dividers are — subtle blends them into the surface, crisp makes panel edges sharper.
+        type: class-select
+        allowEmpty: false
+        default: kuro-borders-default
+        options:
+            -
+                label: Subtle
+                value: kuro-borders-subtle
+            -
+                label: Default
+                value: kuro-borders-default
+            -
+                label: Crisp
+                value: kuro-borders-crisp
+    -
+        id: kuro-focus
+        title: Focus ring style
+        description: The keyboard-focus indicator on buttons, fields and list items. Glow is the soft Kuro halo; Ring is a crisp accessible outline.
+        type: class-select
+        allowEmpty: false
+        default: kuro-focus-glow
+        options:
+            -
+                label: Glow (soft)
+                value: kuro-focus-glow
+            -
+                label: Ring (crisp)
+                value: kuro-focus-ring
     -
         id: kuro-slides
         title: Slides
@@ -218,5 +273,83 @@ settings:
             -
                 label: Underline
                 value: kuro-tabs-underline
+    -
+        id: kuro-shape
+        title: Shape & density
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: --kuro-radius-scale
+        title: Corner roundness
+        description: Scales rounded corners on cards, callouts, code blocks, menus and nav items. 0 = sharp terminal edges, 1 = default, 2 = very soft.
+        type: variable-number-slider
+        default: 1
+        min: 0
+        max: 2
+        step: 0.1
+    -
+        id: kuro-density
+        title: Interface density
+        description: Vertical tightness of the file explorer, tabs and outline trees. Compact fits more rows; Comfortable gives more breathing room.
+        type: class-select
+        allowEmpty: false
+        default: kuro-density-default
+        options:
+            -
+                label: Compact
+                value: kuro-density-compact
+            -
+                label: Default
+                value: kuro-density-default
+            -
+                label: Comfortable
+                value: kuro-density-comfortable
+    -
+        id: kuro-components
+        title: Components
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: kuro-callout-style
+        title: Callout style
+        description: How callouts are framed — the signal-tinted filled panel (default), a near-flat subtle tint, or a clean left-border-only card.
+        type: class-select
+        allowEmpty: false
+        default: kuro-callout-filled
+        options:
+            -
+                label: Filled (default)
+                value: kuro-callout-filled
+            -
+                label: Subtle
+                value: kuro-callout-subtle
+            -
+                label: Left border only
+                value: kuro-callout-border-only
+    -
+        id: kuro-link-underline
+        title: Link underline
+        description: The soft underline under internal & external links — always on (default), only on hover, or off entirely (colour-only links).
+        type: class-select
+        allowEmpty: false
+        default: kuro-link-underline-on
+        options:
+            -
+                label: Always (default)
+                value: kuro-link-underline-on
+            -
+                label: On hover only
+                value: kuro-link-underline-hover
+            -
+                label: Off
+                value: kuro-link-underline-off
+    -
+        id: kuro-table-zebra
+        title: Table zebra striping
+        description: Tints alternate table rows for easier row tracking in wide tables.
+        type: class-toggle
+        default: false
 
 */

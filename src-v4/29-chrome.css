@@ -100,7 +100,7 @@ body .nav-file-title {
   font-size: var(--text-sm);
   letter-spacing: 0.01em;
   border-radius: var(--radius-sm);
-  padding: 3px 8px;
+  padding: var(--kuro-nav-pad-y, 3px) 8px;
   transition: color var(--dur-fast) var(--ease-signal),
               background var(--dur-base) var(--ease-ghost);
 }
@@ -152,6 +152,20 @@ body .nav-file-title {
 .workspace-split.mod-right-split .is-active .tree-item-inner {
   color: var(--accent);
 }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   Style Settings: Interface density (kuro-density)
+   ──────────────────────────────────────────────────────────────────────
+   Rewrites the nav-row padding token + the outline/right-split tree-row
+   padding. kuro-density-default is a true no-op (token stays 3px).
+   Metric only — armature-safe. */
+body.kuro-density-compact     { --kuro-nav-pad-y: 1px; }
+body.kuro-density-comfortable { --kuro-nav-pad-y: 6px; }
+body.kuro-density-compact     [data-type="outline"] .tree-item-self,
+body.kuro-density-compact     .workspace-split.mod-right-split .tree-item-self { padding-top: 0; padding-bottom: 0; }
+body.kuro-density-comfortable [data-type="outline"] .tree-item-self,
+body.kuro-density-comfortable .workspace-split.mod-right-split .tree-item-self { padding-top: 4px; padding-bottom: 4px; }
 [data-type="outline"] [data-level="1"] .tree-item-inner { font-size: var(--text-sm); }
 [data-type="outline"] [data-level="2"] .tree-item-inner { font-size: var(--text-xs); opacity: 0.85; }
 [data-type="outline"] [data-level="3"] .tree-item-inner { font-size: var(--text-xs); opacity: 0.7; }

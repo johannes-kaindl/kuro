@@ -68,3 +68,9 @@
   /* the |---|---| separator line — recede it */
   color: var(--fg-secondary);
 }
+
+/* ── Style Settings: Table zebra striping (kuro-table-zebra) ──────────────
+   Reuses the both-mode --overlay-hover token (dark/light parity automatic).
+   Off by default = unchanged. The tr:hover rule above comes later in source
+   with equal specificity, so a hovered row still wins over the zebra tint. */
+body.kuro-table-zebra .markdown-rendered tbody tr:nth-child(even) td { background: var(--overlay-hover); }

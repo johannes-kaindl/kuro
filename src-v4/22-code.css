@@ -25,7 +25,7 @@ body .cm-inline-code {
   border: 1px solid color-mix(in srgb, var(--accent) 15%, transparent);
   border-radius: var(--radius-sm);
   padding: 0.1em 0.4em;
-  font-size: 0.88em;
+  font-size: calc(var(--kuro-code-size) * 1em);
 }
 
 /* ===== FENCED CODE BLOCK — Reading view ================================= */
@@ -38,7 +38,7 @@ body .markdown-rendered pre {
   padding: var(--space-3) var(--space-4);
   font-family: var(--kuro-font-mono);
   color: var(--fg-primary);
-  font-size: 0.88em;            /* matches the inline-code pill */
+  font-size: calc(var(--kuro-code-size) * 1em);  /* matches the inline-code pill */
   line-height: var(--leading-normal);  /* 1.5 — denser than airy body leading */
   tab-size: 4;
   overflow-x: auto;
@@ -65,6 +65,7 @@ body .markdown-rendered pre code {
   border-left: 3px solid var(--code-stripe);
   padding-left: var(--space-4);
   padding-right: var(--space-4);
+  font-size: calc(var(--kuro-code-size) * 1em);  /* parity with Reading-view code */
 }
 
 /* Background layer Obsidian draws behind the codeblock region. */

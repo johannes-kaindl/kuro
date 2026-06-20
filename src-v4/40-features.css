@@ -281,3 +281,30 @@ body.theme-dark:not(.kuro-no-glow) .inline-title {
   overflow-x: hidden;
   overflow-y: var(--slides-overflow-y, hidden);
 }
+
+/* 10 · Style Settings: Focus ring style (kuro-focus)
+   Re-authors the bridged --glow-focus (applied to the :focus-visible ring in
+   15-base). kuro-focus-glow is the no-op default (keeps the bridge value);
+   Ring swaps the soft halo for a crisp two-step accessible outline (surface
+   gap + solid accent edge). Reads only accent + surface + color-mix. */
+body.kuro-focus-ring {
+  --glow-focus: 0 0 0 2px var(--surface-base),
+                0 0 0 4px color-mix(in srgb, var(--interactive-accent) 90%, transparent);
+}
+
+/* 11 · Style Settings: Border crispness (kuro-borders)
+   Re-authors the mode-scoped semantic border tokens; mixing toward the
+   surface (subtle) or toward foreground (crisp) is automatically correct in
+   both modes. These flow through 12-bridge into every panel edge, table rule
+   and nav divider. kuro-borders-default is the no-op. The callout border
+   (over --callout-color) is independent and intentionally untouched. */
+body.kuro-borders-subtle {
+  --border-subtle: color-mix(in srgb, var(--border-subtle) 55%, var(--surface-base));
+  --border-hover:  color-mix(in srgb, var(--border-hover) 60%, var(--surface-base));
+  --divider:       color-mix(in srgb, var(--divider) 55%, var(--surface-base));
+}
+body.kuro-borders-crisp {
+  --border-subtle: color-mix(in srgb, var(--border-subtle) 70%, var(--fg-tertiary));
+  --border-hover:  color-mix(in srgb, var(--border-hover) 65%, var(--fg-secondary));
+  --divider:       color-mix(in srgb, var(--divider) 70%, var(--fg-tertiary));
+}

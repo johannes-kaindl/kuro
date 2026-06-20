@@ -104,8 +104,17 @@
   --space-7: 48px;  --space-8: 64px;  --space-9: 96px;
 
   /* ===== PRIMITIVES · Radii ============================================ */
-  --radius-none: 0;     --radius-sm: 3px;   --radius-md: 6px;
-  --radius-lg: 10px;    --radius-xl: 14px;  --radius-full: 999px;
+  /* The --radius-* family multiplies through one scale token so Style
+     Settings' Corner roundness knob can sharpen/soften every rounded
+     surface at once; default 1 = byte-identical to the tuned literals.
+     --radius-none / --radius-full stay literal (hard-zero + pill stay put). */
+  --kuro-radius-scale: 1;
+  --radius-none: 0;
+  --radius-sm:  calc(3px  * var(--kuro-radius-scale));
+  --radius-md:  calc(6px  * var(--kuro-radius-scale));
+  --radius-lg:  calc(10px * var(--kuro-radius-scale));
+  --radius-xl:  calc(14px * var(--kuro-radius-scale));
+  --radius-full: 999px;
 
   /* ===== PRIMITIVES · Motion =========================================== */
   --ease-signal: cubic-bezier(0.2, 0.8, 0.2, 1);  /* default — decisive */

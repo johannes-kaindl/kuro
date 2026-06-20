@@ -38,6 +38,8 @@
 
   /* Note-pane lift intensity — user-tunable via Style Settings (0 = flat). */
   --kuro-lift-strength: 1.4;
+  /* Card / callout lift intensity — scales --lift (10/11); default 1 = no-op. */
+  --kuro-card-lift-strength: 1;
 
   /* ===== BRIDGE · Backgrounds / surfaces ============================== */
   --background-primary:            var(--surface-base);
@@ -127,6 +129,9 @@
   --tag-radius: 3px; --tag-padding-x: 7px; --tag-padding-y: 2px; --tag-font-size: var(--text-xs);
 
   /* ===== BRIDGE · Code (frame from semantic, syntax from twelve signals) */
+  /* Code size as a unitless multiplier of 1em (scales WITH the body knob);
+     default 0.88 = the tuned inline-pill size. */
+  --kuro-code-size: 0.88;
   --code-background: var(--code-bg);
   --code-normal:   var(--syntax-normal);
   --code-comment:  var(--fg-tertiary);
@@ -166,6 +171,9 @@
   --graph-text:            var(--fg-tertiary);
 
   /* ===== BRIDGE · Nav =============================================== */
+  /* Vertical nav-row padding — driven by the Interface density knob (metric
+     only); default 3px matches the current hardcoded nav padding. */
+  --kuro-nav-pad-y: 3px;
   --nav-item-color:             var(--fg-secondary);
   --nav-item-color-hover:       var(--fg-primary);
   --nav-item-color-active:      var(--fg-primary);

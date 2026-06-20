@@ -83,3 +83,31 @@
 .workspace-leaf-content[data-type="bases"] a:hover {
   border-bottom-color: rgba(var(--role-link-rgb), 0.55);
 }
+
+
+/* ===== Style Settings: Link underline (kuro-link-underline) =============
+   Suppress only the border colour (geometry/padding stay, so layout never
+   shifts); body. prefix lifts specificity above the base rules — no
+   !important. kuro-link-underline-on is the no-op default. */
+
+/* On hover only — hide resting underline; existing :hover rule restores it */
+body.kuro-link-underline-hover .markdown-rendered a.internal-link,
+body.kuro-link-underline-hover .cm-hmd-internal-link .cm-underline,
+body.kuro-link-underline-hover .cm-hmd-internal-link,
+body.kuro-link-underline-hover .markdown-rendered a.external-link,
+body.kuro-link-underline-hover .cm-link,
+body.kuro-link-underline-hover .cm-url { border-bottom-color: transparent; }
+
+/* Off — no underline in any state (also neutralise :hover) */
+body.kuro-link-underline-off .markdown-rendered a.internal-link,
+body.kuro-link-underline-off .cm-hmd-internal-link .cm-underline,
+body.kuro-link-underline-off .cm-hmd-internal-link,
+body.kuro-link-underline-off .markdown-rendered a.external-link,
+body.kuro-link-underline-off .cm-link,
+body.kuro-link-underline-off .cm-url,
+body.kuro-link-underline-off .markdown-rendered a.internal-link:hover,
+body.kuro-link-underline-off .cm-hmd-internal-link:hover .cm-underline,
+body.kuro-link-underline-off .cm-hmd-internal-link:hover,
+body.kuro-link-underline-off .markdown-rendered a.external-link:hover,
+body.kuro-link-underline-off .cm-link:hover,
+body.kuro-link-underline-off .cm-url:hover { border-bottom-color: transparent; }

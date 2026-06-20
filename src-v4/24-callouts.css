@@ -354,3 +354,27 @@ body.kuro-no-callout-animations .callout:hover .callout-icon svg {
   .callout[data-callout="nav"] .callout-content > p > a { min-height: 44px; }
   .callout[data-callout="stat"] .callout-content { font-size: 2.2em; }
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   Style Settings: Callout style (kuro-callout-style)
+   ──────────────────────────────────────────────────────────────────────
+   Drives the per-instance opacity vars (+ box-shadow) only; the per-type
+   --callout-color (4px bar + icon) is untouched so Kuro identity survives.
+   kuro-callout-filled is the no-op default.
+   ════════════════════════════════════════════════════════════════════════ */
+body.kuro-callout-subtle .callout {
+  --callout-bg-opacity: 0.025;
+  --callout-hover-opacity: 0.05;
+  --callout-border-opacity: 0.10;
+  box-shadow: none;
+}
+body.kuro-callout-border-only .callout {
+  --callout-bg-opacity: 0;
+  --callout-hover-opacity: 0;
+  --callout-border-opacity: 0;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  box-shadow: none;
+}
