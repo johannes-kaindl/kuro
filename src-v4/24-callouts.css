@@ -51,6 +51,9 @@
   font-weight: 600;
   letter-spacing: 0.01em;
   padding-block: var(--callout-title-padding);
+  /* Tinted-but-legible: keep the signal flavour but clamp toward fg for AA.
+     The full signal stays on the icon + 4px left border. */
+  color: color-mix(in srgb, rgb(var(--callout-color)) 55%, var(--fg-primary));
 }
 .callout-content { color: var(--fg-primary); }
 

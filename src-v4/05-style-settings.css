@@ -95,6 +95,13 @@ settings:
         type: class-toggle
         default: false
     -
+        id: --font-text-size
+        title: Body font size
+        description: Base text size in px.
+        type: variable-number
+        default: 14
+        format: px
+    -
         id: kuro-reading
         title: Reading
         type: heading
@@ -105,7 +112,7 @@ settings:
         title: Reading line width
         description: Max width of the text column, in px (needs Editor → Readable line length on).
         type: variable-number
-        default: 700
+        default: 640
         format: px
     -
         id: kuro-margin-tint
