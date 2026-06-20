@@ -140,6 +140,21 @@ settings:
         default: 30
         format: px
     -
+        id: kuro-depth
+        title: Depth & glow
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: --kuro-lift-strength
+        title: Note lift strength
+        description: Intensity of the glow (dark) / drop shadow (light) that lifts the note off the background. 0 = flat, 1.4 = default, 3 = dramatic.
+        type: variable-number-slider
+        default: 1.4
+        min: 0
+        max: 3
+        step: 0.1
+    -
         id: kuro-slides
         title: Slides
         type: heading

@@ -36,6 +36,9 @@
   --kuro-font-body:  var(--font-body);
   --kuro-font-mono:  var(--font-mono);
 
+  /* Note-pane lift intensity — user-tunable via Style Settings (0 = flat). */
+  --kuro-lift-strength: 1.4;
+
   /* ===== BRIDGE · Backgrounds / surfaces ============================== */
   --background-primary:            var(--surface-base);
   --background-primary-alt:        var(--surface-deep);
