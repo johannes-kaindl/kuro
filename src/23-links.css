@@ -1,0 +1,113 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   23-links.css                                                    [armature]
+   PURPOSE   Wikilinks (internal), external links, and unresolved links — ONE
+             definition spanning Reading view and Live-Preview/editor. Internal
+             + external read as the link signal with a soft underline that
+             brightens on hover; unresolved links dim to a dashed ghost.
+   LAYER     armature (reads bridged + semantic + role tokens; no literals)
+   SETS      —
+   USES      --role-link --role-link-rgb --fg-primary --fg-tertiary
+             --dur-fast --ease-signal
+   DEPENDS   10/11 (--fg-*), 12-bridge (native vars), 13-roles (--role-link*)
+   SURFACES  Reading (.markdown-rendered a.internal-link/.external-link/
+             .is-unresolved) · Live-Preview (.cm-hmd-internal-link + its
+             .cm-underline, .cm-hmd-internal-link.is-unresolved, .cm-link,
+             .cm-url) · Bases view links
+   ───────────────────────────────────────────────────────────────────────── */
+
+
+/* ===== Internal wikilinks — Reading + Live-Preview ====================== */
+.markdown-rendered a.internal-link,
+.cm-hmd-internal-link .cm-underline,
+.cm-hmd-internal-link {
+  color: var(--role-link);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--role-link-rgb), 0.24);
+  padding-bottom: 1px;
+  transition: color var(--dur-fast) var(--ease-signal),
+              border-color var(--dur-fast) var(--ease-signal),
+              text-shadow var(--dur-fast) var(--ease-signal);
+}
+.markdown-rendered a.internal-link:hover,
+.cm-hmd-internal-link:hover .cm-underline,
+.cm-hmd-internal-link:hover {
+  color: var(--fg-primary);
+  border-bottom-color: rgba(var(--role-link-rgb), 0.6);
+  text-shadow: 0 0 8px rgba(var(--role-link-rgb), 0.35);
+}
+
+
+/* ===== Unresolved links — Reading + Live-Preview ======================== */
+.markdown-rendered a.is-unresolved,
+.cm-hmd-internal-link.is-unresolved,
+.cm-hmd-internal-link.is-unresolved .cm-underline {
+  color: var(--fg-tertiary);
+  border-bottom-color: rgba(var(--role-link-rgb), 0.08);
+  text-decoration-style: dashed;
+}
+
+
+/* ===== External links — Reading + Live-Preview ========================== */
+.markdown-rendered a.external-link,
+.cm-link,
+.cm-url {
+  color: var(--role-link);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--role-link-rgb), 0.18);
+  padding-bottom: 1px;
+  transition: color var(--dur-fast) var(--ease-signal),
+              border-color var(--dur-fast) var(--ease-signal);
+}
+.markdown-rendered a.external-link::after {
+  content: "↗";
+  font-size: 0.7em;
+  opacity: 0.5;
+  margin-left: 2px;
+  vertical-align: 0.1em;
+}
+.markdown-rendered a.external-link:hover,
+.cm-link:hover,
+.cm-url:hover {
+  color: var(--fg-primary);
+  border-bottom-color: rgba(var(--role-link-rgb), 0.5);
+}
+
+
+/* ===== Bases view links ================================================= */
+.workspace-leaf-content[data-type="bases"] a,
+.workspace-leaf-content[data-type="bases"] .internal-link {
+  color: var(--role-link);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--role-link-rgb), 0.25);
+}
+.workspace-leaf-content[data-type="bases"] a:hover {
+  border-bottom-color: rgba(var(--role-link-rgb), 0.55);
+}
+
+
+/* ===== Style Settings: Link underline (kuro-link-underline) =============
+   Suppress only the border colour (geometry/padding stay, so layout never
+   shifts); body. prefix lifts specificity above the base rules — no
+   !important. kuro-link-underline-on is the no-op default. */
+
+/* On hover only — hide resting underline; existing :hover rule restores it */
+body.kuro-link-underline-hover .markdown-rendered a.internal-link,
+body.kuro-link-underline-hover .cm-hmd-internal-link .cm-underline,
+body.kuro-link-underline-hover .cm-hmd-internal-link,
+body.kuro-link-underline-hover .markdown-rendered a.external-link,
+body.kuro-link-underline-hover .cm-link,
+body.kuro-link-underline-hover .cm-url { border-bottom-color: transparent; }
+
+/* Off — no underline in any state (also neutralise :hover) */
+body.kuro-link-underline-off .markdown-rendered a.internal-link,
+body.kuro-link-underline-off .cm-hmd-internal-link .cm-underline,
+body.kuro-link-underline-off .cm-hmd-internal-link,
+body.kuro-link-underline-off .markdown-rendered a.external-link,
+body.kuro-link-underline-off .cm-link,
+body.kuro-link-underline-off .cm-url,
+body.kuro-link-underline-off .markdown-rendered a.internal-link:hover,
+body.kuro-link-underline-off .cm-hmd-internal-link:hover .cm-underline,
+body.kuro-link-underline-off .cm-hmd-internal-link:hover,
+body.kuro-link-underline-off .markdown-rendered a.external-link:hover,
+body.kuro-link-underline-off .cm-link:hover,
+body.kuro-link-underline-off .cm-url:hover { border-bottom-color: transparent; }

@@ -1,0 +1,249 @@
+/* ---  40-features.css  [armature]
+   PURPOSE   Opt-in body-class TOGGLES (the public Style-Settings / companion
+             contract) plus the non-toggle decorative ambience (film-grain,
+             ambient H1 glow, reveal base frame). ONE copy of each behaviour —
+             collapses the scattered v1 hooks (20-aesthetics §33, 30-plugin-
+             migrated, 00-base §27, 10-polish) into a single feature surface.
+   LAYER     armature — every colour is a token or a color-mix() of tokens.
+             No raw #hex, no --signal-/--void-/--paper- (lint-enforced).
+   SETS      --h1-color..--h6-color (under .kuro-colorful-headings, per mode)
+             --indentation-guide-color (under .kuro-rainbow-indent)
+   USES      --accent --accent-soft --accent-glow --glow-accent
+             --fg-primary --fg-secondary --fg-tertiary --text-faint
+             --surface-base --surface-panel --border-subtle --border-hover
+             --overlay-hover --lift --role-* (rainbow indent hues)
+             --font-mono --kuro-font-mono --space-* --radius-* --dur-* --ease-*
+   DEPENDS   10/11/12/13 (tokens), 05-style-settings (toggle id contract)
+   SURFACES  Toggles: editor (.cm-*), reading (.markdown-*), workspace chrome
+             (ribbon / sidebars / status-bar / tab-headers).
+             Decorative: .theme-dark .workspace::after (grain),
+             .theme-dark H1 / inline-title (glow).
+   NOTE      kuro-no-callout-animations is NOT here — it lives in 24-callouts.css.
+   --- */
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   1 · kuro-mono-all — Terminal mode (monospace everywhere)
+   ──────────────────────────────────────────────────────────────────────
+   Obsidian sets font-family at app level (not via CSS variables), so higher
+   specificity alone is insufficient — every override here needs !important.
+   ════════════════════════════════════════════════════════════════════════ */
+
+body.kuro-mono-all {
+  --font-text-override:      var(--kuro-font-mono);
+  --font-interface-override: var(--kuro-font-mono);
+  /* keep — Obsidian applies font-family app-level; CSS vars don't reach it */
+  font-family: var(--kuro-font-mono) !important;
+}
+body.kuro-mono-all .markdown-preview-view,
+body.kuro-mono-all .markdown-source-view,
+body.kuro-mono-all .markdown-source-view.mod-cm6 .cm-content,
+body.kuro-mono-all .markdown-source-view.mod-cm6 .cm-line,
+body.kuro-mono-all .cm-editor,
+body.kuro-mono-all .nav-file-title,
+body.kuro-mono-all .nav-folder-title {
+  /* keep — app-level font-family override, CSS variables are insufficient */
+  font-family: var(--kuro-font-mono) !important;
+  letter-spacing: 0;
+}
+body.kuro-mono-all h1, body.kuro-mono-all h2, body.kuro-mono-all h3,
+body.kuro-mono-all h4, body.kuro-mono-all h5, body.kuro-mono-all h6,
+body.kuro-mono-all .inline-title,
+body.kuro-mono-all .cm-header-1,
+body.kuro-mono-all .cm-header-2,
+body.kuro-mono-all .cm-header-3 {
+  /* keep — app-level font-family/font-style override */
+  font-family: var(--kuro-font-mono) !important;
+  font-style: normal !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   2 · kuro-margin-tint — soft accent gutters around the text column
+   ════════════════════════════════════════════════════════════════════════ */
+
+body.kuro-margin-tint .markdown-preview-view,
+body.kuro-margin-tint .markdown-source-view.mod-cm6 .cm-scroller {
+  background: linear-gradient(to right,
+    var(--accent-soft) 0,
+    transparent 8%,
+    transparent 92%,
+    var(--accent-soft) 100%);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   3 · kuro-zen-mode — distraction-free (hide all chrome, centre column)
+   ──────────────────────────────────────────────────────────────────────
+   Merged superset of the two v1 copies (00-base/20-aesthetics §33 +
+   10-polish §Focus): hide ribbon, both sidebars, status-bar, tab-headers;
+   constrain the column and add breathing room at the top.
+   ════════════════════════════════════════════════════════════════════════ */
+
+body.kuro-zen-mode .workspace-ribbon,
+body.kuro-zen-mode .workspace-split.mod-left-split,
+body.kuro-zen-mode .workspace-split.mod-right-split,
+body.kuro-zen-mode .status-bar,
+body.kuro-zen-mode .workspace-tab-header-container {
+  display: none;
+}
+body.kuro-zen-mode .markdown-source-view.mod-cm6 .cm-sizer,
+body.kuro-zen-mode .markdown-preview-sizer {
+  max-width: 720px;
+}
+body.kuro-zen-mode .markdown-source-view.mod-cm6 .cm-contentContainer,
+body.kuro-zen-mode .markdown-preview-view {
+  padding-top: var(--space-9);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   4 · kuro-active-line — subtle accent tint on the current line
+   ════════════════════════════════════════════════════════════════════════ */
+
+body.kuro-active-line .cm-active.cm-line,
+body.kuro-active-line .cm-activeLine {
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+  border-radius: var(--radius-sm);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   5 · kuro-rainbow-indent — coloured indentation guides (Live Preview)
+   ──────────────────────────────────────────────────────────────────────
+   Each level borrows a signal role so the ramp re-skins with the palette
+   (a fork rewriting the twelve signals recolours the guides for free).
+   ════════════════════════════════════════════════════════════════════════ */
+
+body.kuro-rainbow-indent .cm-indent   { --indentation-guide-color: var(--role-link); }
+body.kuro-rainbow-indent .cm-indent-1 { --indentation-guide-color: var(--role-link); }
+body.kuro-rainbow-indent .cm-indent-2 { --indentation-guide-color: var(--role-focus); }
+body.kuro-rainbow-indent .cm-indent-3 { --indentation-guide-color: var(--role-creative); }
+body.kuro-rainbow-indent .cm-indent-4 { --indentation-guide-color: var(--role-reflection); }
+body.kuro-rainbow-indent .cm-indent-5 { --indentation-guide-color: var(--role-warning); }
+body.kuro-rainbow-indent .cm-indent-6 { --indentation-guide-color: var(--role-review); }
+body.kuro-rainbow-indent .cm-indent-7 { --indentation-guide-color: var(--role-organic); }
+body.kuro-rainbow-indent .cm-indent-8 { --indentation-guide-color: var(--role-info); }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   6 · Tab style — kuro-tabs-pill / kuro-tabs-underline
+   ──────────────────────────────────────────────────────────────────────
+   kuro-tabs-default is the no-op standard (nothing to author). Both variants
+   style the active tab via .is-active ONLY — the v1 .mod-active half was a
+   dead selector against current Obsidian and is intentionally dropped.
+   ════════════════════════════════════════════════════════════════════════ */
+
+body.kuro-tabs-pill .workspace-tab-header {
+  border-bottom: 0;
+  border-radius: var(--radius-full);
+  margin: 4px 2px 4px 0;
+  padding: 0 8px;
+  height: 28px;
+}
+body.kuro-tabs-pill .workspace-tab-header.is-active {
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+body.kuro-tabs-pill .workspace-tab-header-inner { padding: 0 10px; height: 100%; }
+
+body.kuro-tabs-underline .workspace-tab-header { border-bottom-width: 2px; }
+body.kuro-tabs-underline .workspace-tab-header.is-active {
+  background: transparent;
+  border-bottom-color: var(--accent);
+  box-shadow: 0 6px 14px -10px var(--accent-glow);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   8 · kuro-colorful-headings — DISTINCT signal hue per level
+   ──────────────────────────────────────────────────────────────────────
+   Genuinely colourful: each level keys off a different one of the twelve
+   signals (NOT the system accent — that made it monochrome when the accent
+   is light/desaturated). Dark uses the signals straight (vivid on the
+   chamber); light nudges each toward the ink so it stays legible on paper.
+   ════════════════════════════════════════════════════════════════════════ */
+
+body.kuro-colorful-headings.theme-dark {
+  --h1-color: var(--role-focus);       /* spectre — violet */
+  --h2-color: var(--role-link);        /* circuit — teal */
+  --h3-color: var(--role-success);     /* phosphor — green */
+  --h4-color: var(--role-warning);     /* ember — amber */
+  --h5-color: var(--role-creative);    /* voidwitch — lavender */
+  --h6-color: var(--role-reflection);  /* neural-bleed — rose */
+}
+body.kuro-colorful-headings.theme-light {
+  --h1-color: color-mix(in oklch, var(--role-focus) 72%, var(--fg-primary));
+  --h2-color: color-mix(in oklch, var(--role-link) 72%, var(--fg-primary));
+  --h3-color: color-mix(in oklch, var(--role-success) 72%, var(--fg-primary));
+  --h4-color: color-mix(in oklch, var(--role-warning) 72%, var(--fg-primary));
+  --h5-color: color-mix(in oklch, var(--role-creative) 72%, var(--fg-primary));
+  --h6-color: color-mix(in oklch, var(--role-reflection) 72%, var(--fg-primary));
+}
+
+body.kuro-colorful-headings .markdown-rendered h1,
+body.kuro-colorful-headings .cm-header-1 { color: var(--h1-color); }
+body.kuro-colorful-headings .markdown-rendered h2,
+body.kuro-colorful-headings .cm-header-2 { color: var(--h2-color); }
+body.kuro-colorful-headings .markdown-rendered h3,
+body.kuro-colorful-headings .cm-header-3 { color: var(--h3-color); }
+body.kuro-colorful-headings .markdown-rendered h4,
+body.kuro-colorful-headings .cm-header-4 { color: var(--h4-color); }
+body.kuro-colorful-headings .markdown-rendered h5,
+body.kuro-colorful-headings .cm-header-5 { color: var(--h5-color); }
+body.kuro-colorful-headings .markdown-rendered h6,
+body.kuro-colorful-headings .cm-header-6 { color: var(--h6-color); }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   9 · DECORATIVE (non-toggle) ambience
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* 9a · Film-grain overlay — ~3% SVG noise over the vault ground, dark only.
+   Sits above content (z-index) but is pointer-transparent. */
+body.theme-dark .workspace::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+}
+
+/* 9b · Ambient H1 + inline-title glow — dark only, suppressible via
+   .kuro-no-glow (ported from 00-base §607-609, now via --glow-accent's
+   accent-mix instead of a literal). */
+body.theme-dark:not(.kuro-no-glow) .markdown-rendered h1,
+body.theme-dark:not(.kuro-no-glow) .cm-header-1,
+body.theme-dark:not(.kuro-no-glow) .inline-title {
+  text-shadow: 0 0 24px var(--accent-glow);
+}
+
+/* 10 · Style Settings: Focus ring style (kuro-focus)
+   Re-authors the bridged --glow-focus (applied to the :focus-visible ring in
+   15-base). kuro-focus-glow is the no-op default (keeps the bridge value);
+   Ring swaps the soft halo for a crisp two-step accessible outline (surface
+   gap + solid accent edge). Reads only accent + surface + color-mix. */
+body.kuro-focus-ring {
+  --glow-focus: 0 0 0 2px var(--surface-base),
+                0 0 0 4px color-mix(in srgb, var(--interactive-accent) 90%, transparent);
+}
+
+/* 11 · Style Settings: Border crispness (kuro-borders)
+   Re-authors the mode-scoped semantic border tokens; mixing toward the
+   surface (subtle) or toward foreground (crisp) is automatically correct in
+   both modes. These flow through 12-bridge into every panel edge, table rule
+   and nav divider. kuro-borders-default is the no-op. The callout border
+   (over --callout-color) is independent and intentionally untouched. */
+body.kuro-borders-subtle {
+  --border-subtle: color-mix(in srgb, var(--border-subtle) 55%, var(--surface-base));
+  --border-hover:  color-mix(in srgb, var(--border-hover) 60%, var(--surface-base));
+  --divider:       color-mix(in srgb, var(--divider) 55%, var(--surface-base));
+}
+body.kuro-borders-crisp {
+  --border-subtle: color-mix(in srgb, var(--border-subtle) 70%, var(--fg-tertiary));
+  --border-hover:  color-mix(in srgb, var(--border-hover) 65%, var(--fg-secondary));
+  --divider:       color-mix(in srgb, var(--divider) 70%, var(--fg-tertiary));
+}

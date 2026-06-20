@@ -1,0 +1,380 @@
+/* ---  24-callouts.css  [armature]
+   PURPOSE   ONE callout system — single base + single colour model, the
+             per-type accent map (built-ins + specialised Kuro types), the
+             special layouts (stat/mood/journal/nav/blank/spoiler/streak …)
+             and the icon hover-animation library. Collapses the three former
+             bases (00-base §16, §28 + 10-polish §callouts) into one.
+   LAYER     armature
+   SETS      --callout-color (per data-callout, from a --role-*-rgb triplet)
+   USES      --surface-raised --fg-primary --text-muted --lift
+             --role-*-rgb (error/success/warning/focus/link/info/organic/
+             reflection/drift/review/creative/neutral)
+             --radius-* --space-* --font-mono --text-* --dur-* --ease-*
+   DEPENDS   10/11/12/13
+   SURFACES  Reading callouts (.markdown-rendered .callout) + Live-Preview
+             callouts (.markdown-source-view.mod-cm6 .callout) — both share
+             the single .callout selector, so one definition covers both.
+   --- */
+
+/* ════════════════════════════════════════════════════════════════════════
+   1 · BASE  — one .callout, one colour model
+   ──────────────────────────────────────────────────────────────────────
+   Colour model: each data-callout sets --callout-color to a *-rgb triplet
+   (Obsidian reads it for its own icon/title too). The frame tints derive
+   from that one triplet via rgba(); the bg surface is the semantic
+   --surface-raised so an untyped callout reads as a raised panel.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.callout {
+  --callout-radius:         var(--radius-md, 8px);
+  --callout-bg-opacity:     0.06;
+  --callout-hover-opacity:  0.11;
+  --callout-border-opacity: 0.18;
+  --callout-title-padding:  0.65rem;
+
+  border: 1px solid rgba(var(--callout-color), var(--callout-border-opacity));
+  border-left: 4px solid rgb(var(--callout-color));
+  border-radius: var(--callout-radius);
+  /* tint the raised surface with the type colour; the surface keeps it both-mode */
+  background-color: rgba(var(--callout-color), var(--callout-bg-opacity));
+  color: var(--fg-primary);
+  box-shadow: var(--lift);
+  overflow: hidden;
+  transition: background-color var(--dur-base) var(--ease-signal),
+              box-shadow var(--dur-base) var(--ease-signal);
+}
+.callout:hover {
+  background-color: rgba(var(--callout-color), var(--callout-hover-opacity));
+}
+
+.callout-title {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding-block: var(--callout-title-padding);
+  /* Tinted-but-legible: keep the signal flavour but clamp toward fg for AA.
+     The full signal stays on the icon + 4px left border. */
+  color: color-mix(in srgb, rgb(var(--callout-color)) 55%, var(--fg-primary));
+}
+.callout-content { color: var(--fg-primary); }
+
+.callout .callout-icon svg.svg-icon { width: 18px; height: 18px; }
+
+.callout.is-collapsible .callout-fold {
+  opacity: 0.5;
+  transition: opacity var(--dur-base) var(--ease-signal);
+}
+.callout.is-collapsible:hover .callout-fold { opacity: 1; }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   2 · BUILT-IN TYPE MAP  — Obsidian's defaults onto the role palette
+   ════════════════════════════════════════════════════════════════════════ */
+
+.callout[data-callout="note"]      { --callout-color: var(--role-link-rgb);    }
+.callout[data-callout="info"]      { --callout-color: var(--role-info-rgb);    }
+.callout[data-callout="abstract"],
+.callout[data-callout="summary"],
+.callout[data-callout="tldr"]      { --callout-color: var(--role-info-rgb);    }
+.callout[data-callout="todo"]      { --callout-color: var(--role-link-rgb);    }
+.callout[data-callout="tip"],
+.callout[data-callout="hint"],
+.callout[data-callout="important"] { --callout-color: var(--role-success-rgb); }
+.callout[data-callout="success"],
+.callout[data-callout="check"],
+.callout[data-callout="done"]      { --callout-color: var(--role-success-rgb); }
+.callout[data-callout="question"],
+.callout[data-callout="help"],
+.callout[data-callout="faq"]       { --callout-color: var(--role-review-rgb);  }
+.callout[data-callout="warning"],
+.callout[data-callout="caution"],
+.callout[data-callout="attention"] { --callout-color: var(--role-warning-rgb); }
+.callout[data-callout="failure"],
+.callout[data-callout="fail"],
+.callout[data-callout="missing"]   { --callout-color: var(--role-drift-rgb);   }
+.callout[data-callout="danger"],
+.callout[data-callout="error"],
+.callout[data-callout="bug"]       { --callout-color: var(--role-error-rgb);   }
+.callout[data-callout="example"]   { --callout-color: var(--role-creative-rgb);}
+.callout[data-callout="quote"],
+.callout[data-callout="cite"]      { --callout-color: var(--role-neutral-rgb); }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   3 · SPECIALISED KURO TYPES  — accent + icon, role palette
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Productivity & Focus */
+.callout[data-callout="focus"]   { --callout-color: var(--role-focus-rgb);   --callout-icon: lucide-brain; }
+.callout[data-callout="target"]  { --callout-color: var(--role-error-rgb);   --callout-icon: lucide-target; }
+.callout[data-callout="levelup"] { --callout-color: var(--role-success-rgb); --callout-icon: lucide-chevrons-up; }
+.callout[data-callout="energy"]  { --callout-color: var(--role-warning-rgb); --callout-icon: lucide-zap; }
+.callout[data-callout="streak"]  { --callout-color: var(--role-drift-rgb);   --callout-icon: lucide-flame; }
+.callout[data-callout="review"]  { --callout-color: var(--role-review-rgb);  --callout-icon: lucide-calendar-check; }
+.callout[data-callout="inbox"]   { --callout-color: var(--role-link-rgb);    --callout-icon: lucide-inbox; }
+
+/* Knowledge & Zettelkasten */
+.callout[data-callout="definition"] { --callout-color: var(--role-focus-rgb);    --callout-icon: lucide-book-open; }
+.callout[data-callout="theorem"]    { --callout-color: var(--role-focus-rgb);    --callout-icon: lucide-square-sigma; }
+.callout[data-callout="idea"]       { --callout-color: var(--role-warning-rgb);  --callout-icon: lucide-lightbulb; }
+.callout[data-callout="concept"]    { --callout-color: var(--role-creative-rgb); --callout-icon: lucide-puzzle; }
+
+/* Dashboard & Tracking */
+.callout[data-callout="stat"]     { --callout-color: var(--role-success-rgb);    --callout-icon: lucide-trending-up; }
+.callout[data-callout="progress"] { --callout-color: var(--role-link-rgb);       --callout-icon: lucide-gauge; }
+.callout[data-callout="mood"]     { --callout-color: var(--role-reflection-rgb); --callout-icon: lucide-heart; }
+
+/* Journal & Routine */
+.callout[data-callout="journal"]  { --callout-color: var(--role-reflection-rgb); --callout-icon: lucide-notebook-pen; }
+.callout[data-callout="morning"]  { --callout-color: var(--role-warning-rgb);    --callout-icon: lucide-sun; }
+.callout[data-callout="evening"]  { --callout-color: var(--role-focus-rgb);      --callout-icon: lucide-moon; }
+
+/* Tech & Setup */
+.callout[data-callout="code"]      { --callout-color: var(--role-link-rgb);    --callout-icon: lucide-code-2; }
+.callout[data-callout="customize"] { --callout-color: var(--role-warning-rgb); --callout-icon: lucide-palette; }
+
+/* ADHS-Special */
+.callout[data-callout="frog"]     { --callout-color: var(--role-organic-rgb); --callout-icon: lucide-rocket; }
+.callout[data-callout="log"]      { --callout-color: var(--role-info-rgb);    --callout-icon: lucide-scroll-text; }
+.callout[data-callout="decision"] { --callout-color: var(--role-review-rgb);  --callout-icon: lucide-split; }
+.callout[data-callout="shortcut"] { --callout-color: var(--role-link-rgb);    --callout-icon: lucide-shield-check; }
+
+/* Special */
+.callout[data-callout="spoiler"]  { --callout-color: var(--role-info-rgb);    --callout-icon: lucide-eye-off; }
+.callout[data-callout="nav"]      { --callout-color: var(--role-info-rgb);    --callout-icon: lucide-layout-dashboard; }
+.callout[data-callout="blank"]    { --callout-color: var(--role-neutral-rgb); }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   4 · SPECIAL LAYOUTS
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* stat — dashboard number widget */
+.callout[data-callout="stat"] {
+  text-align: center;
+  border-left: 1px solid rgba(var(--callout-color), var(--callout-border-opacity));
+  padding: var(--space-4, 16px);
+}
+.callout[data-callout="stat"] .callout-title {
+  justify-content: center;
+  font-size: var(--text-xs, 0.75em);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+}
+.callout[data-callout="stat"] .callout-content {
+  font-size: 2.8em;
+  font-weight: 800;
+  color: rgb(var(--callout-color));
+  line-height: 1;
+  padding-top: var(--space-2, 8px);
+}
+
+/* mood — centred card, colour swapped by metadata keyword */
+.callout[data-callout="mood"] { text-align: center; border-radius: var(--radius-lg, 12px); }
+.callout[data-callout="mood"] .callout-title { justify-content: center; }
+.callout[data-callout="mood"][data-callout-metadata~="super"]    { --callout-color: var(--role-link-rgb); }
+.callout[data-callout="mood"][data-callout-metadata~="gut"]      { --callout-color: var(--role-success-rgb); }
+.callout[data-callout="mood"][data-callout-metadata~="ok"],
+.callout[data-callout="mood"][data-callout-metadata~="mittel"]   { --callout-color: var(--role-warning-rgb); }
+.callout[data-callout="mood"][data-callout-metadata~="schlecht"],
+.callout[data-callout="mood"][data-callout-metadata~="mies"]     { --callout-color: var(--role-error-rgb); }
+
+/* progress — stacked table layout */
+.callout[data-callout="progress"] .callout-content { display: flex; flex-direction: column; gap: var(--space-1, 4px); }
+.callout[data-callout="progress"] .callout-content table { width: 100%; margin: 0; }
+
+/* journal — soft diary style */
+.callout[data-callout="journal"] {
+  border: none;
+  background: rgba(var(--callout-color), 0.07);
+  border-left: 3px solid rgba(var(--callout-color), 0.5);
+  border-radius: var(--radius-md, 10px);
+}
+.callout[data-callout="journal"] .callout-title { font-size: 1.05em; font-weight: 600; letter-spacing: -0.01em; }
+
+/* nav — horizontal link bar */
+.callout[data-callout="nav"] .callout-content { padding: var(--space-2, 8px) var(--space-3, 12px); }
+.callout[data-callout="nav"] .callout-content > p {
+  display: flex; flex-wrap: wrap; gap: var(--space-2, 8px);
+  justify-content: center; align-items: center;
+  margin: 0; padding: 0;
+}
+.callout[data-callout="nav"] .callout-content > p > a {
+  display: inline-flex; align-items: center; gap: 5px;
+  white-space: nowrap;
+  background-color: rgba(var(--callout-color), 0.10);
+  padding: 5px 13px;
+  border-radius: var(--radius-md, 8px);
+  text-decoration: none;
+  color: var(--fg-primary);
+  border: 1px solid rgba(var(--callout-color), 0.20);
+  font-size: 0.88em;
+  transition: background-color var(--dur-fast) var(--ease-signal),
+              transform var(--dur-fast) var(--ease-signal),
+              border-color var(--dur-fast) var(--ease-signal);
+}
+.callout[data-callout="nav"] .callout-content > p > a:hover {
+  background-color: rgba(var(--callout-color), 0.22);
+  transform: translateY(-2px);
+  border-color: rgba(var(--callout-color), 0.5);
+}
+.callout[data-callout="nav"] .callout-content > p > a:active { transform: translateY(0); }
+
+/* blank — invisible container */
+.callout[data-callout="blank"] {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.callout[data-callout="blank"] .callout-title { display: none; }
+.callout[data-callout="blank"] .callout-content { padding: 0; }
+
+/* spoiler — blur until hover */
+.callout[data-callout="spoiler"] { cursor: pointer; }
+.callout[data-callout="spoiler"] .callout-content {
+  filter: blur(5px);
+  -webkit-user-select: none; user-select: none;
+  transition: filter 0.35s var(--ease-signal);
+}
+.callout[data-callout="spoiler"]:hover .callout-content {
+  filter: blur(0);
+  -webkit-user-select: auto; user-select: auto;
+}
+.callout[data-callout="spoiler"] .callout-title {
+  font-size: var(--text-sm, 0.8em);
+  opacity: 0.7;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   5 · ICON HOVER ANIMATIONS
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Built-ins */
+.callout[data-callout="note"]:hover .callout-icon svg          { animation: gentlePulse 2.5s ease-in-out infinite; }
+.callout[data-callout="info"]:hover .callout-icon svg          { animation: slowSpin 4s linear infinite; }
+.callout[data-callout="tip"]:hover .callout-icon svg,
+.callout[data-callout="hint"]:hover .callout-icon svg,
+.callout[data-callout="important"]:hover .callout-icon svg     { animation: bounceUp 0.6s ease-in-out infinite; }
+.callout[data-callout="success"]:hover .callout-icon svg,
+.callout[data-callout="check"]:hover .callout-icon svg,
+.callout[data-callout="done"]:hover .callout-icon svg          { animation: successPop 0.7s ease-in-out infinite; }
+.callout[data-callout="question"]:hover .callout-icon svg,
+.callout[data-callout="help"]:hover .callout-icon svg,
+.callout[data-callout="faq"]:hover .callout-icon svg           { animation: wobble 0.8s ease-in-out infinite; }
+.callout[data-callout="warning"]:hover .callout-icon svg,
+.callout[data-callout="caution"]:hover .callout-icon svg,
+.callout[data-callout="attention"]:hover .callout-icon svg     { animation: shake 0.5s ease-in-out infinite; }
+.callout[data-callout="failure"]:hover .callout-icon svg,
+.callout[data-callout="fail"]:hover .callout-icon svg,
+.callout[data-callout="missing"]:hover .callout-icon svg       { animation: droop 0.9s ease-in-out infinite; }
+.callout[data-callout="danger"]:hover .callout-icon svg,
+.callout[data-callout="error"]:hover .callout-icon svg         { animation: dangerPulse 0.8s ease-in-out infinite; }
+.callout[data-callout="bug"]:hover .callout-icon svg           { animation: slowSpin 1.2s linear infinite; }
+.callout[data-callout="abstract"]:hover .callout-icon svg,
+.callout[data-callout="summary"]:hover .callout-icon svg,
+.callout[data-callout="tldr"]:hover .callout-icon svg          { animation: breathe 2s ease-in-out infinite; }
+.callout[data-callout="todo"]:hover .callout-icon svg          { animation: jolt 1s ease-in-out infinite; }
+.callout[data-callout="quote"]:hover .callout-icon svg,
+.callout[data-callout="cite"]:hover .callout-icon svg          { animation: swingIcon 1.5s ease-in-out infinite; }
+
+/* Custom */
+.callout[data-callout="idea"]:hover .callout-icon svg       { animation: wiggleGlow 0.5s ease-in-out infinite; filter: drop-shadow(0 0 5px rgba(var(--role-warning-rgb), 0.85)); color: var(--role-warning); }
+.callout[data-callout="focus"]:hover .callout-icon svg      { animation: breathe 2s ease-in-out infinite; }
+.callout[data-callout="target"]:hover .callout-icon svg     { animation: pulseTarget 1s ease-in-out infinite; }
+.callout[data-callout="levelup"]:hover .callout-icon svg    { animation: bounceUp 0.65s ease-in-out infinite; }
+.callout[data-callout="energy"]:hover .callout-icon svg     { animation: wiggleGlow 0.4s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(var(--role-warning-rgb), 0.9)); color: var(--role-warning); }
+.callout[data-callout="streak"]:hover .callout-icon svg     { animation: flicker 0.6s ease-in-out infinite; }
+.callout[data-callout="review"]:hover .callout-icon svg     { animation: successPop 0.8s ease-in-out infinite; }
+.callout[data-callout="inbox"]:hover .callout-icon svg      { animation: bounceUp 0.7s ease-in-out infinite; }
+.callout[data-callout="morning"]:hover .callout-icon svg    { animation: sunRise 1.6s ease-in-out infinite; }
+.callout[data-callout="evening"]:hover .callout-icon svg    { animation: moonGlow 2s ease-in-out infinite; }
+.callout[data-callout="concept"]:hover .callout-icon svg    { animation: slowSpin 4s linear infinite; }
+.callout[data-callout="definition"]:hover .callout-icon svg { animation: breathe 2.5s ease-in-out infinite; }
+.callout[data-callout="mood"]:hover .callout-icon svg       { animation: successPop 0.9s ease-in-out infinite; }
+.callout[data-callout="code"]:hover .callout-icon svg       { animation: gentlePulse 1.5s ease-in-out infinite; }
+.callout[data-callout="frog"]:hover .callout-icon svg       { animation: bounceUp 0.5s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(var(--role-organic-rgb), 0.9)); color: var(--role-organic); }
+.callout[data-callout="log"]:hover .callout-icon svg        { animation: gentlePulse 2.5s ease-in-out infinite; }
+.callout[data-callout="decision"]:hover .callout-icon svg   { animation: successPop 0.8s ease-in-out infinite; }
+.callout[data-callout="shortcut"]:hover .callout-icon svg   { animation: shieldPulse 1.8s ease-in-out infinite; }
+
+/* Keyframes */
+@keyframes gentlePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+@keyframes slowSpin    { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes bounceUp    { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-5px); } 60% { transform: translateY(-2px); } }
+@keyframes successPop  { 0%, 100% { transform: scale(1); filter: none; } 50% { transform: scale(1.22); filter: drop-shadow(0 0 5px rgba(var(--callout-color), 0.8)); } }
+@keyframes wobble      { 0%, 100% { transform: rotate(0deg); } 15% { transform: rotate(-10deg); } 45% { transform: rotate(10deg); } 75% { transform: rotate(-5deg); } 90% { transform: rotate(3deg); } }
+@keyframes shake       { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-3px); } 40%, 80% { transform: translateX(3px); } }
+@keyframes droop       { 0%, 100% { transform: rotate(0deg) translateY(0); } 50% { transform: rotate(-18deg) translateY(3px); } }
+@keyframes dangerPulse { 0%, 100% { transform: scale(1); filter: none; } 50% { transform: scale(1.15); filter: drop-shadow(0 0 6px rgba(var(--callout-color), 0.9)); } }
+@keyframes breathe     { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.55; transform: scale(1.06); } }
+@keyframes jolt        { 0%, 85%, 100% { transform: rotate(0deg); } 90% { transform: rotate(-8deg); } 95% { transform: rotate(6deg); } }
+@keyframes swingIcon   { 0%, 100% { transform: rotate(0deg); } 30% { transform: rotate(-8deg); } 70% { transform: rotate(8deg); } }
+@keyframes wiggleGlow  { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-12deg); } 75% { transform: rotate(12deg); } }
+@keyframes flicker     { 0%, 100% { transform: scaleY(1) scaleX(1); filter: drop-shadow(0 0 3px rgba(var(--role-drift-rgb), 0.6)); } 25% { transform: scaleY(1.06) scaleX(0.96); filter: drop-shadow(0 0 7px rgba(var(--role-drift-rgb), 0.9)); } 75% { transform: scaleY(0.96) scaleX(1.04); filter: drop-shadow(0 0 4px rgba(var(--role-drift-rgb), 0.7)); } }
+@keyframes sunRise     { 0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 3px rgba(var(--role-warning-rgb), 0.5)); } 50% { transform: translateY(-4px) scale(1.12); filter: drop-shadow(0 0 10px rgba(var(--role-warning-rgb), 0.9)); } }
+@keyframes moonGlow    { 0%, 100% { transform: rotate(0deg); filter: drop-shadow(0 0 2px rgba(var(--role-focus-rgb), 0.4)); } 50% { transform: rotate(8deg); filter: drop-shadow(0 0 8px rgba(var(--role-focus-rgb), 0.85)); } }
+@keyframes pulseTarget { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+@keyframes shieldPulse { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 3px rgba(var(--role-link-rgb), 0.4)); } 50% { transform: scale(1.14); filter: drop-shadow(0 0 9px rgba(var(--role-link-rgb), 0.85)); } }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   6 · ACCESSIBILITY + TOGGLES + MOBILE
+   ════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .callout .callout-icon svg {
+    animation: none !important;  /* keep — defeats higher-spec (0,3,1) .callout[data-callout]:hover .callout-icon svg animation */
+    filter: none !important;     /* keep — defeats higher-spec (0,3,1) :hover icon filter */
+    transition: none !important; /* keep — defeats higher-spec (0,3,1) :hover icon transition */
+  }
+  .callout,
+  .callout[data-callout="nav"] .callout-content > p > a,
+  .callout[data-callout="spoiler"] .callout-content {
+    transition: none !important; /* keep — defeats higher-spec transition rules above */
+  }
+}
+
+/* Plugin toggle: body.kuro-no-callout-animations (main.js → calloutAnimations) */
+body.kuro-no-callout-animations .callout .callout-icon svg,
+body.kuro-no-callout-animations .callout-icon svg {
+  animation: none !important;  /* keep — toggle must defeat higher-spec (0,3,1) :hover icon animation */
+  filter:    none !important;  /* keep — toggle must defeat higher-spec (0,3,1) :hover icon filter */
+}
+body.kuro-no-callout-animations .callout:hover .callout-icon svg {
+  transform: none !important;  /* keep — toggle must defeat higher-spec (0,3,1) :hover icon transform */
+  transition: none !important; /* keep — toggle must defeat higher-spec (0,3,1) :hover icon transition */
+}
+
+@media (max-width: 480px) {
+  .callout[data-callout="nav"] .callout-content > p { justify-content: flex-start; }
+  .callout[data-callout="nav"] .callout-content > p > a { min-height: 44px; }
+  .callout[data-callout="stat"] .callout-content { font-size: 2.2em; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Style Settings: Callout style (kuro-callout-style)
+   ──────────────────────────────────────────────────────────────────────
+   Drives the per-instance opacity vars (+ box-shadow) only; the per-type
+   --callout-color (4px bar + icon) is untouched so Kuro identity survives.
+   kuro-callout-filled is the no-op default.
+   ════════════════════════════════════════════════════════════════════════ */
+body.kuro-callout-subtle .callout {
+  --callout-bg-opacity: 0.025;
+  --callout-hover-opacity: 0.05;
+  --callout-border-opacity: 0.10;
+  box-shadow: none;
+}
+body.kuro-callout-border-only .callout {
+  --callout-bg-opacity: 0;
+  --callout-hover-opacity: 0;
+  --callout-border-opacity: 0;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  box-shadow: none;
+}

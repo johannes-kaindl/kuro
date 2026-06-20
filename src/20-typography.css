@@ -1,0 +1,152 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   20-typography.css                                               [armature]
+   PURPOSE   Base heading typography h1–h6 + inline-title, defined ONCE for
+             every surface (Reading .markdown-rendered hN, Live-Preview
+             .cm-header-N / .HyperMD-header-N, inline-title). Each heading's
+             font / size / weight / colour keys off the bridged --hN-* and
+             --inline-title-* vars so the dark/light colour model flows in via
+             --fg-primary/-secondary/-tertiary automatically. The H2 ◉ eyebrow
+             accent (start-of-movement marker) lives here too.
+             NOT here: the body.kuro-colorful-headings toggle and the dark
+             H1 ambient glow — both decorative, both go to 40-features.
+   LAYER     armature (reads bridged + semantic tokens; no literals)
+   SETS      (nothing — pure component styling)
+   USES      --h1-color..--h6-color --h1-font..--h6-font --h1-style --h1-weight
+             --h1-size..--h6-size --h1-line-height --inline-title-font/-style/
+             -weight/-size/-color --kuro-font-serif --kuro-font-mono
+             --accent --divider-color --text-faint
+   DEPENDS   12-bridge (--hN-*, --inline-title-*, --accent, --divider-color,
+             --kuro-font-*), 10/11 (--fg-* feeding --hN-color), 13-roles (n/a)
+   SURFACES  Reading (.markdown-rendered h1..h6) · Live-Preview
+             (.cm-header-1..6, .HyperMD-header-1..6) · inline-title
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ── H1 — serif italic display ──────────────────────────────────────────── */
+body .markdown-rendered h1,
+body .cm-header-1,
+body .HyperMD-header-1 {
+  font-family: var(--h1-font);
+  font-style: var(--h1-style);
+  font-weight: var(--h1-weight);
+  font-size: var(--h1-size);
+  line-height: var(--h1-line-height);
+  color: var(--h1-color);
+  letter-spacing: -0.02em;
+  padding-bottom: 0.3em;
+  margin-top: 0.4em;
+  margin-bottom: 0.6em;
+}
+.markdown-rendered h1 { border-bottom: 1px solid var(--divider-color); }
+
+/* editor H1 top gap (reduced from the CM default) */
+.cm-s-obsidian .cm-line.HyperMD-header-1 { padding-top: 0.6em; }
+
+/* ── inline-title — serif italic, the note's display name ────────────────── */
+body .inline-title {
+  font-family: var(--inline-title-font);
+  font-style: var(--inline-title-style);
+  font-weight: var(--inline-title-weight);
+  font-size: var(--inline-title-size);
+  color: var(--inline-title-color);
+  letter-spacing: -0.02em;
+}
+
+/* ── H2 — mono, with the ◉ eyebrow accent ───────────────────────────────── */
+body .markdown-rendered h2,
+body .cm-header-2,
+body .HyperMD-header-2 {
+  font-family: var(--h2-font);
+  font-style: var(--h2-style);
+  font-size: var(--h2-size);
+  font-weight: var(--h2-weight);
+  color: var(--h2-color);
+  letter-spacing: 0.03em;
+}
+.markdown-rendered h2 {
+  margin-top: 1.8em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
+  padding-bottom: 0.2em;
+}
+.cm-header-2 { padding-top: 1.5em; padding-bottom: 0.3em; }
+
+/* ◉ eyebrow — Reading prepends ::before; Live-Preview reuses the header mark */
+.markdown-rendered h2::before,
+.cm-header-2 .cm-formatting-header::after {
+  content: "◉ ";
+  color: var(--accent);
+  font-size: 0.65em;
+  letter-spacing: 0.06em;
+  vertical-align: 0.25em;
+  opacity: 0.75;
+}
+.cm-header-2 .cm-formatting-header { color: var(--text-faint); font-size: 0.75em; }
+
+/* ── H3 — mono ──────────────────────────────────────────────────────────── */
+body .markdown-rendered h3,
+body .cm-header-3,
+body .HyperMD-header-3 {
+  font-family: var(--h3-font);
+  font-size: var(--h3-size);
+  font-weight: var(--h3-weight);
+  color: var(--h3-color);
+  letter-spacing: 0.03em;
+}
+.markdown-rendered h3 { margin-top: 1.4em; margin-bottom: 0.4em; }
+.cm-header-3 { padding-top: 1em; }
+
+/* ── H4 — mono uppercase label ──────────────────────────────────────────── */
+body .markdown-rendered h4,
+body .cm-header-4,
+body .HyperMD-header-4 {
+  font-family: var(--h4-font);
+  font-size: 0.95em;
+  font-weight: 600;
+  color: var(--h4-color);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);  /* 0.12em — unify uppercase runs */
+}
+
+/* ── H5 — mono italic aside ─────────────────────────────────────────────── */
+body .markdown-rendered h5,
+body .cm-header-5,
+body .HyperMD-header-5 {
+  font-family: var(--h5-font);
+  font-size: 0.9em;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--h5-color);
+  letter-spacing: 0.02em;
+}
+
+/* ── H6 — mono small-caps metadata ──────────────────────────────────────── */
+body .markdown-rendered h6,
+body .cm-header-6,
+body .HyperMD-header-6 {
+  font-family: var(--h6-font);
+  font-size: 0.82em;
+  font-weight: 400;
+  color: var(--h6-color);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);  /* 0.12em — unify uppercase runs */
+}
+
+/* editor H4–H6 top gap parity with Reading */
+.cm-s-obsidian .cm-line.HyperMD-header-4,
+.cm-s-obsidian .cm-line.HyperMD-header-5,
+.cm-s-obsidian .cm-line.HyperMD-header-6 { padding-top: 0.6em; }
+
+/* Live-Preview header gutter marks (#, ##, …) — faint, shrunk */
+.cm-header-1 .cm-formatting-header,
+.cm-header-3 .cm-formatting-header,
+.cm-header-4 .cm-formatting-header,
+.cm-header-5 .cm-formatting-header,
+.cm-header-6 .cm-formatting-header {
+  color: var(--text-faint);
+  font-size: 0.75em;
+}
+
+/* phone — tame the H1 display size */
+body.is-phone .markdown-rendered h1,
+body.is-phone .cm-header-1,
+body.is-phone .HyperMD-header-1 { font-size: 1.7em; }

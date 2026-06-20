@@ -1,0 +1,76 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   15-base.css                                                     [armature]
+   PURPOSE   App-shell + editor/reading writing surface. Base body text from
+             ONE source (editor + reading), interface font, scrollbar, and the
+             note-pane LIFT (a soft accent halo behind the note in dark; none
+             in light). Headings/components live in their own 20–31 files.
+   LAYER     armature (reads bridged + semantic tokens; no literals)
+   USES      --kuro-font-mono --text-normal --text-muted --line-height-normal
+             --scrollbar-* --pane-lift
+   DEPENDS   12-bridge (native vars), 10/11 (--pane-lift)
+   SURFACES  App shell (.workspace/.view-content) · Editor (.cm-editor/.cm-line)
+             · Reading (.markdown-rendered p/li/strong/em) · note pane sizer
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* Interface + editor base font */
+body,
+.workspace,
+.workspace-leaf,
+.view-content {
+  font-family: var(--kuro-font-mono);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Body text — editor (Live-Preview/source) and reading, one definition */
+.cm-s-obsidian .cm-line,
+.markdown-source-view .cm-editor {
+  font-family: var(--kuro-font-mono);
+  line-height: var(--line-height-normal);
+  color: var(--text-normal);
+  letter-spacing: 0.01em;
+}
+.markdown-rendered p,
+.markdown-rendered li,
+.markdown-rendered td,
+.markdown-rendered th {
+  line-height: var(--line-height-normal);
+  color: var(--text-normal);
+}
+.markdown-rendered strong,
+.cm-strong { color: var(--text-normal); font-weight: 600; }
+.markdown-rendered em,
+.cm-em { color: var(--text-muted); }
+
+/* Note-pane LIFT — the note surface lifts off the app background.
+   Drawn on an expanded ::before so the elevation floats with breathing room
+   AROUND the text column instead of hugging the glyphs. --pane-lift is a soft
+   accent glow in dark and a layered drop shadow in light (mode-scoped). */
+.markdown-preview-sizer,
+.cm-sizer { position: relative; }
+.markdown-preview-sizer::before,
+.cm-sizer::before {
+  content: "";
+  position: absolute;
+  inset: -18px -36px;                 /* breathing room: 18px vertical, 36px horizontal */
+  border-radius: var(--radius-lg);
+  box-shadow: var(--pane-lift);
+  pointer-events: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: var(--scrollbar-bg); }
+::-webkit-scrollbar-thumb  { background: var(--scrollbar-thumb-bg); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-active-thumb-bg); }
+
+/* Keyboard focus ring — consumes the bridged --glow-focus. :focus-visible keeps
+   the clean mouse aesthetic; :where() keeps specificity 0 so overrides still win. */
+:where(a, button, input, textarea, select, .clickable-icon, .nav-file-title,
+  .nav-folder-title, .workspace-tab-header, .tree-item-self, .menu-item,
+  .suggestion-item, .checkbox-container, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: var(--glow-focus);
+  border-radius: var(--radius-sm);
+}
+.cm-editor:focus-visible, .cm-content:focus-visible { box-shadow: none; }

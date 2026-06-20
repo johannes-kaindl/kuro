@@ -1,0 +1,293 @@
+/* ---  29-chrome.css  [armature]
+   PURPOSE  App-UI chrome: workspace tabs, ribbon, splits/sidebars, file
+            explorer nav, outline/backlinks tree, properties/metadata.
+            Resolves the active-file-stripe drift (00-base:1081 vs
+            70-showcase-fx:61) into ONE rule.
+   LAYER    armature
+   SETS     (nothing — consumes tokens)
+   USES     --surface-base/-deep/-raised --fg-primary/-secondary/-tertiary
+            --border-subtle --divider --accent --overlay-hover
+            --nav-item-* (bridged) --font-mono --text-xs/-sm --radius-sm
+            --dur-fast/-base --ease-signal/-ghost
+   DEPENDS  10 / 11 / 12 / 13
+   SURFACES UI chrome only (no reading / Live-Preview split) --- */
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   §1 · WORKSPACE TABS  (port 00-base:984)
+   ════════════════════════════════════════════════════════════════════════ */
+
+.workspace-tab-header-container {
+  background: var(--surface-deep);
+  border-bottom: 1px solid var(--divider);
+}
+body .workspace-tab-header {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--fg-tertiary);
+  background: var(--surface-deep);
+  border: none;
+  letter-spacing: 0.03em;
+  transition: color var(--dur-fast) var(--ease-signal),
+              background var(--dur-fast) var(--ease-signal);
+}
+.workspace-tab-header:not(.is-active):hover {
+  color: var(--fg-secondary);
+  background: var(--overlay-hover);
+}
+.workspace-tab-header.is-active {
+  color: var(--fg-primary) !important;          /* keep — Obsidian higher-spec: .workspace-tab-header-container .workspace-tab-header.is-active (0,3,0) */
+  background: var(--surface-base) !important;    /* keep — Obsidian higher-spec: .workspace-tab-header-container .workspace-tab-header.is-active (0,3,0) */
+  border-top: 2px solid var(--accent);
+}
+
+.view-header {
+  background: var(--surface-base);
+  border-bottom: 1px solid var(--divider);
+}
+body .view-header-title {
+  font-family: var(--font-mono);
+  color: var(--fg-secondary);
+  font-size: var(--text-sm);
+  letter-spacing: 0.03em;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   §2 · RIBBON  (left icon rail — port 00-base:1034)
+   ════════════════════════════════════════════════════════════════════════ */
+
+.workspace-ribbon {
+  background: var(--surface-deep);
+  border-right: 1px solid var(--divider);
+}
+.workspace-ribbon .clickable-icon {
+  color: var(--fg-tertiary);
+  border-radius: var(--radius-sm);
+  transition: color var(--dur-fast) var(--ease-signal),
+              background var(--dur-fast) var(--ease-signal);
+}
+.workspace-ribbon .clickable-icon:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+.workspace-ribbon .clickable-icon.is-active {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   §3 · SPLITS / SIDEBARS  (port 00-base:1053)
+   ════════════════════════════════════════════════════════════════════════ */
+
+.workspace-split.mod-left-split,
+.workspace-split.mod-right-split {
+  background: var(--surface-deep);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   §4 · FILE EXPLORER  (nav file/folder — port 00-base:1067)
+   ════════════════════════════════════════════════════════════════════════ */
+
+body .nav-folder-title,
+body .nav-file-title {
+  font-family: var(--font-mono);
+  color: var(--nav-item-color);
+  font-size: var(--text-sm);
+  letter-spacing: 0.01em;
+  border-radius: var(--radius-sm);
+  padding: var(--kuro-nav-pad-y, 3px) 8px;
+  transition: color var(--dur-fast) var(--ease-signal),
+              background var(--dur-base) var(--ease-ghost);
+}
+.nav-file-title:not(.is-active):hover,
+.nav-folder-title:not(.is-active):hover {
+  color: var(--nav-item-color-hover);
+  background: var(--overlay-hover);
+}
+
+/* ── Active-file stripe — SINGLE canonical rule ──────────────────
+   Resolves the drift between 00-base:1081 (nav-item-background-active +
+   inset accent stripe) and 70-showcase-fx:61 (accent 12% wash + stripe +
+   nav-item-color-active). Convention: accent-soft bg + 2px inset accent
+   stripe on the leading edge; colour via the theme-scoped active token so
+   it stays legible in both modes (light: dark ink, dark: pearl). */
+.nav-file-title.is-active,
+.nav-file-title.is-active:hover {
+  color: var(--nav-item-color-active);
+  background: var(--nav-item-background-active);
+  box-shadow: inset 2px 0 0 0 var(--accent);
+}
+
+.nav-folder-collapse-indicator svg {
+  color: var(--fg-tertiary);
+  transition: color var(--dur-fast) var(--ease-signal);
+}
+.nav-folder:not(.is-collapsed) .nav-folder-title .nav-folder-collapse-indicator svg {
+  color: var(--fg-secondary);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   §5 · OUTLINE & BACKLINKS TREE  (right sidebar — port 00-base:1305)
+   ════════════════════════════════════════════════════════════════════════ */
+
+[data-type="outline"] .tree-item-inner,
+[data-type="backlink"] .tree-item-inner,
+.workspace-split.mod-right-split .tree-item-inner {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--fg-secondary);
+}
+[data-type="outline"] .tree-item-self:hover .tree-item-inner,
+[data-type="backlink"] .tree-item-self:hover .tree-item-inner,
+.workspace-split.mod-right-split .tree-item-self:hover .tree-item-inner {
+  color: var(--fg-primary);
+}
+[data-type="outline"] .is-active .tree-item-inner,
+.workspace-split.mod-right-split .is-active .tree-item-inner {
+  color: var(--accent);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   Style Settings: Interface density (kuro-density)
+   ──────────────────────────────────────────────────────────────────────
+   Rewrites the nav-row padding token + the outline/right-split tree-row
+   padding. kuro-density-default is a true no-op (token stays 3px).
+   Metric only — armature-safe. */
+body.kuro-density-compact     { --kuro-nav-pad-y: 1px; }
+body.kuro-density-comfortable { --kuro-nav-pad-y: 6px; }
+body.kuro-density-compact     [data-type="outline"] .tree-item-self,
+body.kuro-density-compact     .workspace-split.mod-right-split .tree-item-self { padding-top: 0; padding-bottom: 0; }
+body.kuro-density-comfortable [data-type="outline"] .tree-item-self,
+body.kuro-density-comfortable .workspace-split.mod-right-split .tree-item-self { padding-top: 4px; padding-bottom: 4px; }
+[data-type="outline"] [data-level="1"] .tree-item-inner { font-size: var(--text-sm); }
+[data-type="outline"] [data-level="2"] .tree-item-inner { font-size: var(--text-xs); opacity: 0.85; }
+[data-type="outline"] [data-level="3"] .tree-item-inner { font-size: var(--text-xs); opacity: 0.7; }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   §6 · PROPERTIES / METADATA  (frontmatter — port 00-base:904)
+   KEEP frontmatter-flucht fix: padding 2px 14px on .metadata-container so
+   heading + rows share one left edge regardless of inner DOM. Light tones
+   from 00-base:521-522 now token-driven (surface/border, mode-aware).
+   ════════════════════════════════════════════════════════════════════════ */
+
+.metadata-container {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5em;
+  padding: 2px 14px; /* keep — frontmatter-flucht: shared left edge for heading AND rows */
+}
+body .metadata-properties-heading {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--fg-tertiary);
+  padding-left: 0; /* alignment from .metadata-container padding; neutralise app default */
+  margin-left: 0;
+}
+.metadata-property {
+  border-bottom: 1px solid var(--divider);
+  padding: 4px 0; /* horizontal inset lives on .metadata-container so heading + rows align */
+  min-height: 30px;
+}
+body .metadata-property-icon { margin-right: 6px; } /* breathing room between type icon and property key */
+.metadata-property:last-child { border-bottom: none; }
+
+body .metadata-property-key,
+body .metadata-property-key span,
+body .metadata-property-key input {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--fg-tertiary);
+}
+body .metadata-property-value,
+body .metadata-property-value input,
+body .metadata-property-value textarea {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--fg-secondary);
+}
+.metadata-property.is-active {
+  background: var(--accent-soft);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+body .metadata-add-button {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--fg-tertiary);
+}
+body .metadata-add-button:hover { color: var(--fg-secondary); }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   §2b · CLICKABLE-ICONS — one base, app-wide
+   (the §2 ribbon rule keeps its stronger accent-on-hover as a scoped override)
+   ════════════════════════════════════════════════════════════════════════ */
+
+.clickable-icon {
+  color: var(--fg-tertiary);
+  border-radius: var(--radius-sm);
+  transition: color var(--dur-fast) var(--ease-signal),
+              background var(--dur-fast) var(--ease-signal);
+}
+.clickable-icon:hover  { color: var(--fg-primary); background: var(--overlay-hover); }
+.clickable-icon:active { background: var(--overlay-active); }
+.clickable-icon.is-active { color: var(--accent); background: var(--accent-soft); }
+.clickable-icon.is-disabled,
+.clickable-icon:disabled  { opacity: 0.4; cursor: not-allowed; }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   §7 · SUGGESTION / QUICK-SWITCHER / COMMAND PALETTE
+   The most-used surfaces in the app — Kuro's active-selection idiom.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.prompt {
+  font-family: var(--font-mono);
+  background: var(--surface-modal);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-modal);
+}
+.suggestion-item {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--fg-secondary);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.01em;
+}
+.suggestion-item.is-selected {
+  color: var(--fg-primary);
+  background: var(--accent-soft);
+  box-shadow: inset 2px 0 0 0 var(--accent);
+}
+.suggestion-highlight { color: var(--accent); font-weight: 600; }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   §8 · CONTEXT MENUS
+   ════════════════════════════════════════════════════════════════════════ */
+
+.menu {
+  background: var(--surface-modal);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-modal);
+  border-radius: var(--radius-md);
+}
+.menu-item {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--fg-secondary);
+  border-radius: var(--radius-sm);
+}
+.menu-item:not(.is-disabled):not(.is-label):hover,
+.menu-item.selected { color: var(--fg-primary); background: var(--accent-soft); }
+.menu-separator { border-top: 1px solid var(--divider); }

@@ -1,0 +1,244 @@
+/* ---  21-checkboxes.css  [armature]
+   PURPOSE   Task-list checkboxes: one base reset + every [data-task] variant,
+             defined ONCE for Reading view, Live-Preview and editor source.
+             Collapses the two competing X1 bases (00-base §11 .task-list-item-
+             checkbox + 10-v1 input.task-list-item-checkbox + per-task hexes)
+             into a single token-driven block, so the glyph/colour set no
+             longer renders only in Reading view nor fights itself.
+   LAYER     armature
+   SETS      —
+   USES      --accent --check-border --check-marker --checkbox-color
+             --fg-tertiary --text-muted
+             --role-focus --role-warning --role-link --role-review --role-error
+             --role-info --role-success --role-drift --role-organic
+             --radius-sm --dur-fast --ease-signal
+   DEPENDS   10/11 (semantic) · 12 (bridge) · 13 (roles)
+   SURFACES  Reading (.markdown-rendered input.task-list-item-checkbox)
+             + Live-Preview / source (.markdown-source-view.mod-cm6 …
+               input.task-list-item-checkbox) — base + every [data-task]
+             + Settings toggles (.checkbox-container.is-enabled)
+             + line-through on is-checked / x / - / cancelled task text --- */
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   BASE — uniform square, no native OS appearance, theme-scoped tokens.
+   Intentionally targets ALL task checkboxes (incl. plain [ ]) for a
+   consistent look; plain [ ] renders as a clean square with no glyph.
+   One selector list covers Reading + Live-Preview + source.
+   ════════════════════════════════════════════════════════════════════════ */
+input.task-list-item-checkbox,
+.markdown-rendered input.task-list-item-checkbox,
+.markdown-source-view.mod-cm6 input.task-list-item-checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: var(--radius-sm); /* 3px — matches 10-v1 base (radius-xs not defined) */
+  /* theme-scoped checkbox tokens (visible in dark AND light) + faint accent wash */
+  border: 1.5px solid var(--check-border);
+  /* 8% accent wash — preserves 10-v1 base (color-mix accent 8%); --accent-soft is 15% (too strong) */
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  vertical-align: middle;
+  transition: background var(--dur-fast) var(--ease-signal),
+              border-color var(--dur-fast) var(--ease-signal);
+}
+
+/* Default checked — accent fill + on-accent marker. Was 00-base §11
+   :checked (color-mix accent 18%) — promoted to the full accent so the
+   single base also serves the plain [x] without a data-task glyph. */
+input.task-list-item-checkbox:checked {
+  background: var(--checkbox-color) !important; /* keep — Obsidian input[type=checkbox]:checked (0,2,1) */
+  border-color: var(--checkbox-color) !important; /* keep — Obsidian input[type=checkbox]:checked (0,2,1) */
+}
+
+/* Settings toggles: the "on" track follows the system accent, theme-scoped so
+   it stays visible on dark surfaces (Style Settings' default mixes the accent
+   into a dark border token → near-invisible in dark).
+   CRITIC: ported from 10-v1:1016 — drop it and the dark toggle bug regresses. */
+.checkbox-container.is-enabled {
+  background-color: var(--checkbox-color);
+}
+.theme-dark .checkbox-container.is-enabled {
+  background-color: var(--checkbox-color);
+  border-color: var(--checkbox-color);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   GLYPH SCAFFOLD — every [data-task] marker centres an ::after glyph.
+   ::after on <input> is a Chromium implementation detail (not CSS spec) but
+   reliable in Obsidian (Electron/Chromium) on all platforms.
+   ════════════════════════════════════════════════════════════════════════ */
+input[data-task].task-list-item-checkbox::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+}
+
+
+/* ── [x] / [X] Done — accent fill, on-accent check ────────────────────────
+   was #22c55e → done maps to the theme accent (prompt: "x" done → accent). */
+input[data-task="x"].task-list-item-checkbox,
+input[data-task="X"].task-list-item-checkbox {
+  background: var(--checkbox-color);
+  border-color: var(--checkbox-color);
+}
+input[data-task="x"].task-list-item-checkbox::after,
+input[data-task="X"].task-list-item-checkbox::after {
+  content: '✓';
+  color: var(--check-marker);
+  font-size: 0.75em;
+}
+li.task-list-item[data-task="x"],
+li.task-list-item[data-task="X"] {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* ── [-] Cancelled — muted strikethrough, no accent ───────────────────────
+   was --text-faint → --fg-tertiary (the both-mode faint foreground). */
+input[data-task="-"].task-list-item-checkbox {
+  border-color: var(--fg-tertiary);
+  background: transparent;
+}
+input[data-task="-"].task-list-item-checkbox::after {
+  content: '–';
+  color: var(--fg-tertiary);
+  font-size: 0.9em;
+  font-weight: 400;
+}
+li.task-list-item[data-task="-"] {
+  text-decoration: line-through;
+  color: var(--fg-tertiary);
+  opacity: 0.6;
+}
+
+/* ── [>] Deferred / forward — focus ───────────────────────────────────────
+   was #f97316 → prompt: ">" forward → --role-focus. */
+input[data-task=">"].task-list-item-checkbox {
+  border-color: var(--role-focus);
+}
+input[data-task=">"].task-list-item-checkbox::after {
+  content: '›';
+  color: var(--role-focus);
+  font-size: 1em;
+}
+
+/* ── [<] Scheduled — link blue ────────────────────────────────────────────
+   was #3b82f6 → --role-link. */
+input[data-task="<"].task-list-item-checkbox {
+  border-color: var(--role-link);
+}
+input[data-task="<"].task-list-item-checkbox::after {
+  content: '‹';
+  color: var(--role-link);
+  font-size: 1em;
+}
+
+/* ── [?] Question — review yellow ─────────────────────────────────────────
+   was #eab308 → --role-review (toxic). */
+input[data-task="?"].task-list-item-checkbox {
+  border-color: var(--role-review);
+}
+input[data-task="?"].task-list-item-checkbox::after {
+  content: '?';
+  color: var(--role-review);
+  font-size: 0.75em;
+}
+
+/* ── [!] Important — warning ───────────────────────────────────────────────
+   was #ef4444 + rgba wash → prompt: "!" → --role-warning. */
+input[data-task="!"].task-list-item-checkbox {
+  border-color: var(--role-warning);
+  background: color-mix(in srgb, var(--role-warning) 10%, transparent);
+}
+input[data-task="!"].task-list-item-checkbox::after {
+  content: '!';
+  color: var(--role-warning);
+  font-size: 0.8em;
+}
+
+/* ── [i] Info — sky info ──────────────────────────────────────────────────
+   was #38bdf8 → --role-info (ghost). */
+input[data-task="i"].task-list-item-checkbox {
+  border-color: var(--role-info);
+}
+input[data-task="i"].task-list-item-checkbox::after {
+  content: 'i';
+  color: var(--role-info);
+  font-size: 0.75em;
+  font-style: italic;
+}
+
+/* ── [b] Bookmark — accent ────────────────────────────────────────────────
+   was --interactive-accent → --checkbox-color (= accent). */
+input[data-task="b"].task-list-item-checkbox {
+  border-color: var(--checkbox-color);
+}
+input[data-task="b"].task-list-item-checkbox::after {
+  content: '⌖';
+  color: var(--checkbox-color);
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
+/* ── [p] Pro / plus — success ─────────────────────────────────────────────
+   was #16a34a → --role-success. */
+input[data-task="p"].task-list-item-checkbox {
+  border-color: var(--role-success);
+}
+input[data-task="p"].task-list-item-checkbox::after {
+  content: '+';
+  color: var(--role-success);
+  font-size: 0.9em;
+}
+
+/* ── [c] Con / minus — error ──────────────────────────────────────────────
+   was #dc2626 → --role-error (crimson). */
+input[data-task="c"].task-list-item-checkbox {
+  border-color: var(--role-error);
+}
+input[data-task="c"].task-list-item-checkbox::after {
+  content: '−';
+  color: var(--role-error);
+  font-size: 0.9em;
+}
+
+/* ── [f] Fire / urgent — drift wash + emoji glyph ─────────────────────────
+   was #ea580c + rgba wash → --role-drift (rust). Emoji carries own colour. */
+input[data-task="f"].task-list-item-checkbox {
+  border-color: var(--role-drift);
+  background: color-mix(in srgb, var(--role-drift) 8%, transparent);
+}
+input[data-task="f"].task-list-item-checkbox::after {
+  content: '🔥';
+  font-size: 0.7em;
+  font-weight: 400;
+}
+
+/* ── [k] Key — organic amber + emoji glyph ────────────────────────────────
+   was #d97706 → --role-organic (biolink). Emoji carries own colour. */
+input[data-task="k"].task-list-item-checkbox {
+  border-color: var(--role-organic);
+}
+input[data-task="k"].task-list-item-checkbox::after {
+  content: '🔑';
+  font-size: 0.65em;
+  font-weight: 400;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   COMPLETED LINE — plain Obsidian is-checked strike (from 00-base §11),
+   token-mapped. Applies in Reading + Live-Preview alike.
+   ════════════════════════════════════════════════════════════════════════ */
+.task-list-item.is-checked {
+  color: var(--fg-tertiary);
+  text-decoration: line-through;
+  text-decoration-color: var(--fg-tertiary);
+}

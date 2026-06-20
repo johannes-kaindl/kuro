@@ -1,0 +1,52 @@
+/* ---  31-graph.css  [armature]
+   PURPOSE   Graph view (global + local). Obsidian's graph is a WebGL canvas; it
+             does NOT honour CSS on nodes/edges directly — instead it reads the
+             colour off a set of probe classes (.graph-view.color-*) via
+             getComputedStyle. So the whole graph palette is "styled" purely by
+             setting `color:` on those probes. This file re-homes that probe set,
+             token-driven only — resolving the 00-base duplication where a clean
+             token block (~:1253) was shadowed by hardcoded rgba / --signal-*
+             rules (~:2200-2222). The shadow's intent (the rgba alphas, the
+             crimson/ember/rust tints) already lives inside the bridged --graph-*
+             tokens (fed from semantic --node-*), so a single token-driven probe
+             set reproduces the old computed look in BOTH modes.
+   LAYER     armature
+   SETS      nothing (declares `color` on the WebGL probe classes only)
+   USES      --graph-node --graph-node-tag --graph-node-attachment
+             --graph-node-unresolved --graph-node-focused --graph-node-active
+             --graph-line --graph-text --accent
+   DEPENDS   10/11 (semantic --node-*) · 12 (bridges --graph-* + --accent) · 13
+   SURFACES  Graph view (global graph + local graph; .graph-view probe classes
+             consumed by the WebGL canvas via getComputedStyle)            --- */
+
+/* ── WebGL colour probes ──────────────────────────────────────────────────
+   Each class is an invisible probe whose computed `color` Obsidian samples to
+   paint one element of the graph canvas. All values come from the bridged
+   --graph-* tokens, which are themselves mode-aware (10-semantic-dark /
+   11-semantic-light feed --node-* into 12-bridge), so these rules need no
+   .theme-dark / .theme-light split — the old shadow block existed only because
+   the original tokens were not yet both-mode. Keep token-driven; do NOT
+   reintroduce literal rgba here. */
+
+.graph-view.color-fill            { color: var(--graph-node); }
+.graph-view.color-fill-tag        { color: var(--graph-node-tag); }
+.graph-view.color-fill-attachment { color: var(--graph-node-attachment); }
+.graph-view.color-fill-unresolved { color: var(--graph-node-unresolved); }
+.graph-view.color-fill-focused    { color: var(--graph-node-focused); }
+
+/* Highlight / hover state of a node — accent, same as the active node. */
+.graph-view.color-fill-highlight  { color: var(--graph-node-active); }
+
+/* Node ring + its highlighted variant. */
+.graph-view.color-circle          { color: var(--accent); }
+.graph-view.color-circle-highlight { color: var(--accent-soft); } /* soft accent halo on hover */
+
+/* Edges / links and their highlighted variant. */
+.graph-view.color-line            { color: var(--graph-line); }
+.graph-view.color-line-highlight  { color: var(--accent); }
+
+/* Arrowheads on directed links. */
+.graph-view.color-arrow           { color: var(--accent); }
+
+/* Node labels. */
+.graph-view.color-text            { color: var(--graph-text); }

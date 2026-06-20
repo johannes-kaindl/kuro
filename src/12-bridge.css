@@ -1,0 +1,183 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   12-bridge.css                                                   [armature]
+   PURPOSE   The ONE place Obsidian-native variables are fed from the semantic
+             layer. Also defines the mode-independent semantic aliases (accent,
+             roles) and the public font-var defaults. After this file, no
+             fragment writes an Obsidian-native var directly.
+   LAYER     armature (references semantic tokens + system accent ONLY — no
+             hex, no --signal-/--void-/--paper-; enforced by check.sh).
+   SETS      --accent* --glow-* --role-* --border-circuit · --kuro-font-* ·
+             every Obsidian-native --background-/--text-/--code-/--checkbox-/
+             --nav-/--tag-/--graph-/--link-/--interactive-* etc.
+   USES      semantic tokens from 10/11 + var(--interactive-accent)
+   DEPENDS   00-primitives, 10-semantic-dark, 11-semantic-light
+   SURFACES  n/a (token declarations only)
+   NOTE      :root works for mode-varying output because the semantic tokens it
+             reads are themselves mode-scoped (.theme-dark / .theme-light).
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ===== Mode-independent semantic aliases ============================= */
+  /* Accent follows Obsidian's own system accent; everything derives from it
+     via color-mix (never the --interactive-accent-rgb triplet — not emitted). */
+  --accent:       var(--interactive-accent);
+  --accent-soft:  color-mix(in srgb, var(--interactive-accent) 15%, transparent);
+  --accent-glow:  color-mix(in srgb, var(--interactive-accent) 50%, transparent);
+  --glow-accent:  0 0 0 1px var(--accent-glow), 0 0 24px -4px var(--accent-glow);
+  --glow-focus:   0 0 0 2px color-mix(in srgb, var(--interactive-accent) 60%, transparent);
+  --border-circuit: color-mix(in srgb, var(--accent) 40%, transparent);
+
+  /* Signal roles live in 13-roles.css (the semantic role layer). */
+
+  /* Public font contract — defaults so the theme works WITHOUT the plugin;
+     Style Settings / companion may override --kuro-font-serif/-mono. */
+  --kuro-font-serif: var(--font-display);
+  --kuro-font-sans:  var(--font-sans);
+  --kuro-font-body:  var(--font-body);
+  --kuro-font-mono:  var(--font-mono);
+
+  /* Note-pane lift intensity — user-tunable via Style Settings (0 = flat). */
+  --kuro-lift-strength: 1.4;
+  /* Card / callout lift intensity — scales --lift (10/11); default 1 = no-op. */
+  --kuro-card-lift-strength: 1;
+
+  /* ===== BRIDGE · Backgrounds / surfaces ============================== */
+  --background-primary:            var(--surface-base);
+  --background-primary-alt:        var(--surface-deep);
+  --background-secondary:          var(--surface-raised);
+  --background-secondary-alt:      var(--surface-panel);
+  --background-tertiary:           var(--surface-overlay);
+  --background-modifier-hover:        var(--overlay-hover);
+  --background-modifier-active-hover: var(--overlay-active);
+  --background-modifier-border:        var(--border-subtle);
+  --background-modifier-border-hover:  var(--border-hover);
+  --background-modifier-border-focus:  var(--accent);
+  --background-modifier-error:         color-mix(in srgb, var(--status-error) 12%, transparent);
+  --background-modifier-error-hover:   color-mix(in srgb, var(--status-error) 18%, transparent);
+  --background-modifier-success:       color-mix(in srgb, var(--status-success) 9%, transparent);
+  --background-modifier-cover:         var(--overlay-cover);
+  --background-modifier-form-field:             var(--surface-field);
+  --background-modifier-form-field-highlighted: var(--surface-field-hi);
+  --modal-background:  var(--surface-modal);
+  --prompt-background: var(--surface-modal);
+
+  /* ===== BRIDGE · Text =============================================== */
+  --text-normal:    var(--fg-primary);
+  --text-muted:     var(--fg-secondary);
+  --text-faint:     var(--fg-tertiary);
+  --text-on-accent: var(--fg-on-accent);
+  --text-error:        var(--status-error);
+  --text-error-hover:  var(--status-error-hover);
+  --text-warning:      var(--status-warning);
+  --text-success:      var(--status-success);
+  --text-highlight-bg:        color-mix(in srgb, var(--interactive-accent) 16%, transparent);
+  --text-highlight-bg-active: color-mix(in srgb, var(--interactive-accent) 26%, transparent);
+  --text-selection:           color-mix(in srgb, var(--interactive-accent) 20%, transparent);
+  --italic-color: var(--fg-secondary);
+  --bold-weight:  600;
+
+  /* ===== BRIDGE · Accent / interactive ============================== */
+  --color-accent:             var(--interactive-accent);
+  --color-accent-1:           var(--interactive-accent);
+  --color-accent-2:           color-mix(in srgb, var(--interactive-accent) 55%, transparent);
+  --interactive-accent-hover: color-mix(in srgb, var(--interactive-accent) 82%, transparent);
+  --text-accent:              var(--interactive-accent);
+  --text-accent-hover:        var(--fg-primary);
+  --interactive-normal: var(--surface-raised);
+  --interactive-hover:  var(--surface-overlay);
+
+  /* ===== BRIDGE · Links ============================================= */
+  --link-color:                var(--interactive-accent);
+  --link-color-hover:          var(--fg-primary);
+  --link-unresolved-color:     var(--fg-tertiary);
+  --link-external-color:       var(--interactive-accent);
+  --link-external-color-hover: var(--fg-primary);
+
+  /* ===== BRIDGE · Dividers ========================================== */
+  --divider-color:       var(--divider);
+  --divider-color-hover: var(--divider-hover);
+
+  /* ===== BRIDGE · Headings (colours mode-varying, metrics fixed) ===== */
+  --h1-color: var(--fg-primary);
+  --h2-color: var(--fg-primary);
+  --h3-color: var(--fg-secondary);
+  --h4-color: var(--fg-secondary);
+  --h5-color: var(--fg-tertiary);
+  --h6-color: var(--fg-tertiary);
+  --h1-font: var(--kuro-font-serif); --h1-style: italic; --h1-weight: 400; --h1-size: 2.1em; --h1-line-height: 1.1;
+  --h2-font: var(--kuro-font-mono); --h2-style: normal; --h2-weight: 600; --h2-size: 1.5em;
+  --h3-font: var(--kuro-font-mono); --h3-weight: 500; --h3-size: 1.2em;
+  --h4-font: var(--kuro-font-mono); --h4-size: 1.0em;
+  --h5-font: var(--kuro-font-mono); --h5-size: 0.95em;
+  --h6-font: var(--kuro-font-mono); --h6-size: 0.9em;
+  --inline-title-font: var(--kuro-font-serif); --inline-title-style: italic; --inline-title-weight: 400; --inline-title-size: 2.4em; --inline-title-color: var(--fg-primary);
+
+  /* ===== BRIDGE · Interface fonts =================================== */
+  --font-interface-theme: var(--kuro-font-mono);
+  --font-text-theme:      var(--kuro-font-mono);
+  --font-monospace-theme: var(--kuro-font-mono);
+  --font-text-size:       14px;
+  --line-height-normal:   1.6;
+  --file-line-width:      40rem;   /* standalone reading measure (~640px / ~76ch); works without the plugin */
+
+  /* ===== BRIDGE · Tags (accent-tinted pill) ======================== */
+  --tag-color:              var(--fg-secondary);
+  --tag-background:         color-mix(in srgb, var(--interactive-accent) 7%, transparent);
+  --tag-background-hover:   color-mix(in srgb, var(--interactive-accent) 13%, transparent);
+  --tag-border-color:       color-mix(in srgb, var(--interactive-accent) 30%, transparent);
+  --tag-border-color-hover: color-mix(in srgb, var(--interactive-accent) 58%, transparent);
+  --tag-radius: 3px; --tag-padding-x: 7px; --tag-padding-y: 2px; --tag-font-size: var(--text-xs);
+
+  /* ===== BRIDGE · Code (frame from semantic, syntax from twelve signals) */
+  /* Code size as a unitless multiplier of 1em (scales WITH the body knob);
+     default 0.88 = the tuned inline-pill size. */
+  --kuro-code-size: 0.88;
+  --code-background: var(--code-bg);
+  --code-normal:   var(--syntax-normal);
+  --code-comment:  var(--fg-tertiary);
+  --code-tag:      var(--syntax-normal);
+  --code-string:   var(--syntax-string);
+  --code-value:    var(--syntax-value);
+  --code-keyword:  var(--syntax-keyword);
+  --code-operator: var(--syntax-normal);
+  --code-function: var(--fg-primary);
+  --code-property: var(--fg-secondary);
+  --code-important: var(--status-error);
+
+  /* ===== BRIDGE · Callout metrics =================================== */
+  --callout-border-width: 0px; --callout-border-opacity: 0;
+  --callout-padding: var(--space-3) var(--space-4); --callout-radius: var(--radius-md); --callout-blend-mode: normal;
+
+  /* ===== BRIDGE · Checkbox ========================================== */
+  --checkbox-color:        var(--interactive-accent);
+  --checkbox-color-hover:  var(--fg-primary);
+  --checkbox-border-color: var(--check-border);
+  --checkbox-marker:       var(--check-marker);
+  --checkbox-radius:       2px;
+
+  /* ===== BRIDGE · Scrollbar ========================================= */
+  --scrollbar-bg:              transparent;
+  --scrollbar-thumb-bg:        var(--scroll-thumb);
+  --scrollbar-active-thumb-bg: var(--scroll-thumb-active);
+
+  /* ===== BRIDGE · Graph ============================================= */
+  --graph-node:            var(--node-fill);
+  --graph-node-tag:        var(--node-tag);
+  --graph-node-attachment: var(--node-attachment);
+  --graph-node-unresolved: var(--node-unresolved);
+  --graph-node-focused:    var(--fg-primary);
+  --graph-node-active:     var(--interactive-accent);
+  --graph-line:            color-mix(in srgb, var(--interactive-accent) 16%, transparent);
+  --graph-text:            var(--fg-tertiary);
+
+  /* ===== BRIDGE · Nav =============================================== */
+  /* Vertical nav-row padding — driven by the Interface density knob (metric
+     only); default 3px matches the current hardcoded nav padding. */
+  --kuro-nav-pad-y: 3px;
+  --nav-item-color:             var(--fg-secondary);
+  --nav-item-color-hover:       var(--fg-primary);
+  --nav-item-color-active:      var(--fg-primary);
+  --nav-item-background-hover:  var(--overlay-hover);
+  --nav-item-background-active: color-mix(in srgb, var(--interactive-accent) 8%, transparent);
+  --nav-collapse-icon-color:    var(--fg-tertiary);
+}

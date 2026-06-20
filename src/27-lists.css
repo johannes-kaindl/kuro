@@ -1,0 +1,86 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   27-lists.css                                                    [armature]
+   PURPOSE   Unordered/ordered list typography from ONE source across both
+             surfaces: relaxed line-height, comfortable nesting indent, and
+             intentionally tinted list markers (bullets + numbers). Fills the
+             v1 gap where markers inherited Obsidian's defaults — bullets now
+             carry the accent, ordered numbers a quieter tertiary tone.
+   LAYER     armature (reads bridged + semantic tokens; no literals)
+   SETS      --list-indent (local) · list marker colour · li line-height
+   USES      --accent --fg-tertiary --leading-relaxed --space-* --text-normal
+   DEPENDS   10/11 semantic · 12 bridge · 13 roles
+   SURFACES  Reading  .markdown-rendered ul/ol/li + ::marker
+             Live-Preview  .HyperMD-list-line .cm-formatting-list bullets/numbers
+                           + .cm-indent guides
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ── Local indent step, shared by both surfaces ── */
+.markdown-rendered,
+.markdown-source-view.mod-cm6 {
+  --list-indent: var(--space-5); /* 24px nesting step */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   §1 · READING VIEW  (.markdown-rendered)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.markdown-rendered ul,
+.markdown-rendered ol {
+  padding-inline-start: var(--list-indent);
+  margin-block: var(--space-2);
+}
+
+/* Tighter gap for nested lists — no extra vertical break between levels */
+.markdown-rendered li > ul,
+.markdown-rendered li > ol {
+  margin-block: 0;
+}
+
+.markdown-rendered li {
+  line-height: var(--leading-relaxed);
+  color: var(--text-normal);
+  margin-block: var(--space-1);
+}
+
+/* Bullet markers — accent dot; ordered numbers a quieter tertiary tone */
+.markdown-rendered ul > li::marker {
+  color: var(--accent);
+}
+.markdown-rendered ol > li::marker {
+  color: var(--fg-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   §2 · LIVE PREVIEW / EDITOR  (CodeMirror 6)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.markdown-source-view.mod-cm6 .HyperMD-list-line {
+  line-height: var(--leading-relaxed);
+}
+
+/* The rendered bullet/number glyph CM6 paints for list lines.
+   Unordered bullet → accent; ordered number → tertiary, matching Reading. */
+.markdown-source-view.mod-cm6 .cm-formatting-list-ul .list-bullet,
+.markdown-source-view.mod-cm6 .cm-formatting-list-ul {
+  color: var(--accent);
+}
+.markdown-source-view.mod-cm6 .cm-formatting-list-ol {
+  color: var(--fg-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Indentation guides — calm subtle vertical rules in the default state.
+   The rainbow opt-in (body.kuro-rainbow-indent) overrides this per level. */
+.markdown-source-view.mod-cm6 .cm-indent {
+  --indentation-guide-color: var(--border-subtle);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   §3 · CANVAS NODE LISTS  (rendered markdown inside .canvas-node)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.canvas-node .canvas-node-content ul > li,
+.canvas-node .canvas-node-content ol > li {
+  margin-bottom: var(--space-1);
+}

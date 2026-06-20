@@ -1,0 +1,76 @@
+/* ---  25-tables.css  [armature]
+   PURPOSE   Tables, ONE definition covering Reading view + Live-Preview, both
+             modes. Ports the old .markdown-rendered table/th/td rules plus the
+             former .theme-light table-tone override — now expressed through
+             both-mode semantic tokens (no .theme-light-only rule survives).
+   LAYER     armature
+   SETS      (no tokens — consumes only)
+   USES      --border-subtle --surface-raised --overlay-hover --fg-primary
+             --fg-secondary --tracking-wide --text-xs --dur-fast --ease-signal
+   DEPENDS   10-semantic-dark / 11-semantic-light / 12-bridge / 13-roles
+   SURFACES  Reading (.markdown-rendered table/th/td/tr) +
+             Live-Preview (.cm-table-widget, .HyperMD-table-row,
+             table in .markdown-source-view) --- */
+
+/* ── Table frame ─────────────────────────────────────────────────────────
+   Shared geometry for Reading + Live-Preview rendered tables. */
+.markdown-rendered table,
+.markdown-source-view.mod-cm6 .cm-table-widget table,
+.markdown-source-view.mod-cm6 table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.93em;
+}
+
+/* ── Header cells ────────────────────────────────────────────────────────
+   Was dark rgba(232,228,216,0.03) / light rgba(0,0,0,0.03) → both-mode
+   --surface-raised. Border was --background-modifier-border → --border-subtle. */
+.markdown-rendered th,
+.markdown-source-view.mod-cm6 .cm-table-widget th,
+.markdown-source-view.mod-cm6 table th {
+  background: var(--surface-raised);
+  color: var(--fg-primary);
+  border: 1px solid var(--border-subtle);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);  /* 0.04em */
+  text-transform: uppercase;
+  font-size: var(--text-xs);              /* was 0.85em — caps label */
+  padding: var(--space-2) var(--space-3);  /* 8px 12px — on the space scale */
+}
+
+/* ── Body cells ──────────────────────────────────────────────────────────
+   Border was --divider-color → --border-subtle (single both-mode border tone).
+   Cell text mapped to --fg-primary per the v4 table contract. */
+.markdown-rendered td,
+.markdown-source-view.mod-cm6 .cm-table-widget td,
+.markdown-source-view.mod-cm6 table td {
+  border: 1px solid var(--border-subtle);
+  color: var(--fg-primary);
+  padding: var(--space-2) var(--space-3);  /* 8px 12px — same rhythm as th */
+}
+
+/* ── Row hover ───────────────────────────────────────────────────────────
+   Was dark rgba(232,228,216,0.02) / light rgba(0,0,0,0.02) → --overlay-hover. */
+.markdown-rendered tr:hover td,
+.markdown-source-view.mod-cm6 .cm-table-widget tr:hover td {
+  background: var(--overlay-hover);
+  transition: background var(--dur-fast) var(--ease-signal);
+}
+
+/* ── Live-Preview source-mode table rows ─────────────────────────────────
+   The raw pipe-table line as edited in Live Preview (.HyperMD-table-row is a
+   .cm-line). Keep the cell-text tone consistent with the rendered cells;
+   delimiter/separator rows stay muted. */
+.markdown-source-view.mod-cm6 .HyperMD-table-row {
+  color: var(--fg-primary);
+}
+.markdown-source-view.mod-cm6 .HyperMD-table-row.HyperMD-table-row-1 {
+  /* the |---|---| separator line — recede it */
+  color: var(--fg-secondary);
+}
+
+/* ── Style Settings: Table zebra striping (kuro-table-zebra) ──────────────
+   Reuses the both-mode --overlay-hover token (dark/light parity automatic).
+   Off by default = unchanged. The tr:hover rule above comes later in source
+   with equal specificity, so a hovered row still wins over the zebra tint. */
+body.kuro-table-zebra .markdown-rendered tbody tr:nth-child(even) td { background: var(--overlay-hover); }

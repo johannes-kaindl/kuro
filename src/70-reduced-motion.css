@@ -1,0 +1,38 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   70-reduced-motion.css                                           [armature]
+   PURPOSE   Respect the OS "reduce motion" preference. Neurodivergence-
+             friendly; lives in the theme itself, no plugin required.
+   LAYER     armature (no colour, no literals)
+   SETS      animation:none under prefers-reduced-motion
+   USES      (none)
+   DEPENDS   24-callouts (the only fragment with decorative @keyframes)
+   SURFACES  Always-on media query — Reading + Live-Preview callouts.
+
+   AUDIT (every decorative @keyframes in v4 is accounted for here):
+   All 17 keyframes — bounceUp, breathe, dangerPulse, droop, flicker,
+   gentlePulse, jolt, moonGlow, pulseTarget, shake, shieldPulse, slowSpin,
+   successPop, sunRise, swingIcon, wiggleGlow, wobble — are applied ONLY as
+   `.callout[data-callout="…"]:hover .callout-icon svg { animation: … }` in
+   24-callouts.css. Nulling animation on `.callout *` therefore suppresses
+   every one. Obsidian's own functional UI animations are left untouched.
+   ───────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Canonical near-zero reset — the theme now ships many transitions (links, tags,
+     nav, tabs, callouts, focus ring). 0.01ms (not 0) preserves transitionend events. */
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  /* Explicit guarantee for the decorative :hover icon loops (higher-spec). */
+  .callout,
+  .callout *,
+  .callout *::before,
+  .callout *::after,
+  .callout .callout-icon svg,
+  .kuro-pulse {
+    animation: none !important; /* keep — a11y must defeat the theme's higher-spec (0,3,1) decorative :hover icon loops */
+  }
+}
