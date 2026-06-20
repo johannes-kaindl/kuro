@@ -35,22 +35,29 @@ then enable under **Settings → Appearance → Themes**.
 Kuro works out of the box. For live configuration, install the official **Style Settings**
 community plugin and open **Settings → Style Settings → Kuro**:
 
-- **Colour & Mood** — signal presets (background moods) and a low-contrast mode.
-- **Typography** — serif/display and monospace fonts, terminal mode.
-- **Reading** — reading line width, margin tint, pattern intensity, colourful headlines,
-  Bases card density.
-- **Slides** — frame, slide numbers, progress bar (for the core Slides plugin).
+- **Colour & Mood** — 13 signal presets (background moods) and a low-contrast mode.
+- **Typography** — serif/display and monospace fonts, body & code font size, terminal mode.
+- **Reading** — reading line width, margin tint, colourful headlines, Bases card density.
+- **Depth & glow** — note & card lift strength, border crispness, focus-ring style,
+  heading-glow toggle.
+- **Shape & density** — corner roundness, interface density.
+- **Components** — callout style, link underline, table zebra striping.
 - **Editor & Tabs** — zen mode, active-line highlight, rainbow indent guides, tab style.
 
 Style Settings is optional; the theme is fully usable without it.
 
 ## Build
 
-`theme.css` is a generated monolith — do not edit it directly. The sources live in
-`src/` as numbered fragments that `build.sh` concatenates lexically (`00`–`75`):
+`theme.css` is generated — do not edit it directly. Kuro is built on **the Armature**:
+the sources in `src/` are split into `[armature]` (structure / contract) and `[values]`
+(palette, presets, fonts). `build.sh` concatenates the numbered fragments and `check.sh`
+verifies the build — determinism, the both-mode token mirror, contrast invariants and the
+armature lint. To fork Kuro into a new theme, see
+[`docs/THEME-AUTHORING.md`](docs/THEME-AUTHORING.md).
 
 ```sh
 ./src/build.sh   # regenerates theme.css from src/*.css
+./src/check.sh   # verifies the build
 ```
 
 ## Compatibility

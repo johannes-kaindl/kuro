@@ -4,6 +4,49 @@ All notable changes to the Kuro theme are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] — Clean Foundation (the Armature)
+
+A ground-up rebuild on a clean, forkable skeleton — **the Armature**. The look is
+preserved (Kuro still looks like Kuro), but a whole class of light/dark bugs is gone
+by construction, the code is modular and documented, and Style Settings gains a curated
+set of personalisation knobs. The public `kuro-*` contract is unchanged, so saved Style
+Settings configs keep working.
+
+### Fixed
+- **Light *and* dark now resolve correctly.** The root cause was a dual token system
+  where only one half was both-mode; every semantic token now has an explicit value in
+  both modes (`10-semantic-dark.css` + `11-semantic-light.css`, mirrored, enforced by
+  `check.sh`). This fixes, by construction: checkboxes invisible in dark, the code
+  stripe/frame missing in Live Preview, the note "lift" glow, and cream-on-paper text
+  in light mode.
+- **Checkboxes** consolidated from two competing rule sets into one, all surfaces.
+- **Code blocks** styled in Live Preview / editor for the first time (not just Reading).
+- **Colourful headlines** now use a distinct signal hue per level (was tied to the
+  system accent, which rendered monochrome when the accent is light/desaturated).
+
+### Added
+- **The Armature.** The repo is split into `[armature]` (structure/contract) and
+  `[values]` (palette/presets/fonts) — a future theme is a fork that swaps the values
+  files. See `docs/THEME-AUTHORING.md`. A new `--paper-*` light ramp makes light a
+  first-class scale alongside the `--void-*` dark ramp.
+- **Accessibility:** a keyboard focus ring (`:focus-visible`), WCAG-AA contrast across
+  text / syntax / status colours, and a canonical `prefers-reduced-motion` reset.
+- **Style Settings knobs:** note & card lift strength, corner roundness, interface
+  density, code font size, body font size, callout style (filled / subtle / border-only),
+  link underline, table zebra, border crispness, focus-ring style, heading-glow toggle —
+  plus polish for the quick switcher, command palette and context menus.
+
+### Changed
+- Per-component file structure (`20-typography` … `31-graph`), each component defined
+  once across Reading + Live Preview + editor. Build stays a zero-dependency,
+  deterministic `build.sh` cascade with a `check.sh` verification harness.
+- Reading measure defaults to ~640px and now applies without the Style Settings plugin.
+- Mono body leading tuned to 1.6; heading ramp widened (H2 1.5em / H3 1.2em).
+
+### Removed
+- The Slides (reveal.js) styling and its toggles — slide theming belongs in a dedicated
+  plugin, not the theme.
+
 ## [3.4.0] — Standalone & Style-Settings native
 
 A focused pass to make the theme genuinely usable without any companion plugin. The
