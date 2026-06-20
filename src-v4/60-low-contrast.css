@@ -13,12 +13,12 @@
              Attenuation is expressed only as color-mix() of existing tokens.
    SETS      (overrides under body.kuro-low-contrast) --fg-* · --pane-lift ·
              --glow-accent · --glow-focus · --accent-glow · signal-subtheme
-             top-border colour · hanko halo
+             top-border colour
    USES      --fg-primary/-secondary/-tertiary · --surface-base · --accent ·
-             --role-* (subtheme borders) · --kuro-hanko-glow-mult
+             --role-* (subtheme borders)
    DEPENDS   00-primitives, 10-semantic-dark, 11-semantic-light, 12-bridge,
              13-roles
-   SURFACES  body.kuro-low-contrast · signal-subtheme panes · hanko instances
+   SURFACES  body.kuro-low-contrast · signal-subtheme panes
    ───────────────────────────────────────────────────────────────────────── */
 
 
@@ -102,27 +102,5 @@ body.kuro-low-contrast {
   & .markdown-preview-view[class*="kuro-signal-"] {
     border-top-width: 1px;
     border-top-style: solid;
-  }
-}
-
-
-/* ── Hanko-glow attenuation ──
-   Framed hanko: replace the multi-stop accent halo with a calmer two-stop
-   ring + a faint lift. Unframed: keep the text-shadow shape but lower the
-   amplitude. The glow honours --kuro-hanko-glow-mult so the plugin slider
-   still scales it. */
-body.kuro-low-contrast.kuro-hanko-glow:not(.kuro-no-glow) {
-  & .kuro-hanko-instance.kuro-hanko-framed {
-    box-shadow:
-      0 0 calc(4px  * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--accent) 22%, transparent),
-      0 0 calc(12px * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--accent) 10%, transparent),
-      var(--lift);
-  }
-
-  & .kuro-hanko-instance:not(.kuro-hanko-framed) {
-    text-shadow:
-      0 0 calc(3px  * var(--kuro-hanko-glow-mult, 1)) currentColor,
-      0 0 calc(10px * var(--kuro-hanko-glow-mult, 1)) currentColor;
-    opacity: 0.55;
   }
 }
