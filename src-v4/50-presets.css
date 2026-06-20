@@ -1,0 +1,230 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   50-presets.css                                                  [values]
+   PURPOSE   The 13 signal MOOD presets. Each preset re-tints the SAME semantic
+             surface tokens in BOTH modes, so the chosen signal actually reaches
+             the chamber/leaf in dark AND light (the v3 asymmetry fix: v3 tinted
+             --background-* only in light and only --kuro-ink-* in dark, so the
+             mood barely showed up in dark). A preset is a HINT of colour bled
+             into the surfaces — a mood, not a repaint. The accent itself always
+             follows Obsidian's own system colour (presets never touch accent).
+   LAYER     values (taste — a fork swaps the signal palette; literals and
+             --signal-/--void-/--paper- primitives are allowed and lint-exempt).
+   SETS      --surface-base/-deep/-raised/-panel/-overlay (per preset × mode)
+   USES      --signal-* (the twelve) · --void-050 (dark floor) · --paper-000
+             (light leaf) — all primitives from 00-primitives.css
+   DEPENDS   00-primitives, 10-semantic-dark, 11-semantic-light (overrides the
+             surface tokens those set, scoped to body.kuro-preset-X.theme-Y)
+   SURFACES  every surface — these tints flow through 12-bridge.css into the
+             native --background-* vars, so the whole UI picks up the mood.
+   NOTE      Class names MUST match 05-style-settings.css. Default is
+             kuro-preset-pearl (a near-neutral warm mood). Each preset block
+             carries BOTH a .theme-dark and a .theme-light surface tint.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ── toxic-haze (acid yellow) ─────────────────────────────────────────── */
+body.kuro-preset-toxic-haze.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-toxic) 6%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-toxic) 4%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-toxic) 9%,  var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-toxic) 7%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-toxic) 11%, var(--void-050));
+}
+body.kuro-preset-toxic-haze.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-toxic) 6%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-toxic) 9%,  var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-toxic) 14%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-toxic) 18%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-toxic) 22%, var(--paper-000));
+}
+
+/* ── phosphor (signal green) ──────────────────────────────────────────── */
+body.kuro-preset-phosphor.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-phosphor) 6%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-phosphor) 4%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-phosphor) 9%,  var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-phosphor) 7%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-phosphor) 11%, var(--void-050));
+}
+body.kuro-preset-phosphor.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-phosphor) 6%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-phosphor) 9%,  var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-phosphor) 14%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-phosphor) 18%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-phosphor) 22%, var(--paper-000));
+}
+
+/* ── voidwitch (violet) ───────────────────────────────────────────────── */
+body.kuro-preset-voidwitch.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-voidwitch) 6%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-voidwitch) 4%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-voidwitch) 9%,  var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-voidwitch) 7%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-voidwitch) 11%, var(--void-050));
+}
+body.kuro-preset-voidwitch.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-voidwitch) 6%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-voidwitch) 9%,  var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-voidwitch) 14%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-voidwitch) 18%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-voidwitch) 22%, var(--paper-000));
+}
+
+/* ── crimson (red) ────────────────────────────────────────────────────── */
+body.kuro-preset-crimson.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-crimson) 6%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-crimson) 4%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-crimson) 9%,  var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-crimson) 7%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-crimson) 11%, var(--void-050));
+}
+body.kuro-preset-crimson.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-crimson) 6%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-crimson) 9%,  var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-crimson) 14%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-crimson) 18%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-crimson) 22%, var(--paper-000));
+}
+
+/* ── ember (orange) ───────────────────────────────────────────────────── */
+body.kuro-preset-ember.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-ember) 6%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-ember) 4%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-ember) 9%,  var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-ember) 7%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-ember) 11%, var(--void-050));
+}
+body.kuro-preset-ember.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-ember) 6%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-ember) 9%,  var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-ember) 14%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-ember) 18%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-ember) 22%, var(--paper-000));
+}
+
+/* ── circuit (cyan) ───────────────────────────────────────────────────── */
+body.kuro-preset-circuit.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-circuit) 6%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-circuit) 4%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-circuit) 9%,  var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-circuit) 7%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-circuit) 11%, var(--void-050));
+}
+body.kuro-preset-circuit.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-circuit) 6%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-circuit) 9%,  var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-circuit) 14%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-circuit) 18%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-circuit) 22%, var(--paper-000));
+}
+
+/* ── biolink (sage) ───────────────────────────────────────────────────── */
+body.kuro-preset-biolink.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-biolink) 6%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-biolink) 4%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-biolink) 9%,  var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-biolink) 7%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-biolink) 11%, var(--void-050));
+}
+body.kuro-preset-biolink.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-biolink) 6%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-biolink) 9%,  var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-biolink) 14%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-biolink) 18%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-biolink) 22%, var(--paper-000));
+}
+
+/* ── neural-bleed (rose) ──────────────────────────────────────────────── */
+body.kuro-preset-neural-bleed.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-neural-bleed) 6%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-neural-bleed) 4%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-neural-bleed) 9%,  var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-neural-bleed) 7%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-neural-bleed) 11%, var(--void-050));
+}
+body.kuro-preset-neural-bleed.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-neural-bleed) 6%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-neural-bleed) 9%,  var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-neural-bleed) 14%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-neural-bleed) 18%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-neural-bleed) 22%, var(--paper-000));
+}
+
+/* ── ghost-protocol (steel blue) ──────────────────────────────────────── */
+body.kuro-preset-ghost-protocol.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-ghost) 6%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-ghost) 4%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-ghost) 9%,  var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-ghost) 7%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-ghost) 11%, var(--void-050));
+}
+body.kuro-preset-ghost-protocol.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-ghost) 6%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-ghost) 9%,  var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-ghost) 14%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-ghost) 18%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-ghost) 22%, var(--paper-000));
+}
+
+/* ── rust-signal (amber) ──────────────────────────────────────────────── */
+body.kuro-preset-rust-signal.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-rust) 6%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-rust) 4%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-rust) 9%,  var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-rust) 7%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-rust) 11%, var(--void-050));
+}
+body.kuro-preset-rust-signal.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-rust) 6%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-rust) 9%,  var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-rust) 14%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-rust) 18%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-rust) 22%, var(--paper-000));
+}
+
+/* ── spectre (indigo) ─────────────────────────────────────────────────── */
+body.kuro-preset-spectre.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-spectre) 6%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-spectre) 4%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-spectre) 9%,  var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-spectre) 7%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-spectre) 11%, var(--void-050));
+}
+body.kuro-preset-spectre.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-spectre) 6%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-spectre) 9%,  var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-spectre) 14%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-spectre) 18%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-spectre) 22%, var(--paper-000));
+}
+
+/* ── pearl (warm neutral · DEFAULT) ───────────────────────────────────── */
+body.kuro-preset-pearl.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-pearl) 6%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-pearl) 4%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-pearl) 9%,  var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-pearl) 7%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-pearl) 11%, var(--void-050));
+}
+body.kuro-preset-pearl.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-pearl) 6%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-pearl) 9%,  var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-pearl) 14%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-pearl) 18%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-pearl) 22%, var(--paper-000));
+}
+
+/* ── kuro (signature green — the namesake mood, phosphor-tinted) ───────── */
+body.kuro-preset-kuro.theme-dark {
+  --surface-base:    color-mix(in srgb, var(--signal-phosphor) 7%,  var(--void-050));
+  --surface-deep:    color-mix(in srgb, var(--signal-phosphor) 5%,  var(--void-050));
+  --surface-raised:  color-mix(in srgb, var(--signal-phosphor) 10%, var(--void-050));
+  --surface-panel:   color-mix(in srgb, var(--signal-phosphor) 8%,  var(--void-050));
+  --surface-overlay: color-mix(in srgb, var(--signal-phosphor) 12%, var(--void-050));
+}
+body.kuro-preset-kuro.theme-light {
+  --surface-base:    color-mix(in srgb, var(--signal-phosphor) 7%,  var(--paper-000));
+  --surface-deep:    color-mix(in srgb, var(--signal-phosphor) 10%, var(--paper-000));
+  --surface-raised:  color-mix(in srgb, var(--signal-phosphor) 15%, var(--paper-000));
+  --surface-panel:   color-mix(in srgb, var(--signal-phosphor) 19%, var(--paper-000));
+  --surface-overlay: color-mix(in srgb, var(--signal-phosphor) 23%, var(--paper-000));
+}

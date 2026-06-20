@@ -1,0 +1,128 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   60-low-contrast.css                                             [armature]
+   PURPOSE   The kuro-low-contrast accessibility mode in ONE token vocabulary.
+             Resolves the two competing legacy systems (the old
+             --text-normal/--kuro-bone literal path from v1-polish §25 and the
+             raw-literal --fg-* path from kuro2 §LC) down to the single
+             semantic --fg and --glow token set. Softens text by mixing the
+             mode-scoped foregrounds toward their own surface, and calms the
+             glow signature. Because every input (--fg-*, --surface-*, --role-*,
+             --accent) is itself mode-scoped, this one block does the right
+             thing in BOTH dark and light with no per-mode duplication.
+   LAYER     armature — NO literals. No #hex / --signal-* / --void-* / --paper-.
+             Attenuation is expressed only as color-mix() of existing tokens.
+   SETS      (overrides under body.kuro-low-contrast) --fg-* · --pane-lift ·
+             --glow-accent · --glow-focus · --accent-glow · signal-subtheme
+             top-border colour · hanko halo
+   USES      --fg-primary/-secondary/-tertiary · --surface-base · --accent ·
+             --role-* (subtheme borders) · --kuro-hanko-glow-mult
+   DEPENDS   00-primitives, 10-semantic-dark, 11-semantic-light, 12-bridge,
+             13-roles
+   SURFACES  body.kuro-low-contrast · signal-subtheme panes · hanko instances
+   ───────────────────────────────────────────────────────────────────────── */
+
+
+/* ── Foreground softening + glow attenuation (mode-agnostic) ──
+   The single resolved path: pull each foreground a step toward its own
+   surface so contrast drops uniformly. In dark, --surface-base is the void
+   chamber → text lifts off pure pearl; in light, --surface-base is rice-paper
+   → ink warms toward the leaf. Same expression, both modes correct. */
+body.kuro-low-contrast {
+  --fg-primary:   color-mix(in srgb, var(--fg-primary) 82%, var(--surface-base));
+  --fg-secondary: color-mix(in srgb, var(--fg-secondary) 78%, var(--surface-base));
+  --fg-tertiary:  color-mix(in srgb, var(--fg-tertiary) 74%, var(--surface-base));
+
+  /* Calm the glow signature: drop the halo behind panes entirely, and
+     re-author the accent ring + focus ring at reduced amplitude. The
+     accent-glow mix feeds both --glow-accent and --glow-focus downstream. */
+  --pane-lift:   none;
+  --accent-glow: color-mix(in srgb, var(--accent) 25%, transparent);
+  --glow-accent: 0 0 0 1px var(--accent-glow),
+                 0 0 16px -6px var(--accent-glow);
+  --glow-focus:  0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+
+/* ── Signal-subtheme attenuation ──
+   The subtheme panes paint a top-border in their role colour. In LC, halve
+   the colour via color-mix toward transparent. One rule per role keeps the
+   per-meaning expression while staying inside the role vocabulary. */
+body.kuro-low-contrast {
+  & .markdown-source-view.kuro-signal-crimson,
+  & .markdown-preview-view.kuro-signal-crimson {
+    border-top-color: color-mix(in srgb, var(--role-error) 50%, transparent);
+  }
+  & .markdown-source-view.kuro-signal-phosphor,
+  & .markdown-preview-view.kuro-signal-phosphor {
+    border-top-color: color-mix(in srgb, var(--role-success) 50%, transparent);
+  }
+  & .markdown-source-view.kuro-signal-ember,
+  & .markdown-preview-view.kuro-signal-ember {
+    border-top-color: color-mix(in srgb, var(--role-warning) 50%, transparent);
+  }
+  & .markdown-source-view.kuro-signal-spectre,
+  & .markdown-preview-view.kuro-signal-spectre {
+    border-top-color: color-mix(in srgb, var(--role-focus) 50%, transparent);
+  }
+  & .markdown-source-view.kuro-signal-circuit,
+  & .markdown-preview-view.kuro-signal-circuit {
+    border-top-color: color-mix(in srgb, var(--role-link) 50%, transparent);
+  }
+  & .markdown-source-view.kuro-signal-ghost,
+  & .markdown-preview-view.kuro-signal-ghost {
+    border-top-color: color-mix(in srgb, var(--role-info) 50%, transparent);
+  }
+  & .markdown-source-view.kuro-signal-biolink,
+  & .markdown-preview-view.kuro-signal-biolink {
+    border-top-color: color-mix(in srgb, var(--role-organic) 50%, transparent);
+  }
+  & .markdown-source-view.kuro-signal-neural-bleed,
+  & .markdown-preview-view.kuro-signal-neural-bleed {
+    border-top-color: color-mix(in srgb, var(--role-reflection) 50%, transparent);
+  }
+  & .markdown-source-view.kuro-signal-rust,
+  & .markdown-preview-view.kuro-signal-rust {
+    border-top-color: color-mix(in srgb, var(--role-drift) 50%, transparent);
+  }
+  & .markdown-source-view.kuro-signal-toxic,
+  & .markdown-preview-view.kuro-signal-toxic {
+    border-top-color: color-mix(in srgb, var(--role-review) 50%, transparent);
+  }
+  & .markdown-source-view.kuro-signal-voidwitch,
+  & .markdown-preview-view.kuro-signal-voidwitch {
+    border-top-color: color-mix(in srgb, var(--role-creative) 50%, transparent);
+  }
+  & .markdown-source-view.kuro-signal-pearl,
+  & .markdown-preview-view.kuro-signal-pearl {
+    border-top-color: color-mix(in srgb, var(--role-neutral) 50%, transparent);
+  }
+
+  /* Thin the subtheme border from 2px to 1px across all twelve. */
+  & .markdown-source-view[class*="kuro-signal-"],
+  & .markdown-preview-view[class*="kuro-signal-"] {
+    border-top-width: 1px;
+    border-top-style: solid;
+  }
+}
+
+
+/* ── Hanko-glow attenuation ──
+   Framed hanko: replace the multi-stop accent halo with a calmer two-stop
+   ring + a faint lift. Unframed: keep the text-shadow shape but lower the
+   amplitude. The glow honours --kuro-hanko-glow-mult so the plugin slider
+   still scales it. */
+body.kuro-low-contrast.kuro-hanko-glow:not(.kuro-no-glow) {
+  & .kuro-hanko-instance.kuro-hanko-framed {
+    box-shadow:
+      0 0 calc(4px  * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--accent) 22%, transparent),
+      0 0 calc(12px * var(--kuro-hanko-glow-mult, 1)) color-mix(in srgb, var(--accent) 10%, transparent),
+      var(--lift);
+  }
+
+  & .kuro-hanko-instance:not(.kuro-hanko-framed) {
+    text-shadow:
+      0 0 calc(3px  * var(--kuro-hanko-glow-mult, 1)) currentColor,
+      0 0 calc(10px * var(--kuro-hanko-glow-mult, 1)) currentColor;
+    opacity: 0.55;
+  }
+}

@@ -8,6 +8,12 @@ a=$(md5 -q ../theme-v4.css); bash build.sh >/dev/null; b=$(md5 -q ../theme-v4.cs
 [ "$a" = "$b" ] || { echo "FAIL: non-deterministic build"; exit 1; }
 o=$(tr -cd '{' < ../theme-v4.css | wc -c); c=$(tr -cd '}' < ../theme-v4.css | wc -c)
 [ "$o" -eq "$c" ] || { echo "FAIL: brace imbalance ${o}{ ${c}}"; exit 1; }
+# comment balance per fragment: a '*/' glued into doc prose (e.g. --fg-*/--glow-*)
+# closes a comment early and breaks the CSS parser. /* count must equal */ count.
+for f in HEADER.css [0-9][0-9]-*.css; do
+  co=$(grep -oF '/*' "$f" | wc -l | tr -d ' '); cc=$(grep -oF '*/' "$f" | wc -l | tr -d ' ')
+  [ "$co" -eq "$cc" ] || { echo "FAIL: comment imbalance in $f (/*=$co */=$cc) — stray '*/' in prose?"; exit 1; }
+done
 imp=$(grep -c '!important' ../theme-v4.css || true); echo "  !important: $imp"
 [ "$imp" -le 70 ] || { echo "FAIL: !important $imp > 70"; exit 1; }
 [ "$(grep -c '@import url(http' ../theme-v4.css || true)" -eq 0 ] || { echo "FAIL: remote @import"; exit 1; }
