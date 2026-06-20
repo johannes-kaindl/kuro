@@ -17,10 +17,13 @@ then place the existing elements where they belong.**
 
 Three decisions were locked this session:
 
-1. **Skeleton form = forkable repo skeleton.** ONE clean Kuro repo, structurally split
-   into `[skeleton]` (theme-agnostic structure + contract) and `[kuro-values]` (taste).
-   A new theme = fork, keep the skeleton, swap the values files. **No** separate shared
-   package (YAGNI still honoured — the *structure* is the template, not a distributed base).
+1. **Skeleton form = forkable repo skeleton, named "the Armature" (`kuro-armature`).**
+   ONE clean Kuro repo, structurally split into `[armature]` (theme-agnostic structure +
+   contract — the wire frame a theme is built on) and `[values]` (taste). A new theme =
+   fork, keep the Armature, swap the values files. **No** separate shared package (YAGNI
+   still honoured — the *structure* is the template, not a distributed base).
+   *Throughout this spec, lowercase "skeleton" is descriptive; "the Armature" / tag
+   `[armature]` is the named layer — same thing.*
 2. **Per-component files** (~18 focused files, one component per file) — max readability.
 3. **Light-mode bugs are in scope.** The inventory proved light mode is broken too
    (dark-pinned KSP tokens). Fixing it visibly changes the light look *at the buggy spots*
@@ -68,16 +71,16 @@ exactly this structural reason — and would be thrown away by the rebuild.
 
 ---
 
-## 2 · Architecture — skeleton vs. kuro-values
+## 2 · Architecture — the Armature vs. values
 
 One repo, two conceptual layers, made visible by file tagging and (optionally) a lint:
 
-- **`[skeleton]`** — theme-agnostic structure: the token *contract* (semantic names + the
+- **`[armature]`** — theme-agnostic structure: the token *contract* (semantic names + the
   both-mode discipline), the module layout, the `@settings` public-contract shape, and every
   component's selector set (which semantic token each reads). Skeleton files contain
   **no** colour/font/shadow literal and **no** `--signal-*`/`--void-*`/`--paper-*` reference
   (except the semantic files, which are *allowed* to read primitives). A fork never edits these.
-- **`[kuro-values]`** — taste: the raw palette, the signal presets, the embedded fonts, glow
+- **`[values]`** — taste: the raw palette, the signal presets, the embedded fonts, glow
   intensity. A fork swaps **only** these ~5 files to become a different theme.
 
 **Lint guard (keeps the cut from rotting):** `grep -E '#[0-9a-fA-F]{3,8}|--signal-|--void-|--paper-'`
@@ -89,7 +92,7 @@ over any non-values, non-semantic file must be empty. Add as a build.sh check.
 
 Three layers:
 
-1. **Primitives** (`00-primitives.css`, `[kuro-values]`) — the raw palette, defined **once**:
+1. **Primitives** (`00-primitives.css`, `[values]`) — the raw palette, defined **once**:
    - 12 `--signal-*` (hex + their 12 `-rgb` triplets, consolidated from the two split blocks).
    - `--void-*` dark ramp (12 steps).
    - **NEW: `--paper-*` light ramp** (12 steps) — light becomes a first-class scale instead of
@@ -97,12 +100,12 @@ Three layers:
    - `--font-*` stacks (reconcile the divergent `--font-display`/`--font-mono` copies).
    - numeric scales (type/space/radii/leading/tracking/motion).
    - No semantics, no Obsidian vars, no selectors beyond `:root`.
-2. **Semantic, both modes** (`10-semantic-dark.css` + `11-semantic-light.css`, `[skeleton]`) —
+2. **Semantic, both modes** (`10-semantic-dark.css` + `11-semantic-light.css`, `[armature]`) —
    every semantic token (`--surface-*`, `--fg-*`, `--border-*`, `--accent*`, `--code-*`,
    `--shadow-*`/`--glow-*`, per-callout-type accent map, `--hN-*`, tag/nav/graph) gets a value
    in **each** file. The two files are mirrored **key-for-key** so the both-mode rule is
    auditable side by side. *No semantic token may exist in only one file.* This is the fix.
-3. **Bridge** (`12-bridge.css`, `[skeleton]`) — the **one** place Obsidian-native tokens are fed
+3. **Bridge** (`12-bridge.css`, `[armature]`) — the **one** place Obsidian-native tokens are fed
    from the semantic layer (`--background-*`, `--text-*`, `--interactive-*`, `--code-*`,
    `--checkbox-*`, `--callout-*`, `--tag-*`, `--nav-*`, `--graph-*`, `--link-*`). After this file
    no fragment writes a native var directly. **Accent = one path:** `--accent` ← `--interactive-accent`
@@ -118,31 +121,31 @@ Three layers:
 
 | File | Layer | Purpose |
 |---|---|---|
-| `HEADER.css` | kuro-values | Banner, version, build-order legend, skeleton/kuro-values explainer |
-| `00-primitives.css` | kuro-values | Palette + scales, defined ONCE (signals+rgb, void, paper, fonts, numeric) |
-| `02-fonts-embedded.css` | kuro-values | Latin-subset woff2 `@font-face` data-URLs (mechanically unchanged) |
-| `05-style-settings.css` | skeleton | `@settings` block — PUBLIC CONTRACT (`id: kuro-theme`, frozen) |
-| `10-semantic-dark.css` | skeleton | every semantic token, DARK value |
-| `11-semantic-light.css` | skeleton | every semantic token, LIGHT value (mirror of 10, key-for-key) |
-| `12-bridge.css` | skeleton | semantic → Obsidian-native, ONE place; single accent path |
-| `15-base.css` | skeleton | app shell, editor/reading pane, note-pane LIFT/glow, readable-line-width |
-| `20-typography.css` | skeleton | h1–h6, inline-title, colourful-headings — one colouring model, all surfaces |
-| `21-checkboxes.css` | skeleton | base + all `[data-task]` variants, ONE def, reading+LP+source |
-| `22-code.css` | skeleton | code blocks + inline, ALL surfaces (**adds** `.HyperMD-codeblock`/`.cm-*` — the LP fix) |
-| `23-links.css` | skeleton | internal/external/unresolved, reading+LP |
-| `24-callouts.css` | skeleton | base + per-type accent map + specialised types + icon anims, ONE def |
-| `25-tables.css` | skeleton | reading+LP (**adds** `.cm`/`.HyperMD-table-cell`) |
-| `26-blockquote.css` | skeleton | reading+LP (**adds** `.HyperMD-quote`/`.cm-quote`) |
-| `27-lists.css` | skeleton | markers, nesting, line-height |
-| `28-tags.css` | skeleton | one model (resolve dead `--tag-*` vs accent-pill) |
-| `29-chrome.css` | skeleton | tabs, nav/file-explorer + active-file stripe (ONE def), outline/backlinks, properties, sidebars |
-| `30-bases.css` | skeleton | Bases cards + table views (carried over intact, re-homed) |
-| `31-graph.css` | skeleton | graph view colours, token-driven only (resolves the L1253-vs-L2200 dup) |
-| `40-features.css` | skeleton | opt-in toggle behaviours (mono-all, margin-tint, zen, active-line, rainbow-indent, tabs-pill/-underline, slides-frame/-numbers/-progress, no-callout-animations) + decorative (film grain, ambient glow, slides base) |
-| `50-presets.css` | kuro-values | the 13 signal mood presets — set SEMANTIC surfaces in **both** modes (asymmetry fix) |
-| `55-signal-subthemes.css` | kuro-values | per-note frontmatter tints (companion-plugin-set, private) |
-| `60-low-contrast.css` | skeleton | `kuro-low-contrast` a11y, ONE token vocabulary (semantic `--fg-*`/`--glow-*`), both modes |
-| `70-reduced-motion.css` | skeleton | `prefers-reduced-motion`, audited to cover ALL named keyframes |
+| `HEADER.css` | values | Banner, version, build-order legend, armature/values explainer |
+| `00-primitives.css` | values | Palette + scales, defined ONCE (signals+rgb, void, paper, fonts, numeric) |
+| `02-fonts-embedded.css` | values | Latin-subset woff2 `@font-face` data-URLs (mechanically unchanged) |
+| `05-style-settings.css` | armature | `@settings` block — PUBLIC CONTRACT (`id: kuro-theme`, frozen) |
+| `10-semantic-dark.css` | armature | every semantic token, DARK value |
+| `11-semantic-light.css` | armature | every semantic token, LIGHT value (mirror of 10, key-for-key) |
+| `12-bridge.css` | armature | semantic → Obsidian-native, ONE place; single accent path |
+| `15-base.css` | armature | app shell, editor/reading pane, note-pane LIFT/glow, readable-line-width |
+| `20-typography.css` | armature | h1–h6, inline-title, colourful-headings — one colouring model, all surfaces |
+| `21-checkboxes.css` | armature | base + all `[data-task]` variants, ONE def, reading+LP+source |
+| `22-code.css` | armature | code blocks + inline, ALL surfaces (**adds** `.HyperMD-codeblock`/`.cm-*` — the LP fix) |
+| `23-links.css` | armature | internal/external/unresolved, reading+LP |
+| `24-callouts.css` | armature | base + per-type accent map + specialised types + icon anims, ONE def |
+| `25-tables.css` | armature | reading+LP (**adds** `.cm`/`.HyperMD-table-cell`) |
+| `26-blockquote.css` | armature | reading+LP (**adds** `.HyperMD-quote`/`.cm-quote`) |
+| `27-lists.css` | armature | markers, nesting, line-height |
+| `28-tags.css` | armature | one model (resolve dead `--tag-*` vs accent-pill) |
+| `29-chrome.css` | armature | tabs, nav/file-explorer + active-file stripe (ONE def), outline/backlinks, properties, sidebars |
+| `30-bases.css` | armature | Bases cards + table views (carried over intact, re-homed) |
+| `31-graph.css` | armature | graph view colours, token-driven only (resolves the L1253-vs-L2200 dup) |
+| `40-features.css` | armature | opt-in toggle behaviours (mono-all, margin-tint, zen, active-line, rainbow-indent, tabs-pill/-underline, slides-frame/-numbers/-progress, no-callout-animations) + decorative (film grain, ambient glow, slides base) |
+| `50-presets.css` | values | the 13 signal mood presets — set SEMANTIC surfaces in **both** modes (asymmetry fix) |
+| `55-signal-subthemes.css` | values | per-note frontmatter tints (companion-plugin-set, private) |
+| `60-low-contrast.css` | armature | `kuro-low-contrast` a11y, ONE token vocabulary (semantic `--fg-*`/`--glow-*`), both modes |
+| `70-reduced-motion.css` | armature | `prefers-reduced-motion`, audited to cover ALL named keyframes |
 | `build.sh` | — | HEADER + numeric glob → `theme.css`; deterministic; + the lint guard from §2 |
 
 Every file opens with a header block: **PURPOSE · LAYER · SETS · USES · DEPENDS-ON · SURFACES.**
@@ -212,7 +215,7 @@ Per-file header block, e.g.:
 
 ```css
 /* ─────────────────────────────────────────────────────────────────────────
-   22-code.css                                                  [skeleton]
+   22-code.css                                                  [armature]
    PURPOSE   Code blocks + inline code — one definition, every surface.
    LAYER     skeleton (reads semantic tokens; defines no literals)
    SETS      (selectors only)
@@ -230,7 +233,7 @@ both-mode intent. A `THEME-AUTHORING.md` explains the fork workflow (§9).
 
 ## 9 · Fork strategy (the deliverable's payoff)
 
-A new theme = `git clone` + edit **only** the `[kuro-values]` files:
+A new theme = `git clone` + edit **only** the `[values]` files:
 
 1. `00-primitives.css` — rewrite the 12 `--signal-*` (+ `-rgb`), the `--void` dark ramp, the
    `--paper` light ramp, the `--font-*` stacks. The single biggest lever (~60–150 lines, pure `:root`).
