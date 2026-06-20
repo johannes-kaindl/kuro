@@ -1,0 +1,115 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   00-primitives.css                                               [values]
+   PURPOSE   The raw palette + scales, defined EXACTLY ONCE. The single
+             biggest taste lever — a fork rewrites this file to re-skin.
+   LAYER     values (a fork swaps this; the armature never references hex
+             directly — only these primitive names, and only via 10/11).
+   SETS      --signal-* (+ -rgb) · --void-* (dark ramp) · --paper-* (light
+             ramp) · --font-* · type/space/radii/leading/tracking/motion
+   USES      (nothing — primitives are self-contained)
+   DEPENDS   none
+   SURFACES  n/a (token declarations only)
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ===== PRIMITIVES · The Twelve Signals ================================= */
+  --signal-crimson:      #d4203a; /* Error · Deadline · Destructive */
+  --signal-phosphor:     #39ff7a; /* Success · Active · Healthy */
+  --signal-ember:        #ffb442; /* Warning · Momentum · Pending */
+  --signal-spectre:      #a878ff; /* Strategic · Deep work · Focus */
+  --signal-circuit:      #4ac8d8; /* Link · Graph edge · Live connection */
+  --signal-ghost:        #7ab8c4; /* Info · Meta · Background process */
+  --signal-biolink:      #8bbf87; /* Organic · Human · Calm */
+  --signal-neural-bleed: #e8a5a5; /* Reflection · Emotional · Journal */
+  --signal-rust:         #e8b979; /* Decay · Ageing · Drift warning */
+  --signal-toxic:        #d9c566; /* Caution · Review needed */
+  --signal-voidwitch:    #b49bd1; /* Creative · Mystical · Deep archive */
+  --signal-pearl:        #e8e4d8; /* Neutral · Text · Default */
+
+  /* RGB triplets — for rgba() recipes (consolidated; one block, all twelve) */
+  --signal-crimson-rgb:      212, 32, 58;
+  --signal-phosphor-rgb:     57, 255, 122;
+  --signal-ember-rgb:        255, 180, 66;
+  --signal-spectre-rgb:      168, 120, 255;
+  --signal-circuit-rgb:      74, 200, 216;
+  --signal-ghost-rgb:        122, 184, 196;
+  --signal-biolink-rgb:      139, 191, 135;
+  --signal-neural-bleed-rgb: 232, 165, 165;
+  --signal-rust-rgb:         232, 185, 121;
+  --signal-toxic-rgb:        217, 197, 102;
+  --signal-voidwitch-rgb:    180, 155, 209;
+  --signal-pearl-rgb:        232, 228, 216;
+
+  /* ===== PRIMITIVES · Void Scale (the dark chamber) ===================== */
+  --void-000: #000000;  /* absolute — used sparingly */
+  --void-050: #060709;  /* app background */
+  --void-100: #0b0d11;  /* panels */
+  --void-150: #11141a;  /* surface raised */
+  --void-200: #181c24;  /* surface overlay */
+  --void-300: #22272f;  /* border subtle */
+  --void-400: #2e343d;  /* border default */
+  --void-500: #3d4450;  /* border strong */
+  --void-600: #5a6170;  /* fg tertiary */
+  --void-700: #828a97;  /* fg secondary */
+  --void-800: #c8cbd2;  /* fg primary alt */
+  --void-900: var(--signal-pearl); /* fg primary */
+
+  /* ===== PRIMITIVES · Paper Scale (the light leaf) ===================== */
+  /* Warm rice-paper ramp, 000 = lightest leaf → 900 = darkest ink.        */
+  /* Anchored on the established light values so light is preserved.        */
+  --paper-000: #faf8f5;  /* note background (lightest) */
+  --paper-050: #f2efe9;  /* raised-alt / form field */
+  --paper-100: #eae6de;  /* secondary / sidebar */
+  --paper-150: #e2ddd3;  /* secondary-alt */
+  --paper-200: #d8d3c8;  /* tertiary */
+  --paper-300: #c9c3b6;  /* border subtle (solid) */
+  --paper-400: #b0a99a;  /* border default (solid) */
+  --paper-500: #9a958c;  /* faint text / disabled */
+  --paper-600: #847f75;  /* fg tertiary alt */
+  --paper-700: #6b6761;  /* muted text */
+  --paper-800: #494540;  /* fg primary alt */
+  --paper-900: #2b2824;  /* ink — primary text (darkest) */
+
+  /* ===== PRIMITIVES · Type families ==================================== */
+  --font-display: 'EB Garamond', 'Garamond', 'Iowan Old Style', 'Times New Roman', serif;
+  --font-sans:    'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ===== PRIMITIVES · Type scale ======================================= */
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-base: 15px;
+  --text-md:   17px;
+  --text-lg:   20px;
+  --text-xl:   24px;
+  --text-2xl:  32px;
+  --text-3xl:  44px;
+  --text-4xl:  60px;
+  --text-5xl:  80px;
+
+  --leading-tight:   1.1;
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.7;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-caps:   0.12em;
+
+  /* ===== PRIMITIVES · Spacing ========================================== */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;
+  --space-4: 16px;  --space-5: 24px;  --space-6: 32px;
+  --space-7: 48px;  --space-8: 64px;  --space-9: 96px;
+
+  /* ===== PRIMITIVES · Radii ============================================ */
+  --radius-none: 0;     --radius-sm: 3px;   --radius-md: 6px;
+  --radius-lg: 10px;    --radius-xl: 14px;  --radius-full: 999px;
+
+  /* ===== PRIMITIVES · Motion =========================================== */
+  --ease-signal: cubic-bezier(0.2, 0.8, 0.2, 1);  /* default — decisive */
+  --ease-ghost:  cubic-bezier(0.4, 0, 0.2, 1);    /* fades, reveals */
+  --ease-pulse:  cubic-bezier(0.4, 0, 0.6, 1);    /* pulsing warnings */
+  --dur-fast: 120ms;  --dur-base: 200ms;  --dur-slow: 360ms;
+}
