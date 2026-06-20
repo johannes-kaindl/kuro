@@ -1,52 +1,13 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   KURO  ·  v3.4.0
-   Neo-Gothic · Post-Cyberpunk · CRT-Phosphor
-   ─────────────────────────────────────────────────────────────────────────
-   v3.4.0 — Standalone & Style-Settings native. The theme is fully configurable
-   through the official Style Settings plugin (fragment 05-style-settings.css)
-   and depends on no plugin. The accent colour follows Obsidian's own (system)
-   accent in both light and dark. Plugin-coupled extras that could not work
-   reliably without the companion's JavaScript were retired for a cleaner
-   standalone theme: the four "aspects" (the accent now follows the system
-   colour directly), the hanko watermark, the CRT vignette and scanline
-   overlays, and Colour Vision Mode. Animations respect prefers-reduced-motion
-   (75-reduced-motion.css).
-   ─────────────────────────────────────────────────────────────────────────
-   v3.3.0 — Release-readiness. No visual redesign: the theme becomes
-   self-contained and guideline-compliant for the Obsidian community
-   catalogue. Fonts (JetBrains Mono, Space Grotesk, Inter, EB Garamond) are
-   embedded as Latin-subset woff2 @font-face data-URLs (SIL OFL 1.1) and the
-   remote Google Fonts include is gone — no network access. Forced-override
-   flags reduced 316 → 69 justified keeps, verified against Obsidian app.css.
-   The §39·6b Mermaid-padding patch was back-ported from the Pallas install.
-   ─────────────────────────────────────────────────────────────────────────
-   v3.2.0 — Visibility + accessibility release (historic; many of its aspect /
-   wallpaper / Colour-Vision additions were retired in v3.4.0). Acted on
-   Live-Test feedback 2026-05-11.
-   ─────────────────────────────────────────────────────────────────────────
-   Build order (src/build.sh concatenates [0-9][0-9]-*.css lexically):
-     00 · base-x1-foundation       — Signal-Protocol token foundation,
-                                     dark/light semantics, all base styling
-     01 · tokens-canonical         — KSP colors_and_type.css mirror, SSOT
-     02 · fonts-embedded           — Latin-subset woff2 @font-face data-URLs
-     05 · style-settings           — Style Settings @settings block (no-op
-                                     without the plugin)
-     10 · v1-polish-addendum       — colorful-headings, signal presets,
-                                     low-contrast, callouts, graph, zen, tabs,
-                                     custom checkboxes, polish
-     20 · kuro2-aesthetics         — Void Scale, [!kuro] callout, film grain,
-                                     margin-tint, ribbon-kanji / Kuro marks
-     30 · plugin-migrated          — margin-tint, logo, ribbon, mono-all,
-                                     headings, buttons (plugin-era base styles)
-     50 · signal-subthemes         — Twelve signal classes for notes
-     60 · low-contrast             — low-contrast layer attenuations
-     70 · showcase-fx              — Press / pulse / hover
-     75 · reduced-motion           — Null decorative callout/pulse loops
-                                     under prefers-reduced-motion
-   ─────────────────────────────────────────────────────────────────────────
-   The chamber is dark. The signal earns its brightness because the
-   chamber is dark.  Twelve hues, twelve roles.
-   ─────────────────────────────────────────────────────────────────────────
-   Configuration: the official Style Settings plugin (optional) reads the
-   05-style-settings block. The theme is fully usable without any plugin.
-   ═════════════════════════════════════════════════════════════════════════ */
+/* ╔══════════════════════════════════════════════════════════════════════╗
+   ║  KURO  v4.0.0  ·  Neo-Gothic / Post-Cyberpunk Obsidian theme          ║
+   ║  Built on the ARMATURE — a forkable theme skeleton.                    ║
+   ║                                                                        ║
+   ║  BUILD ORDER (build.sh = HEADER + numeric glob, zero-dep, det.):       ║
+   ║   00 primitives[v] · 02 fonts[v] · 05 settings · 10/11 semantic ·      ║
+   ║   12 bridge · 15 base · 20–31 components · 40 features ·               ║
+   ║   50 presets[v] · 55 subthemes[v] · 60 low-contrast · 70 reduced-mo.   ║
+   ║                                                                        ║
+   ║  [armature] = structure/contract — NO colour literals, reads tokens.  ║
+   ║  [values]   = taste — palette/presets/fonts. FORK = swap [v] files.    ║
+   ║  See docs/THEME-AUTHORING.md.                                          ║
+   ╚══════════════════════════════════════════════════════════════════════╝ */
