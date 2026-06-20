@@ -1,6 +1,12 @@
 # Kuro — "Clean Foundation" Refactor (v4.0.0)
 
-**Status:** approved 2026-06-19 · **Branch:** `refactor/clean-foundation`
+> **⚠️ SUPERSEDED 2026-06-20** by `2026-06-20-clean-foundation-skeleton-design.md`.
+> That version upgrades this in-place refactor to a skeleton-first ground-up rebuild
+> (forkable skeleton + per-component files + light-mode fix), grounded in an exhaustive
+> code inventory. The *goal* and the *root-cause analysis* below remain valid; the
+> *approach* is replaced. Read the 06-20 spec.
+
+**Status:** ~~approved 2026-06-19~~ superseded · **Branch:** `refactor/clean-foundation`
 
 ## Why
 
