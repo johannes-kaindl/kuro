@@ -7,8 +7,7 @@
    LAYER     armature — every colour is a token or a color-mix() of tokens.
              No raw #hex, no --signal-/--void-/--paper- (lint-enforced).
    RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
-   SETS      --h1-color..--h6-color (under .kuro-colorful-headings, per mode)
-             --indentation-guide-color (under .kuro-rainbow-indent)
+   SETS      --indentation-guide-color (under .kuro-rainbow-indent)
    USES      --accent --accent-soft --accent-glow --glow-accent
              --fg-primary --fg-secondary --fg-tertiary --text-faint
              --surface-base --surface-panel --border-subtle --border-hover
@@ -124,44 +123,10 @@ body.kuro-rainbow-indent .cm-indent-8 { --indentation-guide-color: var(--role-in
    reintroduced, build them DevTools-grounded against the real --tab-* model. */
 
 
-/* ════════════════════════════════════════════════════════════════════════
-   8 · kuro-colorful-headings — DISTINCT signal hue per level
-   ──────────────────────────────────────────────────────────────────────
-   Genuinely colourful: each level keys off a different one of the twelve
-   signals (NOT the system accent — that made it monochrome when the accent
-   is light/desaturated). Dark uses the signals straight (vivid on the
-   chamber); light nudges each toward the ink so it stays legible on paper.
-   ════════════════════════════════════════════════════════════════════════ */
-
-body.kuro-colorful-headings.theme-dark {
-  --h1-color: var(--role-focus);       /* spectre — violet */
-  --h2-color: var(--role-link);        /* circuit — teal */
-  --h3-color: var(--role-success);     /* phosphor — green */
-  --h4-color: var(--role-warning);     /* ember — amber */
-  --h5-color: var(--role-creative);    /* voidwitch — lavender */
-  --h6-color: var(--role-reflection);  /* neural-bleed — rose */
-}
-body.kuro-colorful-headings.theme-light {
-  --h1-color: color-mix(in srgb, var(--role-focus) 72%, var(--fg-primary));
-  --h2-color: color-mix(in srgb, var(--role-link) 72%, var(--fg-primary));
-  --h3-color: color-mix(in srgb, var(--role-success) 72%, var(--fg-primary));
-  --h4-color: color-mix(in srgb, var(--role-warning) 72%, var(--fg-primary));
-  --h5-color: color-mix(in srgb, var(--role-creative) 72%, var(--fg-primary));
-  --h6-color: color-mix(in srgb, var(--role-reflection) 72%, var(--fg-primary));
-}
-
-body.kuro-colorful-headings .markdown-rendered h1,
-body.kuro-colorful-headings .cm-header-1 { color: var(--h1-color); }
-body.kuro-colorful-headings .markdown-rendered h2,
-body.kuro-colorful-headings .cm-header-2 { color: var(--h2-color); }
-body.kuro-colorful-headings .markdown-rendered h3,
-body.kuro-colorful-headings .cm-header-3 { color: var(--h3-color); }
-body.kuro-colorful-headings .markdown-rendered h4,
-body.kuro-colorful-headings .cm-header-4 { color: var(--h4-color); }
-body.kuro-colorful-headings .markdown-rendered h5,
-body.kuro-colorful-headings .cm-header-5 { color: var(--h5-color); }
-body.kuro-colorful-headings .markdown-rendered h6,
-body.kuro-colorful-headings .cm-header-6 { color: var(--h6-color); }
+/* kuro-colorful-headings was removed in 4.0.1: per-level heading hues are a
+   personalisation choice deferred to the companion plugin. Heading colours now
+   come from the --h1-color..--h6-color bridge defaults (12-bridge) — the normal
+   fg ramp. The twelve signals still drive callouts, checkboxes, tags and graph. */
 
 
 /* ════════════════════════════════════════════════════════════════════════

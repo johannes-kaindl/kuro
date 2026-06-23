@@ -27,12 +27,6 @@ Settings contract is untouched.
 - **Task-list checkbox alignment** — the resized (1.1em) checkbox used `vertical-align: middle`,
   which anchored it to x-height in the tall list-item line and read as "checkbox too low"; it now
   binds to the text line.
-- **Colourful headlines** — the per-level heading tints were the theme's only `color-mix(in oklch …)`
-  declarations and were dropped at compute-time (headings fell back to ink in light mode); switched
-  to the `srgb` interpolation used everywhere else, so the distinct hues render.
-- **Signal presets in light mode** — the mood tints were calibrated for the dark ramp and washed out
-  on the light paper ground (only the sidebar visibly changed). The light-mode surface mixes are
-  raised so the chosen signal reaches the main editor too. Dark mode unchanged.
 
 ### Changed
 - **`!important`: 24 → 9.** Every remaining one is justified inline (`/* important: … */`) or
@@ -59,6 +53,13 @@ Settings contract is untouched.
   `.bases-cards-group`, so the knob did nothing); removed the no-op.
 - **Margin tint** (Style Settings) — a 15%-accent gutter wash that fell below the perceptual
   threshold on the light paper ground and whose enrichment was dark-mode + companion-driven.
+- **Signal presets** (Style Settings → Signal preset) — the 13 body-wide mood tints. A whole-canvas
+  colour wash is a per-vault personalisation choice better suited to the companion plugin than a baked
+  theme default, and it fought legibility on the light paper ground. The twelve signals still drive
+  callouts, checkboxes, tags and the graph, so Kuro keeps its signal character; only the surface
+  mood-tint is deferred. (`50-presets.css` is kept as a documented, empty fork/companion slot.)
+- **Colourful headlines** (Style Settings) — per-level heading hues, deferred to the companion plugin;
+  headings use the normal foreground ramp.
 
 ## [4.0.0] — Clean Foundation (the Armature)
 

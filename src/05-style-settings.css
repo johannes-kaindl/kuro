@@ -18,53 +18,6 @@ settings:
         level: 1
         collapsed: false
     -
-        id: kuro-preset
-        title: Signal preset
-        description: A colour mood — tints the surfaces in the signal's colour. The accent always follows your system accent.
-        type: class-select
-        allowEmpty: false
-        default: kuro-preset-pearl
-        options:
-            -
-                label: Toxic Haze
-                value: kuro-preset-toxic-haze
-            -
-                label: Phosphor
-                value: kuro-preset-phosphor
-            -
-                label: Voidwitch
-                value: kuro-preset-voidwitch
-            -
-                label: Crimson
-                value: kuro-preset-crimson
-            -
-                label: Ember
-                value: kuro-preset-ember
-            -
-                label: Circuit
-                value: kuro-preset-circuit
-            -
-                label: Biolink
-                value: kuro-preset-biolink
-            -
-                label: Neural Bleed
-                value: kuro-preset-neural-bleed
-            -
-                label: Ghost Protocol
-                value: kuro-preset-ghost-protocol
-            -
-                label: Rust Signal
-                value: kuro-preset-rust-signal
-            -
-                label: Spectre
-                value: kuro-preset-spectre
-            -
-                label: Pearl
-                value: kuro-preset-pearl
-            -
-                label: Kuro
-                value: kuro-preset-kuro
-    -
         id: kuro-low-contrast
         title: Low contrast
         description: Softer text colours and reduced glow — calmer and easier on the eyes.
@@ -117,12 +70,6 @@ settings:
         type: variable-number
         default: 640
         format: px
-    -
-        id: kuro-colorful-headings
-        title: Colourful headlines
-        description: Tints H1–H6 each in a distinct colour.
-        type: class-toggle
-        default: false
     -
         id: kuro-no-callout-animations
         title: Disable callout animations
