@@ -180,4 +180,23 @@
   --nav-item-background-hover:  var(--overlay-hover);
   --nav-item-background-active: color-mix(in srgb, var(--interactive-accent) 8%, transparent);
   --nav-collapse-icon-color:    var(--fg-tertiary);
+
+  /* ===== BRIDGE · Tabs + titlebar (window frame) =====================
+     Feeds Obsidian's own tab rendering — including the active-tab corner
+     pseudo-elements. Leaving these unthemed is what showed the white tab
+     corners; bridging them keeps every tab surface on the chamber/leaf. */
+  --titlebar-background:           var(--surface-deep);
+  --titlebar-background-focused:   var(--surface-deep);
+  --titlebar-border-color:         var(--divider);
+  --titlebar-text-color:           var(--fg-tertiary);
+  --titlebar-text-color-focused:   var(--fg-secondary);
+  --titlebar-text-color-highlighted: var(--fg-primary);
+  --tab-container-background:       var(--surface-deep);
+  --tab-background-active:          var(--surface-base);
+  --tab-text-color:                var(--fg-tertiary);
+  --tab-text-color-focused:        var(--fg-secondary);
+  --tab-text-color-focused-active: var(--fg-primary);
+  --tab-text-color-focused-active-current: var(--fg-primary);
+  --tab-outline-color:             var(--divider);
+  --tab-divider-color:             var(--divider);
 }
