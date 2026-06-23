@@ -10,6 +10,7 @@
              NOT here: the body.kuro-colorful-headings toggle and the dark
              H1 ambient glow — both decorative, both go to 40-features.
    LAYER     armature (reads bridged + semantic tokens; no literals)
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      (nothing — pure component styling)
    USES      --h1-color..--h6-color --h1-font..--h6-font --h1-style --h1-weight
              --h1-size..--h6-size --h1-line-height --inline-title-font/-style/

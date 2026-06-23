@@ -5,6 +5,7 @@
              + external read as the link signal with a soft underline that
              brightens on hover; unresolved links dim to a dashed ghost.
    LAYER     armature (reads bridged + semantic + role tokens; no literals)
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      —
    USES      --role-link --role-link-rgb --fg-primary --fg-tertiary
              --dur-fast --ease-signal

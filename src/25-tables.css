@@ -4,6 +4,7 @@
              former .theme-light table-tone override — now expressed through
              both-mode semantic tokens (no .theme-light-only rule survives).
    LAYER     armature
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      (no tokens — consumes only)
    USES      --border-subtle --surface-raised --overlay-hover --fg-primary
              --fg-secondary --tracking-wide --text-xs --dur-fast --ease-signal

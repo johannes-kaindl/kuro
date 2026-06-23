@@ -4,6 +4,7 @@
             Resolves the active-file-stripe drift (00-base:1081 vs
             70-showcase-fx:61) into ONE rule.
    LAYER    armature
+   RULES    see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS     (nothing — consumes tokens)
    USES     --surface-base/-deep/-raised --fg-primary/-secondary/-tertiary
             --border-subtle --divider --accent --overlay-hover
@@ -267,13 +268,15 @@ body .metadata-add-button:hover { color: var(--fg-secondary); }
   letter-spacing: 0.01em;
 }
 /* Selected suggestion / command-palette item — the keyboard selection MUST read
-   clearly. A solid accent-tinted band (the old --accent-soft was 15% on
-   transparent — too faint); !important defeats Obsidian's own higher-spec
-   selected-item default so the highlight always lands. */
+   clearly (a solid accent-tinted band). Obsidian exposes NO variable for the
+   selected-item background, so we win by specificity, not !important: the plain
+   rule (0,2,0) loads after app.css and wins on source order; the palette variant
+   .prompt.mod-command-palette … is (0,4,0), beating Obsidian's (0,3,0)-scoped
+   palette rule outright. (R1/R2 — was 2× !important.) */
 .suggestion-item.is-selected,
-.mod-command-palette .suggestion-item.is-selected {
-  color: var(--fg-primary) !important;  /* keep — vs Obsidian high-spec .suggestion-item.is-selected (a11y: selection must be visible) */
-  background: color-mix(in srgb, var(--interactive-accent) 24%, var(--surface-overlay)) !important; /* keep — same */
+.prompt.mod-command-palette .suggestion-item.is-selected {
+  color: var(--fg-primary);
+  background: color-mix(in srgb, var(--interactive-accent) 24%, var(--surface-overlay));
   box-shadow: inset 3px 0 0 0 var(--accent);
 }
 .suggestion-highlight { color: var(--accent); font-weight: 600; }

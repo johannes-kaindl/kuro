@@ -10,4 +10,5 @@
    ║  [armature] = structure/contract — NO colour literals, reads tokens.  ║
    ║  [values]   = taste — palette/presets/fonts. FORK = swap [v] files.    ║
    ║  See docs/THEME-AUTHORING.md.                                          ║
-   ╚══════════════════════════════════════════════════════════════════════╝ */
+   ╚══════════════════════════════════════════════════════════════════════╝
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check */

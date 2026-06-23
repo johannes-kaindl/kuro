@@ -8,9 +8,10 @@
    LAYER     armature (reads bridged + semantic tokens; no literals)
    SETS      n/a (component)
    USES      --tag-color --tag-background --tag-border-color
-             --tag-background-hover --tag-border-color-hover
-             --tag-radius --tag-padding-x --tag-padding-y --tag-font-size
+             --tag-color-hover --tag-background-hover --tag-border-color-hover
+             --tag-radius --tag-padding-x --tag-padding-y --tag-size
              --accent --accent-glow · --kuro-font-mono --dur-fast --ease-signal
+   RULES     see docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important
    DEPENDS   10/11 (semantic), 12-bridge (--tag-* / --accent*), 13-roles (n/a)
    SURFACES  Reading (.markdown-rendered a.tag) ·
              Live-Preview (.cm-hashtag-begin/-middle/-end)
@@ -25,7 +26,7 @@ a.tag,
   color: var(--tag-color);
   background: var(--tag-background);
   border: 1px solid var(--tag-border-color);
-  font-size: var(--tag-font-size);
+  font-size: var(--tag-size);
   text-decoration: none;
   transition: color var(--dur-fast) var(--ease-signal),
               border-color var(--dur-fast) var(--ease-signal),
@@ -60,13 +61,10 @@ a.tag {
   padding-right: var(--tag-padding-x);
 }
 
-/* Hover (Reading only — CM spans are not hover targets). !important fights
-   Obsidian's own higher-specificity a.tag:hover (0,2,1). */
-a.tag:hover {
-  color: var(--accent) !important;                       /* keep — vs Obsidian a.tag:hover (0,2,1) */
-  background: var(--tag-background-hover) !important;     /* keep — vs Obsidian a.tag:hover (0,2,1) */
-  border-color: var(--tag-border-color-hover) !important;/* keep — vs Obsidian a.tag:hover (0,2,1) */
-}
+/* Hover is themed through Obsidian's OWN --tag-color-hover / --tag-background-hover /
+   --tag-border-color-hover (set in 12-bridge) — Obsidian's a.tag:hover rule consumes
+   them, so no theme :hover override is needed (R1 variable-first; was 3× !important).
+   CM hashtag spans are not hover targets, so this stays Reading-view behaviour. */
 
 /* ── Dark-only signal glow (user opt-out: .kuro-no-glow) ───────────────── */
 body.theme-dark:not(.kuro-no-glow) a.tag {

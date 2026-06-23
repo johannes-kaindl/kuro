@@ -3,6 +3,7 @@
    Style Settings annotation block. Drives the SAME body classes / CSS vars
    the companion plugin sets, so the two share one contract (last writer wins).
    No effect when the Style Settings plugin is absent — theme uses CSS defaults.
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    ───────────────────────────────────────────────────────────────────────── */
 
 /* @settings

@@ -11,6 +11,7 @@
              thing in BOTH dark and light with no per-mode duplication.
    LAYER     armature — NO literals. No #hex / --signal-* / --void-* / --paper-.
              Attenuation is expressed only as color-mix() of existing tokens.
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      (overrides under body.kuro-low-contrast) --fg-* · --pane-lift ·
              --glow-accent · --glow-focus · --accent-glow · signal-subtheme
              top-border colour

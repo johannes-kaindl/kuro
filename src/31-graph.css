@@ -11,6 +11,7 @@
              tokens (fed from semantic --node-*), so a single token-driven probe
              set reproduces the old computed look in BOTH modes.
    LAYER     armature
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      nothing (declares `color` on the WebGL probe classes only)
    USES      --graph-node --graph-node-tag --graph-node-attachment
              --graph-node-unresolved --graph-node-focused --graph-node-active

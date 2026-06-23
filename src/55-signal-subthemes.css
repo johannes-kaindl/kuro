@@ -11,6 +11,7 @@
    LAYER     values (taste; a fork swaps the twelve signals in 00-primitives
              and every tint here follows. Exempt from the armature literal-lint,
              so raw signal and rgba() literals are permitted here).
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      (no tokens) — note-level tint rules only
    USES      --signal-* (+ raw rgba shadow) · --surface-base
    DEPENDS   00-primitives · 10/11-semantic (--surface-base)

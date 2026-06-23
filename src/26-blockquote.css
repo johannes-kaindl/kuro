@@ -3,6 +3,7 @@
              view + Live-Preview, so the serif/italic aside and its accent bar
              no longer live only in Reading view.
    LAYER     armature / component
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      (component rules only)
    USES      --accent --fg-secondary --surface-base --kuro-font-serif
              --radius-sm --space-2 --space-3

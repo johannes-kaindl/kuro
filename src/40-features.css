@@ -6,6 +6,7 @@
              migrated, 00-base §27, 10-polish) into a single feature surface.
    LAYER     armature — every colour is a token or a color-mix() of tokens.
              No raw #hex, no --signal-/--void-/--paper- (lint-enforced).
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      --h1-color..--h6-color (under .kuro-colorful-headings, per mode)
              --indentation-guide-color (under .kuro-rainbow-indent)
    USES      --accent --accent-soft --accent-glow --glow-accent
@@ -32,8 +33,7 @@
 body.kuro-mono-all {
   --font-text-override:      var(--kuro-font-mono);
   --font-interface-override: var(--kuro-font-mono);
-  /* keep — Obsidian applies font-family app-level; CSS vars don't reach it */
-  font-family: var(--kuro-font-mono) !important;
+  font-family: var(--kuro-font-mono) !important; /* important: Obsidian applies font-family app-level; CSS vars don't reach it */
 }
 body.kuro-mono-all .markdown-preview-view,
 body.kuro-mono-all .markdown-source-view,
@@ -42,8 +42,7 @@ body.kuro-mono-all .markdown-source-view.mod-cm6 .cm-line,
 body.kuro-mono-all .cm-editor,
 body.kuro-mono-all .nav-file-title,
 body.kuro-mono-all .nav-folder-title {
-  /* keep — app-level font-family override, CSS variables are insufficient */
-  font-family: var(--kuro-font-mono) !important;
+  font-family: var(--kuro-font-mono) !important; /* important: app-level font override; CSS variables don't reach these surfaces */
   letter-spacing: 0;
 }
 body.kuro-mono-all h1, body.kuro-mono-all h2, body.kuro-mono-all h3,
@@ -52,9 +51,8 @@ body.kuro-mono-all .inline-title,
 body.kuro-mono-all .cm-header-1,
 body.kuro-mono-all .cm-header-2,
 body.kuro-mono-all .cm-header-3 {
-  /* keep — app-level font-family/font-style override */
-  font-family: var(--kuro-font-mono) !important;
-  font-style: normal !important;
+  font-family: var(--kuro-font-mono) !important; /* important: app-level font override */
+  font-style: normal !important; /* important: app-level font-style override */
 }
 
 

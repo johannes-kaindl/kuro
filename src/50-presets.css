@@ -9,6 +9,7 @@
              follows Obsidian's own system colour (presets never touch accent).
    LAYER     values (taste — a fork swaps the signal palette; literals and
              --signal-/--void-/--paper- primitives are allowed and lint-exempt).
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      --surface-base/-deep/-raised/-panel/-overlay (per preset × mode)
    USES      --signal-* (the twelve) · --void-050 (dark floor) · --paper-000
              (light leaf) — all primitives from 00-primitives.css

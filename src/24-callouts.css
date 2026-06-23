@@ -5,6 +5,7 @@
              and the icon hover-animation library. Collapses the three former
              bases (00-base §16, §28 + 10-polish §callouts) into one.
    LAYER     armature
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      --callout-color (per data-callout, from a --role-*-rgb triplet)
    USES      --surface-raised --fg-primary --text-muted --lift
              --role-*-rgb (error/success/warning/focus/link/info/organic/
@@ -253,53 +254,58 @@
    5 · ICON HOVER ANIMATIONS
    ════════════════════════════════════════════════════════════════════════ */
 
-/* Built-ins */
-.callout[data-callout="note"]:hover .callout-icon svg          { animation: gentlePulse 2.5s ease-in-out infinite; }
-.callout[data-callout="info"]:hover .callout-icon svg          { animation: slowSpin 4s linear infinite; }
-.callout[data-callout="tip"]:hover .callout-icon svg,
-.callout[data-callout="hint"]:hover .callout-icon svg,
-.callout[data-callout="important"]:hover .callout-icon svg     { animation: bounceUp 0.6s ease-in-out infinite; }
-.callout[data-callout="success"]:hover .callout-icon svg,
-.callout[data-callout="check"]:hover .callout-icon svg,
-.callout[data-callout="done"]:hover .callout-icon svg          { animation: successPop 0.7s ease-in-out infinite; }
-.callout[data-callout="question"]:hover .callout-icon svg,
-.callout[data-callout="help"]:hover .callout-icon svg,
-.callout[data-callout="faq"]:hover .callout-icon svg           { animation: wobble 0.8s ease-in-out infinite; }
-.callout[data-callout="warning"]:hover .callout-icon svg,
-.callout[data-callout="caution"]:hover .callout-icon svg,
-.callout[data-callout="attention"]:hover .callout-icon svg     { animation: shake 0.5s ease-in-out infinite; }
-.callout[data-callout="failure"]:hover .callout-icon svg,
-.callout[data-callout="fail"]:hover .callout-icon svg,
-.callout[data-callout="missing"]:hover .callout-icon svg       { animation: droop 0.9s ease-in-out infinite; }
-.callout[data-callout="danger"]:hover .callout-icon svg,
-.callout[data-callout="error"]:hover .callout-icon svg         { animation: dangerPulse 0.8s ease-in-out infinite; }
-.callout[data-callout="bug"]:hover .callout-icon svg           { animation: slowSpin 1.2s linear infinite; }
-.callout[data-callout="abstract"]:hover .callout-icon svg,
-.callout[data-callout="summary"]:hover .callout-icon svg,
-.callout[data-callout="tldr"]:hover .callout-icon svg          { animation: breathe 2s ease-in-out infinite; }
-.callout[data-callout="todo"]:hover .callout-icon svg          { animation: jolt 1s ease-in-out infinite; }
-.callout[data-callout="quote"]:hover .callout-icon svg,
-.callout[data-callout="cite"]:hover .callout-icon svg          { animation: swingIcon 1.5s ease-in-out infinite; }
+/* Built-ins — wrapped in `body :where(…)` so the decorative hover loops sit at
+   (0,0,1). Every opt-out (kuro-no-callout-animations) and the reduced-motion
+   resets then outrank them with a NORMAL class selector — no !important needed.
+   This restructure is what let 8 !important be removed from the toggles below.
+   [R2 · the curve specificity was (0,4,1), not the (0,3,1) the old comments claimed] */
+body :where(.callout[data-callout="note"]:hover .callout-icon svg)          { animation: gentlePulse 2.5s ease-in-out infinite; }
+body :where(.callout[data-callout="info"]:hover .callout-icon svg)          { animation: slowSpin 4s linear infinite; }
+body :where(.callout[data-callout="tip"]:hover .callout-icon svg,
+            .callout[data-callout="hint"]:hover .callout-icon svg,
+            .callout[data-callout="important"]:hover .callout-icon svg)     { animation: bounceUp 0.6s ease-in-out infinite; }
+body :where(.callout[data-callout="success"]:hover .callout-icon svg,
+            .callout[data-callout="check"]:hover .callout-icon svg,
+            .callout[data-callout="done"]:hover .callout-icon svg)          { animation: successPop 0.7s ease-in-out infinite; }
+body :where(.callout[data-callout="question"]:hover .callout-icon svg,
+            .callout[data-callout="help"]:hover .callout-icon svg,
+            .callout[data-callout="faq"]:hover .callout-icon svg)           { animation: wobble 0.8s ease-in-out infinite; }
+body :where(.callout[data-callout="warning"]:hover .callout-icon svg,
+            .callout[data-callout="caution"]:hover .callout-icon svg,
+            .callout[data-callout="attention"]:hover .callout-icon svg)     { animation: shake 0.5s ease-in-out infinite; }
+body :where(.callout[data-callout="failure"]:hover .callout-icon svg,
+            .callout[data-callout="fail"]:hover .callout-icon svg,
+            .callout[data-callout="missing"]:hover .callout-icon svg)       { animation: droop 0.9s ease-in-out infinite; }
+body :where(.callout[data-callout="danger"]:hover .callout-icon svg,
+            .callout[data-callout="error"]:hover .callout-icon svg)         { animation: dangerPulse 0.8s ease-in-out infinite; }
+body :where(.callout[data-callout="bug"]:hover .callout-icon svg)           { animation: slowSpin 1.2s linear infinite; }
+body :where(.callout[data-callout="abstract"]:hover .callout-icon svg,
+            .callout[data-callout="summary"]:hover .callout-icon svg,
+            .callout[data-callout="tldr"]:hover .callout-icon svg)          { animation: breathe 2s ease-in-out infinite; }
+body :where(.callout[data-callout="todo"]:hover .callout-icon svg)          { animation: jolt 1s ease-in-out infinite; }
+body :where(.callout[data-callout="quote"]:hover .callout-icon svg,
+            .callout[data-callout="cite"]:hover .callout-icon svg)          { animation: swingIcon 1.5s ease-in-out infinite; }
 
-/* Custom */
-.callout[data-callout="idea"]:hover .callout-icon svg       { animation: wiggleGlow 0.5s ease-in-out infinite; filter: drop-shadow(0 0 5px rgba(var(--role-warning-rgb), 0.85)); color: var(--role-warning); }
-.callout[data-callout="focus"]:hover .callout-icon svg      { animation: breathe 2s ease-in-out infinite; }
-.callout[data-callout="target"]:hover .callout-icon svg     { animation: pulseTarget 1s ease-in-out infinite; }
-.callout[data-callout="levelup"]:hover .callout-icon svg    { animation: bounceUp 0.65s ease-in-out infinite; }
-.callout[data-callout="energy"]:hover .callout-icon svg     { animation: wiggleGlow 0.4s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(var(--role-warning-rgb), 0.9)); color: var(--role-warning); }
-.callout[data-callout="streak"]:hover .callout-icon svg     { animation: flicker 0.6s ease-in-out infinite; }
-.callout[data-callout="review"]:hover .callout-icon svg     { animation: successPop 0.8s ease-in-out infinite; }
-.callout[data-callout="inbox"]:hover .callout-icon svg      { animation: bounceUp 0.7s ease-in-out infinite; }
-.callout[data-callout="morning"]:hover .callout-icon svg    { animation: sunRise 1.6s ease-in-out infinite; }
-.callout[data-callout="evening"]:hover .callout-icon svg    { animation: moonGlow 2s ease-in-out infinite; }
-.callout[data-callout="concept"]:hover .callout-icon svg    { animation: slowSpin 4s linear infinite; }
-.callout[data-callout="definition"]:hover .callout-icon svg { animation: breathe 2.5s ease-in-out infinite; }
-.callout[data-callout="mood"]:hover .callout-icon svg       { animation: successPop 0.9s ease-in-out infinite; }
-.callout[data-callout="code"]:hover .callout-icon svg       { animation: gentlePulse 1.5s ease-in-out infinite; }
-.callout[data-callout="frog"]:hover .callout-icon svg       { animation: bounceUp 0.5s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(var(--role-organic-rgb), 0.9)); color: var(--role-organic); }
-.callout[data-callout="log"]:hover .callout-icon svg        { animation: gentlePulse 2.5s ease-in-out infinite; }
-.callout[data-callout="decision"]:hover .callout-icon svg   { animation: successPop 0.8s ease-in-out infinite; }
-.callout[data-callout="shortcut"]:hover .callout-icon svg   { animation: shieldPulse 1.8s ease-in-out infinite; }
+/* Custom (some also set a hover filter/colour — kept; the opt-outs reset
+   animation + filter, colour intentionally persists, as before) */
+body :where(.callout[data-callout="idea"]:hover .callout-icon svg)       { animation: wiggleGlow 0.5s ease-in-out infinite; filter: drop-shadow(0 0 5px rgba(var(--role-warning-rgb), 0.85)); color: var(--role-warning); }
+body :where(.callout[data-callout="focus"]:hover .callout-icon svg)      { animation: breathe 2s ease-in-out infinite; }
+body :where(.callout[data-callout="target"]:hover .callout-icon svg)     { animation: pulseTarget 1s ease-in-out infinite; }
+body :where(.callout[data-callout="levelup"]:hover .callout-icon svg)    { animation: bounceUp 0.65s ease-in-out infinite; }
+body :where(.callout[data-callout="energy"]:hover .callout-icon svg)     { animation: wiggleGlow 0.4s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(var(--role-warning-rgb), 0.9)); color: var(--role-warning); }
+body :where(.callout[data-callout="streak"]:hover .callout-icon svg)     { animation: flicker 0.6s ease-in-out infinite; }
+body :where(.callout[data-callout="review"]:hover .callout-icon svg)     { animation: successPop 0.8s ease-in-out infinite; }
+body :where(.callout[data-callout="inbox"]:hover .callout-icon svg)      { animation: bounceUp 0.7s ease-in-out infinite; }
+body :where(.callout[data-callout="morning"]:hover .callout-icon svg)    { animation: sunRise 1.6s ease-in-out infinite; }
+body :where(.callout[data-callout="evening"]:hover .callout-icon svg)    { animation: moonGlow 2s ease-in-out infinite; }
+body :where(.callout[data-callout="concept"]:hover .callout-icon svg)    { animation: slowSpin 4s linear infinite; }
+body :where(.callout[data-callout="definition"]:hover .callout-icon svg) { animation: breathe 2.5s ease-in-out infinite; }
+body :where(.callout[data-callout="mood"]:hover .callout-icon svg)       { animation: successPop 0.9s ease-in-out infinite; }
+body :where(.callout[data-callout="code"]:hover .callout-icon svg)       { animation: gentlePulse 1.5s ease-in-out infinite; }
+body :where(.callout[data-callout="frog"]:hover .callout-icon svg)       { animation: bounceUp 0.5s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(var(--role-organic-rgb), 0.9)); color: var(--role-organic); }
+body :where(.callout[data-callout="log"]:hover .callout-icon svg)        { animation: gentlePulse 2.5s ease-in-out infinite; }
+body :where(.callout[data-callout="decision"]:hover .callout-icon svg)   { animation: successPop 0.8s ease-in-out infinite; }
+body :where(.callout[data-callout="shortcut"]:hover .callout-icon svg)   { animation: shieldPulse 1.8s ease-in-out infinite; }
 
 /* Keyframes */
 @keyframes gentlePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
@@ -326,27 +332,30 @@
    ════════════════════════════════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
+  /* The decorative icon loops are now `body :where(…)` = (0,0,1); a plain class
+     rule outranks them, so these resets need NO !important. The global blanket
+     reset in 70-reduced-motion.css remains the cross-plugin a11y backstop. (R2) */
   .callout .callout-icon svg {
-    animation: none !important;  /* keep — defeats higher-spec (0,3,1) .callout[data-callout]:hover .callout-icon svg animation */
-    filter: none !important;     /* keep — defeats higher-spec (0,3,1) :hover icon filter */
-    transition: none !important; /* keep — defeats higher-spec (0,3,1) :hover icon transition */
+    animation: none;
+    filter: none;
+    transition: none;
   }
   .callout,
   .callout[data-callout="nav"] .callout-content > p > a,
   .callout[data-callout="spoiler"] .callout-content {
-    transition: none !important; /* keep — defeats higher-spec transition rules above */
+    transition: none;
   }
 }
 
 /* Plugin toggle: body.kuro-no-callout-animations (main.js → calloutAnimations) */
 body.kuro-no-callout-animations .callout .callout-icon svg,
 body.kuro-no-callout-animations .callout-icon svg {
-  animation: none !important;  /* keep — toggle must defeat higher-spec (0,3,1) :hover icon animation */
-  filter:    none !important;  /* keep — toggle must defeat higher-spec (0,3,1) :hover icon filter */
+  animation: none;   /* (0,2,1)/(0,3,1) outranks the (0,0,1) icon loops — no !important (R2) */
+  filter:    none;
 }
 body.kuro-no-callout-animations .callout:hover .callout-icon svg {
-  transform: none !important;  /* keep — toggle must defeat higher-spec (0,3,1) :hover icon transform */
-  transition: none !important; /* keep — toggle must defeat higher-spec (0,3,1) :hover icon transition */
+  transform: none;   /* animation already stopped above, so this resets cleanly */
+  transition: none;
 }
 
 @media (max-width: 480px) {
