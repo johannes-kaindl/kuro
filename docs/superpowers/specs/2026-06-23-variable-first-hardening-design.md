@@ -88,8 +88,9 @@ relies on the *name/semantics contract*, not documented defaults.
 
 **Checkbox (`21-checkboxes.css`, −2):** the `:checked` `!important` (lines 53–54) is
 load-bearing only because the **base rule outranks it in Live-Preview** (base
-`.markdown-source-view.mod-cm6 input.task-list-item-checkbox` = `(0,2,2)` > `:checked`
-`(0,1,2)`). Fix by **lowering the base to a true fallback** with `:where()`:
+`.markdown-source-view.mod-cm6 input.task-list-item-checkbox` = `(0,3,1)` > `:checked`
+`(0,2,1)`; notation = id, class/attr/pseudo, element). Fix by **lowering the base to a true
+fallback** with `:where()`:
 
 ```css
 input.task-list-item-checkbox,
@@ -97,7 +98,7 @@ input.task-list-item-checkbox,
 :where(.markdown-source-view.mod-cm6) input.task-list-item-checkbox { … }   /* all (0,1,1) */
 ```
 
-Then `:checked` `(0,1,2)` and `[data-task=…]` `(0,2,1)` win **without** `!important`. Drop
+Then `:checked` `(0,2,1)` and `[data-task=…]` `(0,2,1)` win **without** `!important`. Drop
 both `!important`; keep the rule (robust explicit fill). The `--checkbox-marker-color`
 rename (Block A) makes the check glyph colour reach Obsidian's own renderer.
 
@@ -110,9 +111,10 @@ Update the `font-size` consumer and `USES` header (`--tag-font-size` → `--tag-
 
 No official variable exists. Obsidian's selected-row rule is `.suggestion-item.is-selected`
 `(0,2,0)` (palette: `.mod-command-palette …` `(0,3,0)`); themes load **after** `app.css`, so
-an equal-specificity rule wins on source order. **Drop both `!important`** (lines 275–276),
+the generic `(0,2,0)` rule wins on source order. **Drop both `!important`** (lines 275–276),
 keep the dual selector, and scope the palette variant as
-`.prompt.mod-command-palette .suggestion-item.is-selected` for a clean `(0,3,0)` match. The
+`.prompt.mod-command-palette .suggestion-item.is-selected` `(0,4,0)`, which **outranks**
+Obsidian's `(0,3,0)` palette rule outright (the generic `(0,2,0)` would lose to it). The
 highlight stays accent-driven via `color-mix(var(--interactive-accent) …)` (both-mode safe).
 
 ### Block D — Callout animation restructure (`24-callouts.css` −8, `70-reduced-motion.css` −1)

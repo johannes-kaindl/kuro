@@ -55,7 +55,7 @@ input.task-list-item-checkbox,
    :checked (color-mix accent 18%) — promoted to the full accent so the
    single base also serves the plain [x] without a data-task glyph. */
 input.task-list-item-checkbox:checked {
-  background: var(--checkbox-color);   /* (0,1,2) beats the :where()-zeroed (0,1,1) base — no !important */
+  background: var(--checkbox-color);   /* (0,2,1) beats the :where()-zeroed (0,1,1) base — no !important */
   border-color: var(--checkbox-color);
 }
 

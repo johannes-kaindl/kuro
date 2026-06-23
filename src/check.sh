@@ -7,6 +7,9 @@ cd "$(dirname "$0")"
 
 # strip CSS comments (so doc prose mentioning tokens or "!important" never trips a scan)
 strip() { perl -0777 -pe 's{/\*.*?\*/}{}gs' "$1"; }
+# blank comment CONTENTS but keep newlines, so line numbers still map to the raw file —
+# lets the !important tag-check see real code declarations and ignore comment prose.
+blank() { perl -0777 -pe 's{/\*.*?\*/}{ (my $b=$&) =~ s/[^\n]/ /g; $b }ges' "$1"; }
 
 bash build.sh >/dev/null
 a=$(md5 -q ../theme.css); bash build.sh >/dev/null; b=$(md5 -q ../theme.css)
@@ -32,8 +35,17 @@ echo "  !important: $imp"
 [ "$imp" -le 9 ] || { echo "FAIL: !important $imp > 9 — prefer a variable bridge (R1) or matched specificity; tag+justify only if unavoidable (R2)"; exit 1; }
 for f in HEADER.css [0-9][0-9]-*.css; do
   [ "$f" = "70-reduced-motion.css" ] && continue
-  bad=$(grep -n '!important;' "$f" | grep -v '/\* important:' || true)
-  [ -z "$bad" ] || { echo "FAIL: untagged !important in $f — add inline '/* important: <reason> */', or move it to 70-reduced-motion.css (R2):"; echo "$bad"; exit 1; }
+  # Match the !important TOKEN in real code (comment-blanked), not the literal "!important;",
+  # so a declaration without a trailing semicolon can't dodge the tag rule, and prose can't
+  # false-trip it. Each such raw line must carry an inline /* important: <reason> */ tag.
+  while IFS=: read -r ln _; do
+    [ -n "$ln" ] || continue
+    raw=$(sed -n "${ln}p" "$f")
+    case "$raw" in
+      *'/* important:'*) ;;
+      *) echo "FAIL: untagged !important in $f:$ln — add inline '/* important: <reason> */', or move it to 70-reduced-motion.css (R2):"; echo "    $raw"; exit 1;;
+    esac
+  done < <(blank "$f" | grep -n '!important' || true)
 done
 echo "  !important: all tagged or whitelisted: OK"
 

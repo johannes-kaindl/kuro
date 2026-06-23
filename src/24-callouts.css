@@ -350,7 +350,7 @@ body :where(.callout[data-callout="shortcut"]:hover .callout-icon svg)   { anima
 /* Plugin toggle: body.kuro-no-callout-animations (main.js → calloutAnimations) */
 body.kuro-no-callout-animations .callout .callout-icon svg,
 body.kuro-no-callout-animations .callout-icon svg {
-  animation: none;   /* (0,2,1)/(0,3,1) outranks the (0,0,1) icon loops — no !important (R2) */
+  animation: none;   /* (0,3,2)/(0,2,2) outranks the (0,0,1) icon loops — no !important (R2) */
   filter:    none;
 }
 body.kuro-no-callout-animations .callout:hover .callout-icon svg {
