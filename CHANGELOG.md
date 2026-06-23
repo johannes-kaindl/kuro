@@ -24,6 +24,15 @@ Settings contract is untouched.
 - **Tags** — hover now themes through Obsidian's own `--tag-*-hover` variables; the official
   `--tag-size` replaces a dead `--tag-font-size`.
 - **Command palette** — the selected-item highlight wins by specificity, not `!important`.
+- **Task-list checkbox alignment** — the resized (1.1em) checkbox used `vertical-align: middle`,
+  which anchored it to x-height in the tall list-item line and read as "checkbox too low"; it now
+  binds to the text line.
+- **Colourful headlines** — the per-level heading tints were the theme's only `color-mix(in oklch …)`
+  declarations and were dropped at compute-time (headings fell back to ink in light mode); switched
+  to the `srgb` interpolation used everywhere else, so the distinct hues render.
+- **Signal presets in light mode** — the mood tints were calibrated for the dark ramp and washed out
+  on the light paper ground (only the sidebar visibly changed). The light-mode surface mixes are
+  raised so the chosen signal reaches the main editor too. Dark mode unchanged.
 
 ### Changed
 - **`!important`: 24 → 9.** Every remaining one is justified inline (`/* important: … */`) or
@@ -44,6 +53,12 @@ Settings contract is untouched.
   styles that way, so they rendered as no-ops. Kuro now uses Obsidian's native tab shape
   (themed via the `--tab-*` bridge + the active-tab accent stripe); the now-single-option Tab
   style dropdown was dropped with them.
+- **Body font size** (Style Settings) — a 1:1 duplicate of Obsidian's native Appearance → Font size
+  (same variable); removed to avoid a second, preview-less control for the same effect.
+- **Bases card density** (Style Settings) — was dead (the theme self-shadowed the native variable on
+  `.bases-cards-group`, so the knob did nothing); removed the no-op.
+- **Margin tint** (Style Settings) — a 15%-accent gutter wash that fell below the perceptual
+  threshold on the light paper ground and whose enrichment was dark-mode + companion-driven.
 
 ## [4.0.0] — Clean Foundation (the Armature)
 
