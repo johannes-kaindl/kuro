@@ -6,6 +6,7 @@
              v1 gap where markers inherited Obsidian's defaults — bullets now
              carry the accent, ordered numbers a quieter tertiary tone.
    LAYER     armature (reads bridged + semantic tokens; no literals)
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      --list-indent (local) · list marker colour · li line-height
    USES      --accent --fg-tertiary --leading-relaxed --space-* --text-normal
    DEPENDS   10/11 semantic · 12 bridge · 13 roles

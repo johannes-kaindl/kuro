@@ -6,8 +6,8 @@
              migrated, 00-base §27, 10-polish) into a single feature surface.
    LAYER     armature — every colour is a token or a color-mix() of tokens.
              No raw #hex, no --signal-/--void-/--paper- (lint-enforced).
-   SETS      --h1-color..--h6-color (under .kuro-colorful-headings, per mode)
-             --indentation-guide-color (under .kuro-rainbow-indent)
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
+   SETS      --glow-focus (under .kuro-focus-ring) · --border-* + --divider (under .kuro-borders-*)
    USES      --accent --accent-soft --accent-glow --glow-accent
              --fg-primary --fg-secondary --fg-tertiary --text-faint
              --surface-base --surface-panel --border-subtle --border-hover
@@ -32,8 +32,7 @@
 body.kuro-mono-all {
   --font-text-override:      var(--kuro-font-mono);
   --font-interface-override: var(--kuro-font-mono);
-  /* keep — Obsidian applies font-family app-level; CSS vars don't reach it */
-  font-family: var(--kuro-font-mono) !important;
+  font-family: var(--kuro-font-mono) !important; /* important: Obsidian applies font-family app-level; CSS vars don't reach it */
 }
 body.kuro-mono-all .markdown-preview-view,
 body.kuro-mono-all .markdown-source-view,
@@ -42,8 +41,7 @@ body.kuro-mono-all .markdown-source-view.mod-cm6 .cm-line,
 body.kuro-mono-all .cm-editor,
 body.kuro-mono-all .nav-file-title,
 body.kuro-mono-all .nav-folder-title {
-  /* keep — app-level font-family override, CSS variables are insufficient */
-  font-family: var(--kuro-font-mono) !important;
+  font-family: var(--kuro-font-mono) !important; /* important: app-level font override; CSS variables don't reach these surfaces */
   letter-spacing: 0;
 }
 body.kuro-mono-all h1, body.kuro-mono-all h2, body.kuro-mono-all h3,
@@ -52,24 +50,15 @@ body.kuro-mono-all .inline-title,
 body.kuro-mono-all .cm-header-1,
 body.kuro-mono-all .cm-header-2,
 body.kuro-mono-all .cm-header-3 {
-  /* keep — app-level font-family/font-style override */
-  font-family: var(--kuro-font-mono) !important;
-  font-style: normal !important;
+  font-family: var(--kuro-font-mono) !important; /* important: app-level font override */
+  font-style: normal !important; /* important: app-level font-style override */
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════
-   2 · kuro-margin-tint — soft accent gutters around the text column
-   ════════════════════════════════════════════════════════════════════════ */
-
-body.kuro-margin-tint .markdown-preview-view,
-body.kuro-margin-tint .markdown-source-view.mod-cm6 .cm-scroller {
-  background: linear-gradient(to right,
-    var(--accent-soft) 0,
-    transparent 8%,
-    transparent 92%,
-    var(--accent-soft) 100%);
-}
+/* kuro-margin-tint was removed in 4.0.1: the gutter gradient was a 15%-accent
+   wash that vanished on the light paper ground, and its enrichment was a
+   dark-only + companion-driven per-note-signal feature (see 55-signal-subthemes).
+   Defer to the companion plugin if reintroduced. */
 
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -108,91 +97,24 @@ body.kuro-active-line .cm-activeLine {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════
-   5 · kuro-rainbow-indent — coloured indentation guides (Live Preview)
-   ──────────────────────────────────────────────────────────────────────
-   Each level borrows a signal role so the ramp re-skins with the palette
-   (a fork rewriting the twelve signals recolours the guides for free).
-   ════════════════════════════════════════════════════════════════════════ */
-
-body.kuro-rainbow-indent .cm-indent   { --indentation-guide-color: var(--role-link); }
-body.kuro-rainbow-indent .cm-indent-1 { --indentation-guide-color: var(--role-link); }
-body.kuro-rainbow-indent .cm-indent-2 { --indentation-guide-color: var(--role-focus); }
-body.kuro-rainbow-indent .cm-indent-3 { --indentation-guide-color: var(--role-creative); }
-body.kuro-rainbow-indent .cm-indent-4 { --indentation-guide-color: var(--role-reflection); }
-body.kuro-rainbow-indent .cm-indent-5 { --indentation-guide-color: var(--role-warning); }
-body.kuro-rainbow-indent .cm-indent-6 { --indentation-guide-color: var(--role-review); }
-body.kuro-rainbow-indent .cm-indent-7 { --indentation-guide-color: var(--role-organic); }
-body.kuro-rainbow-indent .cm-indent-8 { --indentation-guide-color: var(--role-info); }
+/* kuro-rainbow-indent was removed in 4.0.1: dead standalone — Obsidian's own
+   .markdown-source-view.mod-cm6 .cm-indent (higher specificity) shadowed the
+   override, and the per-level .cm-indent-N selectors matched nothing in current
+   Obsidian. Belongs in the companion if reintroduced (DevTools-grounded). */
 
 
-/* ════════════════════════════════════════════════════════════════════════
-   6 · Tab style — kuro-tabs-pill / kuro-tabs-underline
-   ──────────────────────────────────────────────────────────────────────
-   kuro-tabs-default is the no-op standard (nothing to author). Both variants
-   style the active tab via .is-active ONLY — the v1 .mod-active half was a
-   dead selector against current Obsidian and is intentionally dropped.
-   ════════════════════════════════════════════════════════════════════════ */
-
-body.kuro-tabs-pill .workspace-tab-header {
-  border-bottom: 0;
-  border-radius: var(--radius-full);
-  margin: 4px 2px 4px 0;
-  padding: 0 8px;
-  height: 28px;
-}
-body.kuro-tabs-pill .workspace-tab-header.is-active {
-  background: var(--accent-soft);
-  box-shadow: inset 0 0 0 1px var(--accent);
-}
-body.kuro-tabs-pill .workspace-tab-header-inner { padding: 0 10px; height: 100%; }
-
-body.kuro-tabs-underline .workspace-tab-header { border-bottom-width: 2px; }
-body.kuro-tabs-underline .workspace-tab-header.is-active {
-  background: transparent;
-  border-bottom-color: var(--accent);
-  box-shadow: 0 6px 14px -10px var(--accent-glow);
-}
+/* Tab styling: Kuro uses Obsidian's native tabs, themed via the --tab-* bridge
+   (12-bridge.css) + the active-tab accent stripe in 29-chrome.css. The former
+   kuro-tabs-pill / -underline Style-Settings options were removed in 4.0.1: they
+   targeted the pre-current .workspace-tab-header border/background layer, which
+   modern Obsidian no longer styles that way, so they rendered as no-ops. If
+   reintroduced, build them DevTools-grounded against the real --tab-* model. */
 
 
-/* ════════════════════════════════════════════════════════════════════════
-   8 · kuro-colorful-headings — DISTINCT signal hue per level
-   ──────────────────────────────────────────────────────────────────────
-   Genuinely colourful: each level keys off a different one of the twelve
-   signals (NOT the system accent — that made it monochrome when the accent
-   is light/desaturated). Dark uses the signals straight (vivid on the
-   chamber); light nudges each toward the ink so it stays legible on paper.
-   ════════════════════════════════════════════════════════════════════════ */
-
-body.kuro-colorful-headings.theme-dark {
-  --h1-color: var(--role-focus);       /* spectre — violet */
-  --h2-color: var(--role-link);        /* circuit — teal */
-  --h3-color: var(--role-success);     /* phosphor — green */
-  --h4-color: var(--role-warning);     /* ember — amber */
-  --h5-color: var(--role-creative);    /* voidwitch — lavender */
-  --h6-color: var(--role-reflection);  /* neural-bleed — rose */
-}
-body.kuro-colorful-headings.theme-light {
-  --h1-color: color-mix(in oklch, var(--role-focus) 72%, var(--fg-primary));
-  --h2-color: color-mix(in oklch, var(--role-link) 72%, var(--fg-primary));
-  --h3-color: color-mix(in oklch, var(--role-success) 72%, var(--fg-primary));
-  --h4-color: color-mix(in oklch, var(--role-warning) 72%, var(--fg-primary));
-  --h5-color: color-mix(in oklch, var(--role-creative) 72%, var(--fg-primary));
-  --h6-color: color-mix(in oklch, var(--role-reflection) 72%, var(--fg-primary));
-}
-
-body.kuro-colorful-headings .markdown-rendered h1,
-body.kuro-colorful-headings .cm-header-1 { color: var(--h1-color); }
-body.kuro-colorful-headings .markdown-rendered h2,
-body.kuro-colorful-headings .cm-header-2 { color: var(--h2-color); }
-body.kuro-colorful-headings .markdown-rendered h3,
-body.kuro-colorful-headings .cm-header-3 { color: var(--h3-color); }
-body.kuro-colorful-headings .markdown-rendered h4,
-body.kuro-colorful-headings .cm-header-4 { color: var(--h4-color); }
-body.kuro-colorful-headings .markdown-rendered h5,
-body.kuro-colorful-headings .cm-header-5 { color: var(--h5-color); }
-body.kuro-colorful-headings .markdown-rendered h6,
-body.kuro-colorful-headings .cm-header-6 { color: var(--h6-color); }
+/* kuro-colorful-headings was removed in 4.0.1: per-level heading hues are a
+   personalisation choice deferred to the companion plugin. Heading colours now
+   come from the --h1-color..--h6-color bridge defaults (12-bridge) — the normal
+   fg ramp. The twelve signals still drive callouts, checkboxes, tags and graph. */
 
 
 /* ════════════════════════════════════════════════════════════════════════

@@ -3,6 +3,7 @@
    PURPOSE   Respect the OS "reduce motion" preference. Neurodivergence-
              friendly; lives in the theme itself, no plugin required.
    LAYER     armature (no colour, no literals)
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      animation:none under prefers-reduced-motion
    USES      (none)
    DEPENDS   24-callouts (the only fragment with decorative @keyframes)
@@ -26,13 +27,17 @@
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
   }
-  /* Explicit guarantee for the decorative :hover icon loops (higher-spec). */
+  /* a11y backstop: kill all decorative callout/pulse motion outright. The icon
+     loops are now (0,0,1) (24-callouts wraps them in `body :where(…)`), so a plain
+     class would already win — but this !important also guarantees a11y over any
+     third-party/plugin animation on these elements. Lives in the reduced-motion
+     whitelist file, which check.sh exempts from the per-!important tag rule. */
   .callout,
   .callout *,
   .callout *::before,
   .callout *::after,
   .callout .callout-icon svg,
   .kuro-pulse {
-    animation: none !important; /* keep — a11y must defeat the theme's higher-spec (0,3,1) decorative :hover icon loops */
+    animation: none !important;
   }
 }

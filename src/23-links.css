@@ -5,6 +5,7 @@
              + external read as the link signal with a soft underline that
              brightens on hover; unresolved links dim to a dashed ghost.
    LAYER     armature (reads bridged + semantic + role tokens; no literals)
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      —
    USES      --role-link --role-link-rgb --fg-primary --fg-tertiary
              --dur-fast --ease-signal
@@ -90,15 +91,9 @@
    shifts); body. prefix lifts specificity above the base rules — no
    !important. kuro-link-underline-on is the no-op default. */
 
-/* On hover only — hide resting underline; existing :hover rule restores it */
-body.kuro-link-underline-hover .markdown-rendered a.internal-link,
-body.kuro-link-underline-hover .cm-hmd-internal-link .cm-underline,
-body.kuro-link-underline-hover .cm-hmd-internal-link,
-body.kuro-link-underline-hover .markdown-rendered a.external-link,
-body.kuro-link-underline-hover .cm-link,
-body.kuro-link-underline-hover .cm-url { border-bottom-color: transparent; }
-
-/* Off — no underline in any state (also neutralise :hover) */
+/* Off — no underline in any state (also neutralise :hover). (The "on hover only"
+   option was removed in 4.0.1: the resting suppressor outranked the base :hover
+   underline, so it just duplicated "off".) */
 body.kuro-link-underline-off .markdown-rendered a.internal-link,
 body.kuro-link-underline-off .cm-hmd-internal-link .cm-underline,
 body.kuro-link-underline-off .cm-hmd-internal-link,

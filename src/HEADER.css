@@ -1,5 +1,5 @@
 /* ╔══════════════════════════════════════════════════════════════════════╗
-   ║  KURO  v4.0.0  ·  Neo-Gothic / Post-Cyberpunk Obsidian theme          ║
+   ║  KURO  v4.0.1  ·  Neo-Gothic / Post-Cyberpunk Obsidian theme          ║
    ║  Built on the ARMATURE — a forkable theme skeleton.                    ║
    ║                                                                        ║
    ║  BUILD ORDER (build.sh = HEADER + numeric glob, zero-dep, det.):       ║
@@ -10,4 +10,5 @@
    ║  [armature] = structure/contract — NO colour literals, reads tokens.  ║
    ║  [values]   = taste — palette/presets/fonts. FORK = swap [v] files.    ║
    ║  See docs/THEME-AUTHORING.md.                                          ║
-   ╚══════════════════════════════════════════════════════════════════════╝ */
+   ╚══════════════════════════════════════════════════════════════════════╝
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check */

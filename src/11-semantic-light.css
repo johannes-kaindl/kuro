@@ -3,6 +3,7 @@
    PURPOSE   The LIGHT value of every mode-varying semantic token. Mapped onto
              the --paper leaf ramp + signals. Mirror of 10-semantic-dark.
    LAYER     armature (allowed to read primitives, like its dark sibling).
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      (identical key set to 10-semantic-dark.css — see check.sh)
    USES      --paper-* --signal-* --interactive-accent
    DEPENDS   00-primitives

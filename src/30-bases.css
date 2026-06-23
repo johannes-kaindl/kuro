@@ -3,6 +3,7 @@
              x1 foundation and driven entirely by v4 tokens. Honours the public
              Style-Settings var --bases-cards-line-height. Both-mode by token.
    LAYER     armature
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      --bases-card-bg --bases-card-border --bases-card-radius
              --bases-cards-line-height (public, Style Settings)
    USES      --surface-raised --surface-panel --border-subtle --divider

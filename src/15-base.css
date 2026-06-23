@@ -5,6 +5,7 @@
              note-pane LIFT (a soft accent halo behind the note in dark; none
              in light). Headings/components live in their own 20–31 files.
    LAYER     armature (reads bridged + semantic tokens; no literals)
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    USES      --kuro-font-mono --text-normal --text-muted --line-height-normal
              --scrollbar-* --pane-lift
    DEPENDS   12-bridge (native vars), 10/11 (--pane-lift)

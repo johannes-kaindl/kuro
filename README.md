@@ -16,7 +16,8 @@ Twelve Signals palette and a Void Scale.
 - **Void Scale** (`--void-000` … `--void-900`) for chamber depth.
 - **Accent follows your system colour.** Kuro uses the accent colour you pick in
   **Settings → Appearance → Accent color**, in both light and dark — no forced override.
-- **Signal presets** — full background colour moods, selectable in Style Settings.
+- **Signal-driven components** — callouts (40+ types with icons), task-checkbox glyphs, tags
+  and the graph are all keyed to the twelve signals.
 - **Self-contained** — fonts are embedded; the theme makes no network requests.
 
 ## Install
@@ -35,14 +36,14 @@ then enable under **Settings → Appearance → Themes**.
 Kuro works out of the box. For live configuration, install the official **Style Settings**
 community plugin and open **Settings → Style Settings → Kuro**:
 
-- **Colour & Mood** — 13 signal presets (background moods) and a low-contrast mode.
-- **Typography** — serif/display and monospace fonts, body & code font size, terminal mode.
-- **Reading** — reading line width, margin tint, colourful headlines, Bases card density.
-- **Depth & glow** — note & card lift strength, border crispness, focus-ring style,
-  heading-glow toggle.
+- **Colour & Mood** — a low-contrast mode.
+- **Typography** — serif/display and monospace fonts, terminal mode, code font size.
+- **Reading** — reading line width, disable callout animations.
+- **Depth & glow** — heading-glow toggle, note & card lift strength, border crispness,
+  focus-ring style.
+- **Editor & Tabs** — zen mode, active-line highlight.
 - **Shape & density** — corner roundness, interface density.
 - **Components** — callout style, link underline, table zebra striping.
-- **Editor & Tabs** — zen mode, active-line highlight, rainbow indent guides, tab style.
 
 Style Settings is optional; the theme is fully usable without it.
 

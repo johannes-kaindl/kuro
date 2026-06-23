@@ -3,6 +3,7 @@
    Style Settings annotation block. Drives the SAME body classes / CSS vars
    the companion plugin sets, so the two share one contract (last writer wins).
    No effect when the Style Settings plugin is absent — theme uses CSS defaults.
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    ───────────────────────────────────────────────────────────────────────── */
 
 /* @settings
@@ -16,53 +17,6 @@ settings:
         type: heading
         level: 1
         collapsed: false
-    -
-        id: kuro-preset
-        title: Signal preset
-        description: A colour mood — tints the surfaces in the signal's colour. The accent always follows your system accent.
-        type: class-select
-        allowEmpty: false
-        default: kuro-preset-pearl
-        options:
-            -
-                label: Toxic Haze
-                value: kuro-preset-toxic-haze
-            -
-                label: Phosphor
-                value: kuro-preset-phosphor
-            -
-                label: Voidwitch
-                value: kuro-preset-voidwitch
-            -
-                label: Crimson
-                value: kuro-preset-crimson
-            -
-                label: Ember
-                value: kuro-preset-ember
-            -
-                label: Circuit
-                value: kuro-preset-circuit
-            -
-                label: Biolink
-                value: kuro-preset-biolink
-            -
-                label: Neural Bleed
-                value: kuro-preset-neural-bleed
-            -
-                label: Ghost Protocol
-                value: kuro-preset-ghost-protocol
-            -
-                label: Rust Signal
-                value: kuro-preset-rust-signal
-            -
-                label: Spectre
-                value: kuro-preset-spectre
-            -
-                label: Pearl
-                value: kuro-preset-pearl
-            -
-                label: Kuro
-                value: kuro-preset-kuro
     -
         id: kuro-low-contrast
         title: Low contrast
@@ -95,13 +49,6 @@ settings:
         type: class-toggle
         default: false
     -
-        id: --font-text-size
-        title: Body font size
-        description: Base text size in px.
-        type: variable-number
-        default: 14
-        format: px
-    -
         id: --kuro-code-size
         title: Code font size
         description: Size of inline code and fenced code blocks, relative to body text. 0.88 = default (slightly smaller, matches the pill); 1 = same size as body.
@@ -124,30 +71,11 @@ settings:
         default: 640
         format: px
     -
-        id: kuro-margin-tint
-        title: Margin tint
-        description: Tints the margins around the text column so the page seems to float.
-        type: class-toggle
-        default: false
-    -
-        id: kuro-colorful-headings
-        title: Colourful headlines
-        description: Tints H1–H6 each in a distinct colour.
-        type: class-toggle
-        default: false
-    -
         id: kuro-no-callout-animations
         title: Disable callout animations
         description: Turns off icon hover animations (reduced motion / performance).
         type: class-toggle
         default: false
-    -
-        id: --bases-cards-line-height
-        title: Bases card density
-        description: Row height inside Bases Cards view, in px.
-        type: variable-number
-        default: 30
-        format: px
     -
         id: kuro-depth
         title: Depth & glow
@@ -228,28 +156,6 @@ settings:
         type: class-toggle
         default: false
     -
-        id: kuro-rainbow-indent
-        title: Rainbow indent guides
-        description: Colours each indentation level. Requires Editor → Show indentation guides.
-        type: class-toggle
-        default: false
-    -
-        id: kuro-tabs
-        title: Tab style
-        type: class-select
-        allowEmpty: false
-        default: kuro-tabs-default
-        options:
-            -
-                label: Standard
-                value: kuro-tabs-default
-            -
-                label: Pill
-                value: kuro-tabs-pill
-            -
-                label: Underline
-                value: kuro-tabs-underline
-    -
         id: kuro-shape
         title: Shape & density
         type: heading
@@ -315,9 +221,6 @@ settings:
             -
                 label: Always (default)
                 value: kuro-link-underline-on
-            -
-                label: On hover only
-                value: kuro-link-underline-hover
             -
                 label: Off
                 value: kuro-link-underline-off

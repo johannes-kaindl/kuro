@@ -7,6 +7,7 @@
              re-skin with zero edits to any component file.
    LAYER     armature, semantic role layer (reads primitives, like 10/11 —
              therefore exempt from the armature literal-lint).
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      --role-* (colour) + --role-*-rgb (triplet for rgba() recipes)
    USES      --signal-* (+ -rgb)
    DEPENDS   00-primitives

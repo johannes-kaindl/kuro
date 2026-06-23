@@ -5,6 +5,7 @@
              Fixes screenshots #15/#16: no Live-Preview code rules existed,
              so fenced blocks in LP/editor had no Kuro frame/background.
    LAYER     armature (tokens only — no raw colour literals or palette vars).
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      visual rules for code surfaces (no token declarations).
    USES      --code-bg --code-frame --code-stripe · --code-normal (bridged)
              --kuro-font-mono · --fg-primary · --accent · --radius-* --space-*

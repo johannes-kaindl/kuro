@@ -6,6 +6,7 @@
              into a single token-driven block, so the glyph/colour set no
              longer renders only in Reading view nor fights itself.
    LAYER     armature
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      —
    USES      --accent --check-border --check-marker --checkbox-color
              --fg-tertiary --text-muted
@@ -25,10 +26,14 @@
    Intentionally targets ALL task checkboxes (incl. plain [ ]) for a
    consistent look; plain [ ] renders as a clean square with no glyph.
    One selector list covers Reading + Live-Preview + source.
+   :where() keeps the view-context selectors at ZERO specificity, so this base
+   stays a true (0,1,1) fallback — :checked / [data-task] then override it
+   WITHOUT !important (the over-specific base was the real reason :checked
+   needed !important in Live-Preview). [R1 variable-first / R2]
    ════════════════════════════════════════════════════════════════════════ */
 input.task-list-item-checkbox,
-.markdown-rendered input.task-list-item-checkbox,
-.markdown-source-view.mod-cm6 input.task-list-item-checkbox {
+:where(.markdown-rendered) input.task-list-item-checkbox,
+:where(.markdown-source-view.mod-cm6) input.task-list-item-checkbox {
   -webkit-appearance: none;
   appearance: none;
   width: 1.1em;
@@ -41,7 +46,10 @@ input.task-list-item-checkbox,
   cursor: pointer;
   position: relative;
   flex-shrink: 0;
-  vertical-align: middle;
+  /* align the resized (1.1em) box to the text line: `middle` anchored it to
+     x-height in the tall list-item line box, reading as "checkbox too low".
+     text-bottom binds it to the text's descender line — tune via DevTools. */
+  vertical-align: text-bottom;
   transition: background var(--dur-fast) var(--ease-signal),
               border-color var(--dur-fast) var(--ease-signal);
 }
@@ -50,8 +58,8 @@ input.task-list-item-checkbox,
    :checked (color-mix accent 18%) — promoted to the full accent so the
    single base also serves the plain [x] without a data-task glyph. */
 input.task-list-item-checkbox:checked {
-  background: var(--checkbox-color) !important; /* keep — Obsidian input[type=checkbox]:checked (0,2,1) */
-  border-color: var(--checkbox-color) !important; /* keep — Obsidian input[type=checkbox]:checked (0,2,1) */
+  background: var(--checkbox-color);   /* (0,2,1) beats the :where()-zeroed (0,1,1) base — no !important */
+  border-color: var(--checkbox-color);
 }
 
 /* Settings toggles: the "on" track follows the system accent, theme-scoped so

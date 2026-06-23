@@ -6,6 +6,7 @@
              fragment writes an Obsidian-native var directly.
    LAYER     armature (references semantic tokens + system accent ONLY — no
              hex, no --signal-/--void-/--paper-; enforced by check.sh).
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      --accent* --glow-* --role-* --border-circuit · --kuro-font-* ·
              every Obsidian-native --background-/--text-/--code-/--checkbox-/
              --nav-/--tag-/--graph-/--link-/--interactive-* etc.
@@ -120,13 +121,17 @@
   --line-height-normal:   1.6;
   --file-line-width:      40rem;   /* standalone reading measure (~640px / ~76ch); works without the plugin */
 
-  /* ===== BRIDGE · Tags (accent-tinted pill) ======================== */
+  /* ===== BRIDGE · Tags (accent-tinted pill) ========================
+     Hover themed entirely through Obsidian's own --tag-*-hover vars — its
+     a.tag:hover rule reads them, so no theme :hover override is needed
+     (R1 variable-first). Official names: --tag-size (NOT --tag-font-size). */
   --tag-color:              var(--fg-secondary);
+  --tag-color-hover:        var(--accent);
   --tag-background:         color-mix(in srgb, var(--interactive-accent) 7%, transparent);
   --tag-background-hover:   color-mix(in srgb, var(--interactive-accent) 13%, transparent);
   --tag-border-color:       color-mix(in srgb, var(--interactive-accent) 30%, transparent);
   --tag-border-color-hover: color-mix(in srgb, var(--interactive-accent) 58%, transparent);
-  --tag-radius: 3px; --tag-padding-x: 7px; --tag-padding-y: 2px; --tag-font-size: var(--text-xs);
+  --tag-radius: 3px; --tag-padding-x: 7px; --tag-padding-y: 2px; --tag-size: var(--text-xs);
 
   /* ===== BRIDGE · Code (frame from semantic, syntax from twelve signals) */
   /* Code size as a unitless multiplier of 1em (scales WITH the body knob);
@@ -148,11 +153,14 @@
   --callout-border-width: 0px; --callout-border-opacity: 0;
   --callout-padding: var(--space-3) var(--space-4); --callout-radius: var(--radius-md); --callout-blend-mode: normal;
 
-  /* ===== BRIDGE · Checkbox ========================================== */
+  /* ===== BRIDGE · Checkbox ==========================================
+     Official marker var is --checkbox-marker-color (NOT --checkbox-marker);
+     the old name set nothing Obsidian reads → a hidden cause of the
+     checkbox !important reliance. Obsidian's own checked rule consumes these. */
   --checkbox-color:        var(--interactive-accent);
   --checkbox-color-hover:  var(--fg-primary);
   --checkbox-border-color: var(--check-border);
-  --checkbox-marker:       var(--check-marker);
+  --checkbox-marker-color: var(--check-marker);
   --checkbox-radius:       2px;
 
   /* ===== BRIDGE · Scrollbar ========================================= */
@@ -182,21 +190,30 @@
   --nav-collapse-icon-color:    var(--fg-tertiary);
 
   /* ===== BRIDGE · Tabs + titlebar (window frame) =====================
-     Feeds Obsidian's own tab rendering — including the active-tab corner
-     pseudo-elements. Leaving these unthemed is what showed the white tab
-     corners; bridging them keeps every tab surface on the chamber/leaf. */
+     Feeds Obsidian's own tab rendering. The white active-tab corners were the
+     unthemed --tab-container-background fallback the curve blends into; bridging
+     container + active fill (+ themed curve/radius) keeps every tab surface on
+     the chamber/leaf. Names verified against docs.obsidian.md Components/Tabs +
+     Window/Window+frame. (--titlebar-text-color-highlighted does NOT exist; the
+     real 'highlighted' variant is the tab var --tab-text-color-focused-highlighted.) */
   --titlebar-background:           var(--surface-deep);
   --titlebar-background-focused:   var(--surface-deep);
   --titlebar-border-color:         var(--divider);
   --titlebar-text-color:           var(--fg-tertiary);
   --titlebar-text-color-focused:   var(--fg-secondary);
-  --titlebar-text-color-highlighted: var(--fg-primary);
   --tab-container-background:       var(--surface-deep);
   --tab-background-active:          var(--surface-base);
   --tab-text-color:                var(--fg-tertiary);
+  --tab-text-color-active:         var(--fg-secondary);
   --tab-text-color-focused:        var(--fg-secondary);
   --tab-text-color-focused-active: var(--fg-primary);
   --tab-text-color-focused-active-current: var(--fg-primary);
+  --tab-text-color-focused-highlighted: var(--fg-primary);
   --tab-outline-color:             var(--divider);
+  --tab-outline-width:             1px;
   --tab-divider-color:             var(--divider);
+  /* Themed curve geometry (was Obsidian-default) — forkable via Kuro radius tokens. */
+  --tab-curve:                     var(--radius-md);
+  --tab-radius:                    var(--radius-sm);
+  --tab-radius-active:             var(--radius-sm);
 }

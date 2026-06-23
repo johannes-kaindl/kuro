@@ -4,6 +4,7 @@
              biggest taste lever — a fork rewrites this file to re-skin.
    LAYER     values (a fork swaps this; the armature never references hex
              directly — only these primitive names, and only via 10/11).
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      --signal-* (+ -rgb) · --void-* (dark ramp) · --paper-* (light
              ramp) · --font-* · type/space/radii/leading/tracking/motion
    USES      (nothing — primitives are self-contained)

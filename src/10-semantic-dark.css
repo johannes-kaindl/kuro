@@ -3,6 +3,7 @@
    PURPOSE   The DARK value of every mode-varying semantic token. Mapped onto
              the --void chamber ramp + signals. Mirror of 11-semantic-light.
    LAYER     armature (the only armature files allowed to read primitives).
+   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
    SETS      --surface-* --fg-* --border-* --divider* --overlay-* --code-*
              --syntax-* --status-* --check-* --lift --pane-lift --shadow-modal
              --scroll-* --node-*
