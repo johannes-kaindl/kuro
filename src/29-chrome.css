@@ -36,11 +36,10 @@ body .workspace-tab-header {
   color: var(--fg-secondary);
   background: var(--overlay-hover);
 }
-/* Active-tab background + text now come from the bridged --tab-background-active /
-   --tab-text-color-focused-active (12-bridge) — no !important, which is what let
-   the active tab fight kuro-tabs-pill/-underline before. The accent top stripe is
-   the DEFAULT-style indicator only (pill/underline bring their own). */
-body:not(.kuro-tabs-pill):not(.kuro-tabs-underline) .workspace-tab-header-container .workspace-tab-header.is-active {
+/* Active-tab background + text come from the bridged --tab-background-active /
+   --tab-text-color-focused-active (12-bridge) — no !important. The accent top
+   stripe marks the active tab (Kuro uses Obsidian's native tab shape). */
+.workspace-tab-header-container .workspace-tab-header.is-active {
   border-top: 2px solid var(--accent);
 }
 

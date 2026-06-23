@@ -235,22 +235,6 @@ settings:
         type: class-toggle
         default: false
     -
-        id: kuro-tabs
-        title: Tab style
-        type: class-select
-        allowEmpty: false
-        default: kuro-tabs-default
-        options:
-            -
-                label: Standard
-                value: kuro-tabs-default
-            -
-                label: Pill
-                value: kuro-tabs-pill
-            -
-                label: Underline
-                value: kuro-tabs-underline
-    -
         id: kuro-shape
         title: Shape & density
         type: heading

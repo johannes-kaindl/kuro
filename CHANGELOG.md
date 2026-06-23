@@ -38,6 +38,13 @@ Settings contract is untouched.
 - **`src/check.sh` enforcement** — the build now fails on any untagged `!important` (outside the
   a11y whitelist) and caps the count, so the discipline can't silently regress.
 
+### Removed
+- **Tab-style options "Pill" and "Underline"** (Style Settings → Tab style). They targeted the
+  pre-current `.workspace-tab-header` border/background layer that modern Obsidian no longer
+  styles that way, so they rendered as no-ops. Kuro now uses Obsidian's native tab shape
+  (themed via the `--tab-*` bridge + the active-tab accent stripe); the now-single-option Tab
+  style dropdown was dropped with them.
+
 ## [4.0.0] — Clean Foundation (the Armature)
 
 A ground-up rebuild on a clean, forkable skeleton — **the Armature**. The look is
