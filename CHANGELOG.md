@@ -4,6 +4,40 @@ All notable changes to the Kuro theme are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.1] — Variable-First Hardening
+
+A foundation-hardening pass (no rebuild): the chrome fixes are now grounded in Obsidian's
+official CSS-variable API, `!important` is down from 24 to 9 (each justified and enforced),
+and the editing rules are embedded as build-enforced guardrails. The look is unchanged —
+these are correctness, forkability, and maintainability fixes. The public `kuro-*` Style
+Settings contract is untouched.
+
+### Fixed
+- **White active-tab corners + tab styling** — bridged the real Obsidian tab / window-frame
+  variables (`--tab-container-background`, `--tab-background-active`, `--tab-curve`,
+  `--tab-radius`, `--tab-radius-active`, …) so the active-tab connector blends into the themed
+  surface instead of an unthemed white fallback. Removed a non-existent
+  `--titlebar-text-color-highlighted` bridge.
+- **Checkboxes** — bridge now uses the official `--checkbox-marker-color` (was a dead
+  `--checkbox-marker`); the checked fill no longer needs `!important` (the over-specific base
+  rule is now a proper `:where()` fallback).
+- **Tags** — hover now themes through Obsidian's own `--tag-*-hover` variables; the official
+  `--tag-size` replaces a dead `--tag-font-size`.
+- **Command palette** — the selected-item highlight wins by specificity, not `!important`.
+
+### Changed
+- **`!important`: 24 → 9.** Every remaining one is justified inline (`/* important: … */`) or
+  lives in the `prefers-reduced-motion` accessibility reset. The callout animation opt-outs and
+  the reduced-motion reset now win cleanly via `:where()`-lowered base specificity.
+- Variable-first overrides instead of property overrides, per Obsidian's official theming
+  guidance.
+
+### Added
+- **`docs/CSS-CONVENTIONS.md`** — the canonical CSS rules (R1–R6) and the verified Obsidian
+  variable map; plus `AGENTS.md` and a per-fragment rule-stamp so the rules travel with the code.
+- **`src/check.sh` enforcement** — the build now fails on any untagged `!important` (outside the
+  a11y whitelist) and caps the count, so the discipline can't silently regress.
+
 ## [4.0.0] — Clean Foundation (the Armature)
 
 A ground-up rebuild on a clean, forkable skeleton — **the Armature**. The look is
