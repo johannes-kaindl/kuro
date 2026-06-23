@@ -56,18 +56,10 @@ body.kuro-mono-all .cm-header-3 {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════
-   2 · kuro-margin-tint — soft accent gutters around the text column
-   ════════════════════════════════════════════════════════════════════════ */
-
-body.kuro-margin-tint .markdown-preview-view,
-body.kuro-margin-tint .markdown-source-view.mod-cm6 .cm-scroller {
-  background: linear-gradient(to right,
-    var(--accent-soft) 0,
-    transparent 8%,
-    transparent 92%,
-    var(--accent-soft) 100%);
-}
+/* kuro-margin-tint was removed in 4.0.1: the gutter gradient was a 15%-accent
+   wash that vanished on the light paper ground, and its enrichment was a
+   dark-only + companion-driven per-note-signal feature (see 55-signal-subthemes).
+   Defer to the companion plugin if reintroduced. */
 
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -150,12 +142,12 @@ body.kuro-colorful-headings.theme-dark {
   --h6-color: var(--role-reflection);  /* neural-bleed — rose */
 }
 body.kuro-colorful-headings.theme-light {
-  --h1-color: color-mix(in oklch, var(--role-focus) 72%, var(--fg-primary));
-  --h2-color: color-mix(in oklch, var(--role-link) 72%, var(--fg-primary));
-  --h3-color: color-mix(in oklch, var(--role-success) 72%, var(--fg-primary));
-  --h4-color: color-mix(in oklch, var(--role-warning) 72%, var(--fg-primary));
-  --h5-color: color-mix(in oklch, var(--role-creative) 72%, var(--fg-primary));
-  --h6-color: color-mix(in oklch, var(--role-reflection) 72%, var(--fg-primary));
+  --h1-color: color-mix(in srgb, var(--role-focus) 72%, var(--fg-primary));
+  --h2-color: color-mix(in srgb, var(--role-link) 72%, var(--fg-primary));
+  --h3-color: color-mix(in srgb, var(--role-success) 72%, var(--fg-primary));
+  --h4-color: color-mix(in srgb, var(--role-warning) 72%, var(--fg-primary));
+  --h5-color: color-mix(in srgb, var(--role-creative) 72%, var(--fg-primary));
+  --h6-color: color-mix(in srgb, var(--role-reflection) 72%, var(--fg-primary));
 }
 
 body.kuro-colorful-headings .markdown-rendered h1,

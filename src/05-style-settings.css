@@ -96,13 +96,6 @@ settings:
         type: class-toggle
         default: false
     -
-        id: --font-text-size
-        title: Body font size
-        description: Base text size in px.
-        type: variable-number
-        default: 14
-        format: px
-    -
         id: --kuro-code-size
         title: Code font size
         description: Size of inline code and fenced code blocks, relative to body text. 0.88 = default (slightly smaller, matches the pill); 1 = same size as body.
@@ -125,12 +118,6 @@ settings:
         default: 640
         format: px
     -
-        id: kuro-margin-tint
-        title: Margin tint
-        description: Tints the margins around the text column so the page seems to float.
-        type: class-toggle
-        default: false
-    -
         id: kuro-colorful-headings
         title: Colourful headlines
         description: Tints H1–H6 each in a distinct colour.
@@ -142,13 +129,6 @@ settings:
         description: Turns off icon hover animations (reduced motion / performance).
         type: class-toggle
         default: false
-    -
-        id: --bases-cards-line-height
-        title: Bases card density
-        description: Row height inside Bases Cards view, in px.
-        type: variable-number
-        default: 30
-        format: px
     -
         id: kuro-depth
         title: Depth & glow

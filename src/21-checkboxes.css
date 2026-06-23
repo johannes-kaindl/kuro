@@ -46,7 +46,10 @@ input.task-list-item-checkbox,
   cursor: pointer;
   position: relative;
   flex-shrink: 0;
-  vertical-align: middle;
+  /* align the resized (1.1em) box to the text line: `middle` anchored it to
+     x-height in the tall list-item line box, reading as "checkbox too low".
+     text-bottom binds it to the text's descender line — tune via DevTools. */
+  vertical-align: text-bottom;
   transition: background var(--dur-fast) var(--ease-signal),
               border-color var(--dur-fast) var(--ease-signal);
 }
