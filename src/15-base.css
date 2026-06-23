@@ -43,6 +43,17 @@ body,
 .markdown-rendered em,
 .cm-em { color: var(--text-muted); }
 
+/* Writing-surface paint — read --surface-base DIRECTLY on the note canvas so a
+   signal preset (which re-tints --surface-base on body) visibly reaches the
+   editor/reading surface, not just the chrome that already reads surfaces
+   directly (sidebar/metadata). Scoped to the main note views only (NOT generic
+   .view-content) so sidebar leaves keep their own --surface-deep. Default value
+   equals the app's --background-primary, so no change without a coloured preset. */
+.markdown-source-view,
+.markdown-reading-view {
+  background-color: var(--surface-base);
+}
+
 /* Note-pane LIFT — the note surface lifts off the app background.
    Drawn on an expanded ::before so the elevation floats with breathing room
    AROUND the text column instead of hugging the glyphs. --pane-lift is a soft
