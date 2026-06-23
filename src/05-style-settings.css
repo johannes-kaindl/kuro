@@ -156,12 +156,6 @@ settings:
         type: class-toggle
         default: false
     -
-        id: kuro-rainbow-indent
-        title: Rainbow indent guides
-        description: Colours each indentation level. Requires Editor → Show indentation guides.
-        type: class-toggle
-        default: false
-    -
         id: kuro-shape
         title: Shape & density
         type: heading
@@ -227,9 +221,6 @@ settings:
             -
                 label: Always (default)
                 value: kuro-link-underline-on
-            -
-                label: On hover only
-                value: kuro-link-underline-hover
             -
                 label: Off
                 value: kuro-link-underline-off

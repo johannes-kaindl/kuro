@@ -60,6 +60,10 @@ Settings contract is untouched.
   mood-tint is deferred. (`50-presets.css` is kept as a documented, empty fork/companion slot.)
 - **Colourful headlines** (Style Settings) — per-level heading hues, deferred to the companion plugin;
   headings use the normal foreground ramp.
+- **Rainbow indent guides** (Style Settings) — dead standalone: Obsidian's own indent-guide selector
+  outranked the override and the per-level classes matched nothing in current Obsidian.
+- **Link underline → "On hover only"** option — the resting underline-suppressor outranked the base
+  `:hover` rule, so it just duplicated "Off"; the **Always** and **Off** options remain.
 
 ## [4.0.0] — Clean Foundation (the Armature)
 

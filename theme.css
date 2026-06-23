@@ -439,12 +439,6 @@ settings:
         type: class-toggle
         default: false
     -
-        id: kuro-rainbow-indent
-        title: Rainbow indent guides
-        description: Colours each indentation level. Requires Editor → Show indentation guides.
-        type: class-toggle
-        default: false
-    -
         id: kuro-shape
         title: Shape & density
         type: heading
@@ -510,9 +504,6 @@ settings:
             -
                 label: Always (default)
                 value: kuro-link-underline-on
-            -
-                label: On hover only
-                value: kuro-link-underline-hover
             -
                 label: Off
                 value: kuro-link-underline-off
@@ -1649,15 +1640,9 @@ body .markdown-rendered pre code {
    shifts); body. prefix lifts specificity above the base rules — no
    !important. kuro-link-underline-on is the no-op default. */
 
-/* On hover only — hide resting underline; existing :hover rule restores it */
-body.kuro-link-underline-hover .markdown-rendered a.internal-link,
-body.kuro-link-underline-hover .cm-hmd-internal-link .cm-underline,
-body.kuro-link-underline-hover .cm-hmd-internal-link,
-body.kuro-link-underline-hover .markdown-rendered a.external-link,
-body.kuro-link-underline-hover .cm-link,
-body.kuro-link-underline-hover .cm-url { border-bottom-color: transparent; }
-
-/* Off — no underline in any state (also neutralise :hover) */
+/* Off — no underline in any state (also neutralise :hover). (The "on hover only"
+   option was removed in 4.0.1: the resting suppressor outranked the base :hover
+   underline, so it just duplicated "off".) */
 body.kuro-link-underline-off .markdown-rendered a.internal-link,
 body.kuro-link-underline-off .cm-hmd-internal-link .cm-underline,
 body.kuro-link-underline-off .cm-hmd-internal-link,
@@ -2924,7 +2909,7 @@ body.is-mobile .bases-cards-item:hover { transform: none; }
    LAYER     armature — every colour is a token or a color-mix() of tokens.
              No raw #hex, no --signal-/--void-/--paper- (lint-enforced).
    RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check
-   SETS      --indentation-guide-color (under .kuro-rainbow-indent)
+   SETS      --glow-focus (under .kuro-focus-ring) · --border-* + --divider (under .kuro-borders-*)
    USES      --accent --accent-soft --accent-glow --glow-accent
              --fg-primary --fg-secondary --fg-tertiary --text-faint
              --surface-base --surface-panel --border-subtle --border-hover
@@ -3014,22 +2999,10 @@ body.kuro-active-line .cm-activeLine {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════
-   5 · kuro-rainbow-indent — coloured indentation guides (Live Preview)
-   ──────────────────────────────────────────────────────────────────────
-   Each level borrows a signal role so the ramp re-skins with the palette
-   (a fork rewriting the twelve signals recolours the guides for free).
-   ════════════════════════════════════════════════════════════════════════ */
-
-body.kuro-rainbow-indent .cm-indent   { --indentation-guide-color: var(--role-link); }
-body.kuro-rainbow-indent .cm-indent-1 { --indentation-guide-color: var(--role-link); }
-body.kuro-rainbow-indent .cm-indent-2 { --indentation-guide-color: var(--role-focus); }
-body.kuro-rainbow-indent .cm-indent-3 { --indentation-guide-color: var(--role-creative); }
-body.kuro-rainbow-indent .cm-indent-4 { --indentation-guide-color: var(--role-reflection); }
-body.kuro-rainbow-indent .cm-indent-5 { --indentation-guide-color: var(--role-warning); }
-body.kuro-rainbow-indent .cm-indent-6 { --indentation-guide-color: var(--role-review); }
-body.kuro-rainbow-indent .cm-indent-7 { --indentation-guide-color: var(--role-organic); }
-body.kuro-rainbow-indent .cm-indent-8 { --indentation-guide-color: var(--role-info); }
+/* kuro-rainbow-indent was removed in 4.0.1: dead standalone — Obsidian's own
+   .markdown-source-view.mod-cm6 .cm-indent (higher specificity) shadowed the
+   override, and the per-level .cm-indent-N selectors matched nothing in current
+   Obsidian. Belongs in the companion if reintroduced (DevTools-grounded). */
 
 
 /* Tab styling: Kuro uses Obsidian's native tabs, themed via the --tab-* bridge
