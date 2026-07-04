@@ -95,7 +95,7 @@ Light mappings (NEW, mirror the *role*, mapped onto `--paper`): `--surface-vault
 - [ ] **Step 1: Create the dir and copy the fonts fragment verbatim**
 
 ```bash
-cd /Users/Shared/code/kuro-obsidian-theme/Kuro
+cd /Users/Shared/code/obsidian-plugins/kuro-obsidian-theme/Kuro
 mkdir -p src-v4
 cp src/02-fonts-embedded.css src-v4/02-fonts-embedded.css
 ```
