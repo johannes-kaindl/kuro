@@ -156,8 +156,23 @@ living `!important` count in Minimal fragments is reported as **transform debt**
   decoupled from the active accent and re-colour automatically with every future world (Phase 2).
   Invisible until components consume them (Tasks 5–9).
 
-_Remaining cards (Typography · Callouts · Checkboxes · Tags · Code · Tables · Blockquote ·
-Lists · Bases · Graph) added at each transform step._
+#### Typography (Task 4)
+
+- **How Minimal handles it:** sets `--font-editor-theme` (a sans stack) and drives heading
+  size/weight/variant from `--h1-size … --h6-size` vars (`00-minimal-vars.css`); headings styled
+  at `h1,h2,h3,h4` (`20-minimal-content.css`). Obsidian resolves each font as
+  `--font-<slot>: var(--font-<slot>-override), var(--font-<slot>-theme), <default>` — the theme's
+  job is the `-theme` layer.
+- **Kuro's signature:** **mono body everywhere** (JetBrains Mono) + **serif-italic H1**
+  (EB Garamond). Fonts embedded as woff2 in `05-kuro-fonts.css` (only these two families — v4's
+  Inter/Space Grotesk trimmed, −242 KB). `06-kuro-typography.css` sets `--font-{text,interface,
+  editor,monospace}-theme` = mono and gives H1 + inline-title the serif face across Reading +
+  Live-Preview + editor (R5). Minimal's heading *ramp* (sizes/weights) is kept — only the H1 face
+  changes; finer per-heading tuning (v4's mono-H5 etc.) is deferred (incremental).
+- **Verify:** font-var chains are easy to get subtly wrong — confirmed by rendering, not assumed.
+
+_Remaining cards (Callouts · Checkboxes · Tags · Code · Tables · Blockquote · Lists · Bases ·
+Graph) added at each transform step._
 
 ---
 

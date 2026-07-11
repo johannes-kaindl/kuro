@@ -1,0 +1,30 @@
+/*
+  06-kuro-typography.css — Kuro's font signature: mono body everywhere + serif-italic H1.
+  Sets the theme-layer font vars (Obsidian resolves --font-*: override, then -theme) to JetBrains
+  Mono, and gives H1 + inline-title EB Garamond italic across all surfaces (Reading + Live-Preview
+  + editor — R5). Minimal's heading ramp (sizes/weights) is kept; only the H1 face changes here.
+  Fonts embedded in 05-kuro-fonts.css. No colour literals (R1).
+*/
+:root {
+  --kuro-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --kuro-font-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+}
+
+/* Mono body everywhere — text, interface, editor, monospace all resolve to JetBrains Mono */
+body {
+  --font-text-theme: var(--kuro-font-mono);
+  --font-interface-theme: var(--kuro-font-mono);
+  --font-editor-theme: var(--kuro-font-mono);
+  --font-monospace-theme: var(--kuro-font-mono);
+}
+
+/* H1 — serif italic display, across Reading view + Live-Preview + editor source (R5) */
+.markdown-rendered h1,
+.markdown-preview-view h1,
+.HyperMD-header-1,
+.cm-line.HyperMD-header-1,
+.inline-title {
+  font-family: var(--kuro-font-serif);
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
