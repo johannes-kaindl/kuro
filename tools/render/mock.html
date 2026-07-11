@@ -76,13 +76,15 @@ body{background:var(--background-primary);color:var(--text-normal);font-family:v
          <div class="callout-title"><div class="callout-icon"></div><div class="callout-title-inner">Error callout</div></div>
          <div class="callout-content"><p>Error maps to the red signal role.</p></div>
         </div>
+        <!-- Real Obsidian reading-view DOM: data-task on the <li>, NOT on the input; alternate
+             task types are marked checked + is-checked by Obsidian. Input sits inside a <p>. -->
         <ul class="contains-task-list">
-         <li class="task-list-item" data-task=" "><input class="task-list-item-checkbox" type="checkbox" data-task=" "> open task (empty box must be visible)</li>
-         <li class="task-list-item is-checked" data-task="x"><input class="task-list-item-checkbox" type="checkbox" data-task="x" checked> done task (accent fill + tick + strike)</li>
-         <li class="task-list-item" data-task=">"><input class="task-list-item-checkbox" type="checkbox" data-task=">"> deferred &rsaquo;</li>
-         <li class="task-list-item" data-task="?"><input class="task-list-item-checkbox" type="checkbox" data-task="?"> question ?</li>
-         <li class="task-list-item" data-task="!"><input class="task-list-item-checkbox" type="checkbox" data-task="!"> important !</li>
-         <li class="task-list-item" data-task="-"><input class="task-list-item-checkbox" type="checkbox" data-task="-"> cancelled &ndash;</li>
+         <li class="task-list-item" data-task=" "><p><input class="task-list-item-checkbox" type="checkbox"> open task (empty box must be visible)</p></li>
+         <li class="task-list-item is-checked" data-task="x"><p><input class="task-list-item-checkbox" type="checkbox" checked> done task (accent fill + tick + strike)</p></li>
+         <li class="task-list-item is-checked" data-task=">"><p><input class="task-list-item-checkbox" type="checkbox" checked> deferred &rsaquo;</p></li>
+         <li class="task-list-item is-checked" data-task="?"><p><input class="task-list-item-checkbox" type="checkbox" checked> question ?</p></li>
+         <li class="task-list-item is-checked" data-task="!"><p><input class="task-list-item-checkbox" type="checkbox" checked> important !</p></li>
+         <li class="task-list-item is-checked" data-task="-"><p><input class="task-list-item-checkbox" type="checkbox" checked> cancelled &ndash;</p></li>
         </ul>
         <ul><li>plain bullet — accent marker</li><li>second bullet<ul><li>nested item</li></ul></li></ul>
         <ol><li>ordered one — tertiary number</li><li>ordered two</li></ol>
