@@ -1,0 +1,37 @@
+/*
+  03-kuro-palette.css — Chamber (dark) / Paper (light), the default world. [values]
+  Pins Kuro's hand-tuned shades directly onto Minimal's aliases (--bg/ui/tx). Builds after
+  00/01-minimal-* so source order wins at equal .theme-* specificity — Minimal's alias
+  structure stays, Kuro owns the values, and 01-minimal-colormap's native map recolours
+  downstream. Accent is left to Obsidian's system accent (Kuro does not pin --ax*).
+  Both blocks pin the identical key-set — check.sh enforces both-mode parity (R3).
+  Values verified against src/_v4-reference/{00-primitives,10-semantic-dark,11-semantic-light}.
+  [sight-check] bg1/bg2/bg3 = note / sidebar / overlay; Kuro lifts the sidebar (bg2 lighter
+  than note in dark) — check the note/sidebar/raised ratio reads right.
+*/
+.theme-dark {
+  --bg1: #060709;  /* surface-base (void-050) — note */
+  --bg2: #0b0d11;  /* surface-panel (void-100) — sidebar, lifted */
+  --bg3: #181c24;  /* surface-overlay (void-200) */
+  --ui1: #22272f;  /* border-subtle (void-300) */
+  --ui2: #2e343d;  /* border-hover (void-400) */
+  --ui3: #3d4450;  /* border-strong (void-500) */
+  --tx1: #e8e4d8;  /* fg-primary (signal-pearl) — warm off-white */
+  --tx2: #828a97;  /* fg-secondary (void-700) — cool slate */
+  --tx3: #6b7280;  /* fg-tertiary (void-600, AA-lifted) */
+  --tx4: #6b7280;  /* faint = tertiary */
+  --check-marker: #1a1714;  /* dark glyph on accent-filled checkbox (consumed by 22-kuro-checkboxes) */
+}
+.theme-light {
+  --bg1: #faf8f5;  /* surface-base (paper-000) — note */
+  --bg2: #eae6de;  /* sidebar (paper-100) — gentler lift, both-mode-consistent (was paper-150 #e2ddd3, too strong) */
+  --bg3: #d8d3c8;  /* surface-overlay (paper-200) */
+  --ui1: rgba(0, 0, 0, 0.10);  /* border-subtle — alpha tints the paper */
+  --ui2: rgba(0, 0, 0, 0.18);  /* border-hover */
+  --ui3: #b0a99a;  /* border-strong (paper-400) */
+  --tx1: #2b2824;  /* fg-primary (paper-900) — warm ink */
+  --tx2: #6b6761;  /* fg-secondary (paper-700) */
+  --tx3: #847f75;  /* fg-tertiary (paper-600) */
+  --tx4: #847f75;  /* faint = tertiary */
+  --check-marker: #0c0e12;  /* dark glyph on accent-filled checkbox */
+}

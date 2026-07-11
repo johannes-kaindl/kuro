@@ -121,8 +121,28 @@ living `!important` count in Minimal fragments is reported as **transform debt**
 > targets it · how Minimal solves it · the high-specificity traps (the layered pitfalls) · how
 > Kuro replaces it.** They grow as Phase 1 proceeds.
 
-_(Palette · Typography · Callouts · Checkboxes · Tags · Code · Tables · Blockquote · Lists ·
-Bases · Graph — added at each transform step.)_
+#### Palette (Task 2)
+
+- **How Obsidian targets it:** surfaces, text and borders via native vars —
+  `--background-primary/-secondary[-alt]`, `--text-normal/-muted/-faint`,
+  `--background-modifier-border[-hover/-focus]`, `--interactive-accent`, …
+- **How Minimal solves it:** derives the aliases `--bg1/2/3`, `--ui1/2/3`, `--tx1/2/3/4`,
+  `--ax1/2/3` from 6 HSL controls (`--base-h/s/l` + `--accent-h/s/l`) in `.theme-dark` /
+  `.theme-light` blocks (`00-minimal-vars.css`), then maps aliases → native in
+  `.theme-dark, .theme-light { --background-primary: var(--bg1); --interactive-accent: var(--ax3); … }`
+  (`01-minimal-colormap.css`).
+- **Specificity / traps:** both the alias definitions and the native map sit at `.theme-*`
+  specificity `(0,1,0)`. **No high-specificity trap** — this is why the palette "just worked"
+  even in the failed layered attempt (it flows purely through variables).
+- **How Kuro replaces it:** pins hand-tuned Chamber (dark) / Paper (light) hex **directly onto
+  the aliases** in `03-kuro-palette.css`. Because `03-` builds after `00/01-minimal-*`, source
+  order wins at equal specificity — Minimal's alias *structure* stays, Kuro owns the *values*,
+  and the whole native map recolours downstream. Both `.theme-dark` and `.theme-light` pin the
+  identical key-set (both-mode parity, `check.sh`-enforced). The **accent** is deliberately left
+  to follow Obsidian's system accent — Kuro does not pin `--ax*`.
+
+_Remaining cards (Typography · Callouts · Checkboxes · Tags · Code · Tables · Blockquote ·
+Lists · Bases · Graph) added at each transform step._
 
 ---
 
