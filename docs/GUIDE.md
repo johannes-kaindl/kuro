@@ -270,7 +270,21 @@ secondary/tertiary → --tx1/2/3`, `--surface-base/raised → --bg1/--bg2`, `--b
   leading, 24px nesting indent, calm indent guides. Additive over Minimal (Minimal sets no marker
   colours — markers inherited Obsidian defaults), so nothing is removed at source.
 
-_Remaining cards (Bases · Graph) added at each transform step._
+#### Graph (Task 8f)
+
+- **How Obsidian targets it:** the graph is a **WebGL canvas** — it does *not* honour CSS on
+  nodes/edges. Instead Obsidian reads the computed `color` off a set of invisible probe classes
+  (`.graph-view.color-fill`, `.color-line`, `.color-circle`, `.color-text`, …) via `getComputedStyle`
+  and paints the canvas from those samples.
+- **How Kuro replaces it:** `29-kuro-graph.css` sets `color:` on each probe from a `--graph-*` palette
+  collapsed onto roles (node→neutral, tag→warning, attachment→drift, focused→`--tx1`, active/ring/
+  arrow→accent, line→accent mix, text→`--tx3`, unresolved→faint `--tx1`). `--graph-*` sit on `.theme-*`
+  (they read roles/accent — T5 scope rule). Minimal ships no graph probes, so Kuro's are uncontested.
+- **Verification:** there is no DOM to screenshot (the canvas is WebGL), so this fragment is verified
+  by **code review**, not the render harness — the mapping is mechanical and both-mode by construction.
+  A real graph view (Jay) confirms the final look.
+
+_Remaining cards (Bases) added at each transform step._
 
 ---
 
