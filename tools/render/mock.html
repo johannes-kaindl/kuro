@@ -79,12 +79,17 @@ body{background:var(--background-primary);color:var(--text-normal);font-family:v
         <!-- Real Obsidian reading-view DOM: data-task on the <li>, NOT on the input; alternate
              task types are marked checked + is-checked by Obsidian. Input sits inside a <p>. -->
         <ul class="contains-task-list">
-         <li class="task-list-item" data-task=" "><p><input class="task-list-item-checkbox" type="checkbox"> open task (empty box must be visible)</p></li>
-         <li class="task-list-item is-checked" data-task="x"><p><input class="task-list-item-checkbox" type="checkbox" checked> done task (accent fill + tick + strike)</p></li>
-         <li class="task-list-item is-checked" data-task=">"><p><input class="task-list-item-checkbox" type="checkbox" checked> deferred &rsaquo;</p></li>
-         <li class="task-list-item is-checked" data-task="?"><p><input class="task-list-item-checkbox" type="checkbox" checked> question ?</p></li>
-         <li class="task-list-item is-checked" data-task="!"><p><input class="task-list-item-checkbox" type="checkbox" checked> important !</p></li>
-         <li class="task-list-item is-checked" data-task="-"><p><input class="task-list-item-checkbox" type="checkbox" checked> cancelled &ndash;</p></li>
+         <li class="task-list-item" data-task=" "><p><input class="task-list-item-checkbox" type="checkbox"> Offen (leeres Quadrat)</p></li>
+         <li class="task-list-item is-checked" data-task="x"><p><input class="task-list-item-checkbox" type="checkbox" checked> Erledigt (x, accent)</p></li>
+         <li class="task-list-item is-checked" data-task="-"><p><input class="task-list-item-checkbox" type="checkbox" checked> Abgebrochen (-, gedämpft)</p></li>
+         <li class="task-list-item is-checked" data-task=">"><p><input class="task-list-item-checkbox" type="checkbox" checked> Verschoben (&rsaquo;, focus)</p></li>
+         <li class="task-list-item is-checked" data-task="<"><p><input class="task-list-item-checkbox" type="checkbox" checked> Geplant (&lsaquo;, link)</p></li>
+         <li class="task-list-item is-checked" data-task="?"><p><input class="task-list-item-checkbox" type="checkbox" checked> Frage (?, review)</p></li>
+         <li class="task-list-item is-checked" data-task="!"><p><input class="task-list-item-checkbox" type="checkbox" checked> Wichtig (!, warning)</p></li>
+         <li class="task-list-item is-checked" data-task="i"><p><input class="task-list-item-checkbox" type="checkbox" checked> Info (i, info)</p></li>
+         <li class="task-list-item is-checked" data-task="b"><p><input class="task-list-item-checkbox" type="checkbox" checked> Lesezeichen (accent)</p></li>
+         <li class="task-list-item is-checked" data-task="p"><p><input class="task-list-item-checkbox" type="checkbox" checked> Pro (+, success)</p></li>
+         <li class="task-list-item is-checked" data-task="c"><p><input class="task-list-item-checkbox" type="checkbox" checked> Contra (&minus;, error)</p></li>
         </ul>
         <ul><li>plain bullet — accent marker</li><li>second bullet<ul><li>nested item</li></ul></li></ul>
         <ol><li>ordered one — tertiary number</li><li>ordered two</li></ol>
