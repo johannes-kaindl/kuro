@@ -1,0 +1,496 @@
+/* Content */
+/* Blockquotes */
+.markdown-preview-view blockquote {
+  padding-inline-start: var(--nested-padding);
+  font-size: var(--blockquote-size);
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote,
+.markdown-source-view.mod-cm6 .HyperMD-quote {
+  font-size: var(--blockquote-size);
+}
+
+.is-live-preview .cm-hmd-indent-in-quote {
+  color: var(--text-faint);
+}
+
+/* Callouts */
+.is-live-preview.is-readable-line-width > .cm-callout .callout {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.callouts-outlined .callout .callout-title {
+  background-color: var(--background-primary);
+  margin-top: -24px;
+  z-index: 200;
+  width: fit-content;
+  padding: 0 0.5em;
+  margin-left: -0.75em;
+  letter-spacing: 0.05em;
+  font-variant-caps: all-small-caps;
+}
+.callouts-outlined .callout {
+  overflow: visible;
+  --callout-border-width: 1px;
+  --callout-border-opacity: 0.5;
+  --callout-title-size: 0.8em;
+  --callout-blend-mode: normal;
+  background-color: transparent;
+}
+.callouts-outlined .cm-embed-block.cm-callout {
+  padding-top: 12px;
+}
+.callouts-outlined .callout-content .callout {
+  margin-top: 18px;
+}
+
+/* Checklists, task lists, checkboxes */
+body {
+  --checkbox-radius: 50%;
+  --checkbox-top: 2px;
+  --checkbox-left: 0px;
+  --checkbox-margin: 0px 6px 0px -2em;
+}
+
+.checkbox-square {
+  --checkbox-size: calc(var(--font-text-size) * 0.85);
+  --checkbox-radius: 4px;
+  --checkbox-top: 1px;
+  --checkbox-left: 0px;
+  --checkbox-margin: 0px 8px 0px -2em;
+}
+
+body.minimal-strike-lists {
+  --checklist-done-decoration: line-through;
+}
+
+body:not(.minimal-strike-lists) {
+  --checklist-done-decoration: none;
+  --checklist-done-color: var(--text-normal);
+}
+
+.markdown-preview-section > .contains-task-list {
+  padding-bottom: 0.5em;
+}
+
+.mod-cm6 .HyperMD-task-line[data-task] .cm-formatting-list-ol ~ .task-list-label .task-list-item-checkbox {
+  margin: 1px;
+}
+
+.markdown-preview-view .task-list-item-checkbox {
+  position: relative;
+  top: var(--checkbox-top);
+  left: var(--checkbox-left);
+}
+
+.markdown-preview-view ul > li.task-list-item {
+  text-indent: 0;
+}
+
+.minimal-code-scroll {
+  --code-white-space: pre;
+}
+.minimal-code-scroll .HyperMD-codeblock.HyperMD-codeblock-bg {
+  overflow-y: scroll;
+  white-space: pre;
+}
+.minimal-code-scroll .cm-hmd-codeblock {
+  white-space: pre !important;
+}
+
+@media print {
+  .print {
+    --code-background: #eeeeee !important;
+  }
+}
+/* Transcluded notes and embeds */
+body {
+  --embed-max-height: none;
+  --embed-decoration-style: solid;
+  --embed-decoration-color: var(--background-modifier-border-hover);
+}
+
+/* Strict embeds (naked) */
+.embed-strict {
+  --embed-background: transparent;
+  --embed-border-start: 0;
+  --embed-border-left: 0;
+  --embed-padding: 0;
+}
+.embed-strict .markdown-embed-content {
+  --folding-offset: 0px;
+}
+.embed-strict .internal-embed .markdown-embed,
+.embed-strict .markdown-preview-view .markdown-embed, .embed-strict.markdown-preview-view .markdown-embed {
+  padding: 0;
+}
+.embed-strict .markdown-embed-title,
+.embed-strict .internal-embed .markdown-embed .markdown-embed-title {
+  display: none;
+}
+.embed-strict .internal-embed:not([src*="#^"]) .markdown-embed-link {
+  width: 24px;
+  opacity: 0;
+}
+
+.embed-underline .internal-embed:not(.pdf-embed, .bases-embed) {
+  text-decoration-line: underline;
+  text-decoration-style: var(--embed-decoration-style);
+  text-decoration-color: var(--embed-decoration-color);
+}
+
+.embed-hide-title .markdown-embed-title {
+  display: none;
+}
+
+.embed-strict.contextual-typography .internal-embed .markdown-preview-view .markdown-preview-sizer > div,
+.contextual-typography .embed-strict .internal-embed .markdown-preview-view .markdown-preview-sizer > div {
+  margin: 0;
+  width: 100%;
+}
+
+.markdown-embed .markdown-preview-view .markdown-preview-sizer {
+  padding-bottom: 0 !important;
+}
+
+.markdown-preview-view.markdown-embed .markdown-preview-sizer,
+.markdown-preview-view.is-readable-line-width .markdown-embed .markdown-preview-sizer {
+  max-width: 100%;
+  width: 100%;
+  min-height: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.markdown-embed .markdown-preview-section div:last-child p,
+.markdown-embed .markdown-preview-section div:last-child ul {
+  margin-block-end: 2px;
+}
+
+.markdown-preview-view .markdown-embed {
+  margin-top: var(--nested-padding);
+  padding: 0 calc(var(--nested-padding) / 2) 0 var(--nested-padding);
+}
+
+.internal-embed:not([src*="#^"]) .markdown-embed-link {
+  right: 0;
+  width: 100%;
+}
+
+.markdown-embed-link,
+.file-embed-link {
+  top: 0px;
+  right: 0;
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.file-embed-link svg,
+.markdown-embed-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.markdown-embed .file-embed-link,
+.markdown-embed .markdown-embed-link {
+  opacity: 0.6;
+  transition: opacity 0.1s linear;
+}
+
+.markdown-embed .file-embed-link:hover,
+.markdown-embed .markdown-embed-link:hover {
+  opacity: 1;
+}
+.markdown-embed .file-embed-link:hover:hover,
+.markdown-embed .markdown-embed-link:hover:hover {
+  background-color: transparent;
+  --icon-color: var(--text-accent);
+}
+
+.markdown-embed-link:hover, .file-embed-link:hover {
+  color: var(--text-muted);
+}
+
+.markdown-embed .markdown-preview-view {
+  padding: 0;
+}
+
+.internal-embed .markdown-embed {
+  border: 0;
+  border-left: 1px solid var(--quote-opening-modifier);
+  border-radius: 0;
+}
+
+/* Links */
+a[href*="obsidian://search"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='17' height='17' class='search'><path fill='black' stroke='black' stroke-width='2' d='M42,6C23.2,6,8,21.2,8,40s15.2,34,34,34c7.4,0,14.3-2.4,19.9-6.4l26.3,26.3l5.6-5.6l-26-26.1c5.1-6,8.2-13.7,8.2-22.1 C76,21.2,60.8,6,42,6z M42,10c16.6,0,30,13.4,30,30S58.6,70,42,70S12,56.6,12,40S25.4,10,42,10z'></path></svg>");
+}
+
+.theme-dark a[href*="obsidian://search"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='17' height='17' class='search'><path fill='white' stroke='white' stroke-width='2' d='M42,6C23.2,6,8,21.2,8,40s15.2,34,34,34c7.4,0,14.3-2.4,19.9-6.4l26.3,26.3l5.6-5.6l-26-26.1c5.1-6,8.2-13.7,8.2-22.1 C76,21.2,60.8,6,42,6z M42,10c16.6,0,30,13.4,30,30S58.6,70,42,70S12,56.6,12,40S25.4,10,42,10z'></path></svg>");
+}
+
+.plain-external-links .external-link {
+  background-image: none;
+  padding-right: 0;
+}
+
+body {
+  --adaptive-list-edit-offset: var(--list-edit-offset);
+}
+
+.is-rtl {
+  --adaptive-list-edit-offset: calc(var(--list-edit-offset)*-1);
+}
+
+/* Space between list items */
+.markdown-source-view ol > li,
+.markdown-source-view ul > li,
+.markdown-preview-view ol > li,
+.markdown-preview-view ul > li,
+.mod-cm6 .HyperMD-list-line.cm-line {
+  padding-top: var(--list-spacing);
+  padding-bottom: var(--list-spacing);
+}
+
+.is-mobile ul > li:not(.task-list-item)::marker {
+  font-size: 0.8em;
+}
+
+/* Backlinks in Preview */
+.is-mobile .workspace-leaf-content:not([data-type=search]) .workspace-leaf-content[data-type=markdown] .nav-buttons-container {
+  border-bottom: none;
+  padding-top: 5px;
+}
+
+.is-mobile .mod-root .workspace-leaf-content[data-type=markdown] .search-input-container {
+  width: calc(100% - 160px);
+}
+
+.embedded-backlinks .backlink-pane > .tree-item-self:hover,
+.embedded-backlinks .backlink-pane > .tree-item-self {
+  text-transform: none;
+  color: var(--text-normal);
+  font-size: var(--font-adaptive-normal);
+  font-weight: 500;
+  letter-spacing: unset;
+}
+
+body {
+  --pdf-dark-opacity: 1;
+}
+
+.theme-light:not(.pdf-shadows-on),
+.theme-dark:not(.pdf-shadows-on) {
+  --pdf-shadow: none;
+  --pdf-thumbnail-shadow: none;
+}
+.theme-light:not(.pdf-shadows-on) .pdf-viewer .page,
+.theme-light:not(.pdf-shadows-on) .pdfViewer .page,
+.theme-dark:not(.pdf-shadows-on) .pdf-viewer .page,
+.theme-dark:not(.pdf-shadows-on) .pdfViewer .page {
+  border: 0;
+}
+.theme-light:not(.pdf-shadows-on) .pdf-sidebar-container .thumbnailSelectionRing,
+.theme-dark:not(.pdf-shadows-on) .pdf-sidebar-container .thumbnailSelectionRing {
+  padding: 0;
+}
+.theme-light:not(.pdf-shadows-on) .pdf-sidebar-container .thumbnail::after,
+.theme-dark:not(.pdf-shadows-on) .pdf-sidebar-container .thumbnail::after {
+  right: var(--size-4-2);
+  bottom: var(--size-4-2);
+}
+
+.theme-dark {
+  --pdf-thumbnail-shadow: 0 0 1px 0 rgba(0,0,0,0.6);
+  --pdf-shadow: 0 0 1px 0 rgba(0,0,0,0.6);
+}
+.theme-dark .pdf-viewer .canvasWrapper,
+.theme-dark .pdfViewer .canvasWrapper {
+  opacity: var(--pdf-dark-opacity);
+}
+.theme-dark.pdf-invert-dark .workspace-leaf-content[data-type=pdf] .pdf-viewer .canvasWrapper,
+.theme-dark.pdf-invert-dark .workspace-leaf-content[data-type=pdf] .pdfViewer .canvasWrapper {
+  filter: invert(1) hue-rotate(180deg);
+  mix-blend-mode: screen;
+}
+
+.theme-light.pdf-blend-light .workspace-leaf-content[data-type=pdf] .pdf-viewer .canvasWrapper,
+.theme-light.pdf-blend-light .workspace-leaf-content[data-type=pdf] .pdfViewer .canvasWrapper {
+  mix-blend-mode: multiply;
+}
+
+body {
+  --table-header-border-width: 0;
+  --table-column-first-border-width: 0;
+  --table-column-last-border-width: 0;
+  --table-row-last-border-width: 0;
+  --table-edge-cell-padding-first: 0;
+  --table-edge-cell-padding-last: 0;
+  --table-cell-padding: 4px 10px;
+  --table-header-size: var(--table-text-size);
+}
+
+/* Preview mode tables */
+.markdown-source-view.mod-cm6 table {
+  border-collapse: collapse;
+}
+
+.markdown-rendered th {
+  --table-header-size: var(--table-text-size);
+}
+
+.markdown-source-view.mod-cm6 table,
+.markdown-preview-view table {
+  border: var(--border-width) solid var(--border-color);
+  border-collapse: collapse;
+}
+.markdown-source-view.mod-cm6 td, .markdown-source-view.mod-cm6 th,
+.markdown-preview-view td,
+.markdown-preview-view th {
+  padding: var(--table-cell-padding);
+}
+.markdown-source-view.mod-cm6 td:first-child, .markdown-source-view.mod-cm6 th:first-child,
+.markdown-preview-view td:first-child,
+.markdown-preview-view th:first-child {
+  padding-inline-start: var(--table-edge-cell-padding-first);
+}
+.markdown-source-view.mod-cm6 td:first-child .table-cell-wrapper, .markdown-source-view.mod-cm6 th:first-child .table-cell-wrapper,
+.markdown-preview-view td:first-child .table-cell-wrapper,
+.markdown-preview-view th:first-child .table-cell-wrapper {
+  padding-inline-start: 0;
+}
+.markdown-source-view.mod-cm6 td:last-child, .markdown-source-view.mod-cm6 th:last-child,
+.markdown-preview-view td:last-child,
+.markdown-preview-view th:last-child {
+  padding-inline-end: var(--table-edge-cell-padding-last);
+}
+.markdown-source-view.mod-cm6 td:last-child .table-cell-wrapper, .markdown-source-view.mod-cm6 th:last-child .table-cell-wrapper,
+.markdown-preview-view td:last-child .table-cell-wrapper,
+.markdown-preview-view th:last-child .table-cell-wrapper {
+  padding-inline-end: 0;
+}
+
+.markdown-source-view.mod-cm6 .cm-table-widget table {
+  margin-top: 0;
+}
+.markdown-source-view.mod-cm6 .cm-table-widget .table-cell-wrapper {
+  padding: var(--table-cell-padding);
+}
+
+.markdown-reading-view table {
+  --p-spacing: 0.5rem;
+}
+
+.cm-embed-block.cm-table-widget.markdown-rendered {
+  padding: var(--table-drag-padding);
+  overscroll-behavior-x: none;
+}
+.is-mobile .cm-embed-block.cm-table-widget.markdown-rendered {
+  padding-bottom: 40px;
+}
+
+/* Override Sortable plugin */
+.markdown-preview-view th,
+.table-view-table > thead > tr > th,
+.markdown-source-view.mod-cm6 .dataview.table-view-table thead.table-view-thead tr th {
+  padding: var(--table-cell-padding);
+}
+.markdown-preview-view th:first-child,
+.table-view-table > thead > tr > th:first-child,
+.markdown-source-view.mod-cm6 .dataview.table-view-table thead.table-view-thead tr th:first-child {
+  padding-inline-start: var(--table-edge-cell-padding-first);
+}
+.markdown-preview-view th:last-child,
+.table-view-table > thead > tr > th:last-child,
+.markdown-source-view.mod-cm6 .dataview.table-view-table thead.table-view-thead tr th:last-child {
+  padding-inline-end: var(--table-edge-cell-padding-last);
+}
+
+/* Live Preview Tables */
+.cm-s-obsidian .HyperMD-table-row span.cm-hmd-table-sep,
+.cm-hmd-table-sep-dummy {
+  color: var(--text-faint);
+  font-weight: 400;
+}
+
+/* Tags */
+body.minimal-unstyled-tags {
+  --tag-background: transparent;
+  --tag-background-hover: transparent;
+  --tag-border-width: 0px;
+  --tag-padding-x: 0;
+  --tag-padding-y: 0;
+  --tag-size: inherit;
+  --tag-color-hover: var(--text-accent-hover);
+}
+body.minimal-unstyled-tags.is-mobile.theme-dark {
+  --tag-background: transparent;
+}
+
+body:not(.minimal-unstyled-tags) {
+  --tag-size: 0.8em;
+  --tag-padding-y: 0.2em;
+  --tag-background: transparent;
+  --tag-background-hover: transparent;
+  --tag-color: var(--text-muted);
+  --tag-border-width: 1px;
+  --tag-border-color: var(--background-modifier-border);
+  --tag-border-color-hover: var(--background-modifier-border-hover);
+  --tag-color-hover: var(--text-normal);
+}
+
+body.is-mobile.theme-dark {
+  --tag-background: transparent;
+}
+
+/* Headings and fonts */
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+}
+
+body, input, button {
+  font-family: var(--font-interface);
+}
+
+.cm-s-obsidian span.cm-error {
+  color: var(--color-red);
+}
+
+.markdown-preview-view,
+.popover,
+.workspace-leaf-content[data-type=markdown] {
+  font-family: var(--font-text);
+}
+
+body,
+.markdown-preview-view,
+.view-content > .markdown-source-view.mod-cm6.is-live-preview > .cm-scroller,
+.view-content > .cm-s-obsidian {
+  font-size: var(--font-adaptive-normal);
+  font-weight: var(--normal-weight);
+}
+
+.view-content > .markdown-source-view.mod-cm6 .cm-scroller,
+.view-content > .markdown-source-view,
+.view-content > .cm-s-obsidian {
+  font-family: var(--font-editor);
+}
+
+.cm-formatting:not(.cm-formatting-code-block):not(.cm-formatting-hashtag) {
+  color: var(--text-formatting);
+}
+
+.hide-markdown .is-live-preview .cm-formatting.cm-formatting-code.cm-inline-code, .hide-markdown .is-live-preview .cm-formatting.cm-formatting-em, .hide-markdown .is-live-preview .cm-formatting.cm-formatting-link, .hide-markdown .is-live-preview .cm-formatting.cm-formatting-strikethrough, .hide-markdown .is-live-preview .cm-formatting.cm-formatting-strong, .hide-markdown .is-live-preview .cm-formatting.cm-formatting-highlight {
+  display: none;
+}
+.hide-markdown .is-live-preview .cm-formatting-quote {
+  opacity: 0;
+}
+.hide-markdown .is-live-preview .cm-hmd-internal-link.cm-link-has-alias,
+.hide-markdown .is-live-preview .cm-link-alias-pipe,
+.hide-markdown .is-live-preview .cm-formatting-link,
+.hide-markdown .is-live-preview .cm-formatting-header {
+  display: none;
+}
+

@@ -1,0 +1,597 @@
+/* Colorful active states */
+.colorful-active .nav-files-container {
+  --nav-item-background-active: var(--interactive-accent);
+  --nav-item-color-active: var(--text-on-accent);
+}
+.colorful-active .nav-files-container .is-active .nav-file-tag {
+  color: var(--text-on-accent);
+  opacity: 0.6;
+}
+.colorful-active .tree-item-self.is-being-renamed:focus-within {
+  --nav-item-color-active: var(--text-normal);
+}
+.colorful-active #calendar-container .active,
+.colorful-active #calendar-container .active.today,
+.colorful-active #calendar-container .active:hover,
+.colorful-active #calendar-container .day:active {
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
+}
+.colorful-active #calendar-container .day:active .dot,
+.colorful-active #calendar-container .active .dot,
+.colorful-active #calendar-container .today.active .dot {
+  fill: var(--text-on-accent);
+}
+
+body:not(.colorful-active) .horizontal-tab-nav-item.is-active,
+body:not(.colorful-active) .vertical-tab-nav-item.is-active {
+  background-color: var(--bg3);
+  color: var(--text-normal);
+}
+
+body {
+  --frame-background:
+  hsl(
+  	var(--frame-background-h),
+  	var(--frame-background-s),
+  	var(--frame-background-l));
+  --frame-icon-color: var(--frame-muted-color);
+}
+
+.theme-light {
+  --frame-background-h: var(--accent-h);
+  --frame-background-s: var(--accent-s);
+  --frame-background-l: calc(var(--accent-l) + 30%);
+  --frame-outline-color:
+  	hsla(
+  		var(--frame-background-h),
+  		var(--frame-background-s),
+  		calc(var(--frame-background-l) - 6.5%),
+  		1
+  		);
+  --frame-muted-color:
+  		hsl(
+  			var(--frame-background-h),
+  			calc(var(--frame-background-s) - 10%),
+  			calc(var(--frame-background-l) - 35%));
+}
+
+.theme-dark {
+  --frame-background-h: var(--accent-h);
+  --frame-background-s: var(--accent-s);
+  --frame-background-l: calc(var(--accent-l) - 25%);
+  --frame-outline-color:
+  	hsla(
+  		var(--frame-background-h),
+  		calc(var(--frame-background-s) - 2%),
+  		calc(var(--frame-background-l) + 6.5%),
+  		1
+  		);
+  --frame-muted-color:
+  		hsl(
+  			var(--frame-background-h),
+  			calc(var(--frame-background-s) - 10%),
+  			calc(var(--frame-background-l) + 25%));
+}
+
+.colorful-frame.theme-dark {
+  --tab-outline-width: 0px;
+}
+
+.colorful-frame.is-focused,
+.colorful-frame {
+  --frame-divider-color: var(--frame-outline-color);
+  --titlebar-background: var(--frame-background);
+  --titlebar-background-focused: var(--frame-background);
+  --titlebar-text-color: var(--frame-muted-color);
+  --minimal-tab-text-color: var(--frame-muted-color);
+}
+.colorful-frame.is-focused .workspace-tabs:not(.mod-stacked),
+.colorful-frame .workspace-tabs:not(.mod-stacked) {
+  --tab-text-color: var(--minimal-tab-text-color);
+  --tab-text-color-focused: var(--minimal-tab-text-color);
+}
+.colorful-frame.is-focused .titlebar,
+.colorful-frame.is-focused .workspace-ribbon.mod-left:before,
+.colorful-frame.is-focused .mod-top .workspace-tab-header-container,
+.colorful-frame .titlebar,
+.colorful-frame .workspace-ribbon.mod-left:before,
+.colorful-frame .mod-top .workspace-tab-header-container {
+  --tab-outline-color: var(--frame-outline-color);
+  --tab-divider-color: var(--frame-outline-color);
+}
+.colorful-frame.is-focused .mod-root .workspace-tab-header .workspace-tab-header-inner-icon,
+.colorful-frame .mod-root .workspace-tab-header .workspace-tab-header-inner-icon {
+  --icon-color: var(--minimal-tab-text-color-active);
+  --icon-color-hover: var(--minimal-tab-text-color-active);
+  --icon-color-active: var(--minimal-tab-text-color-active);
+  --icon-color-focused: var(--minimal-tab-text-color-active);
+}
+.colorful-frame.is-focused .sidebar-toggle-button,
+.colorful-frame.is-focused .workspace-tab-header:not(.is-active),
+.colorful-frame.is-focused .workspace-tab-header-new-tab,
+.colorful-frame.is-focused .workspace-tab-header-tab-list,
+.colorful-frame.is-focused .mod-left-split .mod-top .workspace-tab-header,
+.colorful-frame.is-focused .mod-right-split .mod-top .workspace-tab-header,
+.colorful-frame .sidebar-toggle-button,
+.colorful-frame .workspace-tab-header:not(.is-active),
+.colorful-frame .workspace-tab-header-new-tab,
+.colorful-frame .workspace-tab-header-tab-list,
+.colorful-frame .mod-left-split .mod-top .workspace-tab-header,
+.colorful-frame .mod-right-split .mod-top .workspace-tab-header {
+  --background-modifier-hover: var(--frame-outline-color);
+  --icon-color: var(--frame-icon-color);
+  --icon-color-hover: var(--frame-icon-color);
+  --icon-color-active: var(--frame-icon-color);
+  --icon-color-focused: var(--frame-icon-color);
+  --icon-color-focus: var(--frame-icon-color);
+}
+.colorful-frame.is-focused .mod-right-split .mod-top .workspace-tab-header.is-active .workspace-tab-header-inner-icon,
+.colorful-frame.is-focused .mod-left-split .mod-top .workspace-tab-header.is-active .workspace-tab-header-inner-icon,
+.colorful-frame .mod-right-split .mod-top .workspace-tab-header.is-active .workspace-tab-header-inner-icon,
+.colorful-frame .mod-left-split .mod-top .workspace-tab-header.is-active .workspace-tab-header-inner-icon {
+  color: var(--frame-icon-color);
+}
+
+.workspace-leaf-resize-handle {
+  transition: none;
+}
+
+.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
+.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle,
+.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle {
+  -webkit-app-region: no-drag;
+  border: 0;
+  z-index: 15;
+}
+.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:after,
+.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle:after,
+.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle:after {
+  content: "";
+  height: 100%;
+  width: 1px;
+  background: linear-gradient(180deg, var(--frame-outline-color) var(--header-height), var(--divider-color) var(--header-height));
+  top: 0;
+  position: absolute;
+}
+.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:hover:after,
+.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle:hover:after,
+.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle:hover:after {
+  background: var(--divider-color-hover);
+}
+.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle:after {
+  left: 0;
+}
+.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:after,
+.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle:after {
+  right: 0;
+}
+
+/* Colorful headings */
+body.colorful-headings {
+  --h1-color: var(--color-red);
+  --h2-color:var(--color-orange);
+  --h3-color:var(--color-yellow);
+  --h4-color:var(--color-green);
+  --h5-color:var(--color-blue);
+  --h6-color:var(--color-purple);
+}
+body.colorful-headings .modal {
+  --h1-color: var(--text-normal);
+  --h2-color: var(--text-normal);
+  --h3-color: var(--text-normal);
+  --h4-color: var(--text-normal);
+  --h5-color: var(--text-normal);
+  --h6-color: var(--text-normal);
+}
+
+/* Focus mode */
+/* MIT License | Copyright (c) Stephan Ango (@kepano) */
+/* Hide app ribbon */
+.workspace-ribbon.mod-left {
+  border-left: 0;
+  transition: none;
+}
+
+:root {
+  --focus-animation-duration: 0.1s;
+}
+
+.minimal-focus-mode.is-translucent .workspace-ribbon.mod-left.is-collapsed, .minimal-focus-mode.is-translucent .workspace-ribbon.mod-left.is-collapsed:before {
+  background-color: var(--background-primary) !important;
+}
+.minimal-focus-mode .workspace-ribbon.mod-left {
+  transition: background-color 0s linear 0s;
+}
+.minimal-focus-mode .workspace-ribbon.mod-left.is-collapsed {
+  border-color: transparent;
+  background-color: var(--background-primary);
+}
+.minimal-focus-mode .workspace-ribbon.mod-left.is-collapsed:before {
+  background-color: var(--background-primary);
+  border-color: transparent;
+}
+.minimal-focus-mode .workspace-ribbon.mod-left.is-collapsed .side-dock-actions,
+.minimal-focus-mode .workspace-ribbon.mod-left.is-collapsed .side-dock-settings {
+  opacity: 0;
+  transition: opacity var(--focus-animation-duration) ease-in-out 0.1s;
+}
+.minimal-focus-mode .workspace-ribbon.mod-left.is-collapsed:hover .side-dock-actions,
+.minimal-focus-mode .workspace-ribbon.mod-left.is-collapsed:hover .side-dock-settings {
+  opacity: 1;
+  transition: opacity var(--focus-animation-duration) ease-in-out 0.1s;
+}
+.minimal-focus-mode.borders-title .workspace-ribbon.mod-left.is-collapsed {
+  border-right: none;
+}
+.minimal-focus-mode .mod-root .sidebar-toggle-button.mod-right {
+  opacity: 0;
+  transition: opacity var(--focus-animation-duration) ease-in-out 0.5s;
+}
+.minimal-focus-mode:not(.minimal-status-off) .status-bar {
+  opacity: 0;
+  transition: opacity var(--focus-animation-duration) ease-in-out;
+}
+.minimal-focus-mode .status-bar:hover {
+  opacity: 1;
+  transition: opacity var(--focus-animation-duration) ease-in-out;
+}
+.minimal-focus-mode .mod-root .workspace-tabs {
+  position: relative;
+}
+.minimal-focus-mode .mod-root .workspace-tabs:before:hover {
+  background-color: blue;
+}
+.minimal-focus-mode .mod-root .workspace-tab-header-container {
+  height: 0px;
+  transition: all var(--focus-animation-duration) linear 0.6s;
+  --tab-outline-width: 0px;
+}
+.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner,
+.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-new-tab,
+.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-tab-list {
+  opacity: 0;
+  transition: all var(--focus-animation-duration) linear 0.6s;
+}
+.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-spacer:before {
+  width: 100%;
+  content: " ";
+  background-color: transparent;
+  height: 15px;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+}
+.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner .workspace-tab-header.is-active,
+.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner .workspace-tab-header.is-active::before,
+.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner .workspace-tab-header.is-active::after {
+  transition: all var(--focus-animation-duration) linear 0.6s;
+}
+.minimal-focus-mode .mod-root .workspace-tab-header-container:hover {
+  height: var(--header-height);
+  --tab-outline-width: 1px;
+  transition: all var(--focus-animation-duration) linear 0.05s;
+}
+.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .sidebar-toggle-button.mod-right,
+.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-container-inner,
+.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-new-tab,
+.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-tab-list {
+  opacity: 1;
+  transition: all var(--focus-animation-duration) linear 0.05s;
+}
+.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-container-inner .workspace-tab-header.is-active,
+.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-container-inner .workspace-tab-header.is-active::before,
+.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-container-inner .workspace-tab-header.is-active::after {
+  transition: all var(--focus-animation-duration) linear 0.05s;
+}
+.minimal-focus-mode.mod-macos:not(.is-fullscreen) .workspace:not(.is-left-sidedock-open) .mod-root .workspace-tabs.mod-stacked .workspace-tab-container .workspace-tab-header-inner {
+  padding-top: 30px;
+}
+
+/* Collapse pane header */
+body.show-view-header .app-container .workspace-split.mod-root > .workspace-leaf .view-header {
+  transition: height var(--focus-animation-duration) linear 0.1s;
+}
+
+body.minimal-focus-mode.show-view-header .mod-top-left-space .view-header {
+  padding-left: var(--frame-left-space);
+}
+body.minimal-focus-mode.show-view-header .mod-root .workspace-leaf .view-header {
+  height: 0em;
+  transition: all var(--focus-animation-duration) linear 0.5s;
+}
+body.minimal-focus-mode.show-view-header .view-header::after {
+  width: 100%;
+  content: " ";
+  background-color: transparent;
+  height: 40px;
+  position: absolute;
+  z-index: -9;
+  top: 0;
+}
+body.minimal-focus-mode.show-view-header .view-header-nav-buttons,
+body.minimal-focus-mode.show-view-header .view-header-title-container,
+body.minimal-focus-mode.show-view-header .view-actions {
+  opacity: 0;
+  transition: all var(--focus-animation-duration) linear 0.5s;
+}
+body.minimal-focus-mode.show-view-header .mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header,
+body.minimal-focus-mode.show-view-header .mod-root .workspace-leaf .view-header:hover,
+body.minimal-focus-mode.show-view-header .mod-root .workspace-leaf .view-header:focus-within {
+  height: calc(var(--header-height) + 2px);
+  transition: all var(--focus-animation-duration) linear 0.1s;
+}
+body.minimal-focus-mode.show-view-header .mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header .view-header-nav-buttons,
+body.minimal-focus-mode.show-view-header .mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header .view-actions,
+body.minimal-focus-mode.show-view-header .mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header .view-header-title-container,
+body.minimal-focus-mode.show-view-header .view-header:hover .view-header-nav-buttons,
+body.minimal-focus-mode.show-view-header .view-header:hover .view-actions,
+body.minimal-focus-mode.show-view-header .view-header:hover .view-header-title-container,
+body.minimal-focus-mode.show-view-header .view-header:focus-within .view-header-nav-buttons,
+body.minimal-focus-mode.show-view-header .view-header:focus-within .view-actions,
+body.minimal-focus-mode.show-view-header .view-header:focus-within .view-header-title-container {
+  opacity: 1;
+  transition: all var(--focus-animation-duration) linear 0.1s;
+}
+body.minimal-focus-mode.show-view-header .view-content {
+  height: 100%;
+}
+
+/* Full width media  */
+.full-width-media {
+  --iframe-width: 100%;
+}
+.full-width-media .markdown-source-view .image-embed img:not(.link-favicon):not(.emoji):not([width]),
+.full-width-media .markdown-source-view img:not(.link-favicon):not(.emoji):not([width]),
+.full-width-media .markdown-source-view .external-embed,
+.full-width-media .markdown-source-view audio,
+.full-width-media .markdown-source-view video,
+.full-width-media .markdown-preview-view .image-embed img:not(.link-favicon):not(.emoji):not([width]),
+.full-width-media .markdown-preview-view img:not(.link-favicon):not(.emoji):not([width]),
+.full-width-media .markdown-preview-view .external-embed,
+.full-width-media .markdown-preview-view audio,
+.full-width-media .markdown-preview-view video {
+  width: 100%;
+}
+.full-width-media .image-embed:not([width]) .image-wrapper {
+  width: 100%;
+}
+
+.markdown-source-view video,
+.markdown-source-view img:not(.emoji),
+.markdown-rendered video,
+.markdown-rendered img:not(.emoji) {
+  border-radius: var(--image-radius);
+}
+
+body:not(.is-mobile) div.image-embed:focus-within .image-wrapper::after {
+  border-radius: var(--image-radius);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Table helper classes for alternate styles */
+/* MIT License | Copyright (c) Stephan Ango (@kepano) */
+.table-small .bases-view {
+  --bases-table-font-size: 85%;
+}
+.table-small table:not(.calendar) {
+  --table-text-size: 85%;
+}
+
+.table-tiny .bases-view {
+  --bases-table-font-size: 75%;
+}
+.table-tiny table:not(.calendar) {
+  --table-text-size: 75%;
+}
+
+.row-hover {
+  --table-edge-cell-padding-first: 8px;
+  --table-edge-cell-padding-last: 8px;
+  --table-row-background-hover: var(--hl1);
+  --table-row-alt-background-hover: var(--hl1);
+}
+
+.row-alt {
+  --table-row-alt-background: var(--background-table-rows);
+  --table-row-alt-background-hover: var(--background-table-rows);
+  --table-edge-cell-padding-first: 8px;
+  --table-edge-cell-padding-last: 8px;
+}
+
+.col-alt .markdown-rendered:not(.cards) {
+  --table-column-alt-background: var(--background-table-rows);
+}
+
+.table-tabular table:not(.calendar) {
+  font-variant-numeric: tabular-nums;
+}
+
+.table-center .markdown-preview-view .markdown-preview-sizer table, .table-center.markdown-preview-view .markdown-preview-sizer table,
+.table-center .markdown-source-view.mod-cm6 .table-wrapper, .table-center.markdown-source-view.mod-cm6 .table-wrapper {
+  margin: 0 auto;
+}
+
+.table-lines {
+  --table-border-width: var(--border-width);
+  --table-header-border-width: var(--border-width);
+  --table-column-first-border-width: var(--border-width);
+  --table-column-last-border-width:var(--border-width);
+  --table-row-last-border-width: var(--border-width);
+  --table-edge-cell-padding: 8px;
+  --table-edge-cell-padding-first: 8px;
+  --table-edge-cell-padding-last: 8px;
+  --table-add-button-border-width: 1px;
+}
+
+.table-nowrap {
+  --table-white-space: nowrap;
+}
+
+.table-nowrap-first table thead > tr > th:first-child,
+.table-nowrap-first table tbody > tr > td:first-child {
+  --table-white-space: nowrap;
+}
+
+.trim-cols,
+.table-nowrap .table-wrap {
+  --table-white-space: normal;
+}
+
+.table-numbers {
+  --table-numbers-padding-right: 0.5em;
+}
+.table-numbers table:not(.calendar) {
+  counter-reset: section;
+}
+.table-numbers table:not(.calendar) > thead > tr > th:first-child {
+  white-space: nowrap;
+}
+.table-numbers table:not(.calendar) > thead > tr > th:first-child::before {
+  content: " ";
+  padding-right: var(--table-numbers-padding-right);
+  display: inline-block;
+  min-width: 2em;
+}
+.table-numbers table:not(.calendar) > thead > tr > th:first-child .table-cell-wrapper,
+.table-numbers table:not(.calendar) > thead > tr > th:first-child .cm-s-obsidian {
+  display: inline-block;
+  min-width: 10px;
+}
+.table-numbers table:not(.calendar):not(.table-editor) > tbody > tr > td:first-child, .table-numbers table:not(.calendar).table-editor > tbody > tr > td:first-child .table-cell-wrapper {
+  white-space: nowrap;
+}
+.table-numbers table:not(.calendar):not(.table-editor) > tbody > tr > td:first-child::before, .table-numbers table:not(.calendar).table-editor > tbody > tr > td:first-child .table-cell-wrapper::before {
+  counter-increment: section;
+  content: counter(section) " ";
+  text-align: center;
+  padding-right: var(--table-numbers-padding-right);
+  display: inline-block;
+  min-width: 2em;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+.table-numbers table:not(.calendar):not(.table-editor) > tbody > tr > td:first-child .cm-s-obsidian, .table-numbers table:not(.calendar).table-editor > tbody > tr > td:first-child .table-cell-wrapper .cm-s-obsidian {
+  display: inline-block;
+  min-width: 10px;
+}
+.table-numbers .table-editor {
+  --table-numbers-padding-right: 0;
+}
+
+.row-lines-off {
+  --table-row-last-border-width: 0;
+  --bases-table-row-border-width: 0;
+}
+.row-lines-off table:not(.calendar) tbody > tr > td,
+.row-lines-off .table-view-table > tbody > tr > td,
+.row-lines-off table:not(.calendar) tbody > tr:last-child > td {
+  border-bottom: none;
+}
+
+.row-lines:not(.table-lines) .markdown-source-view:not(.cards),
+.row-lines:not(.table-lines) .markdown-preview-view:not(.cards) {
+  --table-row-last-border-width: 0;
+}
+.row-lines:not(.table-lines) .markdown-source-view:not(.cards) table:not(.calendar) tbody > tr:not(:last-child) > td,
+.row-lines:not(.table-lines) .markdown-source-view:not(.cards) .table-view-table > tbody > tr:not(:last-child) > td,
+.row-lines:not(.table-lines) .markdown-preview-view:not(.cards) table:not(.calendar) tbody > tr:not(:last-child) > td,
+.row-lines:not(.table-lines) .markdown-preview-view:not(.cards) .table-view-table > tbody > tr:not(:last-child) > td {
+  border-bottom: var(--table-border-width) solid var(--table-border-color);
+}
+
+.col-lines {
+  --bases-table-column-border-width: var(--table-border-width);
+}
+.col-lines table:not(.calendar) tbody > tr > td:not(:last-child),
+.col-lines .table-view-table thead > tr > th:not(:last-child),
+.col-lines .table-view-table > tbody > tr > td:not(:last-child) {
+  border-right: var(--table-border-width) solid var(--background-modifier-border);
+}
+
+/* Dark mode images  */
+/* MIT License | Copyright (c) Stephan Ango (@kepano) */
+:root {
+  --image-mix: normal ;
+}
+
+.image-blend-light {
+  --image-mix: multiply;
+}
+
+.theme-dark .markdown-source-view img,
+.theme-dark .markdown-preview-view img {
+  opacity: var(--image-muted);
+  transition: opacity 0.25s linear;
+}
+
+@media print {
+  body {
+    --image-muted: 1;
+  }
+}
+.theme-dark .print-preview img,
+.theme-dark .markdown-source-view img:hover,
+.theme-dark .markdown-preview-view img:hover {
+  opacity: 1;
+  transition: opacity 0.25s linear;
+}
+
+.theme-light img {
+  mix-blend-mode: var(--image-mix);
+}
+
+/* Invert  */
+div[src$="#blend"],
+div[src$="#invert"] {
+  background-color: var(--background-primary);
+}
+
+.theme-dark img[src$="#invert"],
+.theme-dark div[src$="#invert"] img,
+.theme-dark span[src$="#invert"] img {
+  filter: invert(1) hue-rotate(180deg);
+  mix-blend-mode: screen;
+}
+.theme-dark img[src$="#blend"],
+.theme-dark div[src$="#blend"] img,
+.theme-dark span[src$="#blend"] img {
+  mix-blend-mode: screen;
+}
+.theme-dark .img-blend {
+  mix-blend-mode: screen;
+}
+
+.theme-light img[src$="#blend"],
+.theme-light div[src$="#blend"] img,
+.theme-light span[src$="#blend"] img {
+  mix-blend-mode: multiply;
+}
+.theme-light img[src$="#invertW"],
+.theme-light div[src$="#invertW"] img,
+.theme-light span[src$=invertW] img {
+  filter: invert(1) hue-rotate(180deg);
+}
+.theme-light .img-blend {
+  mix-blend-mode: multiply;
+}
+
+/* Circle */
+img[src$="#circle"]:not(.emoji),
+span[src$="#circle"] img:not(.emoji),
+span[src$="#round"] img:not(.emoji) {
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+}
+
+/* Outline */
+img[src$="#outline"],
+div[src$="#outline"] img,
+span[src$="#outline"] img {
+  border: 1px solid var(--ui1);
+}
+

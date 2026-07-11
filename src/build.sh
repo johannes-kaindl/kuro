@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build theme.css from src-v4 fragments. Prepend HEADER, then numeric glob.
+# Build theme.css from Minimal-skeleton + Kuro fragments. Prepend HEADER, then numeric glob.
 # Zero-dependency, deterministic. Edit fragments, never theme.css.
 set -euo pipefail
 cd "$(dirname "$0")"

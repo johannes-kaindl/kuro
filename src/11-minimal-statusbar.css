@@ -1,0 +1,228 @@
+/* Status bar */
+.minimal-status-off .status-bar {
+  --status-bar-position: static;
+  --status-bar-radius: 0;
+  --status-bar-border-width: 1px 0 0 0;
+  --status-bar-background: var(--background-secondary);
+  --status-bar-border-color: var(--ui1);
+}
+
+body:not(.minimal-status-off) .status-bar {
+  background-color: var(--background-primary);
+  --status-bar-border-width: 0;
+}
+
+.status-bar {
+  transition: color 200ms linear;
+  color: var(--text-faint);
+  font-size: var(--font-adaptive-smallest);
+}
+.status-bar .sync-status-icon.mod-working,
+.status-bar .sync-status-icon.mod-success {
+  color: var(--text-faint);
+}
+.status-bar:hover .sync-status-icon.mod-working, .status-bar:hover .sync-status-icon.mod-success, .status-bar:hover {
+  color: var(--text-muted);
+  transition: color 200ms linear;
+}
+.status-bar .plugin-sync:hover .sync-status-icon.mod-working,
+.status-bar .plugin-sync:hover .sync-status-icon.mod-success {
+  color: var(--text-normal);
+}
+.status-bar .status-bar-item {
+  cursor: var(--cursor) !important;
+}
+.status-bar .status-bar-item.plugin-editor-status:hover, .status-bar .status-bar-item.plugin-sync:hover, .status-bar .status-bar-item.cMenu-statusbar-button:hover, .status-bar .status-bar-item.mod-clickable:hover {
+  text-align: center;
+  background-color: var(--background-modifier-hover) !important;
+}
+
+.tab-stack-top-flipped {
+  --tab-stacked-text-transform: rotate(180deg);
+  --tab-stacked-text-align: right;
+}
+
+.tab-stack-center {
+  --tab-stacked-text-align: center;
+}
+
+.tab-stack-center-flipped {
+  --tab-stacked-text-transform: rotate(180deg);
+  --tab-stacked-text-align: center;
+}
+
+.tab-stack-bottom {
+  --tab-stacked-text-transform: rotate(180deg);
+}
+
+.tab-stack-bottom-flipped {
+  --tab-stacked-text-align: right;
+}
+
+.workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container .workspace-tab-header-inner {
+  flex-direction: var(--tab-stacked-spine-order);
+}
+
+/* Title Bar */
+.view-header-title-parent,
+.view-header-title {
+  text-overflow: ellipsis;
+}
+
+.view-header-title-container:not(.mod-at-end):after {
+  display: none;
+}
+
+/* Alignment */
+body:not(.is-mobile) .view-actions .view-action:last-child {
+  margin-left: -1px;
+}
+
+body:not(.minimal-focus-mode) .workspace-ribbon:not(.is-collapsed) ~ .mod-root .view-actions,
+.minimal-focus-mode .workspace-ribbon:not(.is-collapsed) ~ .mod-root .view-header:hover .view-actions,
+.workspace-ribbon.mod-left.is-collapsed ~ .mod-root .view-header:hover .view-actions,
+.mod-right.is-collapsed ~ .mod-root .view-header:hover .view-actions,
+.view-action.is-active:hover {
+  opacity: 1;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.view-header-title-container {
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.view-header-title-container:focus-within {
+  opacity: 1;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.workspace-tab-header-container:hover + .workspace-tab-container .view-header-title-container,
+.view-header:hover .view-header-title-container {
+  opacity: 1;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.is-phone .view-header-title-container,
+.minimal-tab-title-visible .view-header-title-container {
+  opacity: 1;
+}
+
+.minimal-tab-title-hidden .view-header-title-container {
+  opacity: 0;
+}
+.minimal-tab-title-hidden .view-header-title-container:focus-within {
+  opacity: 1;
+  transition: opacity 0.1s ease-in-out;
+}
+.minimal-tab-title-hidden .workspace-tab-header-container:hover + .workspace-tab-container .view-header-title-container,
+.minimal-tab-title-hidden .view-header:hover .view-header-title-container {
+  opacity: 0;
+}
+
+/* Window frame */
+body.window-title-off .titlebar-text {
+  display: none;
+}
+
+.titlebar-button-container.mod-right {
+  background-color: transparent !important;
+}
+
+.is-hidden-frameless.theme-dark:not(.minimal-dark-black):not(.colorful-frame),
+.is-hidden-frameless.theme-light:not(.minimal-light-tonal):not(.colorful-frame):not(.minimal-light-white) {
+  --titlebar-background: var(--bg1);
+}
+.is-hidden-frameless.theme-dark:not(.minimal-dark-black):not(.colorful-frame).is-focused .sidebar-toggle-button.mod-right,
+.is-hidden-frameless.theme-dark:not(.minimal-dark-black):not(.colorful-frame).is-focused .workspace-ribbon.mod-left.is-collapsed,
+.is-hidden-frameless.theme-dark:not(.minimal-dark-black):not(.colorful-frame).is-focused .workspace-tabs.mod-top,
+.is-hidden-frameless.theme-light:not(.minimal-light-tonal):not(.colorful-frame):not(.minimal-light-white).is-focused .sidebar-toggle-button.mod-right,
+.is-hidden-frameless.theme-light:not(.minimal-light-tonal):not(.colorful-frame):not(.minimal-light-white).is-focused .workspace-ribbon.mod-left.is-collapsed,
+.is-hidden-frameless.theme-light:not(.minimal-light-tonal):not(.colorful-frame):not(.minimal-light-white).is-focused .workspace-tabs.mod-top {
+  --titlebar-background-focused: var(--bg1);
+}
+.is-hidden-frameless.theme-dark:not(.minimal-dark-black):not(.colorful-frame):not(.minimal-dark-tonal):not(.minimal-light-white) .workspace-ribbon.mod-left:not(.is-collapsed),
+.is-hidden-frameless.theme-light:not(.minimal-light-tonal):not(.colorful-frame):not(.minimal-light-white):not(.minimal-dark-tonal):not(.minimal-light-white) .workspace-ribbon.mod-left:not(.is-collapsed) {
+  --titlebar-background: var(--bg2);
+}
+
+/* Trying for a smoother animation */
+.mod-macos.is-hidden-frameless:not(.is-popout-window) .sidebar-toggle-button.mod-right {
+  right: 0;
+  padding-right: var(--size-4-2);
+}
+
+body.is-focused {
+  --titlebar-background-focused: var(--background-secondary);
+}
+
+.is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container {
+  --tab-container-background: var(--background-secondary);
+}
+
+.mod-root .workspace-tab-header-status-icon {
+  color: var(--text-muted);
+}
+
+.is-collapsed .workspace-sidedock-vault-profile {
+  opacity: 0;
+}
+
+body:not(.is-mobile).hide-help .workspace-drawer-vault-actions .clickable-icon:first-child {
+  display: none;
+}
+
+body:not(.is-mobile).hide-settings .workspace-drawer-vault-actions .clickable-icon:last-child {
+  display: none;
+}
+
+body:not(.is-mobile).hide-help.hide-settings .workspace-drawer-vault-actions {
+  display: none !important;
+}
+
+body:not(.is-grabbing):not(.is-fullscreen).labeled-nav.is-hidden-frameless.vault-profile-top .mod-left-split .mod-top .workspace-tab-header-container {
+  -webkit-app-region: no-drag;
+}
+body:not(.is-grabbing):not(.is-fullscreen).labeled-nav.is-hidden-frameless.vault-profile-top .mod-left-split .mod-top .workspace-tab-header-container:before {
+  position: absolute;
+  top: 0;
+  content: "";
+  height: var(--header-height);
+  width: 100%;
+  -webkit-app-region: drag;
+}
+
+body:not(.is-mobile):not(.labeled-nav).vault-profile-top .workspace-split.mod-left-split .mod-top .workspace-tab-container {
+  margin-top: calc(var(--header-height) + 8px);
+}
+body:not(.is-mobile):not(.labeled-nav).vault-profile-top .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
+  -webkit-app-region: no-drag;
+  position: absolute;
+  top: var(--header-height);
+  z-index: 6;
+  width: 100%;
+  border-top: 0;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+body:not(.is-mobile):not(.labeled-nav).vault-profile-top .workspace-split.mod-left-split .workspace-sidedock-vault-profile .workspace-drawer-vault-switcher {
+  padding-left: var(--size-4-2);
+}
+
+body:not(.is-mobile).labeled-nav.vault-profile-top .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
+  -webkit-app-region: no-drag;
+  position: absolute;
+  top: var(--labeled-nav-top-margin);
+  z-index: 6;
+  width: 100%;
+  background-color: transparent;
+  border-top: 0;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+body:not(.is-mobile).labeled-nav.vault-profile-top .workspace-split.mod-left-split .workspace-sidedock-vault-profile .workspace-drawer-vault-switcher {
+  padding-left: var(--size-4-2);
+}
+
+.vault-profile-top .workspace-tab-header-container-inner {
+  --labeled-nav-top-margin: 84px;
+}
+

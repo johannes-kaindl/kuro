@@ -1,0 +1,1328 @@
+/* Color schemes */
+/* Atom */
+.theme-dark.minimal-atom-dark {
+  --color-red-rgb: 225,109,118;
+  --color-orange-rgb: 209,154,102;
+  --color-yellow-rgb: 206,193,103;
+  --color-green-rgb: 152,195,121;
+  --color-cyan-rgb: 88,182,194;
+  --color-blue-rgb: 98,175,239;
+  --color-purple-rgb: 198,120,222;
+  --color-pink-rgb: 225,109,118;
+  --color-red:#e16d76;
+  --color-orange:#d19a66;
+  --color-yellow:#cec167;
+  --color-green:#98c379;
+  --color-cyan:#58b6c2;
+  --color-blue:#62afef;
+  --color-purple:#c678de;
+  --color-pink:#e16d76;
+}
+
+.theme-light.minimal-atom-light {
+  --color-red-rgb: 228,87,73;
+  --color-orange-rgb: 183,107,2;
+  --color-yellow-rgb: 193,131,2;
+  --color-green-rgb: 80,161,80;
+  --color-cyan-rgb: 13,151,179;
+  --color-blue-rgb: 98,175,239;
+  --color-purple-rgb: 166,38,164;
+  --color-pink-rgb: 228,87,73;
+  --color-red:#e45749;
+  --color-orange:#b76b02;
+  --color-yellow:#c18302;
+  --color-green:#50a150;
+  --color-cyan:#0d97b3;
+  --color-blue:#62afef;
+  --color-purple:#a626a4;
+  --color-pink:#e45749;
+  --base-h:106;
+  --base-s:0%;
+  --base-l:98%;
+  --accent-h:231;
+  --accent-s:76%;
+  --accent-l:62%;
+  --bg1:#fafafa;
+  --bg2:#eaeaeb;
+  --bg3:rgba(0,0,0,.1);
+  --ui1:#dbdbdc;
+  --ui2:#d8d8d9;
+  --tx1:#232324;
+  --tx2:#8e8e90;
+  --tx3:#a0a1a8;
+  --hl1:rgba(180,180,183,0.3);
+  --hl2:rgba(209,154,102,0.35);
+}
+
+.theme-light.minimal-atom-light.minimal-light-white {
+  --bg3:#eaeaeb;
+}
+
+.theme-light.minimal-atom-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-atom-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-atom-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-atom-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-atom-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-atom-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-atom-dark {
+  --base-h:220;
+  --base-s:12%;
+  --base-l:18%;
+  --accent-h:220;
+  --accent-s:86%;
+  --accent-l:65%;
+  --bg1:#282c34;
+  --bg2:#21252c;
+  --bg3:#3a3f4b;
+  --divider-color:#181a1f;
+  --tab-outline-color:#181a1f;
+  --tx1:#d8dae1;
+  --tx2:#898f9d;
+  --tx3:#5d6370;
+  --hl1:rgba(114,123,141,0.3);
+  --hl2:rgba(209,154,102,0.3);
+  --sp1:#ffffff;
+}
+
+.theme-dark.minimal-atom-dark.minimal-dark-black {
+  --base-d:5%;
+  --bg3:#282c34;
+  --divider-color:#282c34;
+  --tab-outline-color:#282c34;
+}
+
+/*
+ayu
+MIT License
+Copyright (c) Konstantin Pschera <me@kons.ch> (kons.ch)
+https://github.com/ayu-theme/ayu-colors
+*/
+.theme-light.minimal-ayu-light {
+  --color-red-rgb: 230,80,80;
+  --color-orange-rgb: 250,141,62;
+  --color-yellow-rgb: 242,174,73;
+  --color-green-rgb: 108,191,67;
+  --color-cyan-rgb: 76,191,153;
+  --color-blue-rgb: 57,158,230;
+  --color-purple-rgb: 163,122,204;
+  --color-pink-rgb: 255,115,131;
+  --color-red:#e65050;
+  --color-orange:#fa8d3e;
+  --color-yellow:#f2ae49;
+  --color-green:#6CBF43;
+  --color-cyan:#4cbf99;
+  --color-blue:#399ee6;
+  --color-purple:#a37acc;
+  --color-pink:#ff7383;
+  --base-h:210;
+  --base-s:17%;
+  --base-l:98%;
+  --accent-h:36;
+  --accent-s:100%;
+  --accent-l:50%;
+  --bg1:#ffffff;
+  --bg2:#f8f9fa;
+  --bg3:rgba(209,218,224,0.5);
+  --ui1:#E6EAED;
+  --tx1:#5C6165;
+  --tx2:#8A9199;
+  --tx3:#AAAEB0;
+  --hl1:rgba(3,91,214,0.15);
+}
+
+.theme-dark.minimal-ayu-dark {
+  --color-red-rgb: 255,102,102;
+  --color-orange-rgb: 250,173,102;
+  --color-yellow-rgb: 255,209,55;
+  --color-green-rgb: 135,217,108;
+  --color-cyan-rgb: 149,230,203;
+  --color-blue-rgb: 115,208,255;
+  --color-purple-rgb: 223,191,255;
+  --color-pink-rgb: 242,121,131;
+  --color-red:#ff6666;
+  --color-orange:#ffad66;
+  --color-yellow:#ffd137;
+  --color-green:#87D96C;
+  --color-cyan:#95e6cb;
+  --color-blue:#73d0ff;
+  --color-purple:#dfbfff;
+  --color-pink:#f27983;
+}
+
+.theme-light.minimal-ayu-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-ayu-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-ayu-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-ayu-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-ayu-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-ayu-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-ayu-dark {
+  --base-h:222;
+  --base-s:22%;
+  --base-l:15%;
+  --accent-h:35;
+  --accent-s:100%;
+  --accent-l:60%;
+  --bg1:#232937;
+  --bg2:#1E2431;
+  --bg3:rgba(51,61,80,0.5);
+  --ui1:#333C4A;
+  --ui2:#333C4A;
+  --ui3:#333C4A;
+  --tx1:#cccac2;
+  --tx2:#707A8C;
+  --tx3:#495063;
+  --hl1:rgba(64,159,255,0.25);
+}
+
+.theme-dark.minimal-ayu-dark.minimal-dark-black {
+  --accent-h:40;
+  --accent-s:75%;
+  --accent-l:61%;
+  --bg3:#0E1017;
+  --tx1:#BFBDB6;
+  --divider-color:#11151C;
+  --tab-outline-color:#11151C;
+}
+
+/*
+Catppuccin
+MIT License
+Copyright (c) 2021 Catppuccin
+https://github.com/catppuccin/catppuccin
+*/
+.theme-light.minimal-catppuccin-light {
+  --color-red-rgb: 230,69,83;
+  --color-orange-rgb: 254,100,12;
+  --color-yellow-rgb: 223,142,29;
+  --color-green-rgb: 64,160,43;
+  --color-cyan-rgb: 23,146,154;
+  --color-blue-rgb: 33,102,246;
+  --color-purple-rgb: 137,56,239;
+  --color-pink-rgb: 234,119,203;
+  --color-red: #E64553;
+  --color-orange: #FE640C;
+  --color-yellow: #DF8E1D;
+  --color-green: #40A02B;
+  --color-cyan: #17929A;
+  --color-blue: #2166F6;
+  --color-purple: #8938EF;
+  --color-pink: #EA77CB;
+  --base-h: 228;
+  --base-s: 20%;
+  --base-l: 95%;
+  --accent-h: 11;
+  --accent-s: 59%;
+  --accent-l: 67%;
+  --bg1: #F0F1F5;
+  --bg2: #DCE0E8;
+  --bg3: hsla(228,11%,65%,.25);
+  --ui1: #CCD0DA;
+  --ui2: #BCC0CC;
+  --ui3: #ACB0BE;
+  --tx1: #4D4F69;
+  --tx2: #5D5F77;
+  --tx3: #8D8FA2;
+  --hl1: rgba(172,176,190,.3);
+  --hl2: rgba(223,142,29,.3);
+}
+
+.theme-dark.minimal-catppuccin-dark {
+  --color-red-rgb: 235,153,156;
+  --color-orange-rgb: 239,160,118;
+  --color-yellow-rgb: 229,200,144;
+  --color-green-rgb: 166,209,138;
+  --color-cyan-rgb: 129,200,190;
+  --color-blue-rgb: 140,170,238;
+  --color-purple-rgb: 202,158,230;
+  --color-pink-rgb: 244,185,229;
+  --color-red: #EB999C;
+  --color-orange: #EFA076;
+  --color-yellow: #E5C890;
+  --color-green: #A6D18A;
+  --color-cyan: #81C8BE;
+  --color-blue: #8CAAEE;
+  --color-purple: #CA9EE6;
+  --color-pink: #F4B9E5;
+}
+
+.theme-light.minimal-catppuccin-light.minimal-light-tonal {
+  --bg2: #DCE0E8;
+}
+
+.theme-light.minimal-catppuccin-light.minimal-light-white {
+  --bg3: #F0F1F5;
+  --ui1: #DCE0E8;
+}
+
+.theme-light.minimal-catppuccin-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-catppuccin-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-catppuccin-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-catppuccin-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-catppuccin-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-catppuccin-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-catppuccin-dark {
+  --base-h: 229;
+  --base-s: 19%;
+  --base-l: 23%;
+  --accent-h: 10;
+  --accent-s: 57%;
+  --accent-l: 88%;
+  --bg1: #303446;
+  --bg2: #242634;
+  --bg3: hsla(229,13%,52%,0.25);
+  --ui1: #41455A;
+  --ui2: #51576D;
+  --ui3: #626880;
+  --tx1: #C6D0F5;
+  --tx2: #A6ADCE;
+  --tx3: #848BA7;
+  --sp1: #242634;
+  --hl1: rgba(98,104,128,.5);
+  --hl2: rgba(223,142,29,.4);
+}
+
+.theme-dark.minimal-catppuccin-dark.minimal-dark-black {
+  --ui1: #303446;
+  --hl2: rgba(223,142,29,.5);
+}
+
+/*
+Dracula
+MIT License
+Copyright (c) 2016 Dracula Theme
+https://github.com/dracula/dracula-theme
+*/
+.theme-dark.minimal-dracula-dark {
+  --color-red-rgb: 255,85,85;
+  --color-orange-rgb: 255,184,108;
+  --color-yellow-rgb: 241,250,140;
+  --color-green-rgb: 80,250,123;
+  --color-cyan-rgb: 139,233,253;
+  --color-blue-rgb: 98,114,164;
+  --color-purple-rgb: 189,147,249;
+  --color-pink-rgb: 255,121,198;
+  --color-red:#ff5555;
+  --color-orange:#ffb86c;
+  --color-yellow:#f1fa8c;
+  --color-green:#50fa7b;
+  --color-cyan:#8be9fd;
+  --color-blue:#6272a4;
+  --color-purple:#bd93f9;
+  --color-pink:#ff79c6;
+}
+
+.theme-light.minimal-dracula-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-dracula-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-dracula-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-dracula-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-dracula-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-dracula-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-dracula-dark {
+  --base-h: 232;
+  --base-s: 16%;
+  --base-l: 19%;
+  --accent-h: 265;
+  --accent-s: 89%;
+  --accent-l: 78%;
+  --bg1: #282a37;
+  --bg2: #21222c;
+  --ui2: #44475a;
+  --ui3: #6272a4;
+  --tx1: #f8f8f2;
+  --tx2: #949FBE;
+  --tx3: #6272a4;
+  --hl1:rgba(134, 140, 170, 0.3);
+  --hl2:rgba(189, 147, 249, 0.35);
+}
+
+.theme-dark.minimal-dracula-dark.minimal-dark-black {
+  --ui1:#282a36;
+}
+
+/* Eink */
+.theme-light.minimal-eink-light,
+.theme-dark.minimal-eink-dark {
+  --collapse-icon-color: var(--text-normal);
+  --icon-color-active: var(--bg1);
+  --icon-color-hover: var(--bg1);
+  --icon-color-focused: var(--bg1);
+  --icon-opacity: 1;
+  --indentation-guide-color: var(--tx1);
+  --indentation-guide-color-active: var(--tx1);
+  --indentation-guide-width-active: 3px;
+  --interactive-normal: var(--bg1);
+  --input-shadow: 0 0 0 1px var(--tx1);
+  --link-unresolved-opacity: 1;
+  --link-unresolved-decoration-style: dashed;
+  --link-unresolved-decoration-color: var(--tx1);
+  --metadata-label-background-active: var(--bg1);
+  --metadata-input-background-active: var(--bg1);
+  --modal-border-color: var(--tx1);
+  --modal-border-width: 2px;
+  --prompt-border-color: var(--tx1);
+  --prompt-border-width: 2px;
+  --calendar-dot-active: var(--bg1);
+  --calendar-dot-today: var(--bg1);
+  --calendar-text-active: var(--bg1);
+  --tag-border-width: 1.25px;
+  --tag-background: transparent;
+  --tag-background-hover: transparent;
+  --tag-border-color: var(--tx1);
+  --tag-border-color-hover: var(--tx1);
+  --text-on-accent: var(--bg1);
+  --text-on-accent-inverted: var(--bg1);
+  --text-selection: var(--tx1);
+  --vault-profile-color: var(--tx1);
+  --nav-item-color-hover: var(--bg1);
+}
+.theme-light.minimal-eink-light button:hover,
+.theme-light.minimal-eink-light ::selection,
+.theme-dark.minimal-eink-dark button:hover,
+.theme-dark.minimal-eink-dark ::selection {
+  color: var(--bg1);
+}
+.theme-light.minimal-eink-light .nav-files-container,
+.theme-dark.minimal-eink-dark .nav-files-container {
+  --nav-item-color-active: var(--bg1);
+}
+.theme-light.minimal-eink-light .tree-item-self:hover,
+.theme-dark.minimal-eink-dark .tree-item-self:hover {
+  --nav-collapse-icon-color: var(--bg1);
+}
+.theme-light.minimal-eink-light.is-focused .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-icon, .theme-light.minimal-eink-light.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active, .theme-light.minimal-eink-light.tabs-modern,
+.theme-dark.minimal-eink-dark.is-focused .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-icon,
+.theme-dark.minimal-eink-dark.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active,
+.theme-dark.minimal-eink-dark.tabs-modern {
+  --minimal-tab-text-color-active: var(--bg1);
+  --tab-text-color-focused: var(--bg1);
+  --tab-text-color-focused-active-current: var(--bg1);
+}
+.theme-light.minimal-eink-light .setting-hotkey,
+.theme-dark.minimal-eink-dark .setting-hotkey {
+  background-color: transparent;
+  border: 1px solid var(--tx1);
+}
+.theme-light.minimal-eink-light .suggestion-container,
+.theme-dark.minimal-eink-dark .suggestion-container {
+  border-width: 3px;
+}
+.theme-light.minimal-eink-light .markdown-rendered code,
+.theme-light.minimal-eink-light .cm-s-obsidian span.cm-inline-code,
+.theme-dark.minimal-eink-dark .markdown-rendered code,
+.theme-dark.minimal-eink-dark .cm-s-obsidian span.cm-inline-code {
+  font-weight: 600;
+}
+.theme-light.minimal-eink-light .tree-item-self:hover,
+.theme-light.minimal-eink-light .tree-item-self.is-active,
+.theme-dark.minimal-eink-dark .tree-item-self:hover,
+.theme-dark.minimal-eink-dark .tree-item-self.is-active {
+  --icon-color: var(--bg1);
+}
+.theme-light.minimal-eink-light .metadata-property-icon,
+.theme-dark.minimal-eink-dark .metadata-property-icon {
+  --icon-color-focused: var(--tx1);
+}
+.theme-light.minimal-eink-light .checkbox-container,
+.theme-dark.minimal-eink-dark .checkbox-container {
+  background-color: var(--bg1);
+  box-shadow: 0 0 0 1px var(--tx1);
+  --toggle-thumb-color: var(--tx1);
+}
+.theme-light.minimal-eink-light .checkbox-container.is-enabled,
+.theme-dark.minimal-eink-dark .checkbox-container.is-enabled {
+  background-color: var(--tx1);
+  --toggle-thumb-color: var(--bg1);
+}
+.theme-light.minimal-eink-light.tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active, .theme-light.minimal-eink-light.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active:not(:hover),
+.theme-dark.minimal-eink-dark.tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active,
+.theme-dark.minimal-eink-dark.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active:not(:hover) {
+  background-color: var(--tx1);
+}
+.theme-light.minimal-eink-light.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active, .theme-light.minimal-eink-light.labeled-nav .mod-left-split .mod-top .workspace-tab-header:hover, .theme-light.minimal-eink-light.is-focused.tabs-modern .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-title,
+.theme-light.minimal-eink-light #calendar-container .reset-button:hover,
+.theme-light.minimal-eink-light .status-bar .plugin-sync:hover .sync-status-icon.mod-success,
+.theme-light.minimal-eink-light .status-bar .plugin-sync:hover .sync-status-icon.mod-working,
+.theme-light.minimal-eink-light .status-bar-item.mod-clickable:hover,
+.theme-light.minimal-eink-light .text-icon-button:hover,
+.theme-light.minimal-eink-light .community-item .suggestion-highlight,
+.theme-light.minimal-eink-light .cm-s-obsidian span.cm-formatting-highlight,
+.theme-light.minimal-eink-light .cm-s-obsidian span.cm-highlight,
+.theme-light.minimal-eink-light .markdown-rendered mark,
+.theme-light.minimal-eink-light .suggestion-item.is-selected,
+.theme-light.minimal-eink-light .horizontal-tab-nav-item:hover,
+.theme-light.minimal-eink-light .search-result-file-matched-text,
+.theme-light.minimal-eink-light .vertical-tab-nav-item:hover,
+.theme-light.minimal-eink-light .mod-root .workspace-tab-header-status-icon,
+.theme-light.minimal-eink-light .mod-root .workspace-tab-header:hover, .theme-light.minimal-eink-light:not(.colorful-active) .horizontal-tab-nav-item.is-active, .theme-light.minimal-eink-light:not(.colorful-active) .vertical-tab-nav-item.is-active,
+.theme-light.minimal-eink-light button.mod-cta,
+.theme-light.minimal-eink-light .search-result-file-match:hover,
+.theme-light.minimal-eink-light select:hover, .theme-light.minimal-eink-light .dropdown:hover,
+.theme-dark.minimal-eink-dark.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active,
+.theme-dark.minimal-eink-dark.labeled-nav .mod-left-split .mod-top .workspace-tab-header:hover,
+.theme-dark.minimal-eink-dark.is-focused.tabs-modern .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-title,
+.theme-dark.minimal-eink-dark #calendar-container .reset-button:hover,
+.theme-dark.minimal-eink-dark .status-bar .plugin-sync:hover .sync-status-icon.mod-success,
+.theme-dark.minimal-eink-dark .status-bar .plugin-sync:hover .sync-status-icon.mod-working,
+.theme-dark.minimal-eink-dark .status-bar-item.mod-clickable:hover,
+.theme-dark.minimal-eink-dark .text-icon-button:hover,
+.theme-dark.minimal-eink-dark .community-item .suggestion-highlight,
+.theme-dark.minimal-eink-dark .cm-s-obsidian span.cm-formatting-highlight,
+.theme-dark.minimal-eink-dark .cm-s-obsidian span.cm-highlight,
+.theme-dark.minimal-eink-dark .markdown-rendered mark,
+.theme-dark.minimal-eink-dark .suggestion-item.is-selected,
+.theme-dark.minimal-eink-dark .horizontal-tab-nav-item:hover,
+.theme-dark.minimal-eink-dark .search-result-file-matched-text,
+.theme-dark.minimal-eink-dark .vertical-tab-nav-item:hover,
+.theme-dark.minimal-eink-dark .mod-root .workspace-tab-header-status-icon,
+.theme-dark.minimal-eink-dark .mod-root .workspace-tab-header:hover,
+.theme-dark.minimal-eink-dark:not(.colorful-active) .horizontal-tab-nav-item.is-active,
+.theme-dark.minimal-eink-dark:not(.colorful-active) .vertical-tab-nav-item.is-active,
+.theme-dark.minimal-eink-dark button.mod-cta,
+.theme-dark.minimal-eink-dark .search-result-file-match:hover,
+.theme-dark.minimal-eink-dark select:hover,
+.theme-dark.minimal-eink-dark .dropdown:hover {
+  color: var(--bg1);
+}
+.theme-light.minimal-eink-light .is-flashing,
+.theme-dark.minimal-eink-dark .is-flashing {
+  --text-highlight-bg: #999999 ;
+}
+.theme-light.minimal-eink-light #calendar-container .day:hover,
+.theme-dark.minimal-eink-dark #calendar-container .day:hover {
+  --color-dot: var(--bg1);
+}
+
+.theme-light.minimal-eink-light {
+  --base-h:0;
+  --base-s:0%;
+  --base-l:100%;
+  --accent-h:0;
+  --accent-s:0%;
+  --accent-l:0%;
+  --ax3:#000000;
+  --bg1:#ffffff;
+  --bg2:#ffffff;
+  --bg3:#000000;
+  --ui1:#000000;
+  --ui2:#000000;
+  --ui3:#000000;
+  --tx1:#000000;
+  --tx2:#000000;
+  --tx3:#000000;
+  --hl1:#000000;
+  --hl2:#000000;
+  --sp1:#ffffff;
+  --text-on-accent:#ffffff;
+  --background-modifier-cover: rgba(235,235,235,1);
+}
+
+.theme-light.minimal-eink-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-eink-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-eink-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-eink-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-eink-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-eink-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-eink-dark {
+  --base-h:0;
+  --base-s:0%;
+  --base-l:0%;
+  --accent-h:0;
+  --accent-s:0%;
+  --accent-l:100%;
+  --ax3:#ffffff;
+  --bg1:#000000;
+  --bg2:#000000;
+  --bg3:#ffffff;
+  --ui1:#ffffff;
+  --ui2:#ffffff;
+  --ui3:#ffffff;
+  --tx1:#ffffff;
+  --tx2:#ffffff;
+  --tx3:#ffffff;
+  --hl1:#ffffff;
+  --hl2:#ffffff;
+  --sp1:#000000;
+  --background-modifier-cover: rgba(20,20,20,1);
+  --vault-profile-color: var(--tx1);
+  --vault-profile-color-hover: var(--bg1);
+  --nav-item-color-hover: var(--bg1);
+  --nav-item-color-active: var(--bg1);
+}
+
+.theme-light.minimal-eink-light.minimal-light-tonal {
+  --bg3:#bbbbbb;
+  --ui1:#bbbbbb;
+  --tx3:#999999;
+}
+
+.theme-dark.minimal-eink-dark.minimal-dark-tonal {
+  --bg3:#444444;
+  --ui1:#444444;
+  --tx3:#999999;
+}
+
+.theme-light.minimal-eink-light.minimal-light-tonal,
+.theme-dark.minimal-eink-dark.minimal-dark-tonal {
+  --hl2: var(--bg3);
+  --modal-border-color: var(--ui1);
+  --prompt-border-color: var(--ui1);
+  --tag-border-color: var(--ui1);
+  --text-selection: var(--bg3);
+  --icon-color-active: var(--tx1);
+  --icon-color-focused: var(--tx1);
+  --nav-item-color-active: var(--tx1);
+  --nav-item-color-hover: var(--tx1);
+  --minimal-tab-text-color-active: var(--tx1);
+}
+.theme-light.minimal-eink-light.minimal-light-tonal .is-flashing,
+.theme-light.minimal-eink-light.minimal-light-tonal .search-result-file-matched-text,
+.theme-dark.minimal-eink-dark.minimal-dark-tonal .is-flashing,
+.theme-dark.minimal-eink-dark.minimal-dark-tonal .search-result-file-matched-text {
+  background-color: var(--bg3);
+  color: var(--tx1);
+}
+.theme-light.minimal-eink-light.minimal-light-tonal ::selection,
+.theme-light.minimal-eink-light.minimal-light-tonal #calendar-container .reset-button:hover, .theme-light.minimal-eink-light.minimal-light-tonal:not(.colorful-active) .vertical-tab-nav-item:hover, .theme-light.minimal-eink-light.minimal-light-tonal:not(.colorful-active) .vertical-tab-nav-item.is-active,
+.theme-dark.minimal-eink-dark.minimal-dark-tonal ::selection,
+.theme-dark.minimal-eink-dark.minimal-dark-tonal #calendar-container .reset-button:hover,
+.theme-dark.minimal-eink-dark.minimal-dark-tonal:not(.colorful-active) .vertical-tab-nav-item:hover,
+.theme-dark.minimal-eink-dark.minimal-dark-tonal:not(.colorful-active) .vertical-tab-nav-item.is-active {
+  color: var(--tx1);
+}
+
+/*
+Everforest
+MIT License
+Copyright (c) 2019 sainnhe
+https://github.com/sainnhe/everforest
+*/
+.theme-light.minimal-everforest-light {
+  --color-red-rgb: 248,85,82;
+  --color-orange-rgb: 245,125,38;
+  --color-yellow-rgb: 223,160,0;
+  --color-green-rgb: 141,161,1;
+  --color-cyan-rgb: 53,167,124;
+  --color-blue-rgb: 56,148,196;
+  --color-purple-rgb: 223,105,186;
+  --color-pink-rgb: 223,105,186;
+  --color-red:#f85552;
+  --color-orange:#f57d26;
+  --color-yellow:#dfa000;
+  --color-green:#8da101;
+  --color-cyan:#35a77c;
+  --color-blue:#3795C5;
+  --color-purple:#df69ba;
+  --color-pink:#df69ba;
+  --base-h:44;
+  --base-s:87%;
+  --base-l:94%;
+  --accent-h:83;
+  --accent-s:36%;
+  --accent-l:53%;
+  --bg1:#fdf6e3;
+  --bg2:#efebd4;
+  --bg3:rgba(226,222,198,.5);
+  --ui1:#e0dcc7;
+  --ui2:#bec5b2;
+  --ui3:#bec5b2;
+  --tx1:#5C6A72;
+  --tx2:#829181;
+  --tx3:#a6b0a0;
+  --hl1:rgba(198,214,152,.4);
+  --hl2:rgba(222,179,51,.3);
+}
+
+.theme-dark.minimal-everforest-dark {
+  --color-red-rgb: 230,126,128;
+  --color-orange-rgb: 230,152,117;
+  --color-yellow-rgb: 219,188,127;
+  --color-green-rgb: 167,192,128;
+  --color-cyan-rgb: 131,192,146;
+  --color-blue-rgb: 127,187,179;
+  --color-purple-rgb: 223,105,186;
+  --color-pink-rgb: 223,105,186;
+  --color-red:#e67e80;
+  --color-orange:#e69875;
+  --color-yellow:#dbbc7f;
+  --color-green:#a7c080;
+  --color-cyan:#83c092;
+  --color-blue:#7fbbb3;
+  --color-purple:#d699b6;
+  --color-pink:#d699b6;
+}
+
+.theme-light.minimal-everforest-light.minimal-light-tonal {
+  --bg2:#fdf6e3;
+}
+
+.theme-light.minimal-everforest-light.minimal-light-white {
+  --bg3:#f3efda;
+  --ui1:#edead5;
+}
+
+.theme-light.minimal-everforest-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-everforest-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-everforest-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-everforest-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-everforest-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-everforest-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-everforest-dark {
+  --base-h:203;
+  --base-s:15%;
+  --base-l:23%;
+  --accent-h:81;
+  --accent-s:34%;
+  --accent-l:63%;
+  --bg1:#2d353b;
+  --bg2:#232a2e;
+  --bg3:rgba(71,82,88,0.5);
+  --ui1:#475258;
+  --ui2:#4f585e;
+  --ui3:#525c62;
+  --tx1:#d3c6aa;
+  --tx2:#9da9a0;
+  --tx3:#7a8478;
+  --hl1:rgba(134,70,93,.5);
+  --hl2:rgba(147,185,96,.3);
+}
+
+.theme-dark.minimal-everforest-dark.minimal-dark-black {
+  --hl1:rgba(134,70,93,.4);
+  --ui1:#2b3339;
+}
+
+/*
+Flexoki
+MIT License
+Copyright (c) 2023 Steph Ango
+https://stephango.com/flexoki
+*/
+.theme-light.minimal-flexoki-light {
+  --color-red-rgb: 175, 48, 41;
+  --color-orange-rgb: 188, 82, 21;
+  --color-yellow-rgb: 173, 131, 1;
+  --color-green-rgb: 102, 128, 11;
+  --color-cyan-rgb: 36, 131, 123;
+  --color-blue-rgb: 32, 94, 166;
+  --color-purple-rgb: 94, 64, 157;
+  --color-pink-rgb: 160, 47, 111;
+  --color-red: #AF3029;
+  --color-orange: #BC5215;
+  --color-yellow: #AD8301;
+  --color-green: #66800B;
+  --color-cyan: #24837B;
+  --color-blue: #205EA6;
+  --color-purple: #5E409D;
+  --color-pink: #A02F6F;
+  --base-h: 48;
+  --base-s: 100%;
+  --base-l: 97%;
+  --accent-h: 175;
+  --accent-s: 57%;
+  --accent-l: 33%;
+  --bg1: #FFFCF0;
+  --bg2: #F2F0E5;
+  --bg3: rgba(16,15,15,0.05);
+  --ui1: #E6E4D9;
+  --ui2: #DAD8CE;
+  --ui3: #CECDC3;
+  --tx1: #100F0F;
+  --tx2: #6F6E69;
+  --tx3: #B7B5AC;
+  --hl1: rgba(187,220,206,0.3);
+  --hl2: rgba(247,209,61,0.3);
+}
+
+.theme-dark.minimal-flexoki-dark {
+  --color-red-rgb: 209, 77, 65;
+  --color-orange-rgb: 218, 112, 44;
+  --color-yellow-rgb:208, 162, 21;
+  --color-green-rgb: 135, 154, 57;
+  --color-cyan-rgb: 58, 169, 159;
+  --color-blue-rgb: 67, 133, 190;
+  --color-purple-rgb: 139, 126, 200;
+  --color-pink-rgb: 206, 93, 151;
+  --color-red: #D14D41;
+  --color-orange: #DA702C;
+  --color-yellow: #D0A215;
+  --color-green: #879A39;
+  --color-cyan: #3AA99F;
+  --color-blue: #4385BE;
+  --color-purple: #8B7EC8;
+  --color-pink: #CE5D97;
+}
+
+.theme-light.minimal-flexoki-light.minimal-light-tonal {
+  --bg2: #FFFCF0;
+}
+
+.theme-light.minimal-flexoki-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-flexoki-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-flexoki-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-flexoki-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-flexoki-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-flexoki-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-flexoki-dark {
+  --base-h: 360;
+  --base-s: 3%;
+  --base-l: 6%;
+  --accent-h: 175;
+  --accent-s: 49%;
+  --accent-l: 45%;
+  --bg1: #100F0F;
+  --bg2: #1C1B1A;
+  --bg3: rgba(254,252,240,0.05);
+  --ui1: #282726;
+  --ui2: #343331;
+  --ui3: #403E3C;
+  --tx1: #CECDC3;
+  --tx2: #878580;
+  --tx3: #575653;
+  --hl1: rgba(30,95,91,0.3);
+  --hl2: rgba(213,159,17,0.3);
+}
+
+.theme-dark.minimal-flexoki-dark.minimal-dark-black {
+  --ui1: #1C1B1A;
+}
+
+/*
+Gruvbox
+MIT License
+https://github.com/morhetz/gruvbox
+*/
+.theme-dark.minimal-gruvbox-dark,
+.theme-light.minimal-gruvbox-light {
+  --color-red-rgb: 204, 36, 29;
+  --color-orange-rgb: 214,93,14;
+  --color-yellow-rgb: 215,153,33;
+  --color-green-rgb: 152,151,26;
+  --color-cyan-rgb: 104,157,106;
+  --color-blue-rgb: 69,133,136;
+  --color-purple-rgb: 177,98,134;
+  --color-pink-rgb: 177,98,134;
+  --color-red:#cc241d;
+  --color-orange:#d65d0e;
+  --color-yellow:#d79921;
+  --color-green:#98971a;
+  --color-cyan:#689d6a;
+  --color-blue:#458588;
+  --color-purple:#b16286;
+  --color-pink:#b16286;
+}
+
+.theme-light.minimal-gruvbox-light {
+  --base-h:49;
+  --base-s:92%;
+  --base-l:89%;
+  --accent-h:24;
+  --accent-s:88%;
+  --accent-l:45%;
+  --bg1:#fcf2c7;
+  --bg2:#f2e6bd;
+  --bg3:#ebd9b3;
+  --ui1:#ebdbb2;
+  --ui2:#d5c4a1;
+  --ui3:#bdae93;
+  --tx1:#282828;
+  --tx2:#7c7065;
+  --tx3:#a89a85;
+  --hl1:rgba(192,165,125,.3);
+  --hl2:rgba(215,153,33,.4);
+}
+
+.theme-light.minimal-gruvbox-light.minimal-light-tonal {
+  --bg2:#fcf2c7;
+}
+
+.theme-light.minimal-gruvbox-light.minimal-light-white {
+  --bg3:#faf5d7;
+  --ui1:#f2e6bd;
+}
+
+.theme-light.minimal-gruvbox-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-gruvbox-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-gruvbox-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-gruvbox-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-gruvbox-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-gruvbox-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-gruvbox-dark {
+  --accent-h:24;
+  --accent-s:88%;
+  --accent-l:45%;
+  --bg1:#282828;
+  --bg2:#1e2021;
+  --bg3:#3d3836;
+  --bg3:rgba(62,57,55,0.5);
+  --ui1:#3c3836;
+  --ui2:#504945;
+  --ui3:#665c54;
+  --tx1:#fbf1c7;
+  --tx2:#bdae93;
+  --tx3:#7c6f64;
+  --hl1:rgba(173,149,139,0.3);
+  --hl2:rgba(215,153,33,.4);
+}
+
+.theme-dark.minimal-gruvbox-dark.minimal-dark-black {
+  --hl1:rgba(173,149,139,0.4);
+  --ui1:#282828;
+}
+
+/* macOS */
+.theme-dark.minimal-macos-dark,
+.theme-light.minimal-macos-light {
+  --color-red-rgb: 255,59,49;
+  --color-orange-rgb: 255,149,2;
+  --color-yellow-rgb: 255,204,0;
+  --color-green-rgb: 42,205,65;
+  --color-cyan-rgb: 2,199,190;
+  --color-blue-rgb: 2,122,255;
+  --color-purple-rgb: 176,81,222;
+  --color-pink-rgb: 255,46,85;
+  --color-red:#ff3b31;
+  --color-orange:#ff9502;
+  --color-yellow:#ffcc00;
+  --color-green:#2acd41;
+  --color-cyan:#02c7be;
+  --color-blue:#027aff;
+  --color-purple:#b051de;
+  --color-pink:#ff2e55;
+}
+
+.theme-light.minimal-macos-light {
+  --base-h:106;
+  --base-s:0%;
+  --base-l:94%;
+  --accent-h:212;
+  --accent-s:100%;
+  --accent-l:50%;
+  --bg1:#ffffff;
+  --bg2:#f0f0f0;
+  --bg3:rgba(0,0,0,.1);
+  --ui1:#e7e7e7;
+  --tx1:#454545;
+  --tx2:#808080;
+  --tx3:#b0b0b0;
+  --hl1:#b3d7ff;
+}
+
+.theme-light.minimal-macos-light.minimal-light-tonal {
+  --bg1:#f0f0f0;
+  --bg2:#f0f0f0;
+}
+
+.theme-light.minimal-macos-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-macos-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-macos-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-macos-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-macos-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-macos-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-macos-dark {
+  --base-h:106;
+  --base-s:0%;
+  --base-l:12%;
+  --accent-h:212;
+  --accent-s:100%;
+  --accent-l:50%;
+  --bg1:#1e1e1e;
+  --bg2:#282828;
+  --bg3:rgba(255,255,255,0.11);
+  --divider-color:#000000;
+  --tab-outline-color:#000000;
+  --ui1:#373737;
+  --ui2:#515151;
+  --ui3:#595959;
+  --tx1:#dcdcdc;
+  --tx2:#8c8c8c;
+  --tx3:#686868;
+  --hl1:rgba(98,169,252,0.5);
+  --sp1:#ffffff;
+}
+
+.theme-dark.minimal-macos-dark.minimal-dark-black {
+  --divider-color:#1e1e1e;
+  --tab-outline-color:#1e1e1e;
+}
+
+/*
+Nord
+MIT License
+Copyright (c) 2016-present Sven Greb <development@svengreb.de> (https://www.svengreb.de)
+https://github.com/nordtheme/nord
+*/
+.theme-dark.minimal-nord-dark,
+.theme-light.minimal-nord-light {
+  --color-red-rgb: 191,97,106;
+  --color-orange-rgb: 208,138,112;
+  --color-yellow-rgb: 235,203,139;
+  --color-green-rgb: 163,190,140;
+  --color-cyan-rgb: 136,192,208;
+  --color-blue-rgb: 129,161,193;
+  --color-purple-rgb: 180,142,173;
+  --color-pink-rgb: 180,142,173;
+  --color-red:#BF616A;
+  --color-orange:#D08770;
+  --color-yellow:#EBCB8B;
+  --color-green:#A3BE8C;
+  --color-cyan:#88C0D0;
+  --color-blue:#81A1C1;
+  --color-purple:#B48EAD;
+  --color-pink:#B48EAD;
+}
+
+.theme-light.minimal-nord-light {
+  --base-h:221;
+  --base-s:27%;
+  --base-l:94%;
+  --accent-h:213;
+  --accent-s:32%;
+  --accent-l:52%;
+  --bg1:#ffffff;
+  --bg2:#eceff4;
+  --bg3:rgba(157,174,206,0.25);
+  --ui1:#d8dee9;
+  --ui2:#BBCADC;
+  --ui3:#81a1c1;
+  --tx1:#2e3440;
+  --tx2:#7D8697;
+  --tx3:#ADB1B8;
+  --hl2:rgba(208, 135, 112, 0.35);
+}
+
+.theme-light.minimal-nord-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-nord-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-nord-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-nord-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-nord-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-nord-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-nord-dark {
+  --base-h:220;
+  --base-s:16%;
+  --base-l:22%;
+  --accent-h:213;
+  --accent-s:32%;
+  --accent-l:52%;
+  --bg1:#2e3440;
+  --bg2:#3b4252;
+  --bg3:rgba(135,152,190,0.15);
+  --ui1:#434c5e;
+  --ui2:#58647b;
+  --ui3:#58647b;
+  --tx1:#d8dee9;
+  --tx2:#9eafcc;
+  --tx3:#4c566a;
+  --hl1:rgba(129,142,180,0.3);
+  --hl2:rgba(208, 135, 112, 0.35);
+}
+
+.theme-dark.minimal-nord-dark.minimal-dark-black {
+  --ui1:#2e3440;
+}
+
+/* Sky color scheme, inspired by Notion */
+.theme-light.minimal-notion-light {
+  --base-h:39;
+  --base-s:18%;
+  --base-d:96%;
+  --accent-h:197;
+  --accent-s:71%;
+  --accent-l:52%;
+  --bg2:#f7f6f4;
+  --bg3:#e8e7e4;
+  --ui1:#ededec;
+  --ui2:#dbdbda;
+  --ui3:#aaa9a5;
+  --tx1:#37352f;
+  --tx2:#72706c;
+  --tx3:#aaa9a5;
+  --hl1:rgba(131,201,229,0.3);
+}
+
+.theme-light.minimal-notion-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-notion-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-notion-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-notion-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-notion-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-notion-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-notion-dark {
+  --base-h:203;
+  --base-s:8%;
+  --base-d:20%;
+  --accent-h:197;
+  --accent-s:71%;
+  --accent-l:52%;
+  --bg1:#2f3437;
+  --bg2:#373c3f;
+  --bg3:#4b5053;
+  --ui1:#3e4245;
+  --ui2:#585d5f;
+  --ui3:#585d5f;
+  --tx1:#ebebeb;
+  --tx2:#909295;
+  --tx3:#585d5f;
+  --hl1:rgba(57,134,164,0.3);
+}
+
+.theme-dark.minimal-notion-dark.minimal-dark-black {
+  --base-d:5%;
+  --bg3:#232729;
+  --ui1:#2f3437;
+}
+
+/* 
+Rosé Pine
+MIT License 
+Copyright (c) 2023 Rosé Pine
+https://github.com/rose-pine/rose-pine-theme
+*/
+.theme-light.minimal-rose-pine-light {
+  --color-red-rgb: 180,99,122;
+  --color-orange-rgb: 215,130,125;
+  --color-yellow-rgb: 234,157,53;
+  --color-green-rgb: 40,105,131;
+  --color-cyan-rgb: 87,147,159;
+  --color-blue-rgb: 87,147,159;
+  --color-purple-rgb: 144,122,169;
+  --color-pink-rgb: 144,122,169;
+  --color-red: #b4637a;
+  --color-orange: #d7827e;
+  --color-yellow: #ea9d34;
+  --color-green: #286983;
+  --color-cyan: #56949f;
+  --color-blue: #56949f;
+  --color-purple: #907aa9;
+  --color-pink: #907aa9;
+  --base-h: 32;
+  --base-s: 57%;
+  --base-l: 95%;
+  --accent-h: 3;
+  --accent-s: 53%;
+  --accent-l: 67%;
+  --bg1: #fffaf3;
+  --bg2: #faf4ed;
+  --bg3: rgba(233,223,218,0.5);
+  --ui1: #EAE3E1;
+  --ui2: #dfdad9;
+  --ui3: #cecacd;
+  --tx1: #575279;
+  --tx2: #797593;
+  --tx3: #9893a5;
+  --hl1: rgba(191,180,181,0.35);
+}
+
+.theme-dark.minimal-rose-pine-dark {
+  --color-red-rgb: 234,111,146;
+  --color-orange-rgb: 233,155,151;
+  --color-yellow-rgb: 246,193,119;
+  --color-green-rgb: 47,116,143;
+  --color-cyan-rgb: 157,207,215;
+  --color-blue-rgb: 157,207,215;
+  --color-purple-rgb: 196,167,231;
+  --color-pink-rgb: 196,167,231;
+  --color-red: #eb6f92;
+  --color-orange: #ea9a97;
+  --color-yellow: #f6c177;
+  --color-green: #31748f;
+  --color-cyan: #9ccfd8;
+  --color-blue: #9ccfd8;
+  --color-purple: #c4a7e7;
+  --color-pink: #c4a7e7;
+}
+
+.theme-light.minimal-rose-pine-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-rose-pine-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-rose-pine-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-rose-pine-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-rose-pine-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-rose-pine-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-rose-pine-dark {
+  --base-h: 247;
+  --base-s: 23%;
+  --base-l: 15%;
+  --accent-h: 2;
+  --accent-s: 55%;
+  --accent-l: 83%;
+  --bg1: #1f1d2e;
+  --bg2: #191724;
+  --bg3: rgba(68,66,86,0.5);
+  --ui1: #312F41;
+  --ui2: #403d52;
+  --ui3: #524f67;
+  --tx1: #e0def4;
+  --tx2: #908caa;
+  --tx3: #6e6a86;
+  --hl1: rgba(126,121,155,0.35);
+}
+
+.theme-dark.minimal-rose-pine-dark.minimal-dark-black {
+  --ui1: #21202e;
+}
+
+/*
+Solarized
+MIT License
+Copyright (c) 2011 Ethan Schoonover
+https://ethanschoonover.com/solarized/
+*/
+.theme-dark.minimal-solarized-dark,
+.theme-light.minimal-solarized-light {
+  --color-red-rgb: 220, 50, 47;
+  --color-orange-rgb: 203,77,22;
+  --color-yellow-rgb: 181,137,0;
+  --color-green-rgb: 133,153,0;
+  --color-cyan-rgb: 42,161,152;
+  --color-blue-rgb: 38,139,210;
+  --color-purple-rgb: 108,113,196;
+  --color-pink-rgb: 211,54,130;
+  --color-red: #dc322f;
+  --color-orange: #cb4b16;
+  --color-yellow: #b58900;
+  --color-green: #859900;
+  --color-cyan: #2aa198;
+  --color-blue: #268bd2;
+  --color-purple: #6c71c4;
+  --color-pink: #d33682;
+}
+
+.theme-light.minimal-solarized-light {
+  --base-h: 44;
+  --base-s: 87%;
+  --base-l: 94%;
+  --accent-h: 205;
+  --accent-s: 70%;
+  --accent-l: 48%;
+  --bg1: #fdf6e3;
+  --bg2: #eee8d5;
+  --bg3: rgba(0,0,0,0.062);
+  --ui1: #e9e1c8;
+  --ui2: #d0cab8;
+  --ui3: #d0cab8;
+  --tx1: #073642;
+  --tx2: #586e75;
+  --tx3: #ABB2AC;
+  --tx4: #586e75;
+  --hl1: rgba(202,197,182,0.3);
+  --hl2: rgba(203,75,22,0.3);
+}
+
+.theme-light.minimal-solarized-light.minimal-light-tonal {
+  --bg2: #fdf6e3;
+}
+
+.theme-light.minimal-solarized-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-solarized-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-solarized-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-solarized-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-solarized-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-solarized-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-solarized-dark {
+  --accent-h: 205;
+  --accent-s: 70%;
+  --accent-l: 48%;
+  --base-h: 193;
+  --base-s: 98%;
+  --base-l: 11%;
+  --bg1: #002b36;
+  --bg2: #073642;
+  --bg3: rgba(255,255,255,0.062);
+  --ui1: #19414B;
+  --ui2: #274850;
+  --ui3: #31535B;
+  --tx1: #93a1a1;
+  --tx2: #657b83;
+  --tx3: #31535B;
+  --tx4: #657b83;
+  --hl1: rgba(15,81,98,0.3);
+  --hl2: rgba(203, 75, 22, 0.35);
+}
+
+.theme-dark.minimal-solarized-dark.minimal-dark-black {
+  --hl1: rgba(15,81,98,0.55);
+  --ui1: #002b36;
+}
+
+/* Things */
+.theme-dark.minimal-things-dark,
+.theme-light.minimal-things-light {
+  --color-red-rgb: 255,48,108;
+  --color-orange-rgb: 255,149,2;
+  --color-yellow-rgb: 255,213,0;
+  --color-green-rgb: 75,191,94;
+  --color-cyan-rgb: 73,174,164;
+  --color-purple-rgb: 176,81,222;
+  --color-pink-rgb: 255,46,85;
+  --color-red:#FF306C;
+  --color-orange:#ff9502;
+  --color-yellow:#FFD500;
+  --color-green:#4BBF5E;
+  --color-cyan:#49AEA4;
+  --color-purple:#b051de;
+  --color-pink:#ff2e55;
+}
+
+.theme-light.minimal-things-light {
+  --color-blue-rgb: 27,97,194;
+  --color-blue:#1b61c2;
+  --accent-h:215;
+  --accent-s:76%;
+  --accent-l:43%;
+  --bg1:white;
+  --bg2:#f5f6f8;
+  --bg3:rgba(162,177,187,0.25);
+  --ui1:#eef0f4;
+  --ui2:#D8DADD;
+  --ui3:#c1c3c6;
+  --tx1:#26272b;
+  --tx2:#7D7F84;
+  --tx3:#a9abb0;
+  --hl1:#cae2ff;
+}
+
+.theme-dark.minimal-things-dark {
+  --color-blue-rgb: 77,149,247;
+  --color-blue:#4d95f7;
+}
+
+.theme-light.minimal-things-light.minimal-light-tonal {
+  --ui1:#e6e8ec;
+}
+
+.theme-light.minimal-things-light.minimal-light-white {
+  --bg3:#f5f6f8;
+}
+
+.theme-light.minimal-things-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-things-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-things-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-things-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-things-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-things-light.minimal-light-contrast .theme-dark,
+.theme-dark.minimal-things-dark {
+  --base-h:218;
+  --base-s:9%;
+  --base-l:15%;
+  --accent-h:215;
+  --accent-s:91%;
+  --accent-l:64%;
+  --bg1:#24262a;
+  --bg2:#202225;
+  --bg3:#3d3f41;
+  --divider-color:#17191c;
+  --tab-outline-color:#17191c;
+  --ui1:#3A3B3F;
+  --ui2:#45464a;
+  --ui3:#6c6e70;
+  --tx1:#fbfbfb;
+  --tx2:#CBCCCD;
+  --tx3:#6c6e70;
+  --hl1:rgba(40,119,236,0.35);
+  --sp1:#ffffff;
+}
+
+.theme-dark.minimal-things-dark.minimal-dark-black {
+  --base-d:5%;
+  --bg3:#24262a;
+  --divider-color:#24262a;
+  --tab-outline-color:#24262a;
+}
