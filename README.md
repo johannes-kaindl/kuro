@@ -1,24 +1,36 @@
 # Kuro
 
-**Neo-Gothic · Post-Cyberpunk · CRT-Phosphor** — an Obsidian theme built around a
-Twelve Signals palette and a Void Scale.
+**Neo-Gothic · Post-Cyberpunk** — an Obsidian theme built as a skeleton-fork of
+[Minimal](https://github.com/kepano/minimal), with a Twelve-Signals palette on a
+both-mode Chamber (dark) / Paper (light) surface.
 
 > The chamber is dark. The signal earns its brightness because the chamber is dark.
-> Twelve hues, twelve roles.
 
 ![Kuro](screenshot.png)
 
+## What it is
+
+Kuro 5.0 is a **skeleton-fork of Minimal** (kepano, MIT): it owns Minimal's variable/chrome
+skeleton and edits it directly, then **replaces Minimal's components with its own** rather than
+layering overrides on top — so there are no specificity fights and no upstream-update breakage.
+Everything is plain CSS fragments assembled by a zero-dependency `build.sh`.
+
 ## Features
 
-- **Twelve Signals palette** (`--signal-*`): `crimson`, `phosphor`, `circuit`, `ember`,
-  `ghost`, `biolink`, `neural-bleed`, `rust`, `spectre`, `toxic`, `voidwitch`, `pearl` —
-  twelve hues mapped to twelve note roles.
-- **Void Scale** (`--void-000` … `--void-900`) for chamber depth.
-- **Accent follows your system colour.** Kuro uses the accent colour you pick in
-  **Settings → Appearance → Accent color**, in both light and dark — no forced override.
-- **Signal-driven components** — callouts (40+ types with icons), task-checkbox glyphs, tags
-  and the graph are all keyed to the twelve signals.
-- **Self-contained** — fonts are embedded; the theme makes no network requests.
+- **Chamber / Paper palette** — hand-tuned dark and light surfaces, both-mode by construction
+  (every semantic role is defined in both modes, enforced by `check.sh`).
+- **Signal roles** — twelve semantic signals mapped onto eight accents (`--role-*`), so every
+  component reads a colour *by meaning*.
+- **Signal-driven components** — callouts (a large typed library with icons + hover animations),
+  task-checkbox glyphs (visible empty boxes, per-`[data-task]` glyphs), accent-tinted mono tag
+  pills, framed code blocks, caps-header tables, a serif-italic blockquote aside, tinted list
+  markers, and a role-keyed graph palette.
+- **Typography** — JetBrains Mono body everywhere + EB Garamond italic for H1 and the inline title.
+- **Accent follows your system colour** — Kuro uses the accent you pick in
+  **Settings → Appearance → Accent color**, in both light and dark; no forced override.
+- **Neurodivergence-friendly** — respects `prefers-reduced-motion`; a dark-only glow and film-grain
+  that can be switched off.
+- **Self-contained** — fonts are embedded as Latin-subset woff2; the theme makes no network requests.
 
 ## Install
 
@@ -36,49 +48,46 @@ then enable under **Settings → Appearance → Themes**.
 Kuro works out of the box. For live configuration, install the official **Style Settings**
 community plugin and open **Settings → Style Settings → Kuro**:
 
-- **Colour & Mood** — a low-contrast mode.
-- **Typography** — serif/display and monospace fonts, terminal mode, code font size.
-- **Reading** — reading line width, disable callout animations.
-- **Depth & glow** — heading-glow toggle, note & card lift strength, border crispness,
-  focus-ring style.
-- **Editor & Tabs** — zen mode, active-line highlight.
-- **Shape & density** — corner roundness, interface density.
-- **Components** — callout style, link underline, table zebra striping.
+- **Effects** — disable the signal glow, disable callout icon animations, choose a callout style
+  (filled / subtle / border-only), toggle table zebra striping.
+- **Shape & density** — corner rounding, note lift strength, card lift strength, code font size.
 
 Style Settings is optional; the theme is fully usable without it.
 
 ## Build
 
-`theme.css` is generated — do not edit it directly. Kuro is built on **the Armature**:
-the sources in `src/` are split into `[armature]` (structure / contract) and `[values]`
-(palette, presets, fonts). `build.sh` concatenates the numbered fragments and `check.sh`
-verifies the build — determinism, the both-mode token mirror, contrast invariants and the
-armature lint. To fork Kuro into a new theme, see
-[`docs/THEME-AUTHORING.md`](docs/THEME-AUTHORING.md).
+`theme.css` is generated — do not edit it directly. Kuro's sources live in `src/` as numbered CSS
+fragments: `*-minimal-*.css` are the owned Minimal skeleton, `*-kuro-*.css` are Kuro's own values
+and components. `build.sh` concatenates the fragments and `check.sh` verifies the build
+(determinism, both-mode palette parity, contrast, `!important` discipline, no-hex in components,
+size, no remote imports).
 
 ```sh
 ./src/build.sh   # regenerates theme.css from src/*.css
 ./src/check.sh   # verifies the build
 ```
 
+The anatomy of the theme — how each component is targeted, where Minimal's approach broke, and how
+Kuro replaces it — is documented in [`docs/GUIDE.md`](docs/GUIDE.md). To fork Kuro or pull Minimal
+upstream selectively, see [`docs/THEME-AUTHORING.md`](docs/THEME-AUTHORING.md).
+
 ## Compatibility
 
-- `minAppVersion: 1.5.0` — Obsidian 1.5 or newer.
+- `minAppVersion: 1.9.0` — Obsidian 1.9 or newer (Minimal's floor).
 
 ## Fonts
 
-The theme embeds Latin subsets of four typefaces, all under the
+The theme embeds Latin subsets of two typefaces, both under the
 [SIL Open Font License 1.1](https://openfontlicense.org/):
 
 - **JetBrains Mono** — © JetBrains s.r.o.
-- **Space Grotesk** — © Florian Karsten
-- **Inter** — © The Inter Project Authors
 - **EB Garamond** — © Georg Duffner & Octavio Pardo
 
 ## License
 
-- **Code** (CSS, `build.sh`): [GNU AGPL-3.0](LICENSE).
-- **Documentation** (README, CHANGELOG): [CC BY-SA 4.0](LICENSE-DOCS).
+- **Code** (CSS, `build.sh`): [MIT](LICENSE) — a skeleton-fork of Minimal (© 2020–2024 Stephan Ango),
+  released under Minimal's MIT license.
+- **Documentation** (README, CHANGELOG, `docs/`): [CC BY-SA 4.0](LICENSE-DOCS).
 - **Embedded fonts**: SIL OFL 1.1 (see above).
 
 See [LICENSING.md](LICENSING.md) for the rationale.

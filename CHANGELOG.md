@@ -4,6 +4,32 @@ All notable changes to the Kuro theme are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.0] — Kuro on Minimal
+
+A ground-up foundation change: Kuro is rebuilt as a **skeleton-fork of
+[Minimal](https://github.com/kepano/minimal)** (kepano, MIT), replacing the bespoke v4 armature.
+Kuro owns Minimal's variable/chrome skeleton and edits it directly, then replaces Minimal's
+components with its own — no override layers, no specificity fights, no upstream-update breakage.
+
+### Changed
+- **Foundation → Minimal skeleton.** Minimal 8.2.1 is split losslessly into owned `*-minimal-*.css`
+  fragments (the baseline anchor); Kuro's palette, tokens, typography and components are layered in
+  as `*-kuro-*.css`, and Minimal's competing component rules are removed at source.
+- **License → MIT** (from AGPL-3.0), matching Minimal; Minimal's copyright is retained.
+- **minAppVersion → 1.9.0** (Minimal's floor); version → 5.0.0.
+- **Fonts trimmed** to JetBrains Mono + EB Garamond (Inter and Space Grotesk dropped, −242 KB).
+
+### Components (transformed to Kuro, both-mode Chamber/Paper)
+- Callouts, task checkboxes, tags, code, tables, blockquote, lists, and the graph palette.
+- Chamber/Paper palette with `check.sh`-enforced both-mode parity; twelve signals mapped onto eight
+  roles (`--role-*`).
+- Dark-only ambience (film-grain + H1 glow), `prefers-reduced-motion` support, and a focused Style
+  Settings block (effects, callout style, table zebra, shape/density sliders).
+
+### Notes
+- **Bases** styling is not yet ported in this release (parked for a follow-up).
+- Anatomy & authoring are documented in `docs/GUIDE.md` and `docs/THEME-AUTHORING.md`.
+
 ## [4.0.1] — Variable-First Hardening
 
 A foundation-hardening pass (no rebuild): the chrome fixes are now grounded in Obsidian's
