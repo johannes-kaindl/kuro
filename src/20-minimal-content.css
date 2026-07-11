@@ -393,35 +393,10 @@ body {
   font-weight: 400;
 }
 
-/* Tags */
-body.minimal-unstyled-tags {
-  --tag-background: transparent;
-  --tag-background-hover: transparent;
-  --tag-border-width: 0px;
-  --tag-padding-x: 0;
-  --tag-padding-y: 0;
-  --tag-size: inherit;
-  --tag-color-hover: var(--text-accent-hover);
-}
-body.minimal-unstyled-tags.is-mobile.theme-dark {
-  --tag-background: transparent;
-}
-
-body:not(.minimal-unstyled-tags) {
-  --tag-size: 0.8em;
-  --tag-padding-y: 0.2em;
-  --tag-background: transparent;
-  --tag-background-hover: transparent;
-  --tag-color: var(--text-muted);
-  --tag-border-width: 1px;
-  --tag-border-color: var(--background-modifier-border);
-  --tag-border-color-hover: var(--background-modifier-border-hover);
-  --tag-color-hover: var(--text-normal);
-}
-
-body.is-mobile.theme-dark {
-  --tag-background: transparent;
-}
+/* Tags — owned by Kuro; the tag pill (accent-tinted mono, dark glow) + its --tag-* values live in
+   23-kuro-tags.css. Minimal's block (its --tag-* values on body:not(.minimal-unstyled-tags) at
+   (0,1,0), the .minimal-unstyled-tags opt-in, mobile tweaks) was removed here at source in T7 so
+   Kuro's values are uncontested — no override layer. */
 
 /* Headings and fonts */
 h1, h2, h3, h4 {

@@ -222,7 +222,28 @@ living `!important` count in Minimal fragments is reported as **transform debt**
   clean square. Completed lines get a token-mapped strikethrough. `--checkbox-margin`/size stay
   Minimal's (native geometry Kuro consumes).
 
-_Remaining cards (Tags · Code · Tables · Blockquote · Lists · Bases ·
+#### Tags (Task 7)
+
+- **How Obsidian targets it:** a reading-view tag is a single `a.tag` span; in Live-Preview the
+  hashtag is split across three CM spans `.cm-hashtag-begin/-middle/-end`. Obsidian renders both from
+  the native `--tag-color`, `--tag-background`, `--tag-border-color`, `--tag-size`, `--tag-radius`,
+  `--tag-padding-x/y` variables (and their `-hover` pairs, consumed by Obsidian's own `a.tag:hover`).
+- **How Minimal solves it:** sets the `--tag-*` variables on `body:not(.minimal-unstyled-tags)`
+  `(0,1,0)` — a transparent, muted pill with a `--background-modifier-border` outline — plus a
+  `.minimal-unstyled-tags` opt-in that strips it. Purely variable-driven; no per-span rules.
+- **Specificity / traps:** Minimal's values sit at `(0,1,0)` (the `:not()` adds the class), so a
+  plain `body`/`.theme-*` `--tag-*` override from Kuro would *lose*. Not a Live-Preview-mask trap like
+  callouts/checkboxes, but still an at-source removal: drop Minimal's block so Kuro's values are
+  uncontested. (And, per the T5 scope lesson, Kuro's values read `--accent`/`--tx2`, so they must sit
+  on `.theme-*`, not `:root`.)
+- **How Kuro replaces it:** `23-kuro-tags.css` sets the `--tag-*` values to an **accent-tinted pill**
+  (7% accent bg, 30% accent border, `--tx2` text, accent hover, `--text-xs`, 3px radius) on
+  `.theme-*`, then styles `a.tag` + the three `.cm-hashtag-*` spans as one mono pill (the outer two
+  carry the rounded ends so the Live-Preview run reads as a single pill). Hover stays var-driven
+  (Obsidian's own `:hover` consumes the `-hover` vars — no override, R1). Dark mode adds a signal glow
+  (`text-shadow`/`box-shadow` from `--accent-glow`), opt-out via `.kuro-no-glow`.
+
+_Remaining cards (Code · Tables · Blockquote · Lists · Bases ·
 Graph) added at each transform step._
 
 ---

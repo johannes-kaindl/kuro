@@ -2025,35 +2025,10 @@ body {
   font-weight: 400;
 }
 
-/* Tags */
-body.minimal-unstyled-tags {
-  --tag-background: transparent;
-  --tag-background-hover: transparent;
-  --tag-border-width: 0px;
-  --tag-padding-x: 0;
-  --tag-padding-y: 0;
-  --tag-size: inherit;
-  --tag-color-hover: var(--text-accent-hover);
-}
-body.minimal-unstyled-tags.is-mobile.theme-dark {
-  --tag-background: transparent;
-}
-
-body:not(.minimal-unstyled-tags) {
-  --tag-size: 0.8em;
-  --tag-padding-y: 0.2em;
-  --tag-background: transparent;
-  --tag-background-hover: transparent;
-  --tag-color: var(--text-muted);
-  --tag-border-width: 1px;
-  --tag-border-color: var(--background-modifier-border);
-  --tag-border-color-hover: var(--background-modifier-border-hover);
-  --tag-color-hover: var(--text-normal);
-}
-
-body.is-mobile.theme-dark {
-  --tag-background: transparent;
-}
+/* Tags — owned by Kuro; the tag pill (accent-tinted mono, dark glow) + its --tag-* values live in
+   23-kuro-tags.css. Minimal's block (its --tag-* values on body:not(.minimal-unstyled-tags) at
+   (0,1,0), the .minimal-unstyled-tags opt-in, mobile tweaks) was removed here at source in T7 so
+   Kuro's values are uncontested — no override layer. */
 
 /* Headings and fonts */
 h1, h2, h3, h4 {
@@ -2737,6 +2712,93 @@ input[data-task="k"].task-list-item-checkbox::after {
   color: var(--tx3);
   text-decoration: line-through;
   text-decoration-color: var(--tx3);
+}
+
+/*
+  23-kuro-tags.css — tags as ONE accent-tinted mono pill, defined once for Reading AND
+  Live-Preview. REPLACES Minimal's tag block (its --tag-* values + .minimal-unstyled-tags
+  opt-in, removed at source in 20-minimal-content.css) — no override layer. Minimal's tags are
+  transparent + muted; Kuro's are an accent-tinted pill with a dark-only signal glow.
+  The --tag-* values read --accent/--interactive-accent/--tx2 (set on <body>.theme-*), so they
+  live on .theme-*, not :root (T5 scope lesson). Pill rules ported from the v4 quarry
+  (main:28-tags): a.tag is one span (full radius); Live-Preview splits the hashtag across three
+  .cm-hashtag-* spans, so only the outer two carry the rounded ends. Hover is themed through
+  Obsidian's own --tag-*-hover vars (its a.tag:hover consumes them — no theme :hover override,
+  R1). Consumes 06-kuro-typography (--kuro-font-mono), 04-kuro-tokens (--text-xs · --dur-fast ·
+  --ease-signal · --accent · --accent-glow). No hex (R1).
+  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
+*/
+
+/* Kuro tag-* values (accent-tinted pill). Both modes get the identical set — the color-mix on the
+   accent adapts per mode automatically. */
+.theme-dark,
+.theme-light {
+  --tag-color:              var(--tx2);
+  --tag-color-hover:        var(--accent);
+  --tag-background:         color-mix(in srgb, var(--interactive-accent) 7%, transparent);
+  --tag-background-hover:   color-mix(in srgb, var(--interactive-accent) 13%, transparent);
+  --tag-border-color:       color-mix(in srgb, var(--interactive-accent) 30%, transparent);
+  --tag-border-color-hover: color-mix(in srgb, var(--interactive-accent) 58%, transparent);
+  --tag-border-width: 1px;
+  --tag-radius: 3px;
+  --tag-padding-x: 7px;
+  --tag-padding-y: 2px;
+  --tag-size: var(--text-xs);
+}
+
+/* Tag pill · Reading View + Live-Preview, one model */
+a.tag,
+.cm-hashtag-begin,
+.cm-hashtag-middle,
+.cm-hashtag-end {
+  font-family: var(--kuro-font-mono);
+  color: var(--tag-color);
+  background: var(--tag-background);
+  border: 1px solid var(--tag-border-color);
+  font-size: var(--tag-size);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-signal),
+              border-color var(--dur-fast) var(--ease-signal),
+              background var(--dur-fast) var(--ease-signal);
+}
+
+/* Reading-view pill is a single span → full radius + symmetric padding. */
+a.tag {
+  border-radius: var(--tag-radius);
+  padding: var(--tag-padding-y) var(--tag-padding-x);
+}
+
+/* Live-Preview splits the hashtag across three CM spans; only the outer two carry the rounded
+   ends + horizontal padding so the run reads as one pill. */
+.cm-hashtag-begin,
+.cm-hashtag-middle,
+.cm-hashtag-end {
+  padding: var(--tag-padding-y) 0;
+}
+.cm-hashtag-begin {
+  border-radius: var(--tag-radius) 0 0 var(--tag-radius);
+  border-right: none;
+  padding-left: var(--tag-padding-x);
+}
+.cm-hashtag-middle {
+  border-left: none;
+  border-right: none;
+}
+.cm-hashtag-end {
+  border-radius: 0 var(--tag-radius) var(--tag-radius) 0;
+  border-left: none;
+  padding-right: var(--tag-padding-x);
+}
+
+/* Dark-only signal glow (user opt-out: .kuro-no-glow) */
+body.theme-dark:not(.kuro-no-glow) a.tag {
+  text-shadow: 0 0 10px var(--accent-glow);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 15%, transparent);
+}
+body.theme-dark:not(.kuro-no-glow) .cm-hashtag-begin,
+body.theme-dark:not(.kuro-no-glow) .cm-hashtag-middle,
+body.theme-dark:not(.kuro-no-glow) .cm-hashtag-end {
+  text-shadow: 0 0 10px var(--accent-glow);
 }
 
 /* Minimal features */
