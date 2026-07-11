@@ -1,0 +1,89 @@
+/* @settings
+
+name: Kuro
+id: kuro-theme
+settings:
+    -
+        id: kuro-effects-heading
+        title: Effects
+        type: heading
+        level: 2
+        collapsed: false
+    -
+        id: kuro-no-glow
+        title: Disable signal glow
+        description: Turn off the dark-mode glow on tags and H1/inline titles.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-no-callout-animations
+        title: Disable callout icon animations
+        description: Stop the decorative hover animations on callout icons.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-callout-style
+        title: Callout style
+        description: Filled (tinted panel, default), Subtle (fainter), or Border only.
+        type: class-select
+        allowEmpty: false
+        default: kuro-callout-filled
+        options:
+            -
+                label: Filled
+                value: kuro-callout-filled
+            -
+                label: Subtle
+                value: kuro-callout-subtle
+            -
+                label: Border only
+                value: kuro-callout-border-only
+    -
+        id: kuro-table-zebra
+        title: Table zebra striping
+        description: Tint every other table row.
+        type: class-toggle
+        default: false
+    -
+        id: kuro-shape-heading
+        title: Shape & density
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: --kuro-radius-scale
+        title: Corner rounding
+        description: Scales Kuro's corner radii (1 = default).
+        type: variable-number-slider
+        default: 1
+        min: 0
+        max: 2
+        step: 0.1
+    -
+        id: --kuro-lift-strength
+        title: Note lift strength
+        description: Shadow depth on lifted panels (1 = default, 0 = flat).
+        type: variable-number-slider
+        default: 1
+        min: 0
+        max: 2
+        step: 0.1
+    -
+        id: --kuro-card-lift-strength
+        title: Card lift strength
+        description: Shadow depth on callouts and cards (1 = default).
+        type: variable-number-slider
+        default: 1
+        min: 0
+        max: 2
+        step: 0.1
+    -
+        id: --kuro-code-size
+        title: Code font size
+        description: Font-size multiplier for inline and fenced code (0.9 = default).
+        type: variable-number-slider
+        default: 0.9
+        min: 0.7
+        max: 1.1
+        step: 0.05
+*/

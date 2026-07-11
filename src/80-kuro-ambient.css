@@ -1,0 +1,27 @@
+/*
+  80-kuro-ambient.css — dark-only ambience: a faint film-grain overlay + a soft glow on H1 and the
+  inline title. Kuro's atmosphere layer (additive; no component owns these). Both effects are
+  dark-only and defeatable: the grain is .theme-dark-gated, the glow also honours .kuro-no-glow
+  (Style Settings → Effects). Uses --accent-glow (04-kuro-tokens, .theme-*). The grain is an inline
+  SVG data-URI (fractal noise); the %23 is a url-encoded '#', so no hex colour literal is present.
+  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
+*/
+
+/* Film-grain overlay — ~3% SVG noise, dark only, pointer-transparent. */
+body.theme-dark .workspace::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+}
+
+/* Ambient H1 + inline-title glow — dark only, opt-out .kuro-no-glow. */
+body.theme-dark:not(.kuro-no-glow) .markdown-rendered h1,
+body.theme-dark:not(.kuro-no-glow) .cm-header-1,
+body.theme-dark:not(.kuro-no-glow) .inline-title {
+  text-shadow: 0 0 24px var(--accent-glow);
+}

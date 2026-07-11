@@ -284,7 +284,26 @@ secondary/tertiary → --tx1/2/3`, `--surface-base/raised → --bg1/--bg2`, `--b
   by **code review**, not the render harness — the mapping is mechanical and both-mode by construction.
   A real graph view (Jay) confirms the final look.
 
-_Remaining cards (Bases) added at each transform step._
+#### Ambience · reduced-motion · Style Settings (Task 9)
+
+- **Ambience (`80-kuro-ambient.css`):** dark-only atmosphere, additive (no component owns it) —
+  a ~3% film-grain overlay (`body.theme-dark .workspace::after`, an inline fractal-noise SVG data-URI)
+  and a soft glow on H1 + inline title (`text-shadow` from `--accent-glow`). The glow honours the
+  `.kuro-no-glow` opt-out; both are `.theme-dark`-gated.
+- **Reduced-motion (`85-kuro-reduced-motion.css`):** the a11y-whitelist fragment. Under
+  `@media (prefers-reduced-motion: reduce)` it near-zeroes all transitions/animations and hard-stops
+  the decorative callout-icon loops. This is the ONE fragment allowed un-tagged `!important`
+  (check.sh whitelists it by filename) — the resets must beat any third-party animation. Verified by
+  code review + check.sh (the media query isn't exercised by the default render).
+- **Style Settings (`02-kuro-settings.css`):** Kuro's `@settings` YAML block (`id: kuro-theme`,
+  coexists with Minimal's `minimal-style`). Exposes only knobs the fragments actually consume:
+  `kuro-no-glow`, `kuro-no-callout-animations`, `kuro-callout-style` (filled/subtle/border-only),
+  `kuro-table-zebra` (class toggles/select), and the sliders `--kuro-radius-scale`,
+  `--kuro-lift-strength`, `--kuro-card-lift-strength`, `--kuro-code-size` (defaults match the token
+  defaults in `04-kuro-tokens`/`24-kuro-code`). The whole block is one CSS comment — verified by
+  build + check.sh; live parsing needs the Style Settings plugin.
+
+_Remaining cards (Bases — parked) added at each transform step._
 
 ---
 

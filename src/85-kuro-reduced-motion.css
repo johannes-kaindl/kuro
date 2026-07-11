@@ -1,0 +1,32 @@
+/*
+  85-kuro-reduced-motion.css — respect the OS "reduce motion" preference. Neurodivergence-friendly;
+  lives in the theme itself, no plugin required. This is the a11y-whitelist fragment: check.sh
+  exempts it from the per-!important inline-tag rule (the resets below legitimately need !important
+  to override any third-party/plugin animation on these elements).
+  DEPENDS 21-kuro-callouts (the only fragment with decorative @keyframes).
+
+  AUDIT — every decorative @keyframes in 21-kuro-callouts is accounted for here: all are applied
+  ONLY as `.callout[data-callout="…"]:hover .callout-icon svg { animation: … }`, so nulling
+  animation on `.callout *` suppresses every one. Obsidian's own functional UI animations are left
+  untouched.
+  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 (a11y whitelist) . R3 both-mode . R6 build+check
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  /* Canonical near-zero reset. 0.01ms (not 0) preserves transitionend events. */
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  /* a11y backstop: kill all decorative callout/pulse motion outright. */
+  .callout,
+  .callout *,
+  .callout *::before,
+  .callout *::after,
+  .callout .callout-icon svg,
+  .kuro-pulse {
+    animation: none !important;
+  }
+}
