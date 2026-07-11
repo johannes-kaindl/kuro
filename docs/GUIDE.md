@@ -141,6 +141,21 @@ living `!important` count in Minimal fragments is reported as **transform debt**
   identical key-set (both-mode parity, `check.sh`-enforced). The **accent** is deliberately left
   to follow Obsidian's system accent — Kuro does not pin `--ax*`.
 
+#### Signal roles 12→8 (Task 3)
+
+- **What Minimal offers:** 8 accent colours — `--color-{red,orange,yellow,green,cyan,blue,purple,pink}`
+  (+ `-rgb` triplets), defined in `00-minimal-vars.css`.
+- **What Kuro needs:** 12 semantic signals (crimson, ember, rust, toxic, phosphor, biolink, circuit,
+  ghost, spectre, voidwitch, neural-bleed, pearl) — more meanings than there are accents.
+- **The 12→8 mapping** (`04-kuro-tokens.css`, exposed as `--role-*` + `--role-*-rgb`):
+  crimson→red · ember/rust/drift→orange · review→yellow · phosphor/biolink/organic→green ·
+  circuit/link→cyan · ghost/info→blue · spectre/voidwitch/focus/creative→purple ·
+  neural-bleed/reflection→pink. **pearl/neutral** has no Minimal accent → fixed mid-grey
+  `rgb(140,140,150)`, legible in both modes.
+- **Why `--role-*`:** components reference a role *by meaning*, not a concrete colour — so they are
+  decoupled from the active accent and re-colour automatically with every future world (Phase 2).
+  Invisible until components consume them (Tasks 5–9).
+
 _Remaining cards (Typography · Callouts · Checkboxes · Tags · Code · Tables · Blockquote ·
 Lists · Bases · Graph) added at each transform step._
 
@@ -156,5 +171,10 @@ upstream selectively — live in **[THEME-AUTHORING.md](THEME-AUTHORING.md)**.
 1. **Machine:** `bash src/build.sh && bash src/check.sh` → `ALL CHECKS PASS` (determinism ·
    braces · comment balance · Kuro `!important` ≤ 9 tagged · both-mode palette parity ·
    no-hex in Kuro components · < 5 MB · 0 remote `@import`).
-2. **Human:** deploy to a test theme slot, look at it live. Build-green ≠ works — structural
-   components are always confirmed by eye. This is the lesson from the layered failure, made a gate.
+2. **Visual (Claude-owned):** build-green ≠ works — structural components are always confirmed by
+   rendering, not by the build passing (the lesson from the layered failure). This verification is
+   done by the maintaining agent, **not** delegated as a colour judgement to the user: render the
+   theme (browser DOM mock or live deploy), inspect Light + Dark, **and** run the objective
+   contrast/ramp analysis (`docs/tools/`-style scripts) — the latter is colour-blind-safe and
+   catches what an eye can't (e.g. sub-AA text tiers). Surface only a plain-language before/after
+   to the user, never a "which colour?" question.
