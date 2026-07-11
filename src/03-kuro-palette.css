@@ -18,8 +18,8 @@
   --ui3: #3d4450;  /* border-strong (void-500) */
   --tx1: #e8e4d8;  /* fg-primary (signal-pearl) — warm off-white */
   --tx2: #828a97;  /* fg-secondary (void-700) — cool slate */
-  --tx3: #6b7280;  /* fg-tertiary (void-600, AA-lifted) */
-  --tx4: #6b7280;  /* faint = tertiary */
+  --tx3: #767d8b;  /* fg-tertiary — lifted to WCAG AA (4.87:1 on bg1; was #6b7280 4.17) */
+  --tx4: #767d8b;  /* faint = tertiary (AA) */
   --check-marker: #1a1714;  /* dark glyph on accent-filled checkbox (consumed by 22-kuro-checkboxes) */
 }
 .theme-light {
@@ -31,7 +31,7 @@
   --ui3: #b0a99a;  /* border-strong (paper-400) */
   --tx1: #2b2824;  /* fg-primary (paper-900) — warm ink */
   --tx2: #6b6761;  /* fg-secondary (paper-700) */
-  --tx3: #847f75;  /* fg-tertiary (paper-600) */
-  --tx4: #847f75;  /* faint = tertiary */
+  --tx3: #736e64;  /* fg-tertiary — lifted to WCAG AA (4.78:1 on bg1; was #847f75 3.76) */
+  --tx4: #736e64;  /* faint = tertiary (AA) */
   --check-marker: #0c0e12;  /* dark glyph on accent-filled checkbox */
 }
