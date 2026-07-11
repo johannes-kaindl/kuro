@@ -1,18 +1,7 @@
 /* Content */
-/* Blockquotes */
-.markdown-preview-view blockquote {
-  padding-inline-start: var(--nested-padding);
-  font-size: var(--blockquote-size);
-}
-
-.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote,
-.markdown-source-view.mod-cm6 .HyperMD-quote {
-  font-size: var(--blockquote-size);
-}
-
-.is-live-preview .cm-hmd-indent-in-quote {
-  color: var(--text-faint);
-}
+/* Blockquotes — owned by Kuro; the serif-italic aside + accent bar (Reading + Live-Preview) lives
+   in 26-kuro-blockquote.css. Minimal's block (padding/font-size + cm-hmd-indent-in-quote) was
+   removed here at source in T8 — no override layer. */
 
 /* Callouts — owned by Kuro; the whole callout system (frame, colour model, per-type
    accents, layouts, icon animations) lives in 21-kuro-callouts.css. Minimal's block

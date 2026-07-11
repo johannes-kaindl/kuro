@@ -1,0 +1,62 @@
+/*
+  25-kuro-tables.css — tables, ONE definition covering Reading view + Live-Preview, both modes.
+  Kuro owns the visual table styling (frame, caps header on a raised surface, cell borders, row
+  hover, zebra opt-in); Minimal's own --table-* geometry (edge-cell padding, cell-wrapper) is left
+  in 20-minimal-content and Kuro wins the shared properties by source order (25 builds after 20).
+  Ported from the v4 quarry (main:25-tables) with skeleton tokens: --surface-raised → --bg2,
+  --border-subtle → --background-modifier-border (native), --fg-primary/secondary → --tx1/--tx2.
+  Consumes 04-kuro-tokens (--overlay-hover · --tracking-wide · --text-xs · --dur-fast · --ease-signal
+  · --space-2/3). No hex (R1).
+  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
+*/
+
+/* Table frame — shared geometry for Reading + Live-Preview rendered tables. */
+.markdown-rendered table,
+.markdown-source-view.mod-cm6 .cm-table-widget table,
+.markdown-source-view.mod-cm6 table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.93em;
+}
+
+/* Header cells — raised surface, caps label. */
+.markdown-rendered th,
+.markdown-source-view.mod-cm6 .cm-table-widget th,
+.markdown-source-view.mod-cm6 table th {
+  background: var(--bg2);
+  color: var(--tx1);
+  border: 1px solid var(--background-modifier-border);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-size: var(--text-xs);
+  padding: var(--space-2) var(--space-3);
+}
+
+/* Body cells. */
+.markdown-rendered td,
+.markdown-source-view.mod-cm6 .cm-table-widget td,
+.markdown-source-view.mod-cm6 table td {
+  border: 1px solid var(--background-modifier-border);
+  color: var(--tx1);
+  padding: var(--space-2) var(--space-3);
+}
+
+/* Row hover. */
+.markdown-rendered tr:hover td,
+.markdown-source-view.mod-cm6 .cm-table-widget tr:hover td {
+  background: var(--overlay-hover);
+  transition: background var(--dur-fast) var(--ease-signal);
+}
+
+/* Live-Preview source-mode table rows — keep cell-text tone; recede the |---| separator. */
+.markdown-source-view.mod-cm6 .HyperMD-table-row {
+  color: var(--tx1);
+}
+.markdown-source-view.mod-cm6 .HyperMD-table-row.HyperMD-table-row-1 {
+  color: var(--tx2);
+}
+
+/* Style Settings: Table zebra striping (kuro-table-zebra). Off by default; reuses the both-mode
+   --overlay-hover. The tr:hover rule above comes later at equal specificity, so hover still wins. */
+body.kuro-table-zebra .markdown-rendered tbody tr:nth-child(even) td { background: var(--overlay-hover); }

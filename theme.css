@@ -696,6 +696,12 @@ body.styled-scrollbar {
   --text-xs: 0.75em;
   --text-sm: 0.8em;
 
+  /* line-height + tracking (consumed by lists/tables/code — Task 8 grey zone) */
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.8;
+  --tracking-wide: 0.02em;
+  --radius-full: 999px;
+
   /* spacing scale */
   --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px; --space-5: 24px;
   --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
@@ -1631,20 +1637,9 @@ body {
 
 
 /* Content */
-/* Blockquotes */
-.markdown-preview-view blockquote {
-  padding-inline-start: var(--nested-padding);
-  font-size: var(--blockquote-size);
-}
-
-.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote,
-.markdown-source-view.mod-cm6 .HyperMD-quote {
-  font-size: var(--blockquote-size);
-}
-
-.is-live-preview .cm-hmd-indent-in-quote {
-  color: var(--text-faint);
-}
+/* Blockquotes — owned by Kuro; the serif-italic aside + accent bar (Reading + Live-Preview) lives
+   in 26-kuro-blockquote.css. Minimal's block (padding/font-size + cm-hmd-indent-in-quote) was
+   removed here at source in T8 — no override layer. */
 
 /* Callouts — owned by Kuro; the whole callout system (frame, colour model, per-type
    accents, layouts, icon animations) lives in 21-kuro-callouts.css. Minimal's block
@@ -2799,6 +2794,298 @@ body.theme-dark:not(.kuro-no-glow) .cm-hashtag-begin,
 body.theme-dark:not(.kuro-no-glow) .cm-hashtag-middle,
 body.theme-dark:not(.kuro-no-glow) .cm-hashtag-end {
   text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/*
+  24-kuro-code.css — inline code + fenced code blocks across Reading, Live-Preview and editor,
+  with the accent left-stripe frame; plus the editor (CodeMirror) syntax palette. Kuro owns the
+  code frame/pill; Minimal's --code-* geometry stays in its fragments and Kuro wins the shared
+  properties (the `body .markdown-rendered` prefix lifts specificity to (0,1,2)).
+  Ported from the v4 quarry (main:22-code). The v4 --code-* / --syntax-* two-layer palette is
+  collapsed onto Kuro's roles here (both-mode automatic, no hex): normal→link(cyan),
+  string→warning(ember), value→success(phosphor), keyword→focus(spectre); comment→tx3,
+  function→tx1, property→tx2. Surfaces: --code-bg → --bg2, --code-frame → native border,
+  --code-stripe → accent mix. The --code-* read --role-* / --tx* / accent (theme-scoped), so they
+  sit on .theme-* not :root (T5 scope lesson).
+  NOTE — reading-view code has no syntax spans (Obsidian highlights via Prism .token.*, not
+  styled here); the .cm-* syntax rules apply in Live-Preview/editor only.
+  Consumes 06-kuro-typography (--kuro-font-mono), 04-kuro-tokens (--radius-* · --space-* ·
+  --leading-normal · --role-* · --accent), Minimal alias --bg2, --tx1/2/3. No hex (R1).
+  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
+*/
+
+:root {
+  --kuro-code-size: 0.9; /* code font-size multiplier (inline pill + fenced block parity) */
+}
+
+/* Kuro code palette — theme-scoped (reads roles/tx/accent). Both modes share the set; roles
+   adapt per mode automatically. */
+.theme-dark,
+.theme-light {
+  --code-bg:       var(--bg2);
+  --code-frame:    var(--background-modifier-border);
+  --code-stripe:   color-mix(in srgb, var(--interactive-accent) 60%, transparent);
+  --code-normal:   var(--role-link);
+  --code-string:   var(--role-warning);
+  --code-value:    var(--role-success);
+  --code-keyword:  var(--role-focus);
+  --code-comment:  var(--tx3);
+  --code-tag:      var(--role-link);
+  --code-operator: var(--role-link);
+  --code-function: var(--tx1);
+  --code-property: var(--tx2);
+}
+
+/* ===== INLINE CODE — Reading + Live-Preview ===== */
+body .markdown-rendered code,
+body .cm-inline-code {
+  font-family: var(--kuro-font-mono);
+  background: var(--code-bg);
+  color: var(--code-normal);
+  border: 1px solid color-mix(in srgb, var(--accent) 15%, transparent);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.4em;
+  font-size: calc(var(--kuro-code-size) * 1em);
+}
+
+/* ===== FENCED CODE BLOCK — Reading view ===== */
+body .markdown-rendered pre {
+  background: var(--code-bg);
+  border: 1px solid var(--code-frame);
+  border-left: 3px solid var(--code-stripe);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--kuro-font-mono);
+  color: var(--tx1);
+  font-size: calc(var(--kuro-code-size) * 1em);
+  line-height: var(--leading-normal);
+  tab-size: 4;
+  overflow-x: auto;
+}
+body .markdown-rendered pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* ===== FENCED CODE BLOCK — Live-Preview / editor ===== */
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock,
+.markdown-source-view.mod-cm6 .cm-content .cm-codeblock {
+  font-family: var(--kuro-font-mono);
+  background: var(--code-bg);
+  color: var(--tx1);
+  border-left: 3px solid var(--code-stripe);
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+  font-size: calc(var(--kuro-code-size) * 1em);
+}
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock-bg {
+  background: var(--code-bg);
+}
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock-begin {
+  border-top: 1px solid var(--code-frame);
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+  padding-top: 2px;
+}
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock-end {
+  border-bottom: 1px solid var(--code-frame);
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+  padding-bottom: 2px;
+}
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock {
+  border-right: 1px solid var(--code-frame);
+}
+
+/* ===== SYNTAX HIGHLIGHTING — editor (CodeMirror) ===== */
+.cm-s-obsidian .cm-keyword  { color: var(--code-keyword);  }
+.cm-s-obsidian .cm-def      { color: var(--code-function); }
+.cm-s-obsidian .cm-variable { color: var(--code-property); }
+.cm-s-obsidian .cm-string   { color: var(--code-string);   }
+.cm-s-obsidian .cm-number   { color: var(--code-value);    }
+.cm-s-obsidian .cm-comment  { color: var(--code-comment);  font-style: italic; }
+.cm-s-obsidian .cm-operator { color: var(--code-operator); }
+.cm-s-obsidian .cm-tag      { color: var(--code-tag);      }
+.cm-s-obsidian .cm-atom     { color: var(--code-string);   }
+.cm-s-obsidian .cm-builtin  { color: var(--code-keyword);  }
+.cm-s-obsidian .cm-type     { color: var(--code-tag);      }
+
+/* Frontmatter (YAML) — keys muted, string values keep the string signal. */
+.cm-s-obsidian .cm-hmd-frontmatter.cm-string,
+.cm-s-obsidian .cm-yaml .cm-string { color: var(--code-string); }
+.cm-s-obsidian .cm-hmd-frontmatter.cm-atom,
+.cm-s-obsidian .cm-yaml .cm-atom   { color: var(--tx2); }
+
+/*
+  25-kuro-tables.css — tables, ONE definition covering Reading view + Live-Preview, both modes.
+  Kuro owns the visual table styling (frame, caps header on a raised surface, cell borders, row
+  hover, zebra opt-in); Minimal's own --table-* geometry (edge-cell padding, cell-wrapper) is left
+  in 20-minimal-content and Kuro wins the shared properties by source order (25 builds after 20).
+  Ported from the v4 quarry (main:25-tables) with skeleton tokens: --surface-raised → --bg2,
+  --border-subtle → --background-modifier-border (native), --fg-primary/secondary → --tx1/--tx2.
+  Consumes 04-kuro-tokens (--overlay-hover · --tracking-wide · --text-xs · --dur-fast · --ease-signal
+  · --space-2/3). No hex (R1).
+  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
+*/
+
+/* Table frame — shared geometry for Reading + Live-Preview rendered tables. */
+.markdown-rendered table,
+.markdown-source-view.mod-cm6 .cm-table-widget table,
+.markdown-source-view.mod-cm6 table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.93em;
+}
+
+/* Header cells — raised surface, caps label. */
+.markdown-rendered th,
+.markdown-source-view.mod-cm6 .cm-table-widget th,
+.markdown-source-view.mod-cm6 table th {
+  background: var(--bg2);
+  color: var(--tx1);
+  border: 1px solid var(--background-modifier-border);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-size: var(--text-xs);
+  padding: var(--space-2) var(--space-3);
+}
+
+/* Body cells. */
+.markdown-rendered td,
+.markdown-source-view.mod-cm6 .cm-table-widget td,
+.markdown-source-view.mod-cm6 table td {
+  border: 1px solid var(--background-modifier-border);
+  color: var(--tx1);
+  padding: var(--space-2) var(--space-3);
+}
+
+/* Row hover. */
+.markdown-rendered tr:hover td,
+.markdown-source-view.mod-cm6 .cm-table-widget tr:hover td {
+  background: var(--overlay-hover);
+  transition: background var(--dur-fast) var(--ease-signal);
+}
+
+/* Live-Preview source-mode table rows — keep cell-text tone; recede the |---| separator. */
+.markdown-source-view.mod-cm6 .HyperMD-table-row {
+  color: var(--tx1);
+}
+.markdown-source-view.mod-cm6 .HyperMD-table-row.HyperMD-table-row-1 {
+  color: var(--tx2);
+}
+
+/* Style Settings: Table zebra striping (kuro-table-zebra). Off by default; reuses the both-mode
+   --overlay-hover. The tr:hover rule above comes later at equal specificity, so hover still wins. */
+body.kuro-table-zebra .markdown-rendered tbody tr:nth-child(even) td { background: var(--overlay-hover); }
+
+/*
+  26-kuro-blockquote.css — blockquotes as "the raven's aside": serif-italic voice + accent bar,
+  ONE definition covering Reading view and Live-Preview. REPLACES Minimal's blockquote block
+  (removed at source in 20-minimal-content.css) — no override layer. Ported from the v4 quarry
+  (main:26-blockquote) with skeleton tokens: --fg-secondary → --tx2, --surface-base → --bg1.
+  CM6 has no wrapping <blockquote>, so the aside is reconstructed per quoted line
+  (.cm-line.HyperMD-quote). Consumes 06-kuro-typography (--kuro-font-serif), 04-kuro-tokens
+  (--accent · --radius-sm · --space-2/3), Minimal alias --bg1, Minimal --tx2. No hex (R1).
+  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
+*/
+
+/* Reading view — serif-italic aside, accent bar, faint accent wash over the base surface. */
+.markdown-rendered blockquote {
+  font-family: var(--kuro-font-serif);
+  font-style: italic;
+  font-size: 1.05em;
+  line-height: 1.6;
+  color: var(--tx2);
+  border-left: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 3%, var(--bg1));
+  padding: var(--space-2) var(--space-3);
+  margin: var(--space-2) 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.markdown-rendered blockquote p { color: inherit; }
+
+/* Live-Preview / editor — CM6 renders each quoted line as .HyperMD-quote with an inline
+   .cm-quote span; no wrapping <blockquote>, so the aside is reconstructed per line. */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-quote {
+  font-family: var(--kuro-font-serif);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--tx2);
+  border-left: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 3%, var(--bg1));
+  padding-left: var(--space-3);
+}
+
+/* The quote marker + quoted text span — keep the muted serif voice. */
+.markdown-source-view.mod-cm6 .cm-quote {
+  color: var(--tx2);
+  font-style: italic;
+}
+
+/*
+  27-kuro-lists.css — unordered/ordered list typography from ONE source across Reading + Live-Preview:
+  relaxed line-height, comfortable nesting indent, tinted markers (accent bullets, tertiary numbers).
+  REPLACES Minimal's list rules (removed at source in 20-minimal-content.css) — no override layer.
+  Ported from the v4 quarry (main:27-lists) with skeleton tokens: --fg-tertiary → --tx3,
+  --border-subtle → --background-modifier-border (native). Consumes 04-kuro-tokens
+  (--accent · --leading-relaxed · --space-*), native --text-normal. No hex (R1).
+  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
+*/
+
+/* Local indent step, shared by both surfaces */
+.markdown-rendered,
+.markdown-source-view.mod-cm6 {
+  --list-indent: var(--space-5); /* 24px nesting step */
+}
+
+/* ── Reading view ── */
+.markdown-rendered ul,
+.markdown-rendered ol {
+  padding-inline-start: var(--list-indent);
+  margin-block: var(--space-2);
+}
+.markdown-rendered li > ul,
+.markdown-rendered li > ol {
+  margin-block: 0;
+}
+.markdown-rendered li {
+  line-height: var(--leading-relaxed);
+  color: var(--text-normal);
+  margin-block: var(--space-1);
+}
+/* Bullet markers — accent dot; ordered numbers a quieter tertiary tone */
+.markdown-rendered ul > li::marker {
+  color: var(--accent);
+}
+.markdown-rendered ol > li::marker {
+  color: var(--tx3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Live-Preview / editor (CodeMirror 6) ── */
+.markdown-source-view.mod-cm6 .HyperMD-list-line {
+  line-height: var(--leading-relaxed);
+}
+.markdown-source-view.mod-cm6 .cm-formatting-list-ul .list-bullet,
+.markdown-source-view.mod-cm6 .cm-formatting-list-ul {
+  color: var(--accent);
+}
+.markdown-source-view.mod-cm6 .cm-formatting-list-ol {
+  color: var(--tx3);
+  font-variant-numeric: tabular-nums;
+}
+/* Indentation guides — calm subtle vertical rules */
+.markdown-source-view.mod-cm6 .cm-indent {
+  --indentation-guide-color: var(--background-modifier-border);
+}
+
+/* ── Canvas node lists (rendered markdown inside .canvas-node) ── */
+.canvas-node .canvas-node-content ul > li,
+.canvas-node .canvas-node-content ol > li {
+  margin-bottom: var(--space-1);
 }
 
 /* Minimal features */

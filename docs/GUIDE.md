@@ -243,8 +243,34 @@ living `!important` count in Minimal fragments is reported as **transform debt**
   (Obsidian's own `:hover` consumes the `-hover` vars — no override, R1). Dark mode adds a signal glow
   (`text-shadow`/`box-shadow` from `--accent-glow`), opt-out via `.kuro-no-glow`.
 
-_Remaining cards (Code · Tables · Blockquote · Lists · Bases ·
-Graph) added at each transform step._
+#### Grey zone: Code · Tables · Blockquote · Lists (Task 8a–8d)
+
+These four have **no high-specificity Live-Preview trap** — Minimal styles them through native
+variables and low-specificity rules, and the Kuro fragments build *after* `20-minimal-content` so
+they win shared properties by source order. So the transform is a straight token-mapped port from the
+v4 quarry (no layered break-point). The shared v4→skeleton token map used throughout: `--fg-primary/
+secondary/tertiary → --tx1/2/3`, `--surface-base/raised → --bg1/--bg2`, `--border-subtle → native
+--background-modifier-border`; the shared constants `--leading-normal/relaxed`, `--tracking-wide`,
+`--radius-full` were added to `04-kuro-tokens`.
+
+- **Code (8a, `24-kuro-code.css`):** inline pill (`--code-bg` = `--bg2`, accent hairline) + fenced
+  panel (frame + accent left-stripe) across Reading + Live-Preview, plus the editor CM syntax palette.
+  The v4 `--code-*`/`--syntax-*` two-layer palette is collapsed onto roles (normal→link, string→
+  warning, value→success, keyword→focus) — both-mode automatic, no hex. **Reading-view code has no
+  syntax spans** (Obsidian highlights via Prism `.token.*`, not styled); the `.cm-*` rules are
+  Live-Preview/editor only. `--code-*` sit on `.theme-*` (they read roles — T5 scope rule).
+- **Tables (8b, `25-kuro-tables.css`):** caps header on a raised surface (`--bg2`), `--tracking-wide`
+  uppercase label, cell borders (native), row hover + zebra opt-in (`--overlay-hover`). Minimal's own
+  `--table-*` edge-cell geometry stays in `20-minimal-content`; Kuro wins the styling by source order.
+- **Blockquote (8c, `26-kuro-blockquote.css`):** the "raven's aside" — serif-italic (`--kuro-font-
+  serif`), accent bar + faint accent wash over `--bg1`, one model for Reading `blockquote` and
+  per-line CM `.cm-line.HyperMD-quote` (CM6 has no wrapping `<blockquote>`). Minimal's block removed
+  at source.
+- **Lists (8d, `27-kuro-lists.css`):** accent bullet markers, tertiary ordered numbers, relaxed
+  leading, 24px nesting indent, calm indent guides. Additive over Minimal (Minimal sets no marker
+  colours — markers inherited Obsidian defaults), so nothing is removed at source.
+
+_Remaining cards (Bases · Graph) added at each transform step._
 
 ---
 

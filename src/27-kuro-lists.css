@@ -1,0 +1,62 @@
+/*
+  27-kuro-lists.css — unordered/ordered list typography from ONE source across Reading + Live-Preview:
+  relaxed line-height, comfortable nesting indent, tinted markers (accent bullets, tertiary numbers).
+  REPLACES Minimal's list rules (removed at source in 20-minimal-content.css) — no override layer.
+  Ported from the v4 quarry (main:27-lists) with skeleton tokens: --fg-tertiary → --tx3,
+  --border-subtle → --background-modifier-border (native). Consumes 04-kuro-tokens
+  (--accent · --leading-relaxed · --space-*), native --text-normal. No hex (R1).
+  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
+*/
+
+/* Local indent step, shared by both surfaces */
+.markdown-rendered,
+.markdown-source-view.mod-cm6 {
+  --list-indent: var(--space-5); /* 24px nesting step */
+}
+
+/* ── Reading view ── */
+.markdown-rendered ul,
+.markdown-rendered ol {
+  padding-inline-start: var(--list-indent);
+  margin-block: var(--space-2);
+}
+.markdown-rendered li > ul,
+.markdown-rendered li > ol {
+  margin-block: 0;
+}
+.markdown-rendered li {
+  line-height: var(--leading-relaxed);
+  color: var(--text-normal);
+  margin-block: var(--space-1);
+}
+/* Bullet markers — accent dot; ordered numbers a quieter tertiary tone */
+.markdown-rendered ul > li::marker {
+  color: var(--accent);
+}
+.markdown-rendered ol > li::marker {
+  color: var(--tx3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Live-Preview / editor (CodeMirror 6) ── */
+.markdown-source-view.mod-cm6 .HyperMD-list-line {
+  line-height: var(--leading-relaxed);
+}
+.markdown-source-view.mod-cm6 .cm-formatting-list-ul .list-bullet,
+.markdown-source-view.mod-cm6 .cm-formatting-list-ul {
+  color: var(--accent);
+}
+.markdown-source-view.mod-cm6 .cm-formatting-list-ol {
+  color: var(--tx3);
+  font-variant-numeric: tabular-nums;
+}
+/* Indentation guides — calm subtle vertical rules */
+.markdown-source-view.mod-cm6 .cm-indent {
+  --indentation-guide-color: var(--background-modifier-border);
+}
+
+/* ── Canvas node lists (rendered markdown inside .canvas-node) ── */
+.canvas-node .canvas-node-content ul > li,
+.canvas-node .canvas-node-content ol > li {
+  margin-bottom: var(--space-1);
+}
