@@ -60,9 +60,21 @@ body{background:var(--background-primary);color:var(--text-normal);font-family:v
         <p>Body text renders in <strong>JetBrains Mono</strong> everywhere — this paragraph, the sidebar, the tabs. Inline <code>code</code> and a <a href="#" class="tag">#kuro-test</a> tag sit inline.</p>
         <h2>Chamber surfaces</h2>
         <p>Note is the base surface; the sidebar and ribbon lift slightly. Muted text like <span class="text-muted" style="color:var(--text-muted)">this secondary line</span> stays legible.</p>
-        <div class="callout" data-callout="note" style="--callout-color:var(--role-info-rgb)">
+        <div class="callout" data-callout="note">
          <div class="callout-title"><div class="callout-icon"></div><div class="callout-title-inner">Note callout</div></div>
-         <div class="callout-content"><p>A callout should read as a boxed region — border, tint, title.</p></div>
+         <div class="callout-content"><p>A callout should read as a boxed region — border, 4px signal bar, tint, title. Colour comes from Kuro's data-callout map, not inline.</p></div>
+        </div>
+        <div class="callout" data-callout="warning">
+         <div class="callout-title"><div class="callout-icon"></div><div class="callout-title-inner">Warning callout</div></div>
+         <div class="callout-content"><p>Warning maps to the orange signal role.</p></div>
+        </div>
+        <div class="callout" data-callout="success">
+         <div class="callout-title"><div class="callout-icon"></div><div class="callout-title-inner">Success callout</div></div>
+         <div class="callout-content"><p>Success maps to the green signal role.</p></div>
+        </div>
+        <div class="callout" data-callout="error">
+         <div class="callout-title"><div class="callout-icon"></div><div class="callout-title-inner">Error callout</div></div>
+         <div class="callout-content"><p>Error maps to the red signal role.</p></div>
         </div>
         <ul class="contains-task-list">
          <li class="task-list-item" data-task=" "><input class="task-list-item-checkbox" type="checkbox"> open task</li>

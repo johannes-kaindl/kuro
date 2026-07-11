@@ -4,35 +4,19 @@
   fragments reference --role-* by meaning and recolour with every world (Phase 2). Plus motion,
   radius, spacing, glow, and the accent bridge. No hex here — roles read --color-* (from
   00-minimal-vars), the rest is functional. (Fonts → 06-kuro-typography; tag pill → 23-kuro-tags.)
+
+  SCOPE — tokens that only read constants live on :root; tokens that read Minimal's/Obsidian's
+  theme-scoped vars (--color-*, --interactive-accent, --tx1) MUST live on .theme-* instead.
+  Those source vars are set on <body>.theme-dark/.theme-light, NOT on :root (<html>), and custom
+  properties inherit downward only — a :root reference to them resolves to EMPTY. (Found in T5:
+  the callout --role-*-rgb triplets came back empty because they were declared on :root.)
 */
 :root {
-  /* role palette -> Minimal's 8 accents (12->8; see GUIDE anatomy card) */
-  --role-error-rgb:      var(--color-red-rgb);     --role-error:      var(--color-red);
-  --role-success-rgb:    var(--color-green-rgb);   --role-success:    var(--color-green);
-  --role-warning-rgb:    var(--color-orange-rgb);  --role-warning:    var(--color-orange);
-  --role-focus-rgb:      var(--color-purple-rgb);  --role-focus:      var(--color-purple);
-  --role-link-rgb:       var(--color-cyan-rgb);    --role-link:       var(--color-cyan);
-  --role-info-rgb:       var(--color-blue-rgb);    --role-info:       var(--color-blue);
-  --role-organic-rgb:    var(--color-green-rgb);   --role-organic:    var(--color-green);
-  --role-reflection-rgb: var(--color-pink-rgb);    --role-reflection: var(--color-pink);
-  --role-drift-rgb:      var(--color-orange-rgb);  --role-drift:      var(--color-orange);
-  --role-review-rgb:     var(--color-yellow-rgb);  --role-review:     var(--color-yellow);
-  --role-creative-rgb:   var(--color-purple-rgb);  --role-creative:   var(--color-purple);
-  /* neutral (pearl) has no Minimal accent -> fixed mid-grey, readable both modes */
-  --role-neutral-rgb: 140, 140, 150;               --role-neutral: rgb(140, 140, 150);
-
   /* motion */
   --dur-fast: 120ms; --dur-base: 200ms; --dur-slow: 360ms;
   --ease-signal: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-ghost:  cubic-bezier(0.4, 0, 0.2, 1);
   --ease-pulse:  cubic-bezier(0.4, 0, 0.6, 1);
-
-  /* accent bridge — Kuro follows Obsidian's/Minimal's system accent (Chamber default) */
-  --accent: var(--interactive-accent);
-  --accent-soft: color-mix(in srgb, var(--interactive-accent) 15%, transparent);
-  --accent-glow: color-mix(in srgb, var(--interactive-accent) 50%, transparent);
-  --glow-accent: color-mix(in srgb, var(--interactive-accent) 50%, transparent);
-  --check-border: color-mix(in srgb, var(--interactive-accent) 50%, transparent);
 
   /* radius scale (Kuro's own; Minimal keeps its own radius settings) */
   --kuro-radius-scale: 1;
@@ -51,6 +35,35 @@
   /* spacing scale */
   --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px; --space-5: 24px;
   --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
+}
+
+/* Theme-scoped tokens — they read Minimal's/Obsidian's vars (--color-* · --interactive-accent ·
+   --tx1) which are set on <body>.theme-*, so they are declared here, not on :root. Both modes get
+   the identical set (source vars are already both-mode via Minimal), so one .theme-dark,
+   .theme-light block covers both. */
+.theme-dark,
+.theme-light {
+  /* role palette -> Minimal's 8 accents (12->8; see GUIDE anatomy card) */
+  --role-error-rgb:      var(--color-red-rgb);     --role-error:      var(--color-red);
+  --role-success-rgb:    var(--color-green-rgb);   --role-success:    var(--color-green);
+  --role-warning-rgb:    var(--color-orange-rgb);  --role-warning:    var(--color-orange);
+  --role-focus-rgb:      var(--color-purple-rgb);  --role-focus:      var(--color-purple);
+  --role-link-rgb:       var(--color-cyan-rgb);    --role-link:       var(--color-cyan);
+  --role-info-rgb:       var(--color-blue-rgb);    --role-info:       var(--color-blue);
+  --role-organic-rgb:    var(--color-green-rgb);   --role-organic:    var(--color-green);
+  --role-reflection-rgb: var(--color-pink-rgb);    --role-reflection: var(--color-pink);
+  --role-drift-rgb:      var(--color-orange-rgb);  --role-drift:      var(--color-orange);
+  --role-review-rgb:     var(--color-yellow-rgb);  --role-review:     var(--color-yellow);
+  --role-creative-rgb:   var(--color-purple-rgb);  --role-creative:   var(--color-purple);
+  /* neutral (pearl) has no Minimal accent -> fixed mid-grey, readable both modes */
+  --role-neutral-rgb: 140, 140, 150;               --role-neutral: rgb(140, 140, 150);
+
+  /* accent bridge — Kuro follows Obsidian's/Minimal's system accent (Chamber default) */
+  --accent: var(--interactive-accent);
+  --accent-soft: color-mix(in srgb, var(--interactive-accent) 15%, transparent);
+  --accent-glow: color-mix(in srgb, var(--interactive-accent) 50%, transparent);
+  --glow-accent: color-mix(in srgb, var(--interactive-accent) 50%, transparent);
+  --check-border: color-mix(in srgb, var(--interactive-accent) 50%, transparent);
 
   /* subtle hover overlay (zebra, hover tints) */
   --overlay-hover: color-mix(in srgb, var(--tx1) 6%, transparent);

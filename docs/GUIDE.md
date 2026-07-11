@@ -171,7 +171,33 @@ living `!important` count in Minimal fragments is reported as **transform debt**
   changes; finer per-heading tuning (v4's mono-H5 etc.) is deferred (incremental).
 - **Verify:** font-var chains are easy to get subtly wrong — confirmed by rendering, not assumed.
 
-_Remaining cards (Callouts · Checkboxes · Tags · Code · Tables · Blockquote · Lists · Bases ·
+#### Callouts (Task 5) — the first layered break-point
+
+- **How Obsidian targets it:** every callout is `.callout` (one selector for Reading *and*
+  Live-Preview — `.markdown-source-view.mod-cm6 .callout` resolves to the same node), typed via the
+  `[data-callout="…"]` attribute, with `--callout-color` / `--callout-icon` read by Obsidian itself
+  for its icon and title. Parts: `.callout-title`, `.callout-icon svg`, `.callout-content`,
+  `.callout-fold` (collapsible).
+- **How Minimal solves it:** **boxless by default** — Minimal ships no frame, leaning on Obsidian's
+  native tint, and hides its real styling behind an *opt-in* body class `.callouts-outlined`
+  (`(0,2,0)`+), plus a live-preview readable-line-width centering rule. This is exactly why callouts
+  "disappeared" in the failed layered attempt: Kuro's base `.callout` `(0,1,0)` could *set* a border,
+  but there was no box to inherit and Minimal's opt-in/native paths fought whatever was layered on top.
+- **Specificity / traps:** Minimal's callout weight lives in `.callouts-outlined …` `(0,2,0)` and in
+  native `--callout-*` variables set on `body`. A same-or-lower Kuro override loses or is ignored. The
+  escape is **ownership, not overriding**: delete Minimal's callout block *at source* so the field is
+  clear, then Kuro's single `.callout` `(0,1,0)` base is uncontested. Decorative icon hover-loops are
+  deliberately lowered to `(0,0,1)` via `body :where(…)` so the reduced-motion and
+  `kuro-no-callout-animations` resets outrank them with a plain class — **no `!important`**.
+- **How Kuro replaces it:** `21-kuro-callouts.css` is one owned system — a single `.callout` base
+  (1px frame + 4px signal bar + faint self-tint surface + `--lift`), one colour model where each
+  `[data-callout]` sets `--callout-color` to a `--role-*-rgb` triplet (built-ins + Kuro's specialised
+  types), the special layouts (stat / mood / journal / nav / blank / spoiler / progress) and the icon
+  animation library. Minimal's block is removed in `20-minimal-content.css` (only the non-conflicting
+  live-preview centering line kept). Titles clamp toward `--tx1` via `color-mix` for AA while the full
+  signal stays on the icon + bar.
+
+_Remaining cards (Checkboxes · Tags · Code · Tables · Blockquote · Lists · Bases ·
 Graph) added at each transform step._
 
 ---
