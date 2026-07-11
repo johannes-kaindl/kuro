@@ -197,7 +197,32 @@ living `!important` count in Minimal fragments is reported as **transform debt**
   live-preview centering line kept). Titles clamp toward `--tx1` via `color-mix` for AA while the full
   signal stays on the icon + bar.
 
-_Remaining cards (Checkboxes · Tags · Code · Tables · Blockquote · Lists · Bases ·
+#### Checkboxes (Task 6) — the second layered break-point
+
+- **How Obsidian targets it:** each task item is `li.task-list-item[data-task="…"]` containing an
+  `input.task-list-item-checkbox`. The task *type* is the `[data-task]` attribute (space = open,
+  `x`/`X` = done, plus `>`, `<`, `?`, `!`, `i`, `b`, `p`, `c`, `f`, `k`, …). Obsidian reads
+  `--checkbox-color`, `--checkbox-radius`, `--checkbox-margin`, `--checkbox-marker-color`.
+- **How Minimal solves it:** a `-webkit-mask-image` system — for each alternate task type it sets
+  `--checkbox-marker-color: transparent`, `background-color: currentColor` and a per-type SVG
+  `-webkit-mask-image`, turning the box into a masked glyph. Empty `[ ]` gets no fill and, crucially,
+  **no visible box**.
+- **Specificity / traps:** the mask rules are `input[data-task="x"]:checked` `(0,2,1)` and
+  `li[data-task="x"] > p > input:checked` `(0,2,3)` — higher than a plain base — AND they live in
+  `30-minimal-features.css`, which builds **after** `22-kuro-checkboxes.css`. So even an
+  equal-specificity Kuro rule loses on source order. That is why Kuro's glyphs "didn't take" in the
+  failed layered attempt and empty boxes were invisible. The escape (again): **delete Minimal's block
+  at source**, then Kuro is uncontested. Kuro additionally lowers its base to `(0,1,1)` via `:where()`
+  on the view-context selectors, so `:checked`/`[data-task]` override it without `!important`.
+- **How Kuro replaces it:** `22-kuro-checkboxes.css` — one `-webkit-appearance:none` base (visible
+  square, `--radius-sm`, `--check-border`, faint accent wash) covering Reading + Live-Preview +
+  source; an accent-filled `:checked` with an on-accent `--check-marker` tick; and a `::after` glyph
+  per `[data-task]` coloured from the role palette (done ✓, cancelled –, deferred ›, scheduled ‹,
+  question ?, important !, info i, bookmark ⌖, pro +, con −, fire 🔥, key 🔑). Empty `[ ]` reads as a
+  clean square. Completed lines get a token-mapped strikethrough. `--checkbox-margin`/size stay
+  Minimal's (native geometry Kuro consumes).
+
+_Remaining cards (Tags · Code · Tables · Blockquote · Lists · Bases ·
 Graph) added at each transform step._
 
 ---

@@ -77,8 +77,12 @@ body{background:var(--background-primary);color:var(--text-normal);font-family:v
          <div class="callout-content"><p>Error maps to the red signal role.</p></div>
         </div>
         <ul class="contains-task-list">
-         <li class="task-list-item" data-task=" "><input class="task-list-item-checkbox" type="checkbox"> open task</li>
-         <li class="task-list-item is-checked" data-task="x"><input class="task-list-item-checkbox" type="checkbox" checked> done task</li>
+         <li class="task-list-item" data-task=" "><input class="task-list-item-checkbox" type="checkbox" data-task=" "> open task (empty box must be visible)</li>
+         <li class="task-list-item is-checked" data-task="x"><input class="task-list-item-checkbox" type="checkbox" data-task="x" checked> done task (accent fill + tick + strike)</li>
+         <li class="task-list-item" data-task=">"><input class="task-list-item-checkbox" type="checkbox" data-task=">"> deferred &rsaquo;</li>
+         <li class="task-list-item" data-task="?"><input class="task-list-item-checkbox" type="checkbox" data-task="?"> question ?</li>
+         <li class="task-list-item" data-task="!"><input class="task-list-item-checkbox" type="checkbox" data-task="!"> important !</li>
+         <li class="task-list-item" data-task="-"><input class="task-list-item-checkbox" type="checkbox" data-task="-"> cancelled &ndash;</li>
         </ul>
         <blockquote><p>A blockquote for good measure.</p></blockquote>
         <pre><code>const kuro = "mono code block";</code></pre>
