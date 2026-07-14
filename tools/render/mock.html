@@ -44,6 +44,8 @@ input[type=checkbox]{
 }
 input[type=checkbox]:checked{background-color:var(--checkbox-color);border-color:var(--checkbox-color)}
 body{--checklist-done-decoration:line-through;--checklist-done-color:var(--text-muted)}
+.task-list-item-checkbox{width:var(--checkbox-size);height:var(--checkbox-size)}
+.markdown-preview-view .task-list-item-checkbox{position:relative;top:0.2em;margin-inline-end:0.6em}
 ul > li.task-list-item{list-style:none}
 ul > li.task-list-item[data-task="x"],
 ul > li.task-list-item[data-task="X"]{text-decoration:var(--checklist-done-decoration);color:var(--checklist-done-color)}

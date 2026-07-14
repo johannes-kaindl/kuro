@@ -2596,6 +2596,8 @@ body.kuro-callout-border-only .callout {
    ════════════════════════════════════════════════════════════════════════ */
 body {
   --checkbox-size: 1.1em;
+  --checkbox-top: 0px; /* Minimal's 2px push + the old -0.28em seat read "sunken" on the
+                          box-less silhouettes (Jay, round 3) — neutralise the relative push */
 }
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -2608,7 +2610,8 @@ input.task-list-item-checkbox {
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--accent) 8%, transparent);
   cursor: pointer;
-  vertical-align: -0.28em; /* sit on the text mid-line; text-bottom read as "too low" (Jay 2026-07-11) */
+  vertical-align: -0.12em; /* centre on the text mid-line; -0.28em read "sunken" on the
+                              box-less silhouettes (Jay, round 3 2026-07-15) */
   transition: background var(--dur-fast) var(--ease-signal),
               border-color var(--dur-fast) var(--ease-signal);
 }
