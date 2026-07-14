@@ -20,14 +20,17 @@ components with its own — no override layers, no specificity fights, no upstre
 - **Fonts trimmed** to JetBrains Mono + EB Garamond (Inter and Space Grotesk dropped, −242 KB).
 
 ### Components (transformed to Kuro, both-mode Chamber/Paper)
-- Callouts, task checkboxes, tags, code, tables, blockquote, lists, and the graph palette.
+- Callouts, task checkboxes, tags, code, tables, blockquote, lists, Bases (table + cards +
+  status pills), and the graph palette.
+- Task checkboxes render as **filled signal boxes with inverted SVG icon glyphs** riding
+  Obsidian's native mask engine (per-type `-webkit-mask-image`), one model across Reading,
+  Live-Preview and source.
 - Chamber/Paper palette with `check.sh`-enforced both-mode parity; twelve signals mapped onto eight
   roles (`--role-*`).
 - Dark-only ambience (film-grain + H1 glow), `prefers-reduced-motion` support, and a focused Style
   Settings block (effects, callout style, table zebra, shape/density sliders).
 
 ### Notes
-- **Bases** styling is not yet ported in this release (parked for a follow-up).
 - Anatomy & authoring are documented in `docs/GUIDE.md` and `docs/THEME-AUTHORING.md`.
 
 ## [4.0.1] — Variable-First Hardening
