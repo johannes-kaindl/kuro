@@ -29,13 +29,13 @@ body {
   --checkbox-margin: 0px 8px 0px -2em;
 }
 
-body.minimal-strike-lists {
+/* Kuro edit at source: done tasks ALWAYS strike + mute. Obsidian core consumes these
+   vars at (0,2,2) (ul > li.task-list-item[data-task="x"] and the HyperMD editor twin) —
+   an own strike rule at lower specificity silently loses (real-app finding 2026-07-15).
+   Minimal's .minimal-strike-lists opt-in is collapsed: Kuro has one opinion. */
+body {
   --checklist-done-decoration: line-through;
-}
-
-body:not(.minimal-strike-lists) {
-  --checklist-done-decoration: none;
-  --checklist-done-color: var(--text-normal);
+  --checklist-done-color: var(--text-muted);
 }
 
 .markdown-preview-section > .contains-task-list {

@@ -220,14 +220,21 @@ living `!important` count in Minimal fragments is reported as **transform debt**
   `-webkit-mask-image`** (65% at 52% 52%, canvas sized by `--checkbox-size`). Any *text* content a
   theme puts into that `::after` is clipped by the native mask too — every type renders as "just a
   check" live, while a mock without the native rule happily shows the text (two false-green rounds).
-- **How Kuro replaces it:** `22-kuro-checkboxes.css` **rides the native engine instead of fighting
-  it.** Base: visible square (`--radius-sm`, `--check-border`, faint accent wash), geometry keyed off
-  `--checkbox-size` (set to 1.1em — box and native glyph canvas stay in register). Per `[data-task]`:
-  the box fills with its signal role and the rule overrides ONLY `-webkit-mask-image` (a solid-fill
-  SVG icon: heroicons v1 solid + hand-drawn geometric + Minimal's question glyph) plus
-  `background-color: var(--check-marker)` — content, position and mask plumbing stay native. Done
-  `[x]` keeps the native check mask (fill only). Empty `[ ]` reads as a clean square. Done +
-  cancelled strike the text (no blanket `.is-checked` strike — alternates are `.is-checked` too).
+- **How Kuro replaces it:** `22-kuro-checkboxes.css` uses **Minimal's silhouette recipe with Kuro's
+  signal roles** (filled mini-boxes with inverted mask-icons rendered fine but read as toy-like
+  pastel chips — Jay verdict 2026-07-15): for every alternate `[data-task]` the input itself becomes
+  the icon — `--checkbox-marker-color: transparent` kills the native ::after, `border: none` kills
+  the box, `background-color` (role colour) + `-webkit-mask-image` (solid-fill SVG icon: heroicons
+  v1 solid + hand-drawn geometric + Minimal's question glyph) turn it into a full-size silhouette.
+  Slim glyphs (chevrons, ?, !, i, +, −) get `-webkit-mask-size: 135%` — their viewBox carries air,
+  scaling past the box clips only transparency. Done `[x]` stays a filled accent box with the
+  native check; empty `[ ]` stays a visible square; geometry keys off `--checkbox-size` (1.1em).
+- **The fourth trap — text strike:** Obsidian core strikes done tasks via
+  `ul > li.task-list-item[data-task="x"]` `(0,2,2)` reading `--checklist-done-decoration/-color` —
+  an own strike rule at `(0,2,1)` silently loses, and Minimal's skeleton defaults the variable to
+  `none`. Fix at source (`20-minimal-content.css`): set the variables (`line-through` +
+  `--text-muted`), collapse Minimal's `.minimal-strike-lists` opt-in. The editor twin
+  (`.HyperMD-task-line[data-task="x"]`) consumes the same variables — one fix, both surfaces.
 - **Mock fidelity:** `tools/render/mock.html` embeds the native checkbox engine **verbatim from
   app.css** and loads the app.css stand-in *before* theme.css, so specificity ties resolve like live
   and the text-in-masked-::after collision is reproduced by the harness.
@@ -324,16 +331,17 @@ secondary/tertiary → --tx1/2/3`, `--surface-base/raised → --bg1/--bg2`, `--b
 - **How Minimal solves it:** chrome variables only — `--bases-table-font-size`, toolbar opacity,
   header/column border widths (in `00-minimal-vars`/`10-minimal-app`). No component look. Those
   stay; there is **no layered break-point** here.
-- **How Kuro adds it:** `28-kuro-bases.css`, a straight token-mapped port from the v4 quarry
-  (`main:src/30-bases.css`) using the T8 map (`--fg-* → --tx1/2/3`, surfaces → `--bg2`, borders →
-  native; v4's `--border-circuit` becomes the `color-mix(accent 30%)` idiom). Mono table with caps
-  header on `--bg2` + accent-soft underline; cards with `--lift`, hover glow and serif-italic accent
-  titles; status pills wired to the signal roles by `[data-value]` (Not Started→info, In
-  Progress→warning, Done/Completed→success, Dropped/Archived→drift). Card surface tokens
-  (`--bases-card-*`) sit on **body, not `:root`** — they read theme-scoped vars (the T5 gotcha).
-- **Verification:** the Bases DOM is plugin-generated and not mock-renderable (same class as the
-  graph) — verified by code review + a real Bases view (v4 had bugs exactly here, so the real-app
-  look is the gate).
+- **How Kuro handles it: it doesn't (reverted 2026-07-15).** A straight v4 port
+  (`28-kuro-bases.css`, token-mapped) was built and REVERTED after the first real Bases view: the
+  plugin DOM has drifted since v4 — cell text lost vertical centring (font-size/line-height
+  overrides inside the plugin's fixed-height flex rows), the `data-property="note.Status"` pill
+  hooks no longer match, and cards clipped their line text. Fixing needs live DevTools iteration
+  against the current plugin DOM; per Jay's call ("Falls der Fix nicht trivial ist, dann zu Minimal
+  lieber reverten") Bases now renders with Minimal's chrome variables only — which is a clean,
+  correct look. The v4 quarry (`main:src/30-bases.css`) and the reverted port (git history,
+  `4729c50`) remain available if a DevTools-grounded attempt is ever wanted.
+- **Lesson:** a plugin-owned DOM (Bases, graph) is a moving target — never port against a
+  years-old selector inventory without a live look first.
 
 ---
 

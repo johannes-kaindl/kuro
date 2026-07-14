@@ -1757,13 +1757,13 @@ body {
   --checkbox-margin: 0px 8px 0px -2em;
 }
 
-body.minimal-strike-lists {
+/* Kuro edit at source: done tasks ALWAYS strike + mute. Obsidian core consumes these
+   vars at (0,2,2) (ul > li.task-list-item[data-task="x"] and the HyperMD editor twin) —
+   an own strike rule at lower specificity silently loses (real-app finding 2026-07-15).
+   Minimal's .minimal-strike-lists opt-in is collapsed: Kuro has one opinion. */
+body {
   --checklist-done-decoration: line-through;
-}
-
-body:not(.minimal-strike-lists) {
-  --checklist-done-decoration: none;
-  --checklist-done-color: var(--text-normal);
+  --checklist-done-color: var(--text-muted);
 }
 
 .markdown-preview-section > .contains-task-list {
@@ -2554,48 +2554,51 @@ body.kuro-callout-border-only .callout {
 }
 
 /*
-  22-kuro-checkboxes.css — task-list checkboxes: filled signal box + inverted SVG-mask glyph
-  per [data-task], defined ONCE for Reading view, Live-Preview and editor source. REPLACES
-  Minimal's checklist-icon system (removed at source in 30-minimal-features.css).
+  22-kuro-checkboxes.css — task-list checkboxes, Minimal's silhouette model with Kuro's
+  signal roles: for every alternate [data-task] the box itself becomes the icon — the input
+  is masked to the icon shape and painted in the role colour (border off, native marker off).
+  Defined ONCE for Reading view, Live-Preview and editor source. REPLACES Minimal's
+  checklist-icon system (removed at source in 30-minimal-features.css).
 
-  WHY MASKS, NOT TEXT (root cause of the two false-green failures, verified against the real
-  app.css 1.13.1): Obsidian draws its native check via the checkbox's own checked ::after —
-  an empty-content element painted as background-color and CLIPPED by a -webkit-mask-image
-  (the check SVG, mask-size 65% at 52% 52%). Any text content we put in that ::after is
-  clipped by the native mask too, so every type rendered as "just a check". The fix is to
-  RIDE the native mechanism instead of fighting it: per type we override ONLY
-  -webkit-mask-image (our own icon SVG) + background-color (--check-marker). Geometry,
-  content and positioning stay native — one engine, no drift.
+  MODEL HISTORY (three real-app findings, see docs/GUIDE.md § Checkboxes):
+  1. Text-::after glyphs die under Obsidian's native check-shaped -webkit-mask-image
+     (app.css clips ANY ::after content to the check silhouette → "just checks").
+  2. Filled mini-boxes with inverted mask-icons on ::after DID render (native-mask riding
+     works) but read as toy-like pastel chips, not gothic (Jay verdict 2026-07-15).
+  3. So: Minimal's own silhouette recipe — --checkbox-marker-color: transparent kills the
+     native ::after, border: none kills the box, background-color + -webkit-mask-image on
+     the INPUT turn it into a full-size icon in the signal colour. Proven live by Minimal.
 
-  DOM (verified 2026-07-11): reading view puts data-task on the <li> (input is a child, often
-  inside a <p>); alternate types (>, <, ?, !, …) are additionally marked checked + .is-checked.
-  Per-type selectors therefore pair `li[data-task="X"] .task-list-item-checkbox:checked` with
-  the editor's `input[data-task="X"].task-list-item-checkbox:checked` — :checked included so
-  the rules ride the native ::after scaffold (same model as Minimal's own icons).
+  Done [x]/[X] stays a filled accent box with the native check (classic, worked live).
+  Empty [ ] stays a visible bordered square. Done/cancelled text strike rides Obsidian's
+  native consumer (--checklist-done-* set at source in 20-minimal-content — an own strike
+  rule loses to core's (0,2,2) ul > li[data-task="x"]).
 
-  Icons: solid-fill SVG data URIs — heroicons v1 solid (MIT, the set Minimal itself vendors:
-  chevrons, bookmark, fire, key) + hand-drawn geometric primitives (plus, minus, !, i) + the
-  question glyph Minimal ships. Mask colour = --check-marker (dark on-signal glyph, both-mode).
-  Consumes 03-kuro-palette (--check-marker), 04-kuro-tokens (--role-* . --radius-sm . --dur-fast
-  . --ease-signal . --accent . --check-border) and Obsidian native (--checkbox-size .
-  --checkbox-color . --text-muted . --tx3). No hex (R1), no !important (R2).
+  DOM (verified 2026-07-11): reading view puts data-task on the <li> (input often inside a
+  <p>); alternate types are checked + .is-checked in every surface. Selectors pair
+  `li[data-task="X"] .task-list-item-checkbox:checked` with the editor's
+  `input[data-task="X"].task-list-item-checkbox:checked` — same contract Minimal builds on.
+
+  Icons: solid-fill SVG data URIs — heroicons v1 solid (MIT, the set Minimal itself vendors)
+  + hand-drawn geometric + the question glyph Minimal ships.
+  Consumes 04-kuro-tokens (--role-* . --radius-sm . --dur-fast . --ease-signal . --accent .
+  --check-border) and Obsidian native (--checkbox-size . --checkbox-color . --tx3).
+  No hex (R1), no !important (R2).
   RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
 */
 
 /* ════════════════════════════════════════════════════════════════════════
-   GEOMETRY — one size source. Native app.css sizes BOTH the box and its
-   checked ::after glyph canvas from --checkbox-size, so overriding the
-   variable (not width/height) keeps box and glyph in perfect register.
+   GEOMETRY — one size source. Native app.css sizes the box, its checked
+   ::after AND our masks from --checkbox-size.
    ════════════════════════════════════════════════════════════════════════ */
 body {
   --checkbox-size: 1.1em;
 }
 
 /* ════════════════════════════════════════════════════════════════════════
-   BASE — visible empty square. Native app.css already provides
-   appearance:none, sizing, position:relative and flex-shrink; Kuro adds only
-   its deltas: square radius, accent-tinted border + 8% fill (empty [ ] must
-   READ as a box — Minimal's masks left it invisible), text-line seating.
+   BASE — visible empty square. Native app.css provides appearance:none,
+   sizing, position and flex-shrink; Kuro adds its deltas: square radius,
+   accent-tinted border + faint wash, text-line seating.
    ════════════════════════════════════════════════════════════════════════ */
 input.task-list-item-checkbox {
   border: 1.5px solid var(--check-border);
@@ -2607,7 +2610,7 @@ input.task-list-item-checkbox {
               border-color var(--dur-fast) var(--ease-signal);
 }
 
-/* Default checked — accent fill; the native ::after draws the check. */
+/* Default checked (serves [x]/[X]) — accent fill; the native ::after draws the check. */
 input.task-list-item-checkbox:checked {
   background: var(--checkbox-color);
   border-color: var(--checkbox-color);
@@ -2624,143 +2627,121 @@ input.task-list-item-checkbox:checked {
 }
 
 /* ════════════════════════════════════════════════════════════════════════
-   GLYPH COLOUR + SIZE — one rule for every typed task (incl. x): the native
-   ::after paints as background-color, so this inverts the glyph to Kuro's
-   dark on-signal marker and bumps the native 65% mask to 70% ("big glyphs",
-   Jay 2026-07-11). Everything else (content, position, mask-repeat) is
-   inherited from the native engine.
+   SILHOUETTE SCAFFOLD — one rule for every alternate type: kill the native
+   marker + box chrome, paint the input as a full-size mask shape. The
+   per-type rules below supply only colour + icon.
    ════════════════════════════════════════════════════════════════════════ */
-li[data-task] .task-list-item-checkbox:checked::after,
-input[data-task].task-list-item-checkbox:checked::after {
-  background-color: var(--check-marker);
-  -webkit-mask-size: 70%;
+li[data-task=">"] .task-list-item-checkbox:checked, input[data-task=">"].task-list-item-checkbox:checked,
+li[data-task="<"] .task-list-item-checkbox:checked, input[data-task="<"].task-list-item-checkbox:checked,
+li[data-task="?"] .task-list-item-checkbox:checked, input[data-task="?"].task-list-item-checkbox:checked,
+li[data-task="!"] .task-list-item-checkbox:checked, input[data-task="!"].task-list-item-checkbox:checked,
+li[data-task="i"] .task-list-item-checkbox:checked, input[data-task="i"].task-list-item-checkbox:checked,
+li[data-task="b"] .task-list-item-checkbox:checked, input[data-task="b"].task-list-item-checkbox:checked,
+li[data-task="p"] .task-list-item-checkbox:checked, input[data-task="p"].task-list-item-checkbox:checked,
+li[data-task="c"] .task-list-item-checkbox:checked, input[data-task="c"].task-list-item-checkbox:checked,
+li[data-task="f"] .task-list-item-checkbox:checked, input[data-task="f"].task-list-item-checkbox:checked,
+li[data-task="k"] .task-list-item-checkbox:checked, input[data-task="k"].task-list-item-checkbox:checked,
+li[data-task="-"] .task-list-item-checkbox:checked, input[data-task="-"].task-list-item-checkbox:checked {
+  --checkbox-marker-color: transparent;
+  border: none;
+  border-radius: 0;
+  background-image: none;
+  -webkit-mask-size: 100%;
+  -webkit-mask-position: 50% 50%;
+  -webkit-mask-repeat: no-repeat;
 }
 
-/* ════════════════════════════════════════════════════════════════════════
-   PER-TYPE — box fill in the signal role + icon mask. [x]/[X] keep the
-   native check mask (fill only). Selectors ride :checked (alternate types
-   ARE checked in every surface — same contract Minimal builds on).
-   ════════════════════════════════════════════════════════════════════════ */
-
-/* [x] [X] Done — accent fill, native check glyph */
-li[data-task="x"] .task-list-item-checkbox:checked, input[data-task="x"].task-list-item-checkbox:checked,
-li[data-task="X"] .task-list-item-checkbox:checked, input[data-task="X"].task-list-item-checkbox:checked {
-  background: var(--checkbox-color);
-  border-color: var(--checkbox-color);
+/* Slim geometric glyphs (chevrons, ?, !, i, +, −) carry whitespace in their viewBox —
+   scale the mask past the box so the stroke reads at full weight (clips only air). */
+li[data-task=">"] .task-list-item-checkbox:checked, input[data-task=">"].task-list-item-checkbox:checked,
+li[data-task="<"] .task-list-item-checkbox:checked, input[data-task="<"].task-list-item-checkbox:checked,
+li[data-task="?"] .task-list-item-checkbox:checked, input[data-task="?"].task-list-item-checkbox:checked,
+li[data-task="!"] .task-list-item-checkbox:checked, input[data-task="!"].task-list-item-checkbox:checked,
+li[data-task="i"] .task-list-item-checkbox:checked, input[data-task="i"].task-list-item-checkbox:checked,
+li[data-task="p"] .task-list-item-checkbox:checked, input[data-task="p"].task-list-item-checkbox:checked,
+li[data-task="c"] .task-list-item-checkbox:checked, input[data-task="c"].task-list-item-checkbox:checked,
+li[data-task="-"] .task-list-item-checkbox:checked, input[data-task="-"].task-list-item-checkbox:checked {
+  -webkit-mask-size: 135%;
 }
+
+/* ── Per-type: signal colour + icon shape ─────────────────────────────── */
 
 /* [>] Forwarded — focus role, chevron-right */
 li[data-task=">"] .task-list-item-checkbox:checked, input[data-task=">"].task-list-item-checkbox:checked {
-  background: var(--role-focus);
-  border-color: var(--role-focus);
-}
-li[data-task=">"] .task-list-item-checkbox:checked::after, input[data-task=">"].task-list-item-checkbox:checked::after {
+  background-color: var(--role-focus);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'/%3E%3C/svg%3E");
 }
 
 /* [<] Scheduled — link role, chevron-left */
 li[data-task="<"] .task-list-item-checkbox:checked, input[data-task="<"].task-list-item-checkbox:checked {
-  background: var(--role-link);
-  border-color: var(--role-link);
-}
-li[data-task="<"] .task-list-item-checkbox:checked::after, input[data-task="<"].task-list-item-checkbox:checked::after {
+  background-color: var(--role-link);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z'/%3E%3C/svg%3E");
 }
 
 /* [?] Question — review role, question glyph (the path Minimal ships) */
 li[data-task="?"] .task-list-item-checkbox:checked, input[data-task="?"].task-list-item-checkbox:checked {
-  background: var(--role-review);
-  border-color: var(--role-review);
-}
-li[data-task="?"] .task-list-item-checkbox:checked::after, input[data-task="?"].task-list-item-checkbox:checked::after {
+  background-color: var(--role-review);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3E%3Cpath fill-rule='evenodd' d='M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215c0 1.344-.665 2.288-1.79 2.973c-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712c1.03-.632 1.397-1.135 1.397-2.028c0-.979-.758-1.698-1.926-1.698c-1.009 0-1.71.529-1.938 1.402c-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09c0-.618-.473-1.092-1.095-1.092c-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z'/%3E%3C/svg%3E");
 }
 
 /* [!] Important — warning role, exclamation */
 li[data-task="!"] .task-list-item-checkbox:checked, input[data-task="!"].task-list-item-checkbox:checked {
-  background: var(--role-warning);
-  border-color: var(--role-warning);
-}
-li[data-task="!"] .task-list-item-checkbox:checked::after, input[data-task="!"].task-list-item-checkbox:checked::after {
+  background-color: var(--role-warning);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M10 2c.9 0 1.62.76 1.55 1.66l-.45 8.09a1.1 1.1 0 01-2.2 0l-.45-8.09C8.38 2.76 9.1 2 10 2zm0 16a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6z'/%3E%3C/svg%3E");
 }
 
 /* [i] Info — info role, info glyph */
 li[data-task="i"] .task-list-item-checkbox:checked, input[data-task="i"].task-list-item-checkbox:checked {
-  background: var(--role-info);
-  border-color: var(--role-info);
-}
-li[data-task="i"] .task-list-item-checkbox:checked::after, input[data-task="i"].task-list-item-checkbox:checked::after {
+  background-color: var(--role-info);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M10 2.2a1.8 1.8 0 110 3.6 1.8 1.8 0 010-3.6zm0 5.3c.83 0 1.5.67 1.5 1.5v7.5a1.5 1.5 0 01-3 0V9c0-.83.67-1.5 1.5-1.5z'/%3E%3C/svg%3E");
 }
 
-/* [b] Bookmark — accent fill, bookmark icon */
+/* [b] Bookmark — accent, bookmark icon */
 li[data-task="b"] .task-list-item-checkbox:checked, input[data-task="b"].task-list-item-checkbox:checked {
-  background: var(--checkbox-color);
-  border-color: var(--checkbox-color);
-}
-li[data-task="b"] .task-list-item-checkbox:checked::after, input[data-task="b"].task-list-item-checkbox:checked::after {
+  background-color: var(--accent);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z'/%3E%3C/svg%3E");
 }
 
 /* [p] Pro — success role, plus */
 li[data-task="p"] .task-list-item-checkbox:checked, input[data-task="p"].task-list-item-checkbox:checked {
-  background: var(--role-success);
-  border-color: var(--role-success);
-}
-li[data-task="p"] .task-list-item-checkbox:checked::after, input[data-task="p"].task-list-item-checkbox:checked::after {
+  background-color: var(--role-success);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M10 3.5c.83 0 1.5.67 1.5 1.5v3.5H15a1.5 1.5 0 010 3h-3.5V15a1.5 1.5 0 01-3 0v-3.5H5a1.5 1.5 0 010-3h3.5V5c0-.83.67-1.5 1.5-1.5z'/%3E%3C/svg%3E");
 }
 
 /* [c] Contra — error role, minus */
 li[data-task="c"] .task-list-item-checkbox:checked, input[data-task="c"].task-list-item-checkbox:checked {
-  background: var(--role-error);
-  border-color: var(--role-error);
-}
-li[data-task="c"] .task-list-item-checkbox:checked::after, input[data-task="c"].task-list-item-checkbox:checked::after {
+  background-color: var(--role-error);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M5 8.5h10a1.5 1.5 0 010 3H5a1.5 1.5 0 010-3z'/%3E%3C/svg%3E");
 }
 
-/* [f] Fire — drift role, flame (was 🔥 emoji; now a consistent inverted icon) */
+/* [f] Fire — drift role, flame */
 li[data-task="f"] .task-list-item-checkbox:checked, input[data-task="f"].task-list-item-checkbox:checked {
-  background: var(--role-drift);
-  border-color: var(--role-drift);
-}
-li[data-task="f"] .task-list-item-checkbox:checked::after, input[data-task="f"].task-list-item-checkbox:checked::after {
+  background-color: var(--role-drift);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath fill-rule='evenodd' d='M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z' clip-rule='evenodd'/%3E%3C/svg%3E");
 }
 
-/* [k] Key — organic role, key (was 🔑 emoji) */
+/* [k] Key — organic role, key */
 li[data-task="k"] .task-list-item-checkbox:checked, input[data-task="k"].task-list-item-checkbox:checked {
-  background: var(--role-organic);
-  border-color: var(--role-organic);
-}
-li[data-task="k"] .task-list-item-checkbox:checked::after, input[data-task="k"].task-list-item-checkbox:checked::after {
+  background-color: var(--role-organic);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath fill-rule='evenodd' d='M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z' clip-rule='evenodd'/%3E%3C/svg%3E");
 }
 
-/* [-] Cancelled — muted filled box + minus (gedämpft, not a signal) */
+/* [-] Cancelled — muted, minus silhouette; text strike + dim on the line */
 li[data-task="-"] .task-list-item-checkbox:checked, input[data-task="-"].task-list-item-checkbox:checked {
-  background: var(--tx3);
-  border-color: var(--tx3);
-}
-li[data-task="-"] .task-list-item-checkbox:checked::after, input[data-task="-"].task-list-item-checkbox:checked::after {
+  background-color: var(--tx3);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M5 8.5h10a1.5 1.5 0 010 3H5a1.5 1.5 0 010-3z'/%3E%3C/svg%3E");
 }
-li.task-list-item[data-task="-"] {
+li.task-list-item[data-task="-"],
+.markdown-source-view.mod-cm6 .HyperMD-task-line[data-task="-"] {
   text-decoration: line-through;
   color: var(--tx3);
   opacity: 0.6;
 }
 
-/* Done + cancelled strike the text; the other signal types do NOT (they are live
-   task states, not completed). No blanket .is-checked strike — Obsidian marks the
-   alternate types .is-checked too, which would grey them all out. */
-li.task-list-item[data-task="x"],
-li.task-list-item[data-task="X"] {
-  text-decoration: line-through;
-  color: var(--text-muted);
-}
+/* Done [x]/[X] strike rides Obsidian's native consumer:
+   ul > li.task-list-item[data-task="x"] reads --checklist-done-decoration/-color,
+   set at source in 20-minimal-content (line-through + --text-muted). No own rule —
+   core's (0,2,2) selector would beat it anyway. */
 
 /*
   23-kuro-tags.css — tags as ONE accent-tinted mono pill, defined once for Reading AND
@@ -3140,210 +3121,6 @@ body.kuro-table-zebra .markdown-rendered tbody tr:nth-child(even) td { backgroun
 .canvas-node .canvas-node-content ol > li {
   margin-bottom: var(--space-1);
 }
-
-/*
-  28-kuro-bases.css — Obsidian Bases plugin: table view + cards view, ported from v4
-  (main:src/30-bases.css) onto the skeleton tokens. No Layered conflict: Minimal only ships
-  Bases *chrome* variables (--bases-table-font-size, toolbar opacity, header border widths in
-  00/10-minimal) — those stay; this file adds Kuro's component flesh (mono table, serif card
-  titles, signal status pills, lift+glow cards).
-
-  Token map (same as T8): --fg-primary/-secondary/-tertiary → --tx1/2/3 .
-  --surface-raised → --bg2 . --surface-panel → --bg2 . --border-subtle →
-  --background-modifier-border . --divider → --divider-color . --border-circuit →
-  color-mix(accent 30%) (the v4 circuit-border idiom, same as --check-border).
-  Card tokens sit on body, NOT :root — they read theme-scoped vars (--bg2), and custom
-  properties only inherit downwards (the T5 :root gotcha).
-
-  NOT mock-renderable (Bases plugin DOM) — code-review + real-app sight-check, like the graph.
-  Consumes 03-kuro-palette (--bg2 . --tx1/2/3), 04-kuro-tokens (--accent . --accent-soft .
-  --role-* (-rgb) . --lift . --glow-accent . --space-* . --radius-* . --dur-fast . --ease-signal),
-  06-kuro-typography (--kuro-font-mono . --kuro-font-serif) and Obsidian native
-  (--background-modifier-border . --divider-color). No hex (R1), no !important (R2).
-  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
-*/
-
-/* ── Card surface tokens (both-mode via semantic surfaces; on body, not :root) ── */
-body {
-  --bases-card-bg:     var(--bg2);
-  --bases-card-border: var(--background-modifier-border);
-  --bases-card-radius: var(--radius-lg);
-}
-
-/* ── Leaf-level chrome — table cells, links, toolbar ──────────────────── */
-.workspace-leaf-content[data-type="bases"] {
-  font-family: var(--kuro-font-mono);
-}
-.workspace-leaf-content[data-type="bases"] th {
-  color: var(--tx1);
-  background: var(--overlay-hover);
-  border-color: var(--background-modifier-border);
-  letter-spacing: 0.04em;
-  font-size: 0.83em;
-  text-transform: uppercase;
-}
-.workspace-leaf-content[data-type="bases"] td {
-  color: var(--tx2);
-  border-color: var(--divider-color);
-  font-size: 0.9em;
-}
-.workspace-leaf-content[data-type="bases"] a,
-.workspace-leaf-content[data-type="bases"] .internal-link {
-  color: var(--role-link);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(var(--role-link-rgb), 0.25);
-}
-.workspace-leaf-content[data-type="bases"] a:hover {
-  border-bottom-color: rgba(var(--role-link-rgb), 0.55);
-}
-.workspace-leaf-content[data-type="bases"] .bases-toolbar,
-.workspace-leaf-content[data-type="bases"] .bases-view-header {
-  background: var(--bg2);
-  border-bottom: 1px solid var(--divider-color);
-}
-
-/* ── Table view ───────────────────────────────────────────────────────── */
-.bases-table { width: 100%; border-collapse: collapse; font-size: 1em; }
-.bases-table .bases-th {
-  background: var(--bg2);
-  color: var(--tx2);
-  font-family: var(--kuro-font-mono);
-  font-size: 0.78em;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: var(--space-2) var(--space-3);
-  border-bottom: 2px solid var(--accent-soft);
-  text-align: left;
-  white-space: nowrap;
-}
-.bases-table .bases-td {
-  padding: var(--space-2) var(--space-3);
-  border-bottom: 1px solid var(--background-modifier-border);
-  color: var(--tx1);
-  vertical-align: top;
-  font-size: 0.95em;
-}
-.bases-table .bases-tr:last-child .bases-td { border-bottom: none; }
-.bases-table .bases-tr:hover .bases-td { background: var(--overlay-hover); }
-.theme-dark .bases-table .bases-tr:hover .bases-td:first-child {
-  border-left: 2px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  padding-left: 10px;
-}
-
-/* ── Cards view ───────────────────────────────────────────────────────── */
-.bases-cards-group { gap: var(--space-4); --bases-cards-line-height: 30px; }
-.bases-cards-item {
-  background: var(--bases-card-bg);
-  border: 1px solid var(--bases-card-border);
-  border-radius: var(--bases-card-radius);
-  box-shadow: var(--lift);
-  transition: transform var(--dur-fast) var(--ease-signal),
-              box-shadow var(--dur-fast) var(--ease-signal),
-              border-color var(--dur-fast) var(--ease-signal);
-  overflow: visible;
-}
-.bases-cards-item:hover {
-  transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
-  box-shadow: var(--lift), var(--glow-accent);
-}
-
-.bases-cards-item .bases-cards-cover,
-.bases-cards-item img {
-  width: 100%; height: 160px;
-  object-fit: cover; object-position: center top;
-  display: block;
-  border-radius: var(--bases-card-radius) var(--bases-card-radius) 0 0;
-}
-
-.bases-cards-property.mod-title .bases-rendered-value,
-.bases-cards-property.mod-title .bases-cards-line {
-  font-family: var(--kuro-font-serif);
-  font-style: italic;
-  font-size: 1.05em;
-  font-weight: 400;
-  color: var(--accent);
-  line-height: 1.3;
-  white-space: normal;
-  height: auto;
-  overflow: visible;
-}
-
-.bases-cards-label {
-  color: var(--tx3);
-  font-family: var(--kuro-font-mono);
-  font-size: 0.72em;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  align-self: flex-start;
-  line-height: 1.35;
-}
-
-.bases-rendered-value { color: var(--tx1); font-size: 0.88em; line-height: 1.35; }
-.bases-cards-property { overflow: visible; }
-.bases-cards-line,
-.bases-cards-line.bases-rendered-value {
-  white-space: normal;
-  height: fit-content;
-  overflow: visible;
-  text-wrap: balance;
-}
-.bases-cards-property[data-property^="formula.spacer"] {
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* ── Status pill — wired to the signal roles (cards + table td) ────────── */
-.bases-cards-property[data-property="note.Status"] .bases-rendered-value,
-.bases-td[data-property="note.Status"] .bases-rendered-value {
-  display: inline-block;
-  padding: 2px 10px;
-  border-radius: var(--radius-full);
-  font-size: 0.75em;
-  font-family: var(--kuro-font-mono);
-  letter-spacing: 0.04em;
-  font-weight: 500;
-  background: var(--accent-soft);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  color: var(--accent);
-}
-.bases-cards-property[data-property="note.Status"][data-value="Not Started"] .bases-rendered-value,
-.bases-td[data-property="note.Status"][data-value="Not Started"] .bases-rendered-value {
-  background: rgba(var(--role-info-rgb), 0.12);
-  color: var(--role-info);
-  border-color: rgba(var(--role-info-rgb), 0.22);
-}
-.bases-cards-property[data-property="note.Status"][data-value="In Progress"] .bases-rendered-value,
-.bases-td[data-property="note.Status"][data-value="In Progress"] .bases-rendered-value {
-  background: rgba(var(--role-warning-rgb), 0.14);
-  color: var(--role-warning);
-  border-color: rgba(var(--role-warning-rgb), 0.28);
-}
-.bases-cards-property[data-property="note.Status"][data-value="Done"] .bases-rendered-value,
-.bases-cards-property[data-property="note.Status"][data-value="Completed"] .bases-rendered-value,
-.bases-td[data-property="note.Status"][data-value="Done"] .bases-rendered-value,
-.bases-td[data-property="note.Status"][data-value="Completed"] .bases-rendered-value {
-  background: rgba(var(--role-success-rgb), 0.13);
-  color: var(--role-success);
-  border-color: rgba(var(--role-success-rgb), 0.28);
-}
-.bases-cards-property[data-property="note.Status"][data-value="Dropped"] .bases-rendered-value,
-.bases-cards-property[data-property="note.Status"][data-value="Archived"] .bases-rendered-value,
-.bases-td[data-property="note.Status"][data-value="Dropped"] .bases-rendered-value,
-.bases-td[data-property="note.Status"][data-value="Archived"] .bases-rendered-value {
-  background: rgba(var(--role-drift-rgb), 0.10);
-  color: var(--role-drift);
-  border-color: rgba(var(--role-drift-rgb), 0.22);
-  opacity: 0.75;
-}
-
-/* ── Narrow viewport + mobile ─────────────────────────────────────────── */
-@media (max-width: 480px) {
-  .bases-cards-group { gap: var(--space-3); }
-  .bases-cards-label { font-size: 0.68em; }
-}
-body.is-mobile .bases-cards-item:hover { transform: none; }
 
 /*
   29-kuro-graph.css — graph view (global + local). Obsidian's graph is a WebGL canvas: it does NOT

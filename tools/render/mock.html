@@ -43,6 +43,10 @@ input[type=checkbox]{
   position:relative;transition:box-shadow 0.15s ease-in-out;
 }
 input[type=checkbox]:checked{background-color:var(--checkbox-color);border-color:var(--checkbox-color)}
+body{--checklist-done-decoration:line-through;--checklist-done-color:var(--text-muted)}
+ul > li.task-list-item{list-style:none}
+ul > li.task-list-item[data-task="x"],
+ul > li.task-list-item[data-task="X"]{text-decoration:var(--checklist-done-decoration);color:var(--checklist-done-color)}
 input[type=checkbox]:checked:after{
   content:"";top:-1px;inset-inline-start:-1px;position:absolute;
   width:var(--checkbox-size);height:var(--checkbox-size);display:block;
