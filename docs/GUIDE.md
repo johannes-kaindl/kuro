@@ -214,13 +214,23 @@ living `!important` count in Minimal fragments is reported as **transform debt**
   failed layered attempt and empty boxes were invisible. The escape (again): **delete Minimal's block
   at source**, then Kuro is uncontested. Kuro additionally lowers its base to `(0,1,1)` via `:where()`
   on the view-context selectors, so `:checked`/`[data-task]` override it without `!important`.
-- **How Kuro replaces it:** `22-kuro-checkboxes.css` — one `-webkit-appearance:none` base (visible
-  square, `--radius-sm`, `--check-border`, faint accent wash) covering Reading + Live-Preview +
-  source; an accent-filled `:checked` with an on-accent `--check-marker` tick; and a `::after` glyph
-  per `[data-task]` coloured from the role palette (done ✓, cancelled –, deferred ›, scheduled ‹,
-  question ?, important !, info i, bookmark ⌖, pro +, con −, fire 🔥, key 🔑). Empty `[ ]` reads as a
-  clean square. Completed lines get a token-mapped strikethrough. `--checkbox-margin`/size stay
-  Minimal's (native geometry Kuro consumes).
+- **The third trap (found the hard way, 2026-07-11/14):** Obsidian's **own** app.css draws the
+  native check through the checkbox's checked `::after` — an empty-content element painted as
+  `background-color: var(--checkbox-marker-color)` and **clipped by a check-shaped
+  `-webkit-mask-image`** (65% at 52% 52%, canvas sized by `--checkbox-size`). Any *text* content a
+  theme puts into that `::after` is clipped by the native mask too — every type renders as "just a
+  check" live, while a mock without the native rule happily shows the text (two false-green rounds).
+- **How Kuro replaces it:** `22-kuro-checkboxes.css` **rides the native engine instead of fighting
+  it.** Base: visible square (`--radius-sm`, `--check-border`, faint accent wash), geometry keyed off
+  `--checkbox-size` (set to 1.1em — box and native glyph canvas stay in register). Per `[data-task]`:
+  the box fills with its signal role and the rule overrides ONLY `-webkit-mask-image` (a solid-fill
+  SVG icon: heroicons v1 solid + hand-drawn geometric + Minimal's question glyph) plus
+  `background-color: var(--check-marker)` — content, position and mask plumbing stay native. Done
+  `[x]` keeps the native check mask (fill only). Empty `[ ]` reads as a clean square. Done +
+  cancelled strike the text (no blanket `.is-checked` strike — alternates are `.is-checked` too).
+- **Mock fidelity:** `tools/render/mock.html` embeds the native checkbox engine **verbatim from
+  app.css** and loads the app.css stand-in *before* theme.css, so specificity ties resolve like live
+  and the text-in-masked-::after collision is reproduced by the harness.
 
 #### Tags (Task 7)
 
@@ -303,7 +313,27 @@ secondary/tertiary → --tx1/2/3`, `--surface-base/raised → --bg1/--bg2`, `--b
   defaults in `04-kuro-tokens`/`24-kuro-code`). The whole block is one CSS comment — verified by
   build + check.sh; live parsing needs the Style Settings plugin.
 
-_Remaining cards (Bases — parked) added at each transform step._
+#### Bases (Task 8e)
+
+- **How Obsidian targets it:** the Bases plugin renders its own DOM — a leaf
+  `.workspace-leaf-content[data-type="bases"]` (embeds: `.block-language-base` / `.bases-embed`)
+  containing either a table view (`.bases-table` with `.bases-th/-td/-tr`) or a cards view
+  (`.bases-cards-group > .bases-cards-item` with `.bases-cards-property/-label/-line` and
+  `.bases-rendered-value`). Property cells carry `data-property` (e.g. `note.Status`) and
+  `data-value` — that pair is the hook for value-conditional styling.
+- **How Minimal solves it:** chrome variables only — `--bases-table-font-size`, toolbar opacity,
+  header/column border widths (in `00-minimal-vars`/`10-minimal-app`). No component look. Those
+  stay; there is **no layered break-point** here.
+- **How Kuro adds it:** `28-kuro-bases.css`, a straight token-mapped port from the v4 quarry
+  (`main:src/30-bases.css`) using the T8 map (`--fg-* → --tx1/2/3`, surfaces → `--bg2`, borders →
+  native; v4's `--border-circuit` becomes the `color-mix(accent 30%)` idiom). Mono table with caps
+  header on `--bg2` + accent-soft underline; cards with `--lift`, hover glow and serif-italic accent
+  titles; status pills wired to the signal roles by `[data-value]` (Not Started→info, In
+  Progress→warning, Done/Completed→success, Dropped/Archived→drift). Card surface tokens
+  (`--bases-card-*`) sit on **body, not `:root`** — they read theme-scoped vars (the T5 gotcha).
+- **Verification:** the Bases DOM is plugin-generated and not mock-renderable (same class as the
+  graph) — verified by code review + a real Bases view (v4 had bugs exactly here, so the real-app
+  look is the gate).
 
 ---
 
