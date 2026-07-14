@@ -23,15 +23,18 @@
   --check-marker: #1a1714;  /* dark glyph on accent-filled checkbox (consumed by 22-kuro-checkboxes) */
 }
 .theme-light {
-  --bg1: #faf8f5;  /* surface-base (paper-000) — note */
-  --bg2: #eae6de;  /* sidebar (paper-100) — gentler lift, both-mode-consistent (was paper-150 #e2ddd3, too strong) */
-  --bg3: #d8d3c8;  /* surface-overlay (paper-200) */
-  --ui1: rgba(0, 0, 0, 0.10);  /* border-subtle — alpha tints the paper */
+  /* Porcelain ramp (2026-07-15, Jay verdict: warm beige clashed with gothic-cyberpunk) —
+     the former warm paper ramp (#faf8f5/#eae6de/#d8d3c8, warm ink) is replaced by cool
+     porcelain/ash neutrals that mirror the dark void-scale's blue-grey cast. */
+  --bg1: #f7f8fa;  /* surface-base (porcelain-000) — note */
+  --bg2: #e8eaee;  /* sidebar (porcelain-100) — gentle cool lift */
+  --bg3: #d6d9df;  /* surface-overlay (ash-200) */
+  --ui1: rgba(0, 0, 0, 0.10);  /* border-subtle — alpha tints the porcelain */
   --ui2: rgba(0, 0, 0, 0.18);  /* border-hover */
-  --ui3: #b0a99a;  /* border-strong (paper-400) */
-  --tx1: #2b2824;  /* fg-primary (paper-900) — warm ink */
-  --tx2: #6b6761;  /* fg-secondary (paper-700) */
-  --tx3: #736e64;  /* fg-tertiary — lifted to WCAG AA (4.78:1 on bg1; was #847f75 3.76) */
-  --tx4: #736e64;  /* faint = tertiary (AA) */
+  --ui3: #9aa1ad;  /* border-strong (ash-400, cool slate) */
+  --tx1: #24272c;  /* fg-primary — cool ink (14.1:1 on bg1) */
+  --tx2: #5f656e;  /* fg-secondary — cool slate (5.5:1 on bg1) */
+  --tx3: #666d78;  /* fg-tertiary — WCAG AA (4.91:1 on bg1) */
+  --tx4: #666d78;  /* faint = tertiary (AA) */
   --check-marker: #0c0e12;  /* dark glyph on accent-filled checkbox */
 }

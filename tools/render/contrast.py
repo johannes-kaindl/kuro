@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 # WCAG contrast + ramp analysis for Kuro's Chamber/Paper palette. Colour-blind-relevant:
 # contrast is the objective legibility measure regardless of hue perception.
+# Values are PARSED from src/03-kuro-palette.css — a hardcoded copy went stale once
+# (reported pre-a11y-fix numbers as current, 2026-07-15) and is the same false-oracle
+# failure mode as an unfaithful render mock. The palette file is the single source.
+import re, pathlib
+
+PALETTE = pathlib.Path(__file__).resolve().parents[2] / "src" / "03-kuro-palette.css"
+
 def lin(c):
     c = c/255
     return c/12.92 if c <= 0.03928 else ((c+0.055)/1.055)**2.4
@@ -17,20 +24,20 @@ def verdict(r, large=False):
     aaa = 4.5 if large else 7.0
     return "AAA" if r>=aaa else ("AA" if r>=aa else "FAIL(<AA)")
 
-modes = {
-  "DARK (Chamber)": {
-    "bg1":"#060709","bg2":"#0b0d11","bg3":"#181c24",
-    "ui1":"#22272f","ui3":"#3d4450",
-    "tx1":"#e8e4d8","tx2":"#828a97","tx3":"#6b7280",
-  },
-  "LIGHT (Paper)": {
-    "bg1":"#faf8f5","bg2":"#eae6de","bg3":"#d8d3c8",
-    "ui1":"#e6e6e6","ui3":"#b0a99a",   # ui1 light is rgba on paper ~ approximated
-    "tx1":"#2b2824","tx2":"#6b6761","tx3":"#847f75",
-  },
-}
+def parse_palette(css):
+    """Extract --varname: #hex per .theme-dark/.theme-light block (rgba vars are skipped)."""
+    out = {}
+    for cls, label in ((".theme-dark", "DARK (Chamber)"), (".theme-light", "LIGHT (Paper)")):
+        m = re.search(re.escape(cls) + r"\s*\{(.*?)\}", css, re.S)
+        if not m:
+            raise SystemExit(f"palette block {cls} not found in {PALETTE}")
+        vals = dict(re.findall(r"--([a-z0-9]+)\s*:\s*(#[0-9a-fA-F]{6})", m.group(1)))
+        out[label] = vals
+    return out
+
+modes = parse_palette(PALETTE.read_text())
 for name,p in modes.items():
-    print(f"\n=== {name} ===")
+    print(f"\n=== {name} ===  (from {PALETTE.name})")
     checks = [
       ("body text  tx1/bg1", p["tx1"], p["bg1"], False),
       ("body text  tx1/bg2 (sidebar)", p["tx1"], p["bg2"], False),
