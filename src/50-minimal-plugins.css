@@ -1,0 +1,1023 @@
+/* Core plugins */
+/* Backlink pane */
+.outgoing-link-pane > .tree-item-self:hover,
+.outgoing-link-pane > .tree-item-self,
+.backlink-pane > .tree-item-self:hover,
+.backlink-pane > .tree-item-self {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: var(--font-adaptive-smallest);
+  font-weight: 500;
+}
+
+body {
+  --canvas-dot-pattern: var(--background-modifier-border-hover);
+}
+
+.canvas-node-label {
+  font-size: var(--font-adaptive-small);
+}
+
+.canvas-edges :not(.is-themed) path.canvas-display-path {
+  stroke: var(--background-modifier-border-focus);
+}
+
+.canvas-edges :not(.is-themed) polyline.canvas-path-end {
+  stroke: var(--background-modifier-border-focus);
+  fill: var(--background-modifier-border-focus);
+}
+
+.canvas-node-container {
+  border: 1.5px solid var(--background-modifier-border-focus);
+}
+
+.node-insert-event.mod-inside-iframe {
+  --max-width: 100%;
+  --folding-offset: 0px;
+}
+.node-insert-event.mod-inside-iframe .cm-editor .cm-content {
+  padding-top: 0;
+}
+
+/* File browser */
+.hider-file-nav-header:not(.labeled-nav) .nav-files-container {
+  padding-top: var(--size-4-3);
+}
+
+.is-mobile .nav-folder.mod-root > .nav-folder-title .nav-folder-title-content {
+  display: none;
+}
+
+body:not(.is-mobile) .nav-folder.mod-root > .nav-folder-title .nav-folder-title-content {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-size: var(--font-adaptive-smallest);
+}
+
+body:not(.is-mobile) .nav-buttons-container {
+  justify-content: flex-start;
+}
+
+.nav-file-tag {
+  padding-top: 0.2em;
+  background-color: transparent;
+  color: var(--text-faint);
+}
+
+.nav-file:hover .nav-file-tag,
+.nav-file .is-active .nav-file-tag {
+  color: var(--text-muted);
+}
+
+input.prompt-input,
+input.prompt-input:hover,
+input.prompt-input:focus,
+input.prompt-input:focus-visible {
+  border-color: rgba(var(--mono-rgb-100), 0.05);
+}
+
+.is-mobile {
+  /* Mobile publish */
+}
+.is-mobile .mod-publish .modal-content {
+  display: unset;
+  padding: 10px;
+  margin-bottom: 120px;
+  overflow-x: hidden;
+}
+.is-mobile .mod-publish .button-container,
+.is-mobile .modal.mod-publish .modal-button-container {
+  padding: 10px 15px 30px;
+  margin-left: 0px;
+  left: 0;
+}
+.is-mobile .modal.mod-publish .modal-title {
+  padding: 10px 20px;
+  margin: 0 -10px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+.is-mobile .publish-site-settings-container {
+  margin-right: 0;
+  padding: 0;
+}
+.is-mobile .modal.mod-publish .modal-content .publish-sections-container {
+  margin-right: 0;
+  padding-right: 0;
+}
+.is-mobile {
+  /* Phone */
+}
+@media (max-width: 400pt) {
+  .is-mobile .publish-section-header,
+  .is-mobile .publish-changes-info {
+    flex-wrap: wrap;
+    border: none;
+  }
+  .is-mobile .publish-changes-info .publish-changes-add-linked-btn {
+    flex-basis: 100%;
+    margin-top: 10px;
+  }
+  .is-mobile .publish-section-header-text {
+    flex-basis: 100%;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-top: -8px;
+  }
+  .is-mobile .publish-section {
+    background: var(--background-secondary);
+    border-radius: 10px;
+    padding: 12px 12px 1px;
+  }
+  .is-mobile .publish-changes-switch-site {
+    flex-grow: 0;
+    margin-right: 10px;
+  }
+}
+
+.release-notes-view .cm-scroller.is-readable-line-width {
+  width: var(--line-width);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.search-results-info {
+  border-bottom: none;
+}
+
+.workspace-leaf-content[data-type=sync] .tree-item.nav-folder .nav-folder-title {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: var(--font-adaptive-smallest);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.workspace-leaf-content[data-type=sync] .tree-item.nav-folder .nav-folder-title:hover {
+  color: var(--text-normal);
+}
+.workspace-leaf-content[data-type=sync] .tree-item.nav-folder.is-collapsed .nav-folder-title {
+  color: var(--text-faint);
+}
+.workspace-leaf-content[data-type=sync] .tree-item.nav-folder.is-collapsed .nav-folder-title:hover {
+  color: var(--text-muted);
+}
+
+/* Community plugins */
+/* Calendar plugin */
+.workspace-leaf-content[data-type=calendar] .view-content {
+  padding: 5px 0 0;
+}
+
+.mod-root #calendar-container {
+  width: var(--line-width);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0;
+}
+
+body {
+  --calendar-dot-active: var(--text-faint);
+  --calendar-dot-today: var(--text-accent);
+}
+
+#calendar-container {
+  padding: 0 var(--size-4-4) var(--size-4-1);
+  --color-background-day-empty:var(--background-secondary-alt);
+  --color-background-day-active:var(--background-modifier-hover);
+  --color-background-day-hover:var(--background-modifier-hover);
+  --color-dot:var(--text-faint);
+  --calendar-text-active: inherit;
+  --color-text-title:var(--text-normal);
+  --color-text-heading:var(--text-muted);
+  --color-text-day:var(--text-normal);
+  --color-text-today:var(--text-normal);
+  --color-arrow:var(--text-faint);
+  --color-background-day-empty:transparent;
+}
+#calendar-container .table {
+  border-collapse: separate;
+  table-layout: fixed;
+}
+#calendar-container h2 {
+  font-weight: 400;
+  font-size: var(--h2);
+}
+#calendar-container .arrow {
+  cursor: var(--cursor);
+  width: 22px;
+  border-radius: 4px;
+  padding: 3px 7px;
+}
+#calendar-container .arrow svg {
+  width: 12px;
+  height: 12px;
+  color: var(--text-faint);
+  opacity: 0.7;
+}
+#calendar-container .arrow:hover {
+  fill: var(--text-muted);
+  color: var(--text-muted);
+  background-color: var(--background-modifier-hover);
+}
+#calendar-container .arrow:hover svg {
+  color: var(--text-muted);
+  opacity: 1;
+}
+#calendar-container tr th {
+  padding: 2px 0 4px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-size: var(--font-adaptive-smallest);
+}
+#calendar-container tr th:first-child {
+  padding-left: 0 !important;
+}
+#calendar-container tr td {
+  padding: 2px 0 0;
+  border-radius: var(--radius-m);
+  cursor: var(--cursor);
+  border: 1px solid transparent;
+  transition: none;
+}
+#calendar-container tr td:first-child {
+  padding-left: 0 !important;
+}
+#calendar-container .nav {
+  padding: 0;
+  margin: var(--size-4-2) var(--size-4-1);
+}
+#calendar-container .dot {
+  margin: 0;
+}
+#calendar-container .year,
+#calendar-container .month,
+#calendar-container .title {
+  font-size: calc(var(--font-adaptive-small) + 2px);
+  font-weight: 400;
+  color: var(--text-normal);
+}
+#calendar-container .today.active,
+#calendar-container .today {
+  color: var(--text-accent);
+  font-weight: 600;
+}
+#calendar-container .today.active .dot,
+#calendar-container .today .dot {
+  fill: var(--calendar-dot-today);
+}
+#calendar-container .active .task {
+  stroke: var(--text-faint);
+}
+#calendar-container .active {
+  color: var(--text-normal);
+}
+#calendar-container .reset-button {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--font-adaptive-smaller);
+  font-weight: 500;
+  color: var(--text-muted);
+  border-radius: 4px;
+  margin: 0;
+  padding: 2px 8px;
+}
+#calendar-container .reset-button:hover {
+  color: var(--text-normal);
+  background-color: var(--background-modifier-hover);
+}
+#calendar-container .reset-button,
+#calendar-container .week-num,
+#calendar-container .day {
+  cursor: var(--cursor);
+}
+#calendar-container .day.adjacent-month {
+  color: var(--text-faint);
+  opacity: 1;
+}
+#calendar-container .day {
+  padding: 2px 4px 4px;
+  transition: none;
+}
+#calendar-container .day,
+#calendar-container .week-num {
+  font-size: calc(var(--font-adaptive-smaller) + 5%);
+}
+#calendar-container .active,
+#calendar-container .active.today,
+#calendar-container .week-num:hover,
+#calendar-container .day:hover {
+  background-color: var(--color-background-day-active);
+  color: var(--calendar-text-active);
+  transition: none;
+}
+#calendar-container .active .dot {
+  fill: var(--calendar-dot-active);
+}
+
+/* Charts */
+.block-language-chart canvas,
+.block-language-dataviewjs canvas {
+  margin: 1em 0;
+}
+
+.theme-light,
+.theme-dark {
+  --chart-color-1:var(--color-blue);
+  --chart-color-2:var(--color-red);
+  --chart-color-3:var(--color-yellow);
+  --chart-color-4:var(--color-green);
+  --chart-color-5:var(--color-orange);
+  --chart-color-6:var(--color-purple);
+  --chart-color-7:var(--color-cyan);
+  --chart-color-8:var(--color-pink);
+}
+
+/* cMenu plugin */
+body #cMenuModalBar {
+  box-shadow: 0px 2px 20px var(--shadow-color);
+}
+
+body #cMenuModalBar .cMenuCommandItem {
+  cursor: var(--cursor);
+}
+
+body #cMenuModalBar button.cMenuCommandItem:hover {
+  background-color: var(--background-modifier-hover);
+}
+
+.MiniSettings-statusbar-button {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.MySnippets-statusbar-menu .menu-item .MS-OpenSnippet {
+  height: auto;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  width: auto;
+  padding: 4px 6px;
+  margin-left: 0;
+}
+.MySnippets-statusbar-menu .menu-item .MS-OpenSnippet svg path {
+  fill: var(--text-muted);
+}
+.MySnippets-statusbar-menu .menu-item .MS-OpenSnippet:hover {
+  background-color: var(--background-modifier-hover);
+}
+
+/* Dataview plugin */
+/* inline lists */
+.dataview-inline-lists .markdown-source-view .dataview-ul,
+.dataview-inline-lists .markdown-preview-view .dataview-ul {
+  --list-spacing: 0;
+}
+.dataview-inline-lists .markdown-source-view .dataview-ul li:not(:last-child):after,
+.dataview-inline-lists .markdown-source-view .dataview-ol li:not(:last-child):after,
+.dataview-inline-lists .markdown-preview-view .dataview-ul li:not(:last-child):after,
+.dataview-inline-lists .markdown-preview-view .dataview-ol li:not(:last-child):after {
+  content: ", ";
+}
+.dataview-inline-lists .markdown-source-view ul.dataview-ul > li::before,
+.dataview-inline-lists .markdown-source-view ul.dataview-ol > li::before,
+.dataview-inline-lists .markdown-preview-view ul.dataview-ul > li::before,
+.dataview-inline-lists .markdown-preview-view ul.dataview-ol > li::before {
+  display: none;
+}
+.dataview-inline-lists .markdown-source-view .dataview-ul li,
+.dataview-inline-lists .markdown-source-view .dataview-ol li,
+.dataview-inline-lists .markdown-preview-view .dataview-ul li,
+.dataview-inline-lists .markdown-preview-view .dataview-ol li {
+  display: inline-block;
+  padding-inline-end: 0.25em;
+  margin-inline-start: 0;
+}
+
+.markdown-rendered table.dataview {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.markdown-rendered table.dataview .dataview-result-list-li {
+  margin-inline-start: 0;
+}
+
+body .table-view-table > thead > tr > th,
+.markdown-preview-view .table-view-table > thead > tr > th {
+  font-weight: 400;
+  font-size: var(--table-text-size);
+  color: var(--text-muted);
+  border-bottom: var(--table-border-width) solid var(--table-border-color);
+  cursor: var(--cursor);
+}
+
+table.dataview ul.dataview-ul {
+  list-style: none;
+  padding-inline-start: 0;
+  margin-block-start: 0em !important;
+  margin-block-end: 0em !important;
+}
+
+.markdown-source-view.mod-cm6:not(.cards) .table-view-table > tbody > tr > td,
+.markdown-preview-view:not(.cards) .table-view-table > tbody > tr > td {
+  max-width: var(--max-col-width);
+}
+
+body .dataview.small-text {
+  color: var(--text-faint);
+}
+
+/* Remove hover effect */
+body:not(.row-hover) .dataview.task-list-item:hover,
+body:not(.row-hover) .dataview.task-list-basic-item:hover,
+body:not(.row-hover) .table-view-table > tbody > tr:hover {
+  background-color: transparent !important;
+  box-shadow: none;
+}
+
+body.row-hover .dataview.task-list-item:hover,
+body.row-hover .dataview.task-list-basic-item:hover,
+body.row-hover .table-view-table > tbody > tr:hover {
+  background-color: var(--table-row-background-hover);
+}
+
+body .dataview-error {
+  background-color: transparent;
+}
+
+.markdown-source-view.mod-cm6 .cm-content .dataview.dataview-error,
+.dataview.dataview-error {
+  color: var(--text-muted);
+}
+
+body div.dataview-error-box {
+  min-height: 0;
+  border: none;
+  background-color: transparent;
+  font-size: var(--table-text-size);
+  border-radius: var(--radius-m);
+  padding: 15px 0;
+  justify-content: flex-start;
+}
+body div.dataview-error-box p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  color: var(--text-faint);
+}
+
+/* Trim columns feature */
+.trim-cols .markdown-source-view.mod-cm6 .table-view-table > tbody > tr > td,
+.trim-cols .markdown-preview-view .table-view-table > tbody > tr > td,
+.trim-cols .markdown-source-view.mod-cm6 .table-view-table > thead > tr > th {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* Lists */
+ul .dataview .task-list-item:hover,
+ul .dataview .task-list-basic-item:hover {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+body .dataview.result-group {
+  padding-left: 0;
+}
+
+/* Inline fields */
+body .dataview.inline-field-key,
+body .dataview.inline-field-value,
+body .dataview .inline-field-standalone-value {
+  font-family: var(--font-text);
+  font-size: calc(var(--font-adaptive-normal) - 2px);
+  background: transparent;
+  color: var(--text-muted);
+}
+
+body .dataview.inline-field-key {
+  padding: 0;
+}
+
+body .dataview .inline-field-standalone-value {
+  padding: 0;
+}
+
+body .dataview.inline-field-key::after {
+  margin-left: 3px;
+  content: "|";
+  color: var(--background-modifier-border);
+}
+
+body .dataview.inline-field-value {
+  padding: 0 1px 0 3px;
+}
+
+/* Calendar */
+.markdown-preview-view .block-language-dataview table.calendar th {
+  border: none;
+  cursor: default;
+  background-image: none;
+}
+
+.markdown-preview-view .block-language-dataview table.calendar .day {
+  font-size: var(--font-adaptive-small);
+}
+
+/* Git plugin */
+.git-view-body .opener {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: var(--font-adaptive-smallest);
+  font-weight: 500;
+  padding: 5px 7px 5px 10px;
+  margin-bottom: 6px;
+}
+
+.git-view-body .file-view .opener {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: var(--font-adaptive-smallest);
+  font-weight: normal;
+  padding: initial;
+  margin-bottom: 0px;
+}
+
+.git-view-body .file-view .opener .collapse-icon {
+  display: flex !important;
+  margin-left: -7px;
+}
+
+.git-view-body {
+  margin-top: 6px;
+}
+
+.git-view-body .file-view {
+  margin-left: 4px;
+}
+
+.git-view-body .file-view main:hover {
+  color: var(--text-normal);
+}
+
+.git-view-body .file-view .tools .type {
+  display: none !important;
+}
+
+.git-view-body .file-view .tools {
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.git-view-body .file-view main:hover > .tools {
+  opacity: 1;
+}
+
+.git-view-body .staged {
+  margin-bottom: 12px;
+}
+
+.git-view-body .opener.open {
+  color: var(--text-normal);
+}
+
+div[data-type=git-view] .search-input-container {
+  margin-left: 0;
+  width: 100%;
+}
+
+.git-view-body .opener .collapse-icon {
+  display: none !important;
+}
+
+.git-view-body main {
+  background-color: var(--background-primary) !important;
+  width: initial !important;
+}
+
+.git-view-body .file-view > main:not(.topLevel) {
+  margin-left: 7px;
+}
+
+div[data-type=git-view] .commit-msg {
+  min-height: 2.5em !important;
+  height: 2.5em !important;
+  padding: 6.5px 8px !important;
+}
+
+div[data-type=git-view] .search-input-clear-button {
+  bottom: 5.5px;
+}
+
+/* Hider plugin */
+.hider-vault .nav-folder.mod-root > .nav-folder-title {
+  height: 4px;
+}
+
+/* Kanban plugin */
+body.theme-dark,
+body.minimal-dark-black.theme-dark,
+body.minimal-dark-tonal.theme-dark,
+body.minimal-light-white.theme-light,
+body.minimal-light-tonal.theme-light {
+  --kanban-border:0px;
+}
+
+body:not(.is-mobile) .kanban-plugin__grow-wrap > textarea:focus {
+  box-shadow: none;
+}
+
+body:not(.minimal-icons-off) .kanban-plugin svg.cross {
+  height: 14px;
+  width: 14px;
+}
+
+body .kanban-plugin__icon > svg,
+body .kanban-plugin__lane-settings-button svg {
+  width: 18px;
+  height: 18px;
+}
+body .kanban-plugin {
+  --kanban-border:var(--border-width);
+  --interactive-accent:var(--text-selection);
+  --interactive-accent-hover:var(--background-modifier-hover);
+  --text-on-accent:var(--text-normal);
+  background-color: var(--background-primary);
+}
+body .kanban-plugin__markdown-preview-view {
+  font-family: var(--font-text);
+}
+body .kanban-plugin__board > div {
+  margin: 0 auto;
+}
+body .kanban-plugin__checkbox-label {
+  color: var(--text-muted);
+}
+body .kanban-plugin__item-markdown ul {
+  margin: 0;
+}
+body .kanban-plugin__item-content-wrapper {
+  box-shadow: none;
+}
+body .kanban-plugin__grow-wrap > textarea,
+body .kanban-plugin__grow-wrap::after {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+body .kanban-plugin__markdown-preview-view,
+body .kanban-plugin__grow-wrap > textarea,
+body .kanban-plugin__grow-wrap::after,
+body .kanban-plugin__item-title p {
+  font-size: var(--font-ui-medium);
+  line-height: 1.3;
+}
+body .kanban-plugin__item {
+  background-color: var(--background-primary);
+}
+body .kanban-plugin__item-title-wrapper {
+  align-items: center;
+}
+body .kanban-plugin__lane-form-wrapper {
+  border: 1px solid var(--background-modifier-border);
+}
+body .kanban-plugin__lane-header-wrapper {
+  border-bottom: 0;
+}
+body .kanban-plugin__lane-title p,
+body .kanban-plugin__lane-header-wrapper .kanban-plugin__grow-wrap > textarea,
+body .kanban-plugin__lane-input-wrapper .kanban-plugin__grow-wrap > textarea {
+  background: transparent;
+  color: var(--text-normal);
+  font-size: var(--font-ui-medium);
+  font-weight: 500;
+}
+body .kanban-plugin__item-input-wrapper .kanban-plugin__grow-wrap > textarea {
+  padding: 0;
+  border-radius: 0;
+  height: auto;
+}
+body .kanban-plugin__item-form .kanban-plugin__grow-wrap {
+  background-color: var(--background-primary);
+}
+body .kanban-plugin__item-input-wrapper .kanban-plugin__grow-wrap > textarea::placeholder {
+  color: var(--text-faint);
+}
+body .kanban-plugin__lane button.kanban-plugin__lane-settings-button.is-enabled,
+body .kanban-plugin__lane button.kanban-plugin__lane-settings-button,
+body .kanban-plugin__item .kanban-plugin__item-edit-archive-button,
+body .kanban-plugin__item button.kanban-plugin__item-edit-button,
+body .kanban-plugin__item-settings-actions > button,
+body .kanban-plugin__lane-action-wrapper > button {
+  background: transparent;
+  transition: color 0.1s ease-in-out;
+}
+body .kanban-plugin__item .kanban-plugin__item-edit-archive-button:hover,
+body .kanban-plugin__item button.kanban-plugin__item-edit-button.is-enabled,
+body .kanban-plugin__item button.kanban-plugin__item-edit-button:hover,
+body .kanban-plugin__lane button.kanban-plugin__lane-settings-button.is-enabled,
+body .kanban-plugin__lane button.kanban-plugin__lane-settings-button:hover {
+  color: var(--text-normal);
+  transition: color 0.1s ease-in-out;
+  background: transparent;
+}
+body .kanban-plugin__new-lane-button-wrapper {
+  position: fixed;
+  bottom: 30px;
+}
+body .kanban-plugin__lane-items > .kanban-plugin__placeholder:only-child {
+  border: 1px dashed var(--background-modifier-border);
+  height: 2em;
+}
+body .kanban-plugin__item-postfix-button-wrapper {
+  align-self: flex-start;
+}
+body .kanban-plugin__item button.kanban-plugin__item-prefix-button.is-enabled,
+body .kanban-plugin__item button.kanban-plugin__item-postfix-button.is-enabled,
+body .kanban-plugin__lane button.kanban-plugin__lane-settings-button.is-enabled {
+  color: var(--text-muted);
+}
+body .kanban-plugin button {
+  box-shadow: none;
+  cursor: var(--cursor);
+  height: auto;
+}
+body .kanban-plugin__item button.kanban-plugin__item-prefix-button:hover,
+body .kanban-plugin__item button.kanban-plugin__item-postfix-button:hover,
+body .kanban-plugin__lane button.kanban-plugin__lane-settings-button:hover {
+  background-color: var(--background-modifier-hover);
+}
+body .kanban-plugin__item-button-wrapper > button {
+  color: var(--text-muted);
+  font-weight: 400;
+  background: transparent;
+  min-height: calc(var(--input-height) + 8px);
+}
+body .kanban-plugin__item-button-wrapper > button:hover {
+  color: var(--text-normal);
+  background: var(--background-modifier-hover);
+}
+body .kanban-plugin__item-button-wrapper > button:focus {
+  box-shadow: none;
+}
+body .kanban-plugin__item-button-wrapper {
+  padding: 1px 6px 5px;
+  border-top: none;
+}
+body .kanban-plugin__lane-setting-wrapper > div:last-child {
+  border: none;
+  margin: 0;
+}
+body .kanban-plugin.something-is-dragging {
+  cursor: grabbing;
+}
+body .kanban-plugin__item.is-dragging {
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--text-selection);
+}
+body .kanban-plugin__lane-items {
+  border: var(--kanban-border) solid var(--background-modifier-border);
+  padding: 0 4px;
+  margin: 0;
+  background-color: var(--background-secondary);
+}
+body .kanban-plugin__lane {
+  background: transparent;
+  padding: 0;
+  border: var(--border-width) solid transparent;
+}
+body .kanban-plugin__lane.is-dragging {
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--background-modifier-border);
+}
+body .kanban-plugin__lane .kanban-plugin__item-button-wrapper {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-top: 1px solid var(--background-modifier-border);
+  border-bottom-width: 0;
+  padding: 4px 4px 0;
+}
+body .kanban-plugin__lane.will-prepend .kanban-plugin__lane-items {
+  border-radius: 8px;
+}
+body .kanban-plugin__lane.will-prepend .kanban-plugin__item-form {
+  border-top: 1px solid var(--background-modifier-border);
+  border-radius: 8px 8px 0 0;
+  padding: 4px 4px 0;
+  border-bottom-width: 0;
+}
+body .kanban-plugin__lane.will-prepend .kanban-plugin__item-form + .kanban-plugin__lane-items {
+  border-top-width: 0px;
+  border-radius: 0 0 8px 8px;
+}
+body .kanban-plugin__lane.will-prepend .kanban-plugin__item-button-wrapper + .kanban-plugin__lane-items {
+  border-top-width: 0px;
+  border-radius: 0 0 8px 8px;
+}
+body .kanban-plugin__lane:not(.will-prepend) .kanban-plugin__item-form,
+body .kanban-plugin__lane:not(.will-prepend) .kanban-plugin__item-button-wrapper {
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+}
+body .kanban-plugin__lane:not(.will-prepend) .kanban-plugin__item-button-wrapper {
+  padding: 0 4px 4px;
+  border-bottom-width: 1px;
+}
+body .kanban-plugin__lane:not(.will-prepend) .kanban-plugin__lane-items {
+  border-bottom: none;
+  border-top-width: 1px;
+  border-radius: 8px 8px 0 0;
+}
+body .kanban-plugin__item-form .kanban-plugin__item-input-wrapper {
+  min-height: calc(var(--input-height) + 8px);
+  display: flex;
+  justify-content: center;
+}
+body .kanban-plugin__item-form,
+body .kanban-plugin__item-button-wrapper {
+  background-color: var(--background-secondary);
+  border: var(--kanban-border) solid var(--background-modifier-border);
+}
+body .kanban-plugin__item-form {
+  padding: 0 4px 5px;
+}
+body .kanban-plugin__markdown-preview-view ol.contains-task-list .contains-task-list,
+body .kanban-plugin__markdown-preview-view ul.contains-task-list .contains-task-list,
+body .kanban-plugin__markdown-preview-view ul, body .kanban-plugin__markdown-preview-view ol {
+  padding-inline-start: 1.8em !important;
+}
+
+@media (max-width: 400pt) {
+  .kanban-plugin__board {
+    flex-direction: column !important;
+  }
+  .kanban-plugin__lane {
+    width: 100% !important;
+    margin-bottom: 1rem !important;
+  }
+}
+/* Lapel */
+body .cm-heading-marker {
+  cursor: var(--cursor);
+  padding-left: 10px;
+}
+
+/* Sortable plugin */
+body .markdown-preview-view th,
+body .table-view-table > thead > tr > th,
+body .markdown-source-view.mod-cm6 .dataview.table-view-table thead.table-view-thead tr th {
+  cursor: var(--cursor);
+  background-image: none;
+}
+
+/* Live preview */
+.markdown-source-view.mod-cm6 th {
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+/* Style Settings preferences */
+.style-settings-container[data-level="2"] {
+  background: var(--background-secondary);
+  border: 1px solid var(--ui1);
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 2px 0 2px -20px;
+}
+
+.workspace-leaf-content[data-type=style-settings] div[data-id=instructions] .setting-item-name {
+  display: none;
+}
+.workspace-leaf-content[data-type=style-settings] div[data-id=instructions] .setting-item-description {
+  color: var(--text-normal);
+  font-size: var(--font-adaptive-smaller);
+  padding-bottom: 0.5em;
+}
+.workspace-leaf-content[data-type=style-settings] .view-content {
+  padding: var(--size-4-4) 0;
+}
+.workspace-leaf-content[data-type=style-settings] .view-content > div {
+  width: var(--line-width);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.workspace-leaf-content[data-type=style-settings] .style-settings-heading[data-level="0"] .setting-item-name {
+  padding-left: 17px;
+}
+.workspace-leaf-content[data-type=style-settings] .setting-item {
+  max-width: 100%;
+  margin: 0 auto;
+  border: none;
+}
+.workspace-leaf-content[data-type=style-settings] .setting-item-name {
+  position: relative;
+}
+.workspace-leaf-content[data-type=style-settings] .style-settings-collapse-indicator {
+  position: absolute;
+  left: 0;
+}
+
+.setting-item-heading.style-settings-heading,
+.style-settings-container .style-settings-heading {
+  cursor: var(--cursor);
+}
+
+.modal.mod-settings .setting-item .pickr button.pcr-button {
+  box-shadow: none;
+  border-radius: 40px;
+  height: 24px;
+  width: 24px;
+}
+
+.style-settings-container .setting-item {
+  background-color: transparent;
+}
+
+.setting-item .pickr .pcr-button:after,
+.setting-item .pickr .pcr-button:before {
+  border-radius: 40px;
+  box-shadow: none;
+  border: none;
+}
+.setting-item.setting-item-heading.style-settings-heading.is-collapsed {
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+.setting-item.setting-item-heading.style-settings-heading {
+  border: 0;
+  padding: 10px 0 5px;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+.setting-item .style-settings-import,
+.setting-item .style-settings-export {
+  text-decoration: none;
+  font-size: var(--font-ui-small);
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0;
+  padding: 2px 8px;
+  border-radius: 5px;
+  cursor: var(--cursor);
+}
+.setting-item .style-settings-import:hover,
+.setting-item .style-settings-export:hover {
+  background-color: var(--background-modifier-hover);
+  color: var(--text-normal);
+  cursor: var(--cursor);
+}
+
+.mod-root .workspace-leaf-content[data-type=style-settings] .style-settings-container .setting-item:not(.setting-item-heading) {
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5em 0;
+}
+
+.workspace-split:not(.mod-root) .workspace-leaf-content[data-type=style-settings] .setting-item-name {
+  font-size: var(--font-adaptive-smaller);
+}
+
+.themed-color-wrapper > div + div {
+  margin-top: 0;
+  margin-left: 6px;
+}
+
+.theme-light .themed-color-wrapper > .theme-light {
+  background-color: transparent;
+}
+.theme-light .themed-color-wrapper > .theme-dark {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.theme-dark .themed-color-wrapper > .theme-dark {
+  background-color: transparent;
+}
+
+@media (max-width: 400pt) {
+  .workspace-leaf-content[data-type=style-settings] .setting-item-name {
+    font-size: var(--font-adaptive-small);
+  }
+  .workspace-leaf-content[data-type=style-settings] .view-content > .setting-item > .setting-item-info:first-child {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+.zoom-plugin-header {
+  --link-color: var(--text-normal);
+  --link-decoration: none;
+  font-size: var(--font-ui-small);
+  padding: 0;
+  justify-content: center;
+  margin: var(--size-4-2) auto;
+  max-width: var(--max-width);
+}
+.zoom-plugin-header > .zoom-plugin-title {
+  text-decoration: none;
+  max-width: 15em;
+  overflow: hidden;
+}
+.zoom-plugin-header > .zoom-plugin-delimiter {
+  color: var(--text-faint);
+  padding: 0 var(--size-4-1);
+}
+

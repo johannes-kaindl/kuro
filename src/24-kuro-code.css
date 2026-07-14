@@ -1,0 +1,121 @@
+/*
+  24-kuro-code.css — inline code + fenced code blocks across Reading, Live-Preview and editor,
+  with the accent left-stripe frame; plus the editor (CodeMirror) syntax palette. Kuro owns the
+  code frame/pill; Minimal's --code-* geometry stays in its fragments and Kuro wins the shared
+  properties (the `body .markdown-rendered` prefix lifts specificity to (0,1,2)).
+  Ported from the v4 quarry (main:22-code). The v4 --code-* / --syntax-* two-layer palette is
+  collapsed onto Kuro's roles here (both-mode automatic, no hex): normal→link(cyan),
+  string→warning(ember), value→success(phosphor), keyword→focus(spectre); comment→tx3,
+  function→tx1, property→tx2. Surfaces: --code-bg → --bg2, --code-frame → native border,
+  --code-stripe → accent mix. The --code-* read --role-* / --tx* / accent (theme-scoped), so they
+  sit on .theme-* not :root (T5 scope lesson).
+  NOTE — reading-view code has no syntax spans (Obsidian highlights via Prism .token.*, not
+  styled here); the .cm-* syntax rules apply in Live-Preview/editor only.
+  Consumes 06-kuro-typography (--kuro-font-mono), 04-kuro-tokens (--radius-* · --space-* ·
+  --leading-normal · --role-* · --accent), Minimal alias --bg2, --tx1/2/3. No hex (R1).
+  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
+*/
+
+:root {
+  --kuro-code-size: 0.9; /* code font-size multiplier (inline pill + fenced block parity) */
+}
+
+/* Kuro code palette — theme-scoped (reads roles/tx/accent). Both modes share the set; roles
+   adapt per mode automatically. */
+.theme-dark,
+.theme-light {
+  --code-bg:       var(--bg2);
+  --code-frame:    var(--background-modifier-border);
+  --code-stripe:   color-mix(in srgb, var(--interactive-accent) 60%, transparent);
+  --code-normal:   var(--role-link);
+  --code-string:   var(--role-warning);
+  --code-value:    var(--role-success);
+  --code-keyword:  var(--role-focus);
+  --code-comment:  var(--tx3);
+  --code-tag:      var(--role-link);
+  --code-operator: var(--role-link);
+  --code-function: var(--tx1);
+  --code-property: var(--tx2);
+}
+
+/* ===== INLINE CODE — Reading + Live-Preview ===== */
+body .markdown-rendered code,
+body .cm-inline-code {
+  font-family: var(--kuro-font-mono);
+  background: var(--code-bg);
+  color: var(--code-normal);
+  border: 1px solid color-mix(in srgb, var(--accent) 15%, transparent);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.4em;
+  font-size: calc(var(--kuro-code-size) * 1em);
+}
+
+/* ===== FENCED CODE BLOCK — Reading view ===== */
+body .markdown-rendered pre {
+  background: var(--code-bg);
+  border: 1px solid var(--code-frame);
+  border-left: 3px solid var(--code-stripe);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--kuro-font-mono);
+  color: var(--tx1);
+  font-size: calc(var(--kuro-code-size) * 1em);
+  line-height: var(--leading-normal);
+  tab-size: 4;
+  overflow-x: auto;
+}
+body .markdown-rendered pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* ===== FENCED CODE BLOCK — Live-Preview / editor ===== */
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock,
+.markdown-source-view.mod-cm6 .cm-content .cm-codeblock {
+  font-family: var(--kuro-font-mono);
+  background: var(--code-bg);
+  color: var(--tx1);
+  border-left: 3px solid var(--code-stripe);
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+  font-size: calc(var(--kuro-code-size) * 1em);
+}
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock-bg {
+  background: var(--code-bg);
+}
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock-begin {
+  border-top: 1px solid var(--code-frame);
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+  padding-top: 2px;
+}
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock-end {
+  border-bottom: 1px solid var(--code-frame);
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+  padding-bottom: 2px;
+}
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-codeblock {
+  border-right: 1px solid var(--code-frame);
+}
+
+/* ===== SYNTAX HIGHLIGHTING — editor (CodeMirror) ===== */
+.cm-s-obsidian .cm-keyword  { color: var(--code-keyword);  }
+.cm-s-obsidian .cm-def      { color: var(--code-function); }
+.cm-s-obsidian .cm-variable { color: var(--code-property); }
+.cm-s-obsidian .cm-string   { color: var(--code-string);   }
+.cm-s-obsidian .cm-number   { color: var(--code-value);    }
+.cm-s-obsidian .cm-comment  { color: var(--code-comment);  font-style: italic; }
+.cm-s-obsidian .cm-operator { color: var(--code-operator); }
+.cm-s-obsidian .cm-tag      { color: var(--code-tag);      }
+.cm-s-obsidian .cm-atom     { color: var(--code-string);   }
+.cm-s-obsidian .cm-builtin  { color: var(--code-keyword);  }
+.cm-s-obsidian .cm-type     { color: var(--code-tag);      }
+
+/* Frontmatter (YAML) — keys muted, string values keep the string signal. */
+.cm-s-obsidian .cm-hmd-frontmatter.cm-string,
+.cm-s-obsidian .cm-yaml .cm-string { color: var(--code-string); }
+.cm-s-obsidian .cm-hmd-frontmatter.cm-atom,
+.cm-s-obsidian .cm-yaml .cm-atom   { color: var(--tx2); }

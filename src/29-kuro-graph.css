@@ -1,0 +1,41 @@
+/*
+  29-kuro-graph.css — graph view (global + local). Obsidian's graph is a WebGL canvas: it does NOT
+  honour CSS on nodes/edges, it reads the computed `color` off a set of invisible probe classes
+  (.graph-view.color-*) via getComputedStyle. So the whole graph palette is "styled" purely by
+  setting color: on those probes — there is no DOM to render, hence this fragment is verified by
+  code review, not by the render harness (a static mock cannot exercise the WebGL canvas).
+  Ported from the v4 quarry (main:31-graph); the v4 --graph-* / --node-* two-layer palette is
+  collapsed onto Kuro's roles here (both-mode automatic, no hex): node→neutral, tag→warning,
+  attachment→drift, focused→tx1, active/ring/arrow→accent, line→accent mix, text→tx3, unresolved→
+  faint tx1. The --graph-* read roles/accent/tx (theme-scoped), so they sit on .theme-*, not :root
+  (T5 scope rule). Consumes 04-kuro-tokens (--role-* · --accent · --accent-soft), --tx1/--tx3.
+  No hex (R1).
+  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
+*/
+
+/* Graph palette — theme-scoped (reads roles/accent/tx). Both modes share the set; roles adapt. */
+.theme-dark,
+.theme-light {
+  --graph-node:            var(--role-neutral);
+  --graph-node-tag:        var(--role-warning);
+  --graph-node-attachment: var(--role-drift);
+  --graph-node-unresolved: color-mix(in srgb, var(--tx1) 18%, transparent);
+  --graph-node-focused:    var(--tx1);
+  --graph-node-active:     var(--accent);
+  --graph-line:            color-mix(in srgb, var(--interactive-accent) 16%, transparent);
+  --graph-text:            var(--tx3);
+}
+
+/* WebGL colour probes — Obsidian samples each probe's computed `color` to paint the canvas. */
+.graph-view.color-fill            { color: var(--graph-node); }
+.graph-view.color-fill-tag        { color: var(--graph-node-tag); }
+.graph-view.color-fill-attachment { color: var(--graph-node-attachment); }
+.graph-view.color-fill-unresolved { color: var(--graph-node-unresolved); }
+.graph-view.color-fill-focused    { color: var(--graph-node-focused); }
+.graph-view.color-fill-highlight  { color: var(--graph-node-active); }
+.graph-view.color-circle          { color: var(--accent); }
+.graph-view.color-circle-highlight { color: var(--accent-soft); }
+.graph-view.color-line            { color: var(--graph-line); }
+.graph-view.color-line-highlight  { color: var(--accent); }
+.graph-view.color-arrow           { color: var(--accent); }
+.graph-view.color-text            { color: var(--graph-text); }

@@ -1,14 +1,13 @@
 /* ╔══════════════════════════════════════════════════════════════════════╗
-   ║  KURO  v4.0.1  ·  Neo-Gothic / Post-Cyberpunk Obsidian theme          ║
-   ║  Built on the ARMATURE — a forkable theme skeleton.                    ║
+   ║  KURO  v5.0.0  ·  Neo-Gothic / Post-Cyberpunk Obsidian theme          ║
+   ║  Skeleton-fork of Minimal 8.2.1 by @kepano (MIT, © 2020–2024 S. Ango) ║
+   ║  Kuro owns & edits the skeleton; components are replaced, not layered. ║
    ║                                                                        ║
    ║  BUILD ORDER (build.sh = HEADER + numeric glob, zero-dep, det.):       ║
-   ║   00 primitives[v] · 02 fonts[v] · 05 settings · 10/11 semantic ·      ║
-   ║   12 bridge · 15 base · 20–31 components · 40 features ·               ║
-   ║   50 presets[v] · 55 subthemes[v] · 60 low-contrast · 70 reduced-mo.   ║
+   ║   00–01 vars/colormap · 10–12 chrome · 20–40 content/interface ·       ║
+   ║   50 plugins · 60 schemes · 70 compat · 0x/2x/8x kuro-owned            ║
    ║                                                                        ║
-   ║  [armature] = structure/contract — NO colour literals, reads tokens.  ║
-   ║  [values]   = taste — palette/presets/fonts. FORK = swap [v] files.    ║
-   ║  See docs/THEME-AUTHORING.md.                                          ║
-   ╚══════════════════════════════════════════════════════════════════════╝
-   RULES     see ../docs/CSS-CONVENTIONS.md · R1 variable-first · R2 tag every !important · R3 both-mode · R6 build+check */
+   ║  *-minimal-*.css = owned Minimal, transformed incrementally to Kuro.   ║
+   ║  *-kuro-*.css     = Kuro's own (values 0x, components 2x, additive 8x).║
+   ║  See docs/GUIDE.md (anatomy & authoring) + docs/CSS-CONVENTIONS.md.    ║
+   ╚══════════════════════════════════════════════════════════════════════╝ */

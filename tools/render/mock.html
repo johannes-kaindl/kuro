@@ -1,0 +1,145 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+/* minimal app.css stand-in: apply the theme's variables to elements the way Obsidian does.
+   MUST load BEFORE theme.css (like app.css in real Obsidian) so specificity TIES resolve
+   the same way they do live — theme rules win by order, not by accident. */
+html,body{margin:0;height:100vh;overflow:hidden}
+.app-container{display:flex;height:100vh}
+/* Obsidian app.css font-resolution chain (theme sets the -theme layer) */
+body{--font-text:var(--font-text-theme,ui-sans-serif);--font-interface:var(--font-interface-theme,ui-sans-serif);--font-monospace:var(--font-monospace-theme,ui-monospace)}
+body{background:var(--background-primary);color:var(--text-normal);font-family:var(--font-text);font-size:var(--font-text-size,16px)}
+.workspace-ribbon{background:var(--ribbon-background);border-right:1px solid var(--divider-color)}
+.side-dock-ribbon-action{margin:6px;border-radius:4px;background:var(--background-modifier-hover)}
+.mod-left-split,.mod-left-split .workspace-tabs,.nav-files-container{background:var(--background-secondary)}
+.workspace-tab-header-container{background:var(--background-secondary);border-bottom:1px solid var(--divider-color);display:flex;padding:4px 4px 0}
+.workspace-tab-header{padding:6px 12px;color:var(--tab-text-color,var(--text-muted))}
+.workspace-tab-header.is-active{color:var(--tab-text-color-focused-active,var(--text-normal));background:var(--tab-background-active,var(--background-primary))}
+.nav-folder-title,.nav-file-title{padding:3px 8px 3px 16px;color:var(--nav-item-color,var(--text-muted));font-size:13px}
+.nav-file-title.is-active{color:var(--nav-item-color-active,var(--text-normal));background:var(--nav-item-background-active)}
+.markdown-preview-view{background:var(--background-primary);color:var(--text-normal);font-family:var(--font-text);line-height:1.6}
+.markdown-preview-view a{color:var(--link-color,var(--text-accent))}
+.markdown-preview-view code{font-family:var(--font-monospace)}
+.markdown-preview-view pre{background:var(--code-background,var(--background-secondary));padding:12px;border-radius:6px;overflow:auto}
+.markdown-preview-view pre code{font-family:var(--font-monospace)}
+/* ── native checkbox engine, VERBATIM Obsidian 1.13.1 app.css (trimmed to the task-checkbox
+      path). This is what made the hand-built mock false-green twice: the native checked ::after
+      clips ANY content with its check-shaped -webkit-mask-image, so a theme that sets text
+      content there renders as "just a check" live while a mock without this rule shows the text.
+      Keep in sync with the real app.css when Obsidian updates. ── */
+body{
+  --checkbox-color:var(--interactive-accent);
+  --checkbox-color-hover:var(--interactive-accent-hover);
+  --checkbox-border-color:var(--text-faint);
+  --checkbox-border-color-hover:var(--text-muted);
+  --checkbox-marker-color:var(--text-on-accent);
+  --checkbox-radius:var(--radius-s);
+  --checkbox-size:var(--font-text-size);
+}
+input[type=checkbox]{
+  -webkit-appearance:none;appearance:none;border-radius:var(--checkbox-radius);
+  border:1px solid var(--checkbox-border-color);flex-shrink:0;padding:0;margin:0;
+  margin-inline-end:6px;width:var(--checkbox-size);height:var(--checkbox-size);
+  position:relative;transition:box-shadow 0.15s ease-in-out;
+}
+input[type=checkbox]:checked{background-color:var(--checkbox-color);border-color:var(--checkbox-color)}
+body{--checklist-done-decoration:line-through;--checklist-done-color:var(--text-muted)}
+.task-list-item-checkbox{width:var(--checkbox-size);height:var(--checkbox-size)}
+.markdown-preview-view .task-list-item-checkbox{position:relative;top:0.2em;margin-inline-end:0.6em}
+ul > li.task-list-item{list-style:none}
+ul > li.task-list-item[data-task="x"],
+ul > li.task-list-item[data-task="X"]{text-decoration:var(--checklist-done-decoration);color:var(--checklist-done-color)}
+input[type=checkbox]:checked:after{
+  content:"";top:-1px;inset-inline-start:-1px;position:absolute;
+  width:var(--checkbox-size);height:var(--checkbox-size);display:block;
+  background-color:var(--checkbox-marker-color);
+  -webkit-mask-position:52% 52%;-webkit-mask-size:65%;-webkit-mask-repeat:no-repeat;
+  -webkit-mask-image:url("data:image/svg+xml; utf8, <svg width='12px' height='10px' viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate%28-4.000000, -6.000000%29' fill='%23000000'><path d='M8.1043257,14.0367999 L4.52468714,10.5420499 C4.32525014,10.3497722 4.32525014,10.0368095 4.52468714,9.8424863 L5.24777413,9.1439454 C5.44721114,8.95166768 5.77142411,8.95166768 5.97086112,9.1439454 L8.46638057,11.5903727 L14.0291389,6.1442083 C14.2285759,5.95193057 14.5527889,5.95193057 14.7522259,6.1442083 L15.4753129,6.84377194 C15.6747499,7.03604967 15.6747499,7.35003511 15.4753129,7.54129009 L8.82741268,14.0367999 C8.62797568,14.2290777 8.3037627,14.2290777 8.1043257,14.0367999'></path></g></g></svg>");
+}
+</style>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body class="theme-dark is-frameless">
+<div class="app-container">
+ <div class="horizontal-main-container" style="display:flex;flex:1">
+  <div class="workspace" style="display:flex;flex:1">
+   <!-- Ribbon -->
+   <div class="workspace-ribbon side-dock-ribbon mod-left" style="width:44px">
+     <div class="side-dock-ribbon-action" style="height:32px"></div>
+     <div class="side-dock-ribbon-action" style="height:32px"></div>
+     <div class="side-dock-ribbon-action" style="height:32px"></div>
+   </div>
+   <!-- Left sidebar (file explorer) -->
+   <div class="workspace-split mod-horizontal mod-left-split mod-sidedock" style="width:230px">
+    <div class="workspace-tabs mod-top"><div class="workspace-leaf"><div class="workspace-leaf-content" data-type="file-explorer">
+     <div class="view-content"><div class="nav-files-container">
+      <div class="tree-item nav-folder"><div class="tree-item-self nav-folder-title"><div class="tree-item-inner nav-folder-title-content">25_Coding</div></div></div>
+      <div class="tree-item nav-file"><div class="tree-item-self nav-file-title is-active"><div class="tree-item-inner nav-file-title-content">_Cockpit</div></div></div>
+      <div class="tree-item nav-file"><div class="tree-item-self nav-file-title"><div class="tree-item-inner nav-file-title-content">kuro-obsidian-theme</div></div></div>
+      <div class="tree-item nav-file"><div class="tree-item-self nav-file-title"><div class="tree-item-inner nav-file-title-content">vault-rag</div></div></div>
+     </div></div>
+    </div></div></div>
+   </div>
+   <!-- Main -->
+   <div class="workspace-split mod-vertical mod-root" style="flex:1">
+    <div class="workspace-tabs mod-top">
+     <div class="workspace-tab-header-container"><div class="workspace-tab-header-container-inner">
+      <div class="workspace-tab-header is-active mod-active"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-title">_Cockpit</div></div></div>
+      <div class="workspace-tab-header"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-title">GUIDE</div></div></div>
+     </div></div>
+     <div class="workspace-leaf"><div class="workspace-leaf-content" data-type="markdown">
+      <div class="view-content"><div class="markdown-reading-view" style="height:100%;overflow:auto"><div class="markdown-preview-view markdown-rendered is-readable-line-width">
+       <div class="markdown-preview-sizer markdown-preview-section" style="padding:40px 10%">
+        <div class="inline-title">Kuro on Minimal</div>
+        <h1>Signal Protocol</h1>
+        <p>Body text renders in <strong>JetBrains Mono</strong> everywhere — this paragraph, the sidebar, the tabs. Inline <code>code</code> and a <a href="#" class="tag">#kuro-test</a> tag sit inline.</p>
+        <h2>Chamber surfaces</h2>
+        <p>Note is the base surface; the sidebar and ribbon lift slightly. Muted text like <span class="text-muted" style="color:var(--text-muted)">this secondary line</span> stays legible.</p>
+        <div class="callout" data-callout="note">
+         <div class="callout-title"><div class="callout-icon"></div><div class="callout-title-inner">Note callout</div></div>
+         <div class="callout-content"><p>A callout should read as a boxed region — border, 4px signal bar, tint, title. Colour comes from Kuro's data-callout map, not inline.</p></div>
+        </div>
+        <div class="callout" data-callout="warning">
+         <div class="callout-title"><div class="callout-icon"></div><div class="callout-title-inner">Warning callout</div></div>
+         <div class="callout-content"><p>Warning maps to the orange signal role.</p></div>
+        </div>
+        <div class="callout" data-callout="success">
+         <div class="callout-title"><div class="callout-icon"></div><div class="callout-title-inner">Success callout</div></div>
+         <div class="callout-content"><p>Success maps to the green signal role.</p></div>
+        </div>
+        <div class="callout" data-callout="error">
+         <div class="callout-title"><div class="callout-icon"></div><div class="callout-title-inner">Error callout</div></div>
+         <div class="callout-content"><p>Error maps to the red signal role.</p></div>
+        </div>
+        <!-- Real Obsidian reading-view DOM: data-task on the <li>, NOT on the input; alternate
+             task types are marked checked + is-checked by Obsidian. Input sits inside a <p>. -->
+        <ul class="contains-task-list">
+         <li class="task-list-item" data-task=" "><p><input class="task-list-item-checkbox" type="checkbox"> Offen (leeres Quadrat)</p></li>
+         <li class="task-list-item is-checked" data-task="x"><p><input class="task-list-item-checkbox" type="checkbox" checked> Erledigt (x, accent)</p></li>
+         <li class="task-list-item is-checked" data-task="-"><p><input class="task-list-item-checkbox" type="checkbox" checked> Abgebrochen (-, gedämpft)</p></li>
+         <li class="task-list-item is-checked" data-task=">"><p><input class="task-list-item-checkbox" type="checkbox" checked> Verschoben (&rsaquo;, focus)</p></li>
+         <li class="task-list-item is-checked" data-task="<"><p><input class="task-list-item-checkbox" type="checkbox" checked> Geplant (&lsaquo;, link)</p></li>
+         <li class="task-list-item is-checked" data-task="?"><p><input class="task-list-item-checkbox" type="checkbox" checked> Frage (?, review)</p></li>
+         <li class="task-list-item is-checked" data-task="!"><p><input class="task-list-item-checkbox" type="checkbox" checked> Wichtig (!, warning)</p></li>
+         <li class="task-list-item is-checked" data-task="i"><p><input class="task-list-item-checkbox" type="checkbox" checked> Info (i, info)</p></li>
+         <li class="task-list-item is-checked" data-task="b"><p><input class="task-list-item-checkbox" type="checkbox" checked> Lesezeichen (accent)</p></li>
+         <li class="task-list-item is-checked" data-task="p"><p><input class="task-list-item-checkbox" type="checkbox" checked> Pro (+, success)</p></li>
+         <li class="task-list-item is-checked" data-task="c"><p><input class="task-list-item-checkbox" type="checkbox" checked> Contra (&minus;, error)</p></li>
+         <li class="task-list-item is-checked" data-task="f"><p><input class="task-list-item-checkbox" type="checkbox" checked> Fire (Flamme, drift)</p></li>
+         <li class="task-list-item is-checked" data-task="k"><p><input class="task-list-item-checkbox" type="checkbox" checked> Key (Schlüssel, organic)</p></li>
+        </ul>
+        <ul><li>plain bullet — accent marker</li><li>second bullet<ul><li>nested item</li></ul></li></ul>
+        <ol><li>ordered one — tertiary number</li><li>ordered two</li></ol>
+        <blockquote><p>A blockquote in serif italic with an accent bar.</p></blockquote>
+        <pre><code>const kuro = "mono code block";</code></pre>
+        <table><thead><tr><th>Col A</th><th>Col B</th></tr></thead><tbody><tr><td>one</td><td>two</td></tr><tr><td>three</td><td>four</td></tr></tbody></table>
+       </div>
+      </div></div></div>
+     </div></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<script>if(location.hash==='#light'){document.body.className='theme-light is-frameless';}</script>
+</body></html>

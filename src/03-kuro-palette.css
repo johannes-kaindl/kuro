@@ -1,0 +1,40 @@
+/*
+  03-kuro-palette.css — Chamber (dark) / Paper (light), the default world. [values]
+  Pins Kuro's hand-tuned shades directly onto Minimal's aliases (--bg/ui/tx). Builds after
+  00/01-minimal-* so source order wins at equal .theme-* specificity — Minimal's alias
+  structure stays, Kuro owns the values, and 01-minimal-colormap's native map recolours
+  downstream. Accent is left to Obsidian's system accent (Kuro does not pin --ax*).
+  Both blocks pin the identical key-set — check.sh enforces both-mode parity (R3).
+  Values verified against src/_v4-reference/{00-primitives,10-semantic-dark,11-semantic-light}.
+  [sight-check] bg1/bg2/bg3 = note / sidebar / overlay; Kuro lifts the sidebar (bg2 lighter
+  than note in dark) — check the note/sidebar/raised ratio reads right.
+*/
+.theme-dark {
+  --bg1: #060709;  /* surface-base (void-050) — note */
+  --bg2: #0b0d11;  /* surface-panel (void-100) — sidebar, lifted */
+  --bg3: #181c24;  /* surface-overlay (void-200) */
+  --ui1: #22272f;  /* border-subtle (void-300) */
+  --ui2: #2e343d;  /* border-hover (void-400) */
+  --ui3: #3d4450;  /* border-strong (void-500) */
+  --tx1: #e8e4d8;  /* fg-primary (signal-pearl) — warm off-white */
+  --tx2: #828a97;  /* fg-secondary (void-700) — cool slate */
+  --tx3: #767d8b;  /* fg-tertiary — lifted to WCAG AA (4.87:1 on bg1; was #6b7280 4.17) */
+  --tx4: #767d8b;  /* faint = tertiary (AA) */
+  --check-marker: #1a1714;  /* dark glyph on accent-filled checkbox (consumed by 22-kuro-checkboxes) */
+}
+.theme-light {
+  /* Porcelain ramp (2026-07-15, Jay verdict: warm beige clashed with gothic-cyberpunk) —
+     the former warm paper ramp (#faf8f5/#eae6de/#d8d3c8, warm ink) is replaced by cool
+     porcelain/ash neutrals that mirror the dark void-scale's blue-grey cast. */
+  --bg1: #f7f8fa;  /* surface-base (porcelain-000) — note */
+  --bg2: #e8eaee;  /* sidebar (porcelain-100) — gentle cool lift */
+  --bg3: #d6d9df;  /* surface-overlay (ash-200) */
+  --ui1: rgba(0, 0, 0, 0.10);  /* border-subtle — alpha tints the porcelain */
+  --ui2: rgba(0, 0, 0, 0.18);  /* border-hover */
+  --ui3: #9aa1ad;  /* border-strong (ash-400, cool slate) */
+  --tx1: #24272c;  /* fg-primary — cool ink (14.1:1 on bg1) */
+  --tx2: #5f656e;  /* fg-secondary — cool slate (5.5:1 on bg1) */
+  --tx3: #666d78;  /* fg-tertiary — WCAG AA (4.91:1 on bg1) */
+  --tx4: #666d78;  /* faint = tertiary (AA) */
+  --check-marker: #0c0e12;  /* dark glyph on accent-filled checkbox */
+}

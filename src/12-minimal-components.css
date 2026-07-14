@@ -1,0 +1,153 @@
+/* Components */
+.document-search, .document-replace {
+  max-width: 100%;
+  padding: 0;
+}
+
+.document-search-container {
+  margin: 0 auto;
+  max-width: var(--max-width);
+  width: var(--line-width);
+}
+
+/* Modals */
+.modal-button-container .mod-checkbox {
+  --checkbox-radius: 4px;
+}
+
+.is-phone .modal.mod-settings .vertical-tab-header-group-items,
+.is-phone .modal.mod-settings .setting-search-result-group {
+  border: var(--setting-items-border-width) solid var(--background-modifier-border);
+}
+
+/* Confirm delete */
+.modal-container.mod-confirmation .modal {
+  width: 480px;
+  min-width: 0;
+}
+
+/* Hide settings descriptions */
+.hide-settings-desc.is-phone .setting-item {
+  padding: 0.65em 0;
+}
+.hide-settings-desc.is-phone .setting-item-name {
+  font-weight: 400;
+  font-size: 16px;
+}
+.hide-settings-desc .setting-item-name {
+  transition: max-height 200ms ease-in-out, padding-top 200ms ease-in-out;
+}
+.hide-settings-desc .setting-item-name:active + .setting-item-description {
+  opacity: 1;
+  max-height: 500px;
+  padding-top: 4px;
+  transition: opacity 100ms ease-out, max-height 200ms ease-out, padding-top 200ms ease-in-out;
+}
+.hide-settings-desc .setting-item-description {
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  transition: max-height 200ms ease-in-out, padding-top 200ms ease-in-out;
+}
+
+.popover {
+  --file-margins: var(--size-4-6) var(--size-4-6) var(--size-4-6);
+}
+
+.minimal-line-nums .popover .markdown-source-view {
+  --file-margins: var(--size-4-4) var(--size-4-6) var(--size-4-6) var(--size-4-12);
+}
+.minimal-line-nums .popover .markdown-source-view.is-rtl {
+  --file-margins: var(--size-4-4) var(--size-4-12) var(--size-4-6) var(--size-4-6);
+}
+
+/* Progress bars */
+body {
+  --progress-outline: var(--background-modifier-border);
+  --progress-complete: var(--text-accent);
+}
+
+.markdown-rendered progress,
+.markdown-source-view.is-live-preview progress,
+.markdown-preview-view progress {
+  width: 220px;
+}
+.markdown-rendered progress[value]::-webkit-progress-bar,
+.markdown-source-view.is-live-preview progress[value]::-webkit-progress-bar,
+.markdown-preview-view progress[value]::-webkit-progress-bar {
+  box-shadow: inset 0px 0px 0px var(--border-width) var(--progress-outline);
+}
+.markdown-rendered progress[value^="1"]::-webkit-progress-value, .markdown-rendered progress[value^="2"]::-webkit-progress-value, .markdown-rendered progress[value^="3"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="1"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="2"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="3"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="1"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="2"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="3"]::-webkit-progress-value {
+  background-color: var(--color-red);
+}
+.markdown-rendered progress[value^="4"]::-webkit-progress-value, .markdown-rendered progress[value^="5"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="4"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="5"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="4"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="5"]::-webkit-progress-value {
+  background-color: var(--color-orange);
+}
+.markdown-rendered progress[value^="6"]::-webkit-progress-value, .markdown-rendered progress[value^="7"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="6"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="7"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="6"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="7"]::-webkit-progress-value {
+  background-color: var(--color-yellow);
+}
+.markdown-rendered progress[value^="8"]::-webkit-progress-value, .markdown-rendered progress[value^="9"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="8"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="9"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="8"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="9"]::-webkit-progress-value {
+  background-color: var(--color-green);
+}
+.markdown-rendered progress[value="1"]::-webkit-progress-value, .markdown-rendered progress[value="100"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="1"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="100"]::-webkit-progress-value,
+.markdown-preview-view progress[value="1"]::-webkit-progress-value,
+.markdown-preview-view progress[value="100"]::-webkit-progress-value {
+  background-color: var(--progress-complete);
+}
+.markdown-rendered progress[value="0"]::-webkit-progress-value, .markdown-rendered progress[value="2"]::-webkit-progress-value, .markdown-rendered progress[value="3"]::-webkit-progress-value, .markdown-rendered progress[value="4"]::-webkit-progress-value, .markdown-rendered progress[value="5"]::-webkit-progress-value, .markdown-rendered progress[value="6"]::-webkit-progress-value, .markdown-rendered progress[value="7"]::-webkit-progress-value, .markdown-rendered progress[value="8"]::-webkit-progress-value, .markdown-rendered progress[value="9"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="0"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="2"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="3"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="4"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="5"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="6"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="7"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="8"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="9"]::-webkit-progress-value,
+.markdown-preview-view progress[value="0"]::-webkit-progress-value,
+.markdown-preview-view progress[value="2"]::-webkit-progress-value,
+.markdown-preview-view progress[value="3"]::-webkit-progress-value,
+.markdown-preview-view progress[value="4"]::-webkit-progress-value,
+.markdown-preview-view progress[value="5"]::-webkit-progress-value,
+.markdown-preview-view progress[value="6"]::-webkit-progress-value,
+.markdown-preview-view progress[value="7"]::-webkit-progress-value,
+.markdown-preview-view progress[value="8"]::-webkit-progress-value,
+.markdown-preview-view progress[value="9"]::-webkit-progress-value {
+  background-color: var(--color-red);
+}
+
+/* Tooltips */
+.tooltip {
+  transition: none;
+  animation: none;
+}
+
+.tooltip.mod-left,
+.tooltip.mod-right {
+  animation: none;
+}
+
+.tooltip.mod-error {
+  color: var(--text-error);
+}
+

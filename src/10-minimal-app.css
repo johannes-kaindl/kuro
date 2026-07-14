@@ -1,0 +1,401 @@
+/* Desktop font sizes */
+body {
+  --font-adaptive-normal:var(--font-text-size,var(--editor-font-size));
+  --font-adaptive-small: calc(var(--font-ui-small) * 1.07);
+  --font-adaptive-smaller: var(--font-ui-small);
+  --font-adaptive-smallest: var(--font-ui-smaller);
+  --line-width-wide:calc(var(--line-width) + 12.5%);
+  --font-code:calc(var(--font-adaptive-normal) * 0.9);
+  --table-text-size:calc(var(--font-adaptive-normal) * 0.875);
+  --bases-table-font-size:calc(var(--font-adaptive-normal) * 0.875);
+}
+
+/* Obsidian */
+/* Obsidian app */
+.bases-view {
+  --bases-table-font-size: var(--table-text-size);
+}
+
+.query-toolbar-menu .combobox-button {
+  background-color: transparent;
+}
+
+.block-language-base .bases-header .bases-toolbar,
+.bases-embed .bases-header .bases-toolbar {
+  padding-bottom: 2px;
+  opacity: var(--bases-toolbar-opacity);
+  transition: 0.15s 0.15s opacity;
+}
+.block-language-base .bases-header .bases-toolbar:hover,
+.bases-embed .bases-header .bases-toolbar:hover {
+  opacity: 1;
+  transition: 0s opacity;
+}
+
+.base-plain .bases-header {
+  display: none;
+}
+
+.bases-table-header-icon {
+  display: var(--bases-table-header-icon-display);
+}
+
+/* Editor mode (CodeMirror 6 Live Preview) */
+/* Fix strange Obsidian ghost textearea bug on right click */
+.CodeMirror-wrap > div > textarea {
+  opacity: 0;
+}
+
+.cm-editor .cm-content {
+  padding-top: 0.5em;
+}
+
+.markdown-source-view {
+  color: var(--text-normal);
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer {
+  display: block;
+}
+
+.markdown-source-view.mod-cm6 .cm-scroller {
+  padding-inline-end: 0;
+  padding-inline-start: 0;
+}
+
+.cm-s-obsidian .cm-line.HyperMD-header {
+  padding-top: calc(var(--p-spacing) / 2);
+}
+
+.markdown-rendered .mod-header + div > * {
+  margin-block-start: 0;
+}
+
+/* Gutters */
+body :not(.canvas-node) .markdown-source-view.mod-cm6 .cm-gutters {
+  position: absolute !important;
+  z-index: 0;
+  margin-inline-end: 0;
+}
+body :not(.canvas-node) .markdown-source-view.mod-cm6 .cm-gutters .cm-gutter:before {
+  content: "";
+  height: 100%;
+  top: -100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  background-color: var(--gutter-background);
+  min-width: var(--folding-offset);
+}
+
+body :not(.canvas-node) .markdown-source-view.mod-cm6.is-rtl .cm-gutters {
+  right: 0;
+}
+
+body {
+  --line-number-color: var(--text-faint);
+  --line-number-color-active: var(--text-muted);
+}
+
+.empty-state-title {
+  display: none;
+}
+
+.markdown-source-view.mod-cm6 .cm-gutters {
+  color: var(--line-number-color) !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-editor .cm-gutterElement.cm-active .cm-heading-marker,
+.markdown-source-view.mod-cm6 .cm-editor .cm-lineNumbers .cm-gutterElement.cm-active {
+  color: var(--line-number-color-active);
+}
+
+.cm-editor .cm-lineNumbers {
+  background-color: var(--gutter-background);
+}
+
+.cm-editor .cm-lineNumbers .cm-gutterElement {
+  min-width: var(--folding-offset);
+  padding-inline-end: 0.5em;
+}
+
+.is-rtl .cm-editor .cm-lineNumbers .cm-gutterElement {
+  text-align: left;
+}
+
+/* Line numbers */
+@media (max-width: 400pt) {
+  .cm-editor .cm-lineNumbers .cm-gutterElement {
+    padding-inline-end: 4px;
+    padding-inline-start: 8px;
+  }
+}
+.cm-editor .cm-lineNumbers .cm-gutterElement.cm-active,
+.cm-editor .cm-gutterElement.cm-active .cm-heading-marker {
+  color: var(--text-muted);
+}
+
+/* Code execution blocks, e.g. Dataview */
+.markdown-source-view.mod-cm6 .edit-block-button {
+  color: var(--text-faint);
+  background-color: var(--background-primary);
+  top: 4px;
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .edit-block-button {
+  width: 30px !important;
+  padding-inline-start: 7px !important;
+}
+
+.is-live-preview:not(.is-readable-line-width) .cm-embed-block > .edit-block-button {
+  padding-inline-start: 0px !important;
+  margin-inline-start: 0 !important;
+  padding: 4px;
+}
+
+.markdown-source-view.mod-cm6 .edit-block-button:hover {
+  background-color: var(--background-primary);
+  color: var(--text-muted);
+}
+
+.markdown-source-view.mod-cm6 .edit-block-button svg {
+  margin: 0 !important;
+  opacity: 1;
+}
+
+.markdown-source-view.mod-cm6 .edit-block-button:hover svg {
+  opacity: 1;
+}
+
+.markdown-source-view.mod-cm6 .cm-embed-block {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.markdown-source-view.mod-cm6 .cm-embed-block:hover {
+  border: 0;
+}
+
+.metadata-container {
+  --input-height: calc(var(--font-adaptive-small) * 2.2);
+}
+
+body.metadata-heading-off .metadata-properties-heading {
+  display: none;
+}
+
+.metadata-add-property-off .mod-root .metadata-add-button {
+  display: none;
+}
+
+.metadata-dividers {
+  --metadata-divider-width: 1px;
+  --metadata-gap: 0px;
+}
+
+.metadata-icons-off .workspace-leaf-content[data-type=all-properties] .tree-item-inner {
+  margin-inline-start: -16px;
+}
+.metadata-icons-off .workspace-leaf-content[data-type=all-properties] .tree-item-icon {
+  display: none;
+}
+.metadata-icons-off .metadata-property-icon {
+  display: none;
+}
+
+/* Preview mode  */
+figure {
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+
+.markdown-preview-view .mod-highlighted {
+  transition: background-color 0.3s ease;
+  background-color: var(--text-selection);
+  color: inherit;
+}
+
+.inline-title {
+  padding-top: 16px;
+}
+
+/* Remove ribbon border on Mac when frameless */
+.mod-macos.hider-frameless .workspace-ribbon {
+  border: none;
+}
+
+/* --------------- */
+/* App ribbon moved to the bottom edge */
+.is-tablet.hider-ribbon {
+  --ribbon-width: 0px;
+}
+.is-tablet.hider-ribbon .side-dock-ribbon {
+  display: none;
+}
+
+.hider-ribbon .workspace-ribbon {
+  padding: 0;
+}
+
+:root {
+  --hider-ribbon-display: none;
+  --ribbon-animation-duration: 0.1s;
+}
+
+.ribbon-bottom-left-hover-vertical:not(.is-mobile),
+.ribbon-bottom-left-hover:not(.is-mobile) {
+  --hider-ribbon-display: flex;
+}
+
+body.ribbon-vertical-expand:not(.is-mobile) {
+  --ribbon-width: 0px;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left {
+  width: 10px;
+  flex-basis: 10px;
+  opacity: 0;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  transition: all var(--ribbon-animation-duration) linear 0.6s;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left .side-dock-actions {
+  transition: opacity var(--ribbon-animation-duration) linear 0.3s;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left:hover {
+  width: 44px;
+  opacity: 1;
+  flex-basis: 44px;
+  transition: opacity var(--ribbon-animation-duration) linear 0.1s;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left:hover .side-dock-actions {
+  opacity: 1;
+  transition: opacity calc(var(--ribbon-animation-duration) * 2) linear 0.2s;
+}
+body.ribbon-vertical-expand:not(.is-mobile).labeled-nav .workspace-ribbon.mod-left ~ .mod-left-split .workspace-tab-header-container {
+  margin-left: 0;
+  transition: all var(--ribbon-animation-duration) linear 0.6s;
+}
+body.ribbon-vertical-expand:not(.is-mobile).labeled-nav .workspace-ribbon.mod-left:hover ~ .mod-left-split .workspace-tab-header-container {
+  margin-left: 44px;
+  transition: all var(--ribbon-animation-duration) linear;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left ~ .mod-left-split .workspace-tab-container {
+  padding-left: 0px;
+  transition: all var(--ribbon-animation-duration) linear 0.6s;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left ~ .mod-left-split .workspace-sidedock-vault-profile {
+  transition: all var(--ribbon-animation-duration) linear 0.6s;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left:hover ~ .mod-left-split .workspace-tab-container {
+  padding-left: 44px;
+  transition: all var(--ribbon-animation-duration) linear;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left:hover ~ .mod-left-split .workspace-sidedock-vault-profile {
+  padding-left: 52px;
+  transition: all var(--ribbon-animation-duration) linear;
+}
+
+.hider-ribbon .workspace-ribbon.mod-left:before,
+.ribbon-bottom-left-hover-vertical .workspace-ribbon.mod-left:before,
+.ribbon-bottom-left-hover .workspace-ribbon.mod-left:before {
+  opacity: 0;
+}
+.hider-ribbon .workspace-ribbon-collapse-btn,
+.ribbon-bottom-left-hover-vertical .workspace-ribbon-collapse-btn,
+.ribbon-bottom-left-hover .workspace-ribbon-collapse-btn {
+  display: none;
+}
+.hider-ribbon .workspace-ribbon.mod-right,
+.ribbon-bottom-left-hover-vertical .workspace-ribbon.mod-right,
+.ribbon-bottom-left-hover .workspace-ribbon.mod-right {
+  pointer-events: none;
+}
+.hider-ribbon .workspace-ribbon.mod-left,
+.ribbon-bottom-left-hover-vertical .workspace-ribbon.mod-left,
+.ribbon-bottom-left-hover .workspace-ribbon.mod-left {
+  overflow: visible;
+  border-top: var(--border-width) solid var(--background-modifier-border) !important;
+  border-right: var(--border-width) solid var(--background-modifier-border) !important;
+  border-top-right-radius: var(--radius-m);
+  padding: 0;
+  position: absolute;
+  margin: 0;
+  width: auto;
+  height: 44px;
+  flex-basis: 0;
+  bottom: 0;
+  top: auto;
+  background: var(--background-secondary);
+  display: var(--hider-ribbon-display) !important;
+  flex-direction: row;
+  z-index: 17;
+  opacity: 0;
+  transition: opacity calc(var(--ribbon-animation-duration) * 2) ease-in-out;
+  filter: drop-shadow(2px 10px 30px rgba(0, 0, 0, 0.2));
+  gap: 0;
+}
+.hider-ribbon .side-dock-actions,
+.hider-ribbon .side-dock-settings,
+.ribbon-bottom-left-hover-vertical .side-dock-actions,
+.ribbon-bottom-left-hover-vertical .side-dock-settings,
+.ribbon-bottom-left-hover .side-dock-actions,
+.ribbon-bottom-left-hover .side-dock-settings {
+  flex-direction: row;
+  display: var(--hider-ribbon-display);
+  background: transparent;
+  margin: 0;
+  position: relative;
+  gap: var(--size-2-2);
+}
+.hider-ribbon .side-dock-actions,
+.ribbon-bottom-left-hover-vertical .side-dock-actions,
+.ribbon-bottom-left-hover .side-dock-actions {
+  padding: 6px 6px 6px 8px;
+}
+.hider-ribbon .side-dock-settings:empty,
+.ribbon-bottom-left-hover-vertical .side-dock-settings:empty,
+.ribbon-bottom-left-hover .side-dock-settings:empty {
+  display: none;
+}
+.hider-ribbon .workspace-ribbon.mod-left .side-dock-ribbon-action,
+.ribbon-bottom-left-hover-vertical .workspace-ribbon.mod-left .side-dock-ribbon-action,
+.ribbon-bottom-left-hover .workspace-ribbon.mod-left .side-dock-ribbon-action {
+  display: var(--hider-ribbon-display);
+}
+.hider-ribbon .workspace-ribbon.mod-left:hover,
+.ribbon-bottom-left-hover-vertical .workspace-ribbon.mod-left:hover,
+.ribbon-bottom-left-hover .workspace-ribbon.mod-left:hover {
+  opacity: 1;
+  transition: opacity 0.25s ease-in-out;
+}
+.hider-ribbon .workspace-ribbon.mod-left .workspace-ribbon-collapse-btn,
+.ribbon-bottom-left-hover-vertical .workspace-ribbon.mod-left .workspace-ribbon-collapse-btn,
+.ribbon-bottom-left-hover .workspace-ribbon.mod-left .workspace-ribbon-collapse-btn {
+  opacity: 0;
+}
+.hider-ribbon .workspace-split.mod-left-split,
+.ribbon-bottom-left-hover-vertical .workspace-split.mod-left-split,
+.ribbon-bottom-left-hover .workspace-split.mod-left-split {
+  margin: 0;
+}
+.hider-ribbon .workspace-leaf-content .item-list,
+.ribbon-bottom-left-hover-vertical .workspace-leaf-content .item-list,
+.ribbon-bottom-left-hover .workspace-leaf-content .item-list {
+  padding-bottom: 40px;
+}
+
+.ribbon-bottom-left-hover-vertical .workspace-ribbon.mod-left {
+  height: auto;
+}
+.ribbon-bottom-left-hover-vertical .side-dock-actions {
+  flex-direction: column;
+  padding: 8px 6px;
+}
+

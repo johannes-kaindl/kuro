@@ -1,0 +1,192 @@
+/*
+  22-kuro-checkboxes.css — task-list checkboxes, Minimal's silhouette model with Kuro's
+  signal roles: for every alternate [data-task] the box itself becomes the icon — the input
+  is masked to the icon shape and painted in the role colour (border off, native marker off).
+  Defined ONCE for Reading view, Live-Preview and editor source. REPLACES Minimal's
+  checklist-icon system (removed at source in 30-minimal-features.css).
+
+  MODEL HISTORY (three real-app findings, see docs/GUIDE.md § Checkboxes):
+  1. Text-::after glyphs die under Obsidian's native check-shaped -webkit-mask-image
+     (app.css clips ANY ::after content to the check silhouette → "just checks").
+  2. Filled mini-boxes with inverted mask-icons on ::after DID render (native-mask riding
+     works) but read as toy-like pastel chips, not gothic (Jay verdict 2026-07-15).
+  3. So: Minimal's own silhouette recipe — --checkbox-marker-color: transparent kills the
+     native ::after, border: none kills the box, background-color + -webkit-mask-image on
+     the INPUT turn it into a full-size icon in the signal colour. Proven live by Minimal.
+
+  Done [x]/[X] stays a filled accent box with the native check (classic, worked live).
+  Empty [ ] stays a visible bordered square. Done/cancelled text strike rides Obsidian's
+  native consumer (--checklist-done-* set at source in 20-minimal-content — an own strike
+  rule loses to core's (0,2,2) ul > li[data-task="x"]).
+
+  DOM (verified 2026-07-11): reading view puts data-task on the <li> (input often inside a
+  <p>); alternate types are checked + .is-checked in every surface. Selectors pair
+  `li[data-task="X"] .task-list-item-checkbox:checked` with the editor's
+  `input[data-task="X"].task-list-item-checkbox:checked` — same contract Minimal builds on.
+
+  Icons: solid-fill SVG data URIs — heroicons v1 solid (MIT, the set Minimal itself vendors)
+  + hand-drawn geometric + the question glyph Minimal ships.
+  Consumes 04-kuro-tokens (--role-* . --radius-sm . --dur-fast . --ease-signal . --accent .
+  --check-border) and Obsidian native (--checkbox-size . --checkbox-color . --tx3).
+  No hex (R1), no !important (R2).
+  RULES  see ../docs/CSS-CONVENTIONS.md . R1 variable-first . R2 tag every !important . R3 both-mode . R6 build+check
+*/
+
+/* ════════════════════════════════════════════════════════════════════════
+   GEOMETRY — one size source. Native app.css sizes the box, its checked
+   ::after AND our masks from --checkbox-size.
+   ════════════════════════════════════════════════════════════════════════ */
+body {
+  --checkbox-size: 1.1em;
+  --checkbox-top: 0px; /* Minimal's 2px push + the old -0.28em seat read "sunken" on the
+                          box-less silhouettes (Jay, round 3) — neutralise the relative push */
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   BASE — visible empty square. Native app.css provides appearance:none,
+   sizing, position and flex-shrink; Kuro adds its deltas: square radius,
+   accent-tinted border + faint wash, text-line seating.
+   ════════════════════════════════════════════════════════════════════════ */
+input.task-list-item-checkbox {
+  border: 1.5px solid var(--check-border);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  cursor: pointer;
+  vertical-align: -0.12em; /* centre on the text mid-line; -0.28em read "sunken" on the
+                              box-less silhouettes (Jay, round 3 2026-07-15) */
+  transition: background var(--dur-fast) var(--ease-signal),
+              border-color var(--dur-fast) var(--ease-signal);
+}
+
+/* Default checked (serves [x]/[X]) — accent fill; the native ::after draws the check. */
+input.task-list-item-checkbox:checked {
+  background: var(--checkbox-color);
+  border-color: var(--checkbox-color);
+}
+
+/* Settings toggles: the "on" track follows the system accent, theme-scoped so it stays visible on
+   dark surfaces. CRITIC: ported from 10-v1:1016 — drop it and the dark toggle bug regresses. */
+.checkbox-container.is-enabled {
+  background-color: var(--checkbox-color);
+}
+.theme-dark .checkbox-container.is-enabled {
+  background-color: var(--checkbox-color);
+  border-color: var(--checkbox-color);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   SILHOUETTE SCAFFOLD — one rule for every alternate type: kill the native
+   marker + box chrome, paint the input as a full-size mask shape. The
+   per-type rules below supply only colour + icon.
+   ════════════════════════════════════════════════════════════════════════ */
+li[data-task=">"] .task-list-item-checkbox:checked, input[data-task=">"].task-list-item-checkbox:checked,
+li[data-task="<"] .task-list-item-checkbox:checked, input[data-task="<"].task-list-item-checkbox:checked,
+li[data-task="?"] .task-list-item-checkbox:checked, input[data-task="?"].task-list-item-checkbox:checked,
+li[data-task="!"] .task-list-item-checkbox:checked, input[data-task="!"].task-list-item-checkbox:checked,
+li[data-task="i"] .task-list-item-checkbox:checked, input[data-task="i"].task-list-item-checkbox:checked,
+li[data-task="b"] .task-list-item-checkbox:checked, input[data-task="b"].task-list-item-checkbox:checked,
+li[data-task="p"] .task-list-item-checkbox:checked, input[data-task="p"].task-list-item-checkbox:checked,
+li[data-task="c"] .task-list-item-checkbox:checked, input[data-task="c"].task-list-item-checkbox:checked,
+li[data-task="f"] .task-list-item-checkbox:checked, input[data-task="f"].task-list-item-checkbox:checked,
+li[data-task="k"] .task-list-item-checkbox:checked, input[data-task="k"].task-list-item-checkbox:checked,
+li[data-task="-"] .task-list-item-checkbox:checked, input[data-task="-"].task-list-item-checkbox:checked {
+  --checkbox-marker-color: transparent;
+  border: none;
+  border-radius: 0;
+  background-image: none;
+  -webkit-mask-size: 100%;
+  -webkit-mask-position: 50% 50%;
+  -webkit-mask-repeat: no-repeat;
+}
+
+/* Slim geometric glyphs (chevrons, ?, !, i, +, −) carry whitespace in their viewBox —
+   scale the mask past the box so the stroke reads at full weight (clips only air). */
+li[data-task=">"] .task-list-item-checkbox:checked, input[data-task=">"].task-list-item-checkbox:checked,
+li[data-task="<"] .task-list-item-checkbox:checked, input[data-task="<"].task-list-item-checkbox:checked,
+li[data-task="?"] .task-list-item-checkbox:checked, input[data-task="?"].task-list-item-checkbox:checked,
+li[data-task="!"] .task-list-item-checkbox:checked, input[data-task="!"].task-list-item-checkbox:checked,
+li[data-task="i"] .task-list-item-checkbox:checked, input[data-task="i"].task-list-item-checkbox:checked,
+li[data-task="p"] .task-list-item-checkbox:checked, input[data-task="p"].task-list-item-checkbox:checked,
+li[data-task="c"] .task-list-item-checkbox:checked, input[data-task="c"].task-list-item-checkbox:checked,
+li[data-task="-"] .task-list-item-checkbox:checked, input[data-task="-"].task-list-item-checkbox:checked {
+  -webkit-mask-size: 135%;
+}
+
+/* ── Per-type: signal colour + icon shape ─────────────────────────────── */
+
+/* [>] Forwarded — focus role, chevron-right */
+li[data-task=">"] .task-list-item-checkbox:checked, input[data-task=">"].task-list-item-checkbox:checked {
+  background-color: var(--role-focus);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'/%3E%3C/svg%3E");
+}
+
+/* [<] Scheduled — link role, chevron-left */
+li[data-task="<"] .task-list-item-checkbox:checked, input[data-task="<"].task-list-item-checkbox:checked {
+  background-color: var(--role-link);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+}
+
+/* [?] Question — review role, question glyph (the path Minimal ships) */
+li[data-task="?"] .task-list-item-checkbox:checked, input[data-task="?"].task-list-item-checkbox:checked {
+  background-color: var(--role-review);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3E%3Cpath fill-rule='evenodd' d='M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215c0 1.344-.665 2.288-1.79 2.973c-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712c1.03-.632 1.397-1.135 1.397-2.028c0-.979-.758-1.698-1.926-1.698c-1.009 0-1.71.529-1.938 1.402c-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09c0-.618-.473-1.092-1.095-1.092c-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z'/%3E%3C/svg%3E");
+}
+
+/* [!] Important — warning role, exclamation */
+li[data-task="!"] .task-list-item-checkbox:checked, input[data-task="!"].task-list-item-checkbox:checked {
+  background-color: var(--role-warning);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M10 2c.9 0 1.62.76 1.55 1.66l-.45 8.09a1.1 1.1 0 01-2.2 0l-.45-8.09C8.38 2.76 9.1 2 10 2zm0 16a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6z'/%3E%3C/svg%3E");
+}
+
+/* [i] Info — info role, info glyph */
+li[data-task="i"] .task-list-item-checkbox:checked, input[data-task="i"].task-list-item-checkbox:checked {
+  background-color: var(--role-info);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M10 2.2a1.8 1.8 0 110 3.6 1.8 1.8 0 010-3.6zm0 5.3c.83 0 1.5.67 1.5 1.5v7.5a1.5 1.5 0 01-3 0V9c0-.83.67-1.5 1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+/* [b] Bookmark — accent, bookmark icon */
+li[data-task="b"] .task-list-item-checkbox:checked, input[data-task="b"].task-list-item-checkbox:checked {
+  background-color: var(--accent);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z'/%3E%3C/svg%3E");
+}
+
+/* [p] Pro — success role, plus */
+li[data-task="p"] .task-list-item-checkbox:checked, input[data-task="p"].task-list-item-checkbox:checked {
+  background-color: var(--role-success);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M10 3.5c.83 0 1.5.67 1.5 1.5v3.5H15a1.5 1.5 0 010 3h-3.5V15a1.5 1.5 0 01-3 0v-3.5H5a1.5 1.5 0 010-3h3.5V5c0-.83.67-1.5 1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+/* [c] Contra — error role, minus */
+li[data-task="c"] .task-list-item-checkbox:checked, input[data-task="c"].task-list-item-checkbox:checked {
+  background-color: var(--role-error);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M5 8.5h10a1.5 1.5 0 010 3H5a1.5 1.5 0 010-3z'/%3E%3C/svg%3E");
+}
+
+/* [f] Fire — drift role, flame */
+li[data-task="f"] .task-list-item-checkbox:checked, input[data-task="f"].task-list-item-checkbox:checked {
+  background-color: var(--role-drift);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath fill-rule='evenodd' d='M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z' clip-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+/* [k] Key — organic role, key */
+li[data-task="k"] .task-list-item-checkbox:checked, input[data-task="k"].task-list-item-checkbox:checked {
+  background-color: var(--role-organic);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath fill-rule='evenodd' d='M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z' clip-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+/* [-] Cancelled — muted, minus silhouette; text strike + dim on the line */
+li[data-task="-"] .task-list-item-checkbox:checked, input[data-task="-"].task-list-item-checkbox:checked {
+  background-color: var(--tx3);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath d='M5 8.5h10a1.5 1.5 0 010 3H5a1.5 1.5 0 010-3z'/%3E%3C/svg%3E");
+}
+li.task-list-item[data-task="-"],
+.markdown-source-view.mod-cm6 .HyperMD-task-line[data-task="-"] {
+  text-decoration: line-through;
+  color: var(--tx3);
+  opacity: 0.6;
+}
+
+/* Done [x]/[X] strike rides Obsidian's native consumer:
+   ul > li.task-list-item[data-task="x"] reads --checklist-done-decoration/-color,
+   set at source in 20-minimal-content (line-through + --text-muted). No own rule —
+   core's (0,2,2) selector would beat it anyway. */
