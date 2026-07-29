@@ -4,6 +4,10 @@ Conventions for AI agents (Claude Code, Codex, …) working in this repo. Kuro i
 Obsidian theme **"Kuro"** (Neo-Gothic / Post-Cyberpunk), built on the **Armature** — a
 forkable skeleton.
 
+> **Workspace standards (maintainer-local):** The binding conventions live in `_docs/CONVENTIONS.md`
+> in the maintainer's multi-project workspace, `../../../_docs` relative to this repo — not part of
+> this repo; ignore if absent in your clone. Model: comply-or-explain.
+
 ## Golden rule
 
 **`theme.css` is generated — never edit it.** Edit the fragments in `src/`, then:
@@ -45,3 +49,13 @@ element in Obsidian DevTools (Cmd+Opt+I) and fix against the real selector.
 
 The public `kuro-*` Style-Settings / companion contract is **frozen** — don't rename or drop
 `kuro-*` body-classes or `--kuro-*` vars (breaks user configs). Fork guide: `docs/THEME-AUTHORING.md`.
+
+## Memory
+
+- **SDD artifacts (since 2026-07-16): cockpit, not repo** — specs/plans/task reports live in the
+  maintainer's coding cockpit (`$VAULT/25_Coding/Kuro/_SDD/`, CORE-META-14, maintainer-local).
+  They carry working context (vault paths, sister-repo internals) that is of no use to anyone in a
+  public repo. The repo keeps the design essence in this file + `CHANGELOG.md`.
+- **Legacy stock:** `docs/superpowers/{specs,plans}/` is frozen — do not add anything new there.
+- **Never in the repo:** absolute paths outside the repo (`/Users/…`, vault paths) — use placeholders
+  (`$VAULT/…`, `~/…`, repo-relative). Provenance as repo name + `file:line` is welcome, though.

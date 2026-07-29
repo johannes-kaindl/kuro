@@ -8,7 +8,7 @@
 
 **Tech Stack:** Bash (zero-dep build/check), CSS (Obsidian theme), Obsidian Style Settings (`@settings`-YAML). Kein Node/sass.
 
-**Spec (SSOT):** Vault-Note `[[Kuro-on-Minimal-Fork-Design]]` — `/Users/Shared/10_ObsidianVaults/10_Pallas/25_Coding/kuro-obsidian-theme/Kuro-on-Minimal-Fork-Design.md`. §4b Methode, §4c Guide.
+**Spec (SSOT):** Vault-Note `[[Kuro-on-Minimal-Fork-Design]]` — `$VAULT/25_Coding/kuro-obsidian-theme/Kuro-on-Minimal-Fork-Design.md`. §4b Methode, §4c Guide.
 
 ## Global Constraints
 
@@ -59,7 +59,7 @@ _(Grenzen an den `/* Section */`-Nähten final justieren, sodass keine Regel ges
 - [ ] **Step 1: Branch anlegen**
 
 ```bash
-cd /Users/Shared/code/obsidian-plugins/kuro-obsidian-theme/Kuro
+cd <repo-root>   # das Kuro-Repo-Root
 git checkout main && git checkout -b feat/minimal-skeleton
 ```
 
@@ -164,10 +164,10 @@ echo "  no-hex in kuro components: OK"
 
 **Deploy (Anhang, für jeden Sicht-Check):**
 ```bash
-# Backup + deploy nach 10_Pallas (Pfad der aktiven Kuro-Theme-Installation):
-cp "/Users/Shared/10_ObsidianVaults/10_Pallas/.obsidian/themes/Kuro/theme.css" \
-   "/Users/Shared/10_ObsidianVaults/10_Pallas/.obsidian/themes/Kuro/theme.css.bak" 2>/dev/null || true
-cp ../theme.css "/Users/Shared/10_ObsidianVaults/10_Pallas/.obsidian/themes/Kuro/theme.css"
+# Backup + deploy in den Vault ($VAULT = Pfad der aktiven Kuro-Theme-Installation):
+cp "$VAULT/.obsidian/themes/Kuro/theme.css" \
+   "$VAULT/.obsidian/themes/Kuro/theme.css.bak" 2>/dev/null || true
+cp ../theme.css "$VAULT/.obsidian/themes/Kuro/theme.css"
 # Jay: Obsidian → Theme neu laden / App-Reload.
 ```
 

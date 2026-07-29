@@ -7,7 +7,7 @@
 >
 > **Kanonische Quelle (SSOT):**
 > `10_Pallas` → `25_Coding/kuro-obsidian-theme/Kuro-on-Minimal-Fork-Design.md`
-> Absolut: `/Users/Shared/10_ObsidianVaults/10_Pallas/25_Coding/kuro-obsidian-theme/Kuro-on-Minimal-Fork-Design.md`
+> Absolut: `$VAULT/25_Coding/kuro-obsidian-theme/Kuro-on-Minimal-Fork-Design.md` (maintainer-lokal)
 
 ---
 

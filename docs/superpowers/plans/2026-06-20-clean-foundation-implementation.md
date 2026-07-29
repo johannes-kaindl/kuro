@@ -95,7 +95,7 @@ Light mappings (NEW, mirror the *role*, mapped onto `--paper`): `--surface-vault
 - [ ] **Step 1: Create the dir and copy the fonts fragment verbatim**
 
 ```bash
-cd /Users/Shared/code/obsidian-plugins/kuro-obsidian-theme/Kuro
+cd <repo-root>   # the Kuro repo root
 mkdir -p src-v4
 cp src/02-fonts-embedded.css src-v4/02-fonts-embedded.css
 ```
@@ -354,7 +354,7 @@ git add src-v4/ && git commit -m "feat(v4): scaffold src-v4 armature build + che
 ### Task E4.4: Version bump + final validation
 - [ ] Bump `manifest.json` + HEADER + `CHANGELOG.md` to **4.0.0** (note: public contract unchanged, supersedes 3.4.0, list the bug fixes).
 - [ ] Validate: 13 presets × {light, dark, low-contrast} resolve (grep each preset class builds without undefined token); `grep -c '!important'`, `@import url(http` = 0, size < 5 MB.
-- [ ] Deploy for Jay's visual check: `cp theme.css /Users/Shared/10_ObsidianVaults/10_Pallas/.obsidian/themes/Kuro/theme.css` then md5-verify the copy.
+- [ ] Deploy for Jay's visual check: `cp theme.css $VAULT/.obsidian/themes/Kuro/theme.css` then md5-verify the copy.
 - [ ] Commit: `chore(v4): bump to 4.0.0 + deploy for visual verification`
 
 ### Task E4.5: Jay's single comprehensive visual check (HUMAN GATE)
